@@ -46,8 +46,8 @@ git 기본 사용 가이드(참고자료)
 
 ##- .gitignore 설정방법
 * 자꾸 이상한 파일도 commit, push될 때
-> http://josephkim75.wordpress.com/2012/06/13/git%EC%97%90%EC%84%9C-gitignore-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/
-> http://dolfalf.tistory.com/58
+ * http://josephkim75.wordpress.com/2012/06/13/git%EC%97%90%EC%84%9C-gitignore-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/
+ * http://dolfalf.tistory.com/58
 
 ---
 
@@ -68,6 +68,6 @@ git 기본 사용 가이드(참고자료)
 ---
 
 ##- Markdown(.md) 작성법
-> https://help.github.com/articles/markdown-basics
-> http://scriptogr.am/myevan/post/markdown-syntax-guide-for-scriptogram
-> https://guides.github.com/features/mastering-markdown/
+* https://help.github.com/articles/markdown-basics
+* http://scriptogr.am/myevan/post/markdown-syntax-guide-for-scriptogram
+* https://guides.github.com/features/mastering-markdown/
