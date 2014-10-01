@@ -54,7 +54,7 @@ http://dolfalf.tistory.com/58
 ##- Git GUI Client 사용법
 * Tortoise Git
 > http://forum.falinux.com/zbxe/?l=fr&mid=lecture_tip&document_srl=597014
-> Smart Git도 있음(본인이 편한대로 쓸 것
+#### Smart Git도 있음(본인이 편한대로 쓸 것)
 
 ---
 
@@ -70,3 +70,4 @@ http://dolfalf.tistory.com/58
 ##- Markdown(.md) 작성법
 > https://help.github.com/articles/markdown-basics
 > http://scriptogr.am/myevan/post/markdown-syntax-guide-for-scriptogram
+> https://guides.github.com/features/mastering-markdown/
