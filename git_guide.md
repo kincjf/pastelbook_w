@@ -47,14 +47,14 @@ git 기본 사용 가이드(참고자료)
 ##- .gitignore 설정방법
 * 자꾸 이상한 파일도 commit, push될 때
 > http://josephkim75.wordpress.com/2012/06/13/git%EC%97%90%EC%84%9C-gitignore-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/
-http://dolfalf.tistory.com/58
+> http://dolfalf.tistory.com/58
 
 ---
 
 ##- Git GUI Client 사용법
 * Tortoise Git
 > http://forum.falinux.com/zbxe/?l=fr&mid=lecture_tip&document_srl=597014
-> Smart Git도 있음(본인이 편한대로 쓸 것
+* Smart Git도 있음(본인이 편한대로 쓸 것)
 
 ---
 
