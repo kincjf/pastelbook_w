@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<div id="dlg_oldtool" title="도구"><!-- 겹침 -->
+	<div id="tabs_oldtool">
+		<div id="tabs-1">
+			온라인 | 컴퓨터 <a href="#">자세히 보기</a> <br />
+			이미지 경로를 붙여주세요 ( 힌트 있는 텍스트필드 )<br />
+			버튼_(동영상 크기), 라벨_w*h(영상 가로세로 크기), 버튼_삽입<br />
+		</div>
+		<div id="tabs-2">
+			<ul>글상자종류
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류1말풍선
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류2더블말붕선
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류3동그라미말풍선
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류4구름말풍선
+				</li>
+			</ul>
+		</div>
+		<div id="tabs-3">도형종류1-8
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>동그라미
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>-
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>+
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>ㅌ
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>x
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>클로버
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>별
+				</li>
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>오른쪽화살표
+				</li>
+		</div>
+		<div id="tabs-4"><!-- 현재 씬 클릭후 오른쪽 클릭한다음에 배경서식 눌렀을때, 혹은 배경도구 밑에 작은 사이즈로 나오는 배경 썸네일 오른쪽 클릭 했을때?( 이건 좀 애매 ) -->
+			-배경-
+			%체크박스 움직이는 배경
+			속도 (텍스트필드_30) fps
+			방향 (드롭다운리스트)상(하,좌,우)
+			이미지 경로를 붙여주세요 ( 힌트 있는 텍스트필드 )<br /><!-- 노노 이따위론 안됨 드래그 해야지 -->
+			버튼_삽입(오른쪽에)
+		</div>
+		<div id="tabs-5">
+			탭_오디오|비디오
+			온라인|컴퓨터_라디오버튼<br />
+			동영상 경로를 붙여주세요 ( 힌트 있는 텍스트필드 )<br /><!-- 노노 이따위론 안됨 드래그 해야지 -->
+			버튼_(동영상 크기), 라벨_w*h(영상 가로세로 크기), 버튼_삽입<br />
+			<a href="#">동영상 첨부 전 유의사항을 참고해주세요</a>
+		</div>
+	</div>
+</div>
+<!-- <script src="js/pb/ui/dlg_oldtool.js"></script> -->

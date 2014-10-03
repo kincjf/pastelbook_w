@@ -1,0 +1,43 @@
+/**
+ *  14. 9. 25.	v 0.0.1		Checked by HONG WON GI
+ *  - jquery ui css중 너비 많이 차지하는 제목표시줄 등을 줄이기 위해서 작업한내용을 금일 저장
+ */
+	body{
+		font: 62.5% "돋움", sans-serif;
+		margin: 0.1em;
+		background-color:gray
+	}
+
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+
+	/* hong */
+
+
+
+	/* pb-win */
+	.ui-widget-content {
+		border-width: .2em;
+		padding: .1em;
+	}
+
+	.ui-widget-content p {
+		margin: .0em;
+	}
+
+	.ui-dialog .ui-dialog-content {
+		padding: 0px;
+		border: .1em solid #aaa;
+	}
+
+	.ui-draggable .ui-dialog-titlebar {
+		cursor : pointer;
+	}
+	.ui-dialog .ui-dialog-titlebar {
+		padding: .2em;
+		margin-bottom: .1em;
+	}
+
+	#slide-preview ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+	#slide-preview li { margin: 5px; padding: 5px; width: 150px; }

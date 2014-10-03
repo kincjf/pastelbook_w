@@ -1,0 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<!-- 이전 id animation-container -->
+<div id="dlg_animation" title="애니메이션">
+	개체명 : <span id="object_id">HIT-IT 로고</span>
+	이벤트 방법
+
+</div>
+<!-- <script src="js/pb/ui/dlg_animation.js"></script> -->
