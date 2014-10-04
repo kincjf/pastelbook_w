@@ -11,7 +11,7 @@ insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values 
 insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "icon", "./img/icon/i_cloud7.png", "./img/content/cloud7.png", "cloud7", "구름7", "nature" );
 insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "icon", "./img/icon/i_cloud8.png", "./img/content/cloud8.png", "cloud8", "구름8", "nature" );
 insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "icon", "./img/icon/i_flower.png", "./img/content/flower.png", "flower", "꽃", "nature" );
-insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "icon", "./img/icon/i_forest1.png", "./img/content/forest1.png", "forest1", "숲1", "nature" );
+insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "icon", "./img/icon/i_forest1.png", "./img/content/forest1.png", "forest1", " 숲1", "nature" );
 insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "icon", "./img/icon/i_forest2.png", "./img/content/forest2.png", "forest2", "숲2", "nature" );
 insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "icon", "./img/icon/i_ground1.png", "./img/content/ground1.png", "ground1", "땅1", "nature" );
 insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "icon", "./img/icon/i_ground2.png", "./img/content/ground2.png", "ground2", "땅2", "nature" );
@@ -70,4 +70,4 @@ insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values 
 insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "character", "./img/icon/i_littlechild_run.gif", "./img/content/littlechild_run.gif", "littlechild_run", "작은아들", "human" );
 insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "character", "./img/icon/i_littlechild_sad.gif", "./img/content/littlechild_sad.gif", "littlechild_sad", "작은아들", "human" );
 insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "character", "./img/icon/i_littlechild_tired.gif", "./img/content/littlechild_tired.gif", "littlechild_tired", "작은아들", "human" );
-insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "character", "./img/icon/i_grandfa_sleep.gif", "./img/content/grandfa_sleep.gif", "grandfa_sleep", "할아버지", "human" );
+insert into pb_resource ( type, iconSrc, imgSrc, name, showName, theme ) values ( "character", "./img/icon/i_grandfa_sleep.gif", "./img/content/grandfa_sleep.gif", "grandfa_sleep", "할아버지", "human" } 
