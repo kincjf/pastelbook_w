@@ -27,7 +27,17 @@
 
 	<%//@ include file="/dlg_project_close.jspf" %>
 	<div id="dlg_project_close" title="종료하시겠습니까?"><!-- 메뉴로부터 온클릭 이벤트 등록 필요 -->
-		버튼_YES, 버튼_NO
+		<button>YES</button>
+		<button>NO</button>
 	</div>
+	<script>
+		$("#dlg_project_close button:first").button().next().button();
+	</script>
+	<style>
+		#dlg_project_close {
+			text-align : center;
+			padding-top: 20px;
+		}
+	</style>
 	</body>
 </html>
