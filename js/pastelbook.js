@@ -69,14 +69,31 @@ require(["pastelbook_ui_event"],function(pastelbook_ui_event){
 
 });
 
-
+		var d;
 // 개발 중 디버그 편의성을 위해 추가
 require(["pastelbook_ui"],function(pastelbook_ui){
 	$(function () {
+
 		var dlg_arr = $('div[id^="dlg_"]');
-			dlg_arr.each(function(t){
-			$(dlg_arr[t]).append('<div style="position : absolute; top: 2px; right: 2px;">'+$(dlg_arr[t])[0].id+'</div>');
-		});
+			
+		dlg_arr.each(function(t){
+			$(dlg_arr[t]).append('<div id="'+""+"dlgname"+'" style="position : absolute; top: 2px; right: 2px;">'+$(dlg_arr[t])[0].id+'</div>'); // 다이얼로그 이름 표시 // $(dlg_arr[t])[0]는 다이얼로그 바디
+			$(dlg_arr[t]).append('<div id="'+""+"dlg_dim_2D"+'" style="position : absolute; bottom: 2px; right: 2px;">'+$(dlg_arr[t])+'</div>'); // 
+
+			// 리사이즈 이벤트 호출시, 오른쪽 아래에 다이얼로그 크기 표시 -> 드래그? 이동 이벤트일때도 호출되게 해야 편할듯
+			$(dlg_arr[t]).parent().resize( function(){ // 왜인지는 모르겠지만 다이얼로그의 리사이즈호출시 모든 다이얼로그의 리사이즈 이벤트가 호출 ㅗ디는 모양이다.
+				$(dlg_arr[t]).parent().find("#dlg_dim_2D").text( 
+					'('+
+					Math.round( $(dlg_arr[t]).parent().offset().left ) 
+					+ ',' +
+					Math.round( $(dlg_arr[t]).parent().offset().top ) 
+					+ ') ' +
+					Math.round( $(dlg_arr[t]).parent().width() ) // 반올림 한 내용 출력
+					+ 'x' +
+					Math.round( $(dlg_arr[t]).parent().height() ) 
+				);
+			}); // 리사이즈
+		}); // each 
 	});
 });
 

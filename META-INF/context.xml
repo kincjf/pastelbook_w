@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Context reloadable="true">
+     <Resource 
+		auth="Container"
+		characterEncoding="UTF8"
+		driverClassName="org.mariadb.jdbc.Driver"
+		maxActive="500"
+		maxIdle="100"
+		name="jdbc/maria_pb"
+		password="hitit113112"
+		type="javax.sql.DataSource"
+		url="jdbc:mysql://localhost:3306/pb"
+		useUnicode="true"
+		username="pb"/>
+</Context>

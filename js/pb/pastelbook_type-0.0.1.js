@@ -194,7 +194,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 	$(function () {
 		pb.type.Scene = Backbone.Model.extend({
 			defaults: {
-				groups: null,
+				groups: null, // master group 이라고 할까 혹은 top?
 				background: "white",
 				opacity: 1
 			},

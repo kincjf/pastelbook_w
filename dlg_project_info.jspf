@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <div id="dlg_project_info" title="프로젝트 정보"><!-- 메뉴로부터 온클릭 이벤트 등록 필요 -->
 	<ul>
-		# 제작날짜: 2014/05/27 12:39 <@ pb.ui.dlg_current_scene.x @>
-		# 이름 : 강전구꺼
-		# 경로 : D:\work
-		# cc라이센스 : qweree 의 qwerqwer ( 링크 url or mail. )
+		<li><span class="ui-icon ui-icon-bullet"></span>제작날짜: 2014/05/27 12:39</li>
+		<li><span class="ui-icon ui-icon-bullet"></span>이름 : 강전구꺼</li>
+		<li><span class="ui-icon ui-icon-bullet"></span>경로 : D:\work </li>
+		<li><span class="ui-icon ui-icon-bullet"></span>cc라이센스 : qweree 의 qwerqwer ( 링크 url or mail. ) </li>
 	</ul>
 </div>
 <!-- <script src="js/pb/ui/dlg_project_info.js"></script> -->
