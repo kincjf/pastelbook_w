@@ -39,5 +39,42 @@
 		margin-bottom: .1em;
 	}
 
-	#slide-preview ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
-	#slide-preview li { margin: 5px; padding: 5px; width: 150px; }
+/*
+	ui-icon 의 줄바꿈 ( line break 문제 해결 하기 위해 )  - 줄바꿈 안되게
+*/
+	.ui-icon { display: inline-block; }
+
+/*
+	각 다이얼로그 세부 항목
+*/
+	/* 리스트 왼쪽 여백과 불릿 아이콘 안나오게 하기 위해 */
+
+	#dlg_scene_preview ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+	#dlg_scene_preview li { margin: 5px; padding: 5px; width: 150px; }
+
+	#dlg_bg_tool ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+	#dlg_bg_too li { margin: 5px; padding: 5px; width: 150px; }
+
+	#dlg_project_info { padding: 5px; }
+	#dlg_project_info ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+
+/*
+	디버그용
+*/
+#dlgname {
+	color: #6666ff;
+	font-size: 8px;
+}
+
+#dlg_dim_2D {
+	color: gray;
+	font-size: 8px;
+}
+
+#inter_model {
+	border: 1px gray solid;
+	color: gray;
+	font-size: 8px;
+}
+#inter_model ul { list-style-type: none; margin: 2px; padding: 2px;}
+#inter_model li { margin: 0px; padding: 0px;}

@@ -31,6 +31,7 @@
 		<button>NO</button>
 	</div>
 	<script>
+		// jspf , js 파일 따로 나눠야 됨 
 		$("#dlg_project_close button:first").button().next().button();
 	</script>
 	<style>
