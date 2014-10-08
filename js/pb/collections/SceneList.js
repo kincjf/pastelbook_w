@@ -1,7 +1,7 @@
 /*global define */
 define([
-	'../../../trash/external/jquery_mobile/demos/backbone-requirejs/js/libs/backbone',
-	'models/Scene',
+	'backbone',
+	'pb_models_scene',
 	'localStorage'
 ], function (Backbone, Scene) {
 	'use strict';
@@ -9,6 +9,6 @@ define([
 	return Backbone.Collection.extend({
 		model: Scene,
 
-		localStorage: new Backbone.LocalStorage('pb-objects-backbone')
+		localStorage: new Backbone.LocalStorage('pb-sceneList')
 	});
 });

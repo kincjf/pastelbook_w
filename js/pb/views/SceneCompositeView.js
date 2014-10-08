@@ -1,8 +1,8 @@
 /* global define */
 define([
-	'marionette',
-	'templates',
-	'views/Scene'
+  'marionette',
+  'templates',
+  'views/Scene'
 ], function (Marionette, templates, Scene) {
 	'use strict';
 

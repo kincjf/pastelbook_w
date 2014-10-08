@@ -52,8 +52,10 @@ requirejs.config({
 
     pb_views_sceneView: 'pb/views/SceneView',
     pb_views_objectView: 'pb/views/ObjectView',
-
-    pb_start: 'pb/app'    //main start point
+//
+    pb_templates: 'pb/templates',
+//
+    pb_app: 'pb/app'    //main start point
 
   },
   shim: {
@@ -88,6 +90,9 @@ requirejs.config({
     },
     pastelbook_ui_event: {
       deps: ["pastelbook_ui", "pastelbook_type", "backbone"]
+    },
+    pb_app: {
+      deps: ['marionette']
     }
   }
 });
@@ -97,7 +102,6 @@ require(["pastelbook_ui_event"], function (pastelbook_ui_event) {
 
 });
 
-var d;
 // 개발 중 디버그 편의성을 위해 추가
 require(["pastelbook_ui", "pb_app"], function (pastelbook_ui, pb_app) {
   $(function () {

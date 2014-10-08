@@ -4,10 +4,11 @@
 /*global define */
 define(function (require) {
   'use strict';
+  console.log("templates");
 
   return {
-    scene: require('tpl!templates/scene.tpl'),
-    object: require('tpl!templates/object.tpl')
+    scene: require('tpl!pb/templates/scene.tpl'),
+    object: require('tpl!pb/templates/object.tpl')
 
   };
 //    todoItemView: require('tpl!templates/todoItemView.tmpl'),

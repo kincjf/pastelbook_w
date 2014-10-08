@@ -1,5 +1,7 @@
-require(['../../../trash/external/jquery_mobile/demos/js/jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'],
+require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'],
   function ($, _, jquery_ui, jquery_ui_custom) {
+    console.log("dlg_add_image");
+
     var $dlg_addImage = $("#add_image").dialog({
       autoOpen: true,
       width: 50,

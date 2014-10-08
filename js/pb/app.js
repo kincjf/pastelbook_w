@@ -1,12 +1,11 @@
 /*global define */
-
 define([
   'marionette',
   'pb_collections_objectList',
-  'pb_views_sceneView',
-  'pb_views_ObjectView'
+  'pb_views_sceneView'
 ], function (Marionette, ObjectList, SceneView) {
   'use strict';
+  console.log("app");
 
   var app = new Marionette.Application();
   var objectList = new ObjectList();
