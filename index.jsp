@@ -6,7 +6,7 @@
 		<title>Pastel Book ::: 편한 이북 저작 도구 :::</title>
 		<link href="js/lib/jquery_ui/jquery-ui.css" rel="stylesheet" /><!-- css for jquery-ui -->
 		<link href="css/pb_default.css" rel="stylesheet" />
-		<script data-main="js/pastelbook" src="js/require.js"></script><!-- requirejs 사용 -->
+		<script data-main="js/pastelbook" src="js/lib/require.js"></script><!-- requirejs 사용 -->
 	</head>
 	<body>
 
@@ -20,8 +20,8 @@
 	<%@ include file="/dlg_bg_tool.jspf" %>
 	<%@ include file="/dlg_animation.jspf" %> 
 	<%@ include file="/dlg_oldtool.jspf" %>
-
-	<!-- 프로젝트 - 내보내기 (파일 다이얼로그를 그대로 사용한다. 온클릭 이벤트 등록 -->
+    <%@ include file="/js/pb/templates/dlg-add-image.jspf" %>
+    <!-- 프로젝트 - 내보내기 (파일 다이얼로그를 그대로 사용한다. 온클릭 이벤트 등록 -->
 	<!-- 프로젝트 - 불러오기 (파일 다이얼로그를 그대로 사용한다. 온클릭 이벤트 등록 -->
 	<%@ include file="/dlg_project_info.jspf" %>
 
