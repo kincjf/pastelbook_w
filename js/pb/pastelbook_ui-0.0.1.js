@@ -48,5 +48,7 @@ require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,
 		});
 		require(['pastelbook_ui_dlg_project_close'], function(pastelbook_ui_dlg_project_close){
 		});
+    require(['pb_ui_dlg_add_image'], function(pb_ui_dlg_add_image){
+    });
 	});
 }); // require
