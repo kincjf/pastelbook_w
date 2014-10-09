@@ -97,3 +97,8 @@ require(["pastelbook_ui"],function(pastelbook_ui){
 	});
 });
 
+
+// ajax 작업위해 추가 2014.10.07 by HONG WON GI
+require(["pastelbook_io"],function(pastelbook_io){
+
+});

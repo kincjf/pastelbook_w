@@ -37,6 +37,8 @@ require(['jquery'],function($){
 		
 		pb.ui = {}; // 사용자 개별의 ui 포지션, 혹은 크기 정보
 
+		pb.io = {};
+
 		// 총 12개
 	});
 }); // require
