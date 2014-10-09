@@ -1,4 +1,10 @@
 /*global define */
+/**
+ * Created by KIMSEONHO
+ *
+ * Scene들을 저장하는 Collection
+ *
+ */
 define([
 	'backbone',
 	'pb_models_scene',

@@ -1,4 +1,11 @@
 /*global define */
+/**
+ * Scene을 구성하는 개별화면
+ *
+ * - 구현내용/순서
+ * 1. 추가요소(Object) 삽입 => (구현중)
+ *
+ */
 define([
   'marionette',
   'pb_templates',

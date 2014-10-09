@@ -131,6 +131,7 @@ require(["pastelbook_ui", "pb_app"], function (pastelbook_ui, pb_app) {
 			}); // 리사이즈
 		}); // each
 
+		/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
 		pb_app.start();	 // Application start
 	});
 });

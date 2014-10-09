@@ -1,4 +1,13 @@
 /* global define */
+/**
+ * Scene
+ * Scene들을 관리하는 Wrapper화면
+ *
+ * - 구현내용/순서
+ * 1. Scene 삽입 => (구현중)
+ * 2. Scene 미리보기 화면에서 선택된 Scene 보여주기
+ *
+ */
 define([
   'marionette',
   'templates',
