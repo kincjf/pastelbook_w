@@ -25,7 +25,7 @@ require(["pastelbook_ui"],function(pastelbook_ui){
 	$(document).delegate("#project_new", "click", function() {
 		// 현재 아무것도 안열려 있는지, 열려 있다면 이전프로젝트는 어떻게 처리할지 체크
 		console.log("#project_new");
-		//pb.current.project = new pb.type.Project({ name : "임시" });
+		pb.current.set( 'project', new pb.type.Project({ name : "임시" }) );
 	});
 	// 1-1-2. 프로젝트 저장 ( 메뉴 항목 id는 가능한 메뉴명_메뉴항목명 순과같이한다. 물론 영문으로 )
 	$(document).delegate("#project_save", "click", function() {
@@ -166,14 +166,14 @@ require(["pastelbook_ui"],function(pastelbook_ui){
 		if(pb.current === null){
 			console.log( 'pb.current is null.' );
 		} else {
-			if( pb.current.project === null ){
-				console.log( 'pb.current.projet is null' );
-				pb.current.project = new pb.type.Project();
-				console.log(pb.current.project);
-				if(pb.current.project.name === undefined){
-					console.log( 'pb.current.project.name => undefined.' );
+			if( pb.current.get('project') === null ){
+				console.log( 'pb.current->project is null' );
+				pb.current.set( 'project' , new pb.type.Project());
+				console.log(pb.current.get('project'));
+				if(pb.current.get('project').get('name') === undefined){
+					console.log( 'pb.current->project->name => undefined.' );
 					//pb.current.project.name = 'dummy_proj_name';
-					console.log( pb.current.project.get("scenes") );
+					console.log( pb.current.get('project').get("scenes") );
 				}
 			}
 		}
@@ -275,3 +275,6 @@ require(["pastelbook_ui"],function(pastelbook_ui){
 
 // 1-10. Exit 메뉴 ( 빼야 한다고 본다 ) - 메뉴항목 없음
  
+
+
+

@@ -67,14 +67,17 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 		pb.type.Project = Backbone.Model.extend({
 			defaults: {
 				scenes: [],
-				authors: [],
-				name: "dummy",
+				author: '임지우',
+				title: "noname",
 				version: "0.0",
-				description: "description",
+				description: "새로 생성된 프로젝트입니다. 설명을 입력하세요",
 				createDate: 0,
 				updateDate: 0
 			},
 			initialize: function () {
+				//프로젝트에 씬 하나는 있어야지
+				//this.push("scenes", new pb.type.Scene());
+
 				/*
 				this.name = this.get("name");
 				this.version = this.get("version");

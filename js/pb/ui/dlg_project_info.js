@@ -9,4 +9,9 @@ require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,
 		top: pb.ui.dlg_project_info.y,
 		left: pb.ui.dlg_project_info.x
 	});
+
+	pb.ui.dlg_project_info.draw = function () {
+		$('#dlg_project_info').find("")
+		
+	}
 });

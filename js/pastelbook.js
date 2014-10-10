@@ -45,6 +45,7 @@ requirejs.config({
 		pastelbook_ui_event: 'pb/pastelbook_ui_event-0.0.1',
 		pastelbook_type: 'pb/pastelbook_type-0.0.1',
 		pastelbook_io: 'pb/pastelbook_io-0.0.1',
+		pastelbook_model_event: 'pb/pastelbook_model_event-0.0.1',
 
 		pb_models_object: 'pb/models/Object',
 
@@ -136,6 +137,10 @@ require(["pastelbook_ui", "pb_app"], function (pastelbook_ui, pb_app) {
 	});
 });
 
+
+require(['pastelbook_model_event'],function(pastelbook_model_event){
+
+});
 
 // ajax 작업위해 추가 2014.10.07 by HONG WON GI
 require(["pastelbook_io"],function(pastelbook_io){
