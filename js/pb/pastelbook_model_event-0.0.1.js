@@ -17,8 +17,8 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 					$('#dlg_project_info').find('#author').text(pb.current.get('project').get('author'));
 					$('#dlg_project_info').find('#title').text(pb.current.get('project').get('title'));
 					$('#dlg_project_info').find('#description').text(pb.current.get('project').get('description'));
-
-					$("#dlg_scene_preview").find('')
+						$( "#dlg_project_info" ).parent().addClass('change');
+						$("#dlg_scene_preview").parent().addClass('change');
 				});
 			}
 		});
