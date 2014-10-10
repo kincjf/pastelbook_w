@@ -11,9 +11,12 @@ define(function (require) {
   console.log("templates");
 
   return {
-    scene: require('tpl!pb/templates/sceneView.tpl'),
-    object: require('tpl!pb/templates/objectView.tpl')
-
+    sceneView: require('tpl!pb/templates/sceneView.tpl'),
+	  sceneCompositeView: require('tpl!pb/templates/sceneCompositeView.tpl'),
+    objectView: require('tpl!pb/templates/objectView.tpl'),
+		objectCompositeView: require('tpl!pb/templates/objectCompositeView.tpl'),
+	  scenePreviewView: require(),
+	  scenePreviewCompositeView: require()
   };
 //    todoItemView: require('tpl!templates/todoItemView.tmpl'),
 //    todosCompositeView: require('tpl!templates/todoListCompositeView.tmpl'),

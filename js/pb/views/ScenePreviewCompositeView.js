@@ -22,7 +22,7 @@ define([
 	'use strict';
 
 	return Marionette.CompositeView.extend({
-    template: templates.scenePreviewView,
+    template: templates.scenePreviewCompositeView,
 
 		itemView: ItemView,
 

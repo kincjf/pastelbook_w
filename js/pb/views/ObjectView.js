@@ -18,7 +18,7 @@ define([
   return Marionette.CompositeView.extend({
     tagName: 'div',
 
-    template: templates.object,
+    template: templates.objectView,
 
     value: '',
 

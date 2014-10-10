@@ -20,7 +20,7 @@ define([
     tagName: 'div',   // default div
     className: 'scene-wrap',
 
-    template: templates.scene,
+    template: templates.sceneView,
 
     value: '',
 

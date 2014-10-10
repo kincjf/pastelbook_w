@@ -13,14 +13,15 @@
 define([
 	'marionette',
 	'templates',
-	'views/TodoItemView'
-], function (Marionette, templates, ItemView) {
+	'views/SceneView'
+], function (Marionette, templates, SceneView) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
+		//* */
     template: templates.scenePreviewView,
 
-		itemView: ItemView,
+		itemView: SceneView,
 
 		itemViewContainer: '#todo-list',
 
