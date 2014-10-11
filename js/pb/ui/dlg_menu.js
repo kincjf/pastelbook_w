@@ -49,6 +49,16 @@ require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,
 	//$( "#menu_etc_timeline" ).menu(); // 아래 추가 메뉴
 	$( "#menu_etc_timeline" ).css('visibility','hidden'); // 아직 사용할 필요 없어서 숨겨놓음
 
+	// onclick 시 현재 선택중인 메뉴로 등록되게 이벤트 바인드
+	$("#dlg_menu")
+	.find('#radioset_menu_category input[type=radio]').next()
+	.bind('click',function(){
+		pb.current.set('selected_menu_old', pb.current.get('selected_menu') );
+		pb.current.set('selected_menu', '#'+$(this).attr('for').split('radio_btn_')[1]);
+		//console.log(pb.current.get('selected_menu'));
+	});
+
+
 
 	$('input#radio_btn_menu_project').click(function () {
 		// 메뉴 리스트 위치를 이동함
@@ -57,6 +67,7 @@ require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,
 			my: 'left top',
 			at: 'left bottom'
 		});
+
 
 		// mouse out 시 menu1 안보이게 하기 - 잘 안됨
 		$('input#radio_btn_menu_project').mouseleave(function () {

@@ -15,7 +15,7 @@ define([
   'pb_views_sceneView'
 ], function (Marionette, ObjectList, SceneView) {
   'use strict';
-  console.log("app");
+  //console.log("app");
 
   var app = new Marionette.Application();
   var objectList = new ObjectList();

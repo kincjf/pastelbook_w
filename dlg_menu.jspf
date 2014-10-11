@@ -58,7 +58,7 @@
 </ul>
 
 <ul style="width:140px;" id="menu_object">
-	<li id="object_add_ textbox">글상자 추가 -> 목록</li>
+	<li id="object_add_textbox">글상자 추가 -> 목록</li>
 	<li id="object_add_icon">아이콘 추가 -> 목록</li>
 	<li id="object_add_character">캐릭터 추가 -> 목록</li>
 	<li id="object_add_pic">그림 추가 -> 목록</li>

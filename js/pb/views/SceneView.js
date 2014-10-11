@@ -12,7 +12,7 @@ define([
   'pb_views_objectView'
 ], function (Marionette, templates, ObjectView) {
   'use strict';
-  console.log("SceneView");
+  //console.log("SceneView");
 //	var ENTER_KEY = 13;
 //	var ESCAPE_KEY = 27;
 
@@ -50,7 +50,7 @@ define([
 
     addObject: function (event, ui) {
       console.log("SceneView - addObject");
-      console.log(event, ui);
+      //console.log(event, ui);
 
       var _imgSrc = ui.draggable.children().attr('src');
       var object = this.ui.object;
@@ -63,8 +63,8 @@ define([
     },
 
     onRender: function (event, ui) {
-      console.log("SceneView - onRender");
-      console.log(event, ui);
+      //console.log("SceneView - onRender");
+      //console.log(event, ui);
 
       // 삭제할 때 좀비가 되지 않기 위해서는 droppable, selectable event 삭제해야함.
       // 이미 삽입된 개체는 삽입되면 안되기 때문에 필터링을 함

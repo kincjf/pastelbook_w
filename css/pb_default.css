@@ -117,9 +117,24 @@ body {
     padding: 0px;
 }
 
-div.change {
+div.change { /*변경 생긴 다이얼로그 강조*/
 	border: 2px solid rgba(255,0,0,0.5);
 }
+
+/* 다이얼로그 제목표시줄, 색상 변경을 위해*/
+.ui-widget-header {
+	border: 1px solid #aaaaaa;
+	background: #aaaaaa;
+	color: #222222;
+	font-weight: bold;
+}
+.active{
+	border: 1px solid #aaaaaa;
+	background: red;
+	color: #222222;
+	font-weight: bold;
+}
+
 
 .scene-wrap {
     height: inherit

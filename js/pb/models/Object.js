@@ -11,7 +11,7 @@ define([
 	'localStorage'
 ], function (Backbone) {
 	'use strict';
-  console.log("Object");
+  //console.log("Object");
 
 	return Backbone.Model.extend({
 		localStorage: new Backbone.LocalStorage('pb'),

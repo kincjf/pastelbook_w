@@ -3,15 +3,26 @@
  *  - 모델 변경시 다른 ui에 해당 모델 변경 이벤트에 대한 이벤트 바인드
  *    
  */
+
 require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, backbone, pastelbook_pb){
 	$(function () {
 		pb.current = Backbone.Model.extend({
 			defaults: {
 				project: {},
-				scene: {}
+				scene: {},
+				selected_menu: {}
 				// toX: ""
 			},
 			initialize: function(options) {
+				this.bind('change:selected_menu',function(){
+					//console.log('selected_menu change');
+					//$(pb.current.get('selected_menu')).css('visibility','hidden');
+					console.log(
+						$(pb.current.get('selected_menu_old')).css('visibility','hidden')
+					);
+					//console.log(pb.current.get('selected_menu')+' hidden')
+				});
+
 				this.bind('change:project',function(){
 					// current.project -> dlg_여러개
 					$('#dlg_project_info').find('#author').text(pb.current.get('project').get('author'));

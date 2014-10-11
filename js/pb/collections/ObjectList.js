@@ -11,7 +11,7 @@ define([
 	'localStorage'
 ], function (Backbone, Object) {
 	'use strict';
-  console.log("ObjectList");
+  //console.log("ObjectList");
 
 	return Backbone.Collection.extend({
 		model: Object,

@@ -2074,4 +2074,4 @@ var requirejs, require, define;
     //Set up with config info.
     req(cfg);
 }(this));
-console.log("requirejs is loaded");
+//console.log("requirejs is loaded");

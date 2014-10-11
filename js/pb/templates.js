@@ -8,7 +8,7 @@
 /*global define */
 define(function (require) {
   'use strict';
-  console.log("templates");
+  //console.log("templates");
 
   return {
     sceneView: require('tpl!pb/templates/sceneView.tpl'),
