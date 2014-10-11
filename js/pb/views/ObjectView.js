@@ -11,7 +11,6 @@ define([
   'pb_templates'
 ], function (Marionette, templates) {
   'use strict';
-  console.log("ObjectView");
 //	var ENTER_KEY = 13;
 //	var ESCAPE_KEY = 27;
 
@@ -42,7 +41,7 @@ define([
 
     initialize: function () {
       this.value = this.model.get('title');
-
+	    console.log("ObjectView");
       this.listenTo(this.model, 'change', this.render, this);
     },
 

@@ -24,6 +24,7 @@ define([
     collection: objectList
   };
 
+	/** 얘가 SceneCompositeView로 바뀌어야됨 */
   var scene = new SceneView(options);
 
   app.addRegions({

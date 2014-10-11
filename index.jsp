@@ -6,7 +6,7 @@
 		<title>Pastel Book ::: 편한 이북 저작 도구 :::</title>
 		<link href="js/lib/jquery_ui/jquery-ui.css" rel="stylesheet" /><!-- css for jquery-ui -->
 		<link href="css/pb_default.css" rel="stylesheet" />
-		<script data-main="js/pastelbook" src="js/require.js"></script><!-- requirejs 사용 -->
+		<script data-main="js/pastelbook" src="js/lib/require.js"></script><!-- requirejs 사용 -->
 	</head>
 	<body>
 

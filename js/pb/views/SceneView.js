@@ -27,9 +27,12 @@ define([
     ui: {
       scene: '.scene'
     },
+		/** 기존 legacy API method : itemView*/
+    childView: ObjectView,
 
-    itemView: ObjectView,
-    itemViewContainer: '.scene',
+	  /** 기존 legacy API method : itemViewContainer*/
+	  /** http://marionettejs.com/docs/marionette.compositeview.html#modelevents-and-collectionevents 참조*/
+	  childViewContainer: '.scene',
 
     events: {
       'drop .scene': 'addObject'
