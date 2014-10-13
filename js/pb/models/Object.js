@@ -14,7 +14,7 @@ define([
   //console.log("Object");
 
 	return Backbone.Model.extend({
-		localStorage: new Backbone.LocalStorage('pb'),
+		localStorage: new Backbone.LocalStorage('pb-object'),
 
 		defaults: {
       id:'',

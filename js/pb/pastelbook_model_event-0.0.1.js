@@ -7,24 +7,24 @@
 require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, backbone, pastelbook_pb){
 	$(function () {
 		pb.current = Backbone.Model.extend({
-			defaults: {
-				project: {},
-				scene: {},
-				selected_menu: {}
-				// toX: ""
-			},
-			initialize: function(options) {
-				this.bind('change:selected_menu',function(){
-					//console.log('selected_menu change');
-					//$(pb.current.get('selected_menu')).css('visibility','hidden');
-					console.log(
-						$(pb.current.get('selected_menu_old')).css('visibility','hidden')
-					);
-					//console.log(pb.current.get('selected_menu')+' hidden')
-				});
+					defaults: {
+						project: {},
+						scene: {},
+						selected_menu: {}
+						// toX: ""
+					},
+					initialize: function(options) {
+						this.bind('change:selected_menu',function(){
+							//console.log('selected_menu change');
+							//$(pb.current.get('selected_menu')).css('visibility','hidden');
+							console.log(
+								$(pb.current.get('selected_menu_old')).css('visibility','hidden')
+							);
+							//console.log(pb.current.get('selected_menu')+' hidden')
+						});
 
-				this.bind('change:project',function(){
-					// current.project -> dlg_여러개
+						this.bind('change:project',function(){
+							// current.project -> dlg_여러개
 					$('#dlg_project_info').find('#author').text(pb.current.get('project').get('author'));
 					$('#dlg_project_info').find('#title').text(pb.current.get('project').get('title'));
 					$('#dlg_project_info').find('#description').text(pb.current.get('project').get('description'));

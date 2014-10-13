@@ -7,15 +7,14 @@
  */
 define([
   'backbone',
-	'pb_models_object',
+	'pb/models/Object',
 	'localStorage'
 ], function (Backbone, Object) {
 	'use strict';
-  //console.log("ObjectList");
 
 	return Backbone.Collection.extend({
 		model: Object,
 
-		localStorage: new Backbone.LocalStorage('pb')
+		localStorage: new Backbone.LocalStorage('pb-object')
 	});
 });

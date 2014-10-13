@@ -13,13 +13,11 @@ define(function (require) {
   return {
     sceneView: require('tpl!pb/templates/sceneView.tpl'),
 	  sceneCompositeView: require('tpl!pb/templates/sceneCompositeView.tpl'),
-    objectView: require('tpl!pb/templates/objectView.tpl'),
+
+	  objectView: require('tpl!pb/templates/objectView.tpl'),
 		objectCompositeView: require('tpl!pb/templates/objectCompositeView.tpl'),
-	  scenePreviewView: require(),
-	  scenePreviewCompositeView: require()
+
+	  scenePreviewView: require('tpl!pb/templates/scenePreviewView.tpl'),
+	  scenePreviewCompositeView: require('tpl!pb/templates/scenePreviewCompositeView.tpl')
   };
-//    todoItemView: require('tpl!templates/todoItemView.tmpl'),
-//    todosCompositeView: require('tpl!templates/todoListCompositeView.tmpl'),
-//    footer: require('tpl!templates/footer.tmpl'),
-//    header: require('tpl!templates/header.tmpl')
 });

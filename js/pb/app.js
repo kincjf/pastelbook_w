@@ -11,32 +11,56 @@
  */
 define([
   'marionette',
-  'pb_collections_objectList',
-  'pb_views_sceneView'
-], function (Marionette, ObjectList, SceneView) {
+	'pb/models/Project',
+  'pb/collections/SceneList',
+	'pb/views/SceneCompositeView',
+  'pb/views/ScenePreviewCompositeView'
+], function (Marionette, Project, SceneList, SceneCompositeView, ScenePreviewCompositeView) {
   'use strict';
   //console.log("app");
 
   var app = new Marionette.Application();
-  var objectList = new ObjectList();
 
-  var options = {
-    collection: objectList
-  };
+	/** Data type은 namespace를 써야될 것 같음.*/
+	pb.type.Project = new Project({
+		sceneList: new SceneList()
+	});
 
-	/** 얘가 SceneCompositeView로 바뀌어야됨 */
-  var scene = new SceneView(options);
+	/** 테스트용으로 일단 바깥으로 꺼냈음*/
+	var sceneList = pb.type.Project.get("sceneList");
 
+//	var objectList = new ObjectList();
+//
+//  var options = {
+//    collection: objectList
+//  };
+
+  var sceneCompositeView = new SceneCompositeView({
+		collection: sceneList
+	});
+
+	var scenePreviewCompositeView = new ScenePreviewCompositeView({
+		collection: sceneList
+	});
+	/** 차후에 ScenePreviewCompositeView도 들어가야됨. */
+
+	/** 관리할 View Area를 설정함.
+	 * 간단하게 scope를 설정하는 방법이므로 더 자세하게 설정하는 방법도 있음
+	 * marionette API 참조
+	 * !# 현재 있는 DOM이 아니면 el이 없다는 error 발생함.
+	 */
   app.addRegions({
-    currentScene: '#dlg_current_scene'
+    currentScene: '#dlg_current_scene',
+	  currentScenePreview: '#dlg_scene_preview'
   });
 
   app.addInitializer(function () {
-    app.currentScene.show(scene);
+    app.currentScene.show(sceneCompositeView);
+	  app.currentScenePreview.show(scenePreviewCompositeView);
 
-    objectList.fetch();
+    sceneList.fetch();
   });
 
-  window.objectList = objectList;
+  window.sceneList = sceneList;
   return window.app = app
 });

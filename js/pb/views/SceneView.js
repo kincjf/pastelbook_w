@@ -9,7 +9,7 @@
 define([
   'marionette',
   'pb_templates',
-  'pb_views_objectView'
+  'pb/views/ObjectView'
 ], function (Marionette, templates, ObjectView) {
   'use strict';
   //console.log("SceneView");
@@ -18,8 +18,7 @@ define([
 
   return Marionette.CompositeView.extend({
     tagName: 'div',   // default div
-    className: 'scene-wrap',
-
+    className: 'scene-wrap underline',
     template: templates.sceneView,
 
     value: '',
@@ -52,11 +51,12 @@ define([
       myLogger.trace("SceneView - addObject");
       myLogger.debug(event, ui);
 
-      var _imgSrc = ui.draggable.children().attr('src');
+      var _imgSrc = $(ui.draggable.context).attr('src');
       var object = this.ui.object;
 
       console.log(_imgSrc);
 
+	    /** this.collection : ObjectList */
       this.collection.create({
         imgSrc: _imgSrc
       });

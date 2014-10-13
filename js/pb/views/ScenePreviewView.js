@@ -12,49 +12,45 @@
 
 define([
 	'marionette',
-	'templates',
-	'views/SceneView'
-], function (Marionette, templates, SceneView) {
+	'pb_templates'
+], function (Marionette, templates) {
 	'use strict';
 
-	return Marionette.CompositeView.extend({
-		//* */
-    template: templates.scenePreviewView,
+	return Marionette.ItemView.extend({
 
-		itemView: SceneView,
-
-		itemViewContainer: '#todo-list',
+		template: templates.scenePreviewView,
 
 		ui: {
-			toggle: '#toggle-all'
+			scenePreview: 'li'
 		},
 
-		events: {
-			'click #add_slide': 'onToggleAllClick'
-		},
+//		events: {
+//			'click #add_slide': 'onToggleAllClick'
+//		},
 
 		initialize: function () {
-        this.listenTo(this.collection, 'all', this.updateToggleCheckbox, this);
-      },
+			myLogger.trace("ScenePreviewView - init");
+//			this.listenTo(this.collection, 'all', this.updateToggleCheckbox, this);
+		},
 
-      onRender: function () {
-        this.updateToggleCheckbox();
-      },
-
-      updateToggleCheckbox: function () {
-        var allCompleted = this.collection.reduce(function (lastModel, thisModel) {
-          return lastModel && thisModel.get('completed');
-        }, true);
-
-        this.ui.toggle.prop('checked', allCompleted);
-      },
-
-      onToggleAllClick: function (event) {
-        var isChecked = event.currentTarget.checked;
-
-        this.collection.each(function (todo) {
-				todo.save({ completed: isChecked });
-			});
+		onRender: function () {
+			myLogger.trace("scenePreviewView - onRender");
 		}
+//
+//      updateToggleCheckbox: function () {
+//        var allCompleted = this.collection.reduce(function (lastModel, thisModel) {
+//          return lastModel && thisModel.get('completed');
+//        }, true);
+//
+//        this.ui.toggle.prop('checked', allCompleted);
+//      },
+//
+//      onToggleAllClick: function (event) {
+//        var isChecked = event.currentTarget.checked;
+//
+//        this.collection.each(function (todo) {
+//				todo.save({ completed: isChecked });
+//			});
+//		}
 	});
 });
