@@ -1,5 +1,5 @@
 /**
- *  14. 9. 29.	v 0.0.1		Add by HONG WON GI
+ *  @fileoverview 
  *  - 메뉴 도구모음의 다이얼로그항목들.  팝업 메뉴가 자동으로 되는 기본 위젯을
  *    jquery-ui 가 제공하지 않아. 추가 된 스크립트가 많다.
  *  - dlg_menu 로 시작 하는 다이얼로그에 대한 부분
@@ -7,19 +7,55 @@
  *  - menu()로 만들어지는 팝업메뉴 항목인 menu_메뉴명 등이 있다.
  *  - menu_메뉴명의 경우 마우스오버 이후 out됐을때 팝업메뉴가 사라지지 않는 에러가 있고
  *  - jquery-ui의 dialog는 z-index:100, 101과 같이 자체 관리되는데 그이상 크게 하기위해 120으로 지정했다.
+ * @version 0.0.1
+ * @author HONG WON GI
+ * @date 14. 9. 29.
  */
 require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,jquery_ui,jquery_ui_custom){
 	// 1. 다이얼로그 호출 부분
+	pb.ui.dialog = function ( elementId, option){
+		this.id = elementId;
+		this.selector = '#'+elementId;
+		this.changeEffect = function(){
+			$( this.selector ).animate({
+				opacity: 0.0
+			}, 300).animate({
+				opacity:1.0
+			}, 700);
+		};
+
+		// 다이얼로그 생성
+		$(this.selector).dialog({
+			autoOpen: true,
+			width: pb.ui[this.id].w,
+			height: pb.ui[this.id].h
+		});
+
+		if( option.isCenter == false ){
+			$(this.selector).parent().css({
+				top: pb.ui[this.id].y,
+				left: pb.ui[this.id].x
+			});
+		}
+		this.changeEffect();
+	}
+	pb.ui.dialog('dlg_menu', { isCenter : false });
+
+	/*
 	var tabs= $( "#dlg_menu" ).dialog({
 		autoOpen: true,
 		width: pb.ui.dlg_menu.w,
 		height: pb.ui.dlg_menu.h
 	});
+	*/
+
+	/*
 	// 1-1. 위치지정을 센터로 하지 않고 지정한 좌표로 설정되게 하기위한 방법
 	$('#dlg_menu').parent().css({
 		top: pb.ui.dlg_menu.y,
 		left: pb.ui.dlg_menu.x
 	});
+	*/
 
 	// 2. 라디오버튼을 버튼형태로 나오게 만들기
 	$( "#radioset_history" ).buttonset();
@@ -36,7 +72,6 @@ require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,
 	$( "#menu_simulation" ).menu();
 	$( "#menu_simulation" ).css('visibility','hidden');
 	$( "#menu_object" ).menu();
-	//console.log("#menu_object");
 	$( "#menu_object" ).css('visibility','hidden');
 	$( "#menu_input" ).menu();
 	$( "#menu_input" ).css('visibility','hidden');

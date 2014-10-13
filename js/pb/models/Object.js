@@ -28,7 +28,6 @@ define([
       myLogger.trace('Object - init');
       myLogger.debug("Model Data", a);
       myLogger.debug("Object instance", b);
-
       this.set('id', this.cid);
     }
 	});

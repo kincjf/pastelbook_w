@@ -41,8 +41,8 @@ define([
 
     initialize: function () {
 	    myLogger.trace("ObjectView");
-
 	    this.value = this.model.get('title');
+
       this.listenTo(this.model, 'change', this.render, this);
     },
 
