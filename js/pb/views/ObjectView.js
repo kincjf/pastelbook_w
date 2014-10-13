@@ -41,20 +41,20 @@ define([
 
     initialize: function () {
       this.value = this.model.get('title');
-	    console.log("ObjectView");
+	    //console.log("ObjectView");
       this.listenTo(this.model, 'change', this.render, this);
     },
 
     // "show" / onShow - Called on the view instance when the view has been rendered and displayed.
     onShow: function(v) {
-      console.log("ObjectView onShow");
-      console.log(v);
+      //console.log("ObjectView onShow");
+      //console.log(v);
     },
 
     // "render" / onRender - after everything has been rendered
     onRender: function (v) {
-      console.log("ObjectView onRender");
-      console.log(v);
+      //console.log("ObjectView onRender");
+      //console.log(v);
 
       // 좀비뷰가 되지 않기 위해서는 draggable, resizable event를 삭제해야함.
       this.$el.draggable().resizable();

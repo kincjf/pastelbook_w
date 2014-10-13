@@ -47,6 +47,11 @@ requirejs.config({
 		pastelbook_io: 'pb/pastelbook_io-0.0.1',
 		pastelbook_model_event: 'pb/pastelbook_model_event-0.0.1',
 
+
+		// 공용 아님 테스트용 js 파일 건드리지 말것 - hong 14.10.13
+		pb_debug_hongs_only: 'pb/debug/hongs_only',
+
+		// 아래로 선호 버전 -> 앞으로 여기에 맞추서 작업
 		pb_models_object: 'pb/models/Object',
 
 		pb_collections_objectList: 'pb/collections/ObjectList',
@@ -57,8 +62,6 @@ requirejs.config({
 		pb_templates: 'pb/templates',
 //
 		pb_app: 'pb/app'		//main start point
-
-
 	},
  
 
@@ -103,35 +106,15 @@ requirejs.config({
 
 
 require(["pastelbook_ui_event"], function (pastelbook_ui_event) {
-
 });
 
-		var d;
-// 개발 중 디버그 편의성을 위해 추가
+require(['pb_debug_hongs_only'],function(pb_debug_hongs_only){ // 아무도 쓰지말 것, 공용 용도 아님 ( 테스트용 )
+});
+
+
+
 require(["pastelbook_ui", "pb_app"], function (pastelbook_ui, pb_app) {
 	$(function () {
-
-		var dlg_arr = $('div[id^="dlg_"]');
-
-		dlg_arr.each(function (t) {
-			$(dlg_arr[t]).append('<div id="' + "" + "dlgname" + '" style="position : absolute; top: 2px; right: 2px;">' + $(dlg_arr[t])[0].id + '</div>'); // 다이얼로그 이름 표시 // $(dlg_arr[t])[0]는 다이얼로그 바디
-			$(dlg_arr[t]).append('<div id="' + "" + "dlg_dim_2D" + '" style="position : absolute; bottom: 2px; right: 2px;">' + $(dlg_arr[t]) + '</div>'); //
-
-			// 리사이즈 이벤트 호출시, 오른쪽 아래에 다이얼로그 크기 표시 -> 드래그? 이동 이벤트일때도 호출되게 해야 편할듯
-			$(dlg_arr[t]).parent().resize(function () { // 왜인지는 모르겠지만 다이얼로그의 리사이즈호출시 모든 다이얼로그의 리사이즈 이벤트가 호출 ㅗ디는 모양이다.
-				$(dlg_arr[t]).parent().find("#dlg_dim_2D").text(
-						'(' +
-						Math.round($(dlg_arr[t]).parent().offset().left)
-						+ ',' +
-						Math.round($(dlg_arr[t]).parent().offset().top)
-						+ ') ' +
-						Math.round($(dlg_arr[t]).parent().width()) // 반올림 한 내용 출력
-						+ 'x' +
-						Math.round($(dlg_arr[t]).parent().height())
-				);
-			}); // 리사이즈
-		}); // each
-
 		/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
 		pb_app.start();	 // Application start
 	});
@@ -139,10 +122,8 @@ require(["pastelbook_ui", "pb_app"], function (pastelbook_ui, pb_app) {
 
 
 require(['pastelbook_model_event'],function(pastelbook_model_event){
-
 });
 
 // ajax 작업위해 추가 2014.10.07 by HONG WON GI
 require(["pastelbook_io"],function(pastelbook_io){
-
 });

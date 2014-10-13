@@ -9,6 +9,7 @@
 		<script data-main="js/pastelbook" src="js/lib/require.js"></script><!-- requirejs 사용 -->
 	</head>
 	<body>
+	<input id="ip" style="visibility:hidden" value="<%=request.getRemoteAddr()%>"/>
 
 	<!-- 메뉴 도구모음 추가 -->
 	<%@ include file="/dlg_menu.jspf" %>

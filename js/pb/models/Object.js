@@ -25,9 +25,9 @@ define([
 		},
 
     initialize: function(a, b) {
-      console.log('Object init');
-      console.log(a);
-      console.log(b);
+      //console.log('Object init');
+      //console.log(a);
+      //console.log(b);
 
       this.set('id', this.cid);
     }
