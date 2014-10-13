@@ -17,6 +17,7 @@ define([
 
 		defaults: {
       id:'',
+			sceneNumber:'',
 			title: 'Scene',
 			completed: false,
 			created: 0

@@ -49,7 +49,7 @@ requirejs.config({
 
 
 		// 공용 아님 테스트용 js 파일 건드리지 말것 - hong 14.10.13
-		pb_debug_hongs_only: 'pb/debug/hongs_only',
+		pb_debug_hongs_only: 'pb/debug/pb_debug_hongs_only',
 
 		// 아래로 선호 버전 -> 앞으로 여기에 맞추서 작업
 		pb_models_object: 'pb/models/Object',

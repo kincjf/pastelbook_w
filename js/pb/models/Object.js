@@ -25,10 +25,9 @@ define([
 		},
 
     initialize: function(a, b) {
-      //console.log('Object init');
-      //console.log(a);
-      //console.log(b);
-
+      myLogger.trace('Object - init');
+      myLogger.debug("Model Data", a);
+      myLogger.debug("Object instance", b);
       this.set('id', this.cid);
     }
 	});

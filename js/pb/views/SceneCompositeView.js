@@ -16,13 +16,14 @@ define([
 	'use strict';
 
 	return Marionette.CompositeView.extend({
-		tagName: 'div',
+		el: '#dlg_current_scene',
 
-    template: templates.sceneCompositeView,
+    // template: templates.sceneCompositeView,
 
-		itemView: Scene,
-
-		itemViewContainer: '',
+		/** legacy API method : itemView*/
+		childView: Scene,
+		/** legacy API method : itemViewContainer*/
+		childViewContainer: '#dlg_current_scene',
 
 //		ui: {
 //			scenes: '#scenes'
@@ -32,21 +33,21 @@ define([
 //      'click #add_slide': 'addSlide'
 //		},
 		initialize: function () {
-			//this.listenTo(this.collection, '', this.updateToggleCheckbox, this);
+			this.listenTo(this.collection, 'add', this.createScene, this);
 		  // jQuery UI로 dialog를 초기화해야 한다.
-    }
+    },
 //
 //		onRender: function () {
 //			this.updateToggleCheckbox();
 //		},
 //
-//		updateToggleCheckbox: function () {
-//			var allCompleted = this.collection.reduce(function (lastModel, thisModel) {
-//				return lastModel && thisModel.get('completed');
-//			}, true);
-//
-//			this.ui.toggle.prop('checked', allCompleted);
-//		},
+		createScene: function () {
+			var _sceneNumber = this.collection.length;
+
+			this.collection.create({
+				sceneNumber: _sceneNumber
+			});
+		}
 //
 //		onToggleAllClick: function (event) {
 //			var isChecked = event.currentTarget.checked;

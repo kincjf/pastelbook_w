@@ -49,8 +49,8 @@ define([
     },
 
     addObject: function (event, ui) {
-      console.log("SceneView - addObject");
-      //console.log(event, ui);
+      myLogger.trace("SceneView - addObject");
+      myLogger.debug(event, ui);
 
       var _imgSrc = ui.draggable.children().attr('src');
       var object = this.ui.object;
@@ -63,8 +63,8 @@ define([
     },
 
     onRender: function (event, ui) {
-      //console.log("SceneView - onRender");
-      //console.log(event, ui);
+      myLogger.trace("SceneView - onRender");
+      myLogger.debug(event, ui);
 
       // 삭제할 때 좀비가 되지 않기 위해서는 droppable, selectable event 삭제해야함.
       // 이미 삽입된 개체는 삽입되면 안되기 때문에 필터링을 함
