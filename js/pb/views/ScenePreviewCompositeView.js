@@ -17,16 +17,16 @@
 define([
 	'marionette',
 	'templates',
-	'views/TodoItemView'
-], function (Marionette, templates, ItemView) {
+	'views/ScenePreviewView'
+], function (Marionette, templates, scenePreviewView) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
-    template: templates.scenePreviewCompositeView,
+    //template: templates.scenePreviewCompositeView,
+		/** legacy API method : itemViewContainer */
+		childView: scenePreviewView,
 
-		itemView: ItemView,
-
-		itemViewContainer: '#todo-list',
+		childViewContainer: '#todo-list',
 
 		ui: {
 			toggle: '#toggle-all'
