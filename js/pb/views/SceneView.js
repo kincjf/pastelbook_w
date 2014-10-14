@@ -42,7 +42,15 @@ define([
 //			'blur .edit': 'onEditBlur'
     },
 
-    initialize: function () {
+	  /** _options는 childViewOptions에서 받아온 데이터 */
+    initialize: function (_options) {
+	    myLogger.trace("SceneView - init");
+
+	    if ( _.has(_options.collection) ) {
+		    this.collection = _options.collection;
+
+		    myLogger.debug(this.collection);
+	    }
 //			this.value = this.model.get('title');
 //      this.listenTo(this.collection, 'add', this.render);
     },
@@ -53,8 +61,6 @@ define([
 
       var _imgSrc = $(ui.draggable.context).attr('src');
       var object = this.ui.object;
-
-      console.log(_imgSrc);
 
 	    /** this.collection : ObjectList */
       this.collection.create({

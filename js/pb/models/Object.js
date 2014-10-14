@@ -14,21 +14,32 @@ define([
   //console.log("Object");
 
 	return Backbone.Model.extend({
+		/** .LocalStorage('name') : 'name이 Key이고 item과 쌍이 됨
+		 * 초기 loading시 key에 해당하는 data set들을 읽어옴
+		 * ex)'pb-object : c1, c2
+		 *    'pb-object-c1 : {"imgSrc": "img1"}
+		 *    'pb-object-c2 : {"imgSrc": "img2"}
+		 * 자세한건 데이터를 직접 넣어보고 localStorage를 확인해 볼 것.
+		 */
 		localStorage: new Backbone.LocalStorage('pb-object'),
 
 		defaults: {
-      id:'',
+      _id:'',
       imgSrc:'',
 			title: 'Object',
 			completed: false,
 			created: 0
 		},
 
-    initialize: function(a, b) {
+		/** backend(REST DB)와 통신하기 위해서 기본 식별자 지정 */
+		idAttribute: "_id",
+
+    initialize: function(model, attributes) {
       myLogger.trace('Object - init');
-      myLogger.debug("Model Data", a);
-      myLogger.debug("Object instance", b);
-      this.set('id', this.cid);
+
+      this.set('_id', this.cid);
+
+	    /** collection에 별칭을 지어서 model.attributes안에 가지고 있음 */
     }
 	});
 });

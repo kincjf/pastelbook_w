@@ -26,6 +26,9 @@ define([
 		sceneList: new SceneList()
 	});
 
+	/** 나중에 Project Save를 위해서 기능을 이렇게 하면 될 듯 */
+	pb.type.Project.save();
+
 	/** 테스트용으로 일단 바깥으로 꺼냈음*/
 	var sceneList = pb.type.Project.get("sceneList");
 

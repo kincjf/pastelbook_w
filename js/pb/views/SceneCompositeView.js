@@ -12,8 +12,9 @@
 define([
   'marionette',
   'pb_templates',
+	'pb/collections/ObjectList',
   'pb/views/SceneView'
-], function (Marionette, templates, SceneView) {
+], function (Marionette, templates, ObjectList, SceneView) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
@@ -37,10 +38,40 @@ define([
 //		events: {
 //      'click #add_slide': 'addSlide'
 //		},
-		initialize: function () {
+		/** options : instance 초기화시 받은 parameter object*/
+		initialize: function (options) {
 			myLogger.trace("SceneCompositeView - init");
+
+			if ( _.has(options.collection) ) {
+				this.collection = options.collection;
+			}
+
 //			this.listenTo(this.collection, 'add', this.render, this);
     },
+
+		/** it does passing parameter, childView initialize(_options)
+		 * ex) _options : {collection, index}
+		 */
+		/** model - Scene Data in SceneList */
+		childViewOptions: function(_model, _index) {
+			myLogger.trace("SceneCompositeView - childViewOptions");
+
+			var objectList = _model.get('objectList');
+
+			/** 초기 로딩시 로딩데이터는 원시 array이기 때문에 custom collection으로 wrapping을 함*/
+			if( !(objectList instanceof Backbone.Collection) ) {
+				objectList = new ObjectList(objectList);
+			}
+
+			/** childView로 넘겨주는 init parameter의 collection type은
+			 * Backbone.Collection의 인스턴이어야함.
+			 * 아닐경우 marionette Error 발생
+			 */
+			return {
+				collection: objectList,
+				index: _index
+			}
+		},
 
 		/** 기존의 dlg_current_scene.js를 사용하기 위함.
 		 * 대신 pb_ui_0.0.1에서는 로딩을 하지 않음(삭제됨)

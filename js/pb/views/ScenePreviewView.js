@@ -28,8 +28,14 @@ define([
 //			'click #add_slide': 'onToggleAllClick'
 //		},
 
-		initialize: function () {
+		initialize: function (_options) {
 			myLogger.trace("ScenePreviewView - init");
+
+			if ( _.has(_options.collection) ) {
+				this.collection = _options.collection;
+
+				console.log(this.collection);
+			}
 //			this.listenTo(this.collection, 'all', this.updateToggleCheckbox, this);
 		},
 
@@ -44,7 +50,7 @@ define([
 //
 //        this.ui.toggle.prop('checked', allCompleted);
 //      },
-//
+
 //      onToggleAllClick: function (event) {
 //        var isChecked = event.currentTarget.checked;
 //

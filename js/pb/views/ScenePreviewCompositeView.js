@@ -18,8 +18,9 @@ define([
 	'marionette',
 	'pb_templates',
 	'pb/views/ScenePreviewView',
-	'pb/collections/ObjectList'
-], function (Marionette, templates, ScenePreviewView, ObjectList) {
+	'pb/collections/ObjectList',
+	'pb/models/Scene'
+], function (Marionette, templates, ScenePreviewView, ObjectList, Scene) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
@@ -38,9 +39,38 @@ define([
 			'click #add_scene': 'createScene'
 		},
 
-		initialize: function () {
+		/** options - instance 선언시 초기화 데이터가 들어가있음. */
+		initialize: function (_options) {
 			myLogger.trace("ScenePreviewCompositeView - init");
+
+			myLogger.debug(_options);
+
+			if ( _.has(_options.collection) ) {
+				this.collection = _options.collection;
+			}
 //			this.listenTo(this.collection, 'add', this.render, this);
+		},
+
+		/** _model : Scene */
+		childViewOptions: function(_model, _index) {
+			myLogger.trace("ScenePreviewCompositeView - childViewOptions");
+
+			var objectList = _model.get('objectList');
+
+			/** 초기 로딩시 로딩데이터는 원시 array이기 때문에 custom collection으로 wrapping을 함*/
+			/** 새로운 Scene 생성시에는 별 문제가 없는듯 함.*/
+			if( !(objectList instanceof Backbone.Collection) ) {
+				objectList = new ObjectList(objectList);
+			}
+
+			/** childView로 넘겨주는 init parameter의 collection type은
+			 * Backbone.Collection의 인스턴이어야함.
+			 * 아닐경우 marionette Error 발생
+			 */
+			return {
+				collection: objectList,
+				index: _index
+			}
 		},
 
 		onRender: function () {
@@ -70,10 +100,13 @@ define([
 			/** this.collection : SceneList */
 			/** 약간 코드가 꼬여있는 것 같다.
 			 * controller이나 mediator를 이용하여 이런 부분을 풀어줘야 될 것 같다.
+			 *
+			 * objectList를 만들어서 넣으려고 했지만 이상하게 []로 들어가서
+			 * Scene.initialize에서 자동생성함.
 			 */
 			this.collection.create({
-				sceneNumber: _sceneNumber,
-				objectList: new ObjectList()
+				sceneNumber: _sceneNumber
+//				objectList: new ObjectList()
 			});
 		}
 //      updateToggleCheckbox: function () {
@@ -84,6 +117,7 @@ define([
 //        this.ui.toggle.prop('checked', allCompleted);
 //      },
 //
+				/** best practice : 나중에 저장할 때 이렇게 하면 될듯 ㅇㅇ */
 //      onToggleAllClick: function (event) {
 //        var isChecked = event.currentTarget.checked;
 //

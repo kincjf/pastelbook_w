@@ -10,9 +10,4 @@
 </ul>
 
 <ul id="scene_previews" class="sortable">
-    <!--<li class="ui-state-default">씬 1<img src="../../img/dummy/dummy.png" width="100" height="100"/></li>-->
-    <!--<li class="ui-state-default">씬 2<img src="../../img/dummy/dummy.png" width="100" height="100"/></li>-->
-    <!--<li class="ui-state-default">씬 3<img src="../../img/dummy/dummy.png" width="100" height="100"/></li>-->
-    <!--<li class="ui-state-default">씬 4<img src="../../img/dummy/dummy.png" width="100" height="100"/></li>-->
-    <!--<li class="ui-state-default">씬 5<img src="../../img/dummy/dummy.png" width="100" height="100"/></li>-->
 </ul>

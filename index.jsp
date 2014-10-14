@@ -6,15 +6,10 @@
 		<title>Pastel Book ::: 편한 이북 저작 도구 :::</title>
 		<link href="js/lib/jquery_ui/jquery-ui.css" rel="stylesheet" /><!-- css for jquery-ui -->
 		<link href="css/pb_default.css" rel="stylesheet" />
-<<<<<<< HEAD
 
         <script src="js/lib/log4javascript_uncompressed.js"></script>
         <script src="js/log4javascript-config.js"></script>
 
-=======
-		<script src="js/lib/log4javascript_uncompressed.js"></script>
-		<script src="js/log4javascript-config.js"></script>
->>>>>>> 72dea4dc8b578c642edf312b09e48f7f3ed782e9
 		<script data-main="js/pastelbook" src="js/lib/require.js"></script><!-- requirejs 사용 -->
 	</head>
 	<body>
