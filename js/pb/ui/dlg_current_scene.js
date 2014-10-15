@@ -1,15 +1,5 @@
 require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,jquery_ui,jquery_ui_custom){
-	var dlg_current_scene= $( "#dlg_current_scene" ).dialog({
-		autoOpen: true,
-		width: pb.ui.dlg_current_scene.w,
-		height: pb.ui.dlg_current_scene.h
-	});
-
-
-	$('#dlg_current_scene').parent().css({
-		top: pb.ui.dlg_current_scene.y,
-		left: pb.ui.dlg_current_scene.x
-	});
+	pb.ui.dialog('dlg_current_scene', { isCenter : false });
 
 	$('#dlg_current_scene').parent().append('<div id="'+""+"inter_model"+'" style="position : absolute; bottom: 2px; left: 2px;">'
 		+'<ul>'

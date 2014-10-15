@@ -25,7 +25,14 @@ require(["pastelbook_ui"],function(pastelbook_ui){
 	$(document).delegate("#project_new", "click", function() {
 		// 현재 아무것도 안열려 있는지, 열려 있다면 이전프로젝트는 어떻게 처리할지 체크
 		//console.log("#project_new");
-		pb.current.set( 'project', new pb.type.Project({ name : "임시" }) );
+		pb.current.set( 'project' , new pb.type.Project({ name : "임시" }) );
+		pb.current.set( 'scenes' , pb.current.get('project').get('scenes') );
+		pb.current.get( 'scenes' ).push(new pb.type.Scene());
+		pb.current.set( 'idx_scene' , 0);
+		pb.current.set( 'selected_scene', pb.current.get('scenes').at(pb.current.get('idx_scene'))  );
+
+		//pb.current.set( 'idx_scenes', pb.current.get('project').get('idx_scenes') );
+		
 		$('#project_new').parent().css('visibility','hidden');
 	});
 	// 1-1-2. 프로젝트 저장 ( 메뉴 항목 id는 가능한 메뉴명_메뉴항목명 순과같이한다. 물론 영문으로 )

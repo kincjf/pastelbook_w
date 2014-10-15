@@ -5,16 +5,7 @@
  */
 require(['jquery', 'underscore',  'jquery_ui',  'jquery_ui_custom'], function($, _, jquery_ui, jquery_ui_custom){
 	$(function () {
-		var dlg_animation = $( "#dlg_animation" ).dialog({
-			autoOpen: true,
-			width: pb.ui.dlg_animation.w,
-			height: pb.ui.dlg_animation.h
-		});
-
-		$('#dlg_animation').parent().css({
-			top: pb.ui.dlg_animation.y,
-			left: pb.ui.dlg_animation.x
-		});
+		pb.ui.dialog('dlg_animation', { isCenter : false });
 
 		$( "#dlg_animation #tabs-animation" ).tabs();
 		$( "#dlg_animation #tabs-animation_show_hide" ).tabs();

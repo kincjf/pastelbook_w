@@ -48,12 +48,66 @@ require(["pastelbook_ui"], function (pastelbook_ui) {
 		}
 		debug.log = function(logtext){
 			if(debug.clientLocalIp === '192.168.2.2'){
-				console.log("홍 : "+logtext);
+				console.log('%c%s', 'background: #222; color: #bada55',logtext);
+				//console.log("홍 : "+logtext);
 			}
+		}
+		debug.toastCnt = 0;
+		debug.toast = function(logtext){
+			var  txt = logtext;
+			if(debug.clientLocalIp === '192.168.2.2'){
+				if($('#debugToast').length === 0){
+					$('body').append('<div id="debugToast" style=""></div>');
+					$('#debugToast').attr('style','position:fixed; width:300px; height:200px;  left:40%; bottom:50%; background-color:rgba(20,20,20,0.5); z-index:900; font-size:30px; text-align:center; padding:20px');
+				}
+				$('#debugToast').text(debug.toastCnt +' : '+ txt);
+				$( '#debugToast' ).animate({
+					opacity: 1.0
+				}, 300).animate({
+					opacity:0.0
+				}, 2000);
+				debug.toastCnt++;
+			} // ipcheck
 		}
 		////////// 위에 선언, 아래 호출
 		debug.showDialogName();
 		debug.clientLocalIp = debug.getClientLocalIp();
 		debug.clientGlobalIp = debug.getClientGlobalIp();
+		
+		// 여기서부터 작업중 함수
+		debug.test = {};
+		debug.test.checkCurrentProject = function(){
+			// 존재?
+			debug.test.showDlg('dlg_save_project');
+		}
+		debug.test.newDialog = function(elementId, option, data){
+			if(debug.test.existDlg(elementId)){
+				debug.test.showDlg();
+			} else {
+				debug.test.createDefaultDlg=function(elementId, option, data){
+					// e id assgin
+					// option ( modal
+					// insert ( lable or data
+					
+					//this의 타입은 jquery.ui.dialog
+					//this.customizeCss('aaaaaaa');
+					//this.customizeElement('aaa');
+				}
+			}
+			// modal
+		}
+		
+		debug.test.createNewProject = function(){
+
+		}
+		debug.test.assignCurrentProject = function(){
+			pb.current.project = {}
+		}
+		
+		//debug.test.dlg.changeEffect;
+
+		//debug.test.newDialog('dlg_proj_create');
+		// 1단락
+
 	});
 });
