@@ -78,6 +78,10 @@ define([
       this.ui.scene.droppable({
         accept: "[inserted!='']"
       }).selectable();
-    }
+    },
+
+	  onShow: function() {
+		  myLogger.trace("SceneView - onShow");
+	  }
   });
 });

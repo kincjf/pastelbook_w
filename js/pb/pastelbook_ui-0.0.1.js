@@ -27,7 +27,8 @@ require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,
 			'dlg_animation'				: {		x : 1015,			y : 510,		w : 400,		h : 900	},
 			'dlg_oldtool'					: {		x : 1215,			y : 510,		w : 400,		h : 500	},
 			'dlg_project_info'			: {		x : 995,			y : 5,		w : 250,		h : 150	},
-			'dlg_project_close'		: {		x : 815,			y : 5,		w : 170,		h : 100	}
+			'dlg_project_close'		: {		x : 815,			y : 5,		w : 170,		h : 100	},
+			'dlg_project_save'		: {		x : 500,			y : 500,		w : 170,		h : 100	}
 		};
 
 		require(['pastelbook_ui_dlg_animation'], function(pastelbook_ui_dlg_animation){

@@ -90,7 +90,7 @@ requirejs.config({
 		// 여기까진 공용 라이브러리
 
 		pastelbook_ui: {
-			deps: ["jquery", "pastelbook_pb"]
+			deps: ["jquery", "jquery_ui", "pastelbook_pb"]
 		},
 		pastelbook_pb: {
 			deps: ["jquery"]

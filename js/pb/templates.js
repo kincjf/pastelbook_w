@@ -18,6 +18,8 @@ define(function (require) {
 		objectCompositeView: require('tpl!pb/templates/objectCompositeView.tpl'),
 
 	  scenePreviewView: require('tpl!pb/templates/scenePreviewView.tpl'),
-	  scenePreviewCompositeView: require('tpl!pb/templates/scenePreviewCompositeView.tpl')
+	  scenePreviewCompositeView: require('tpl!pb/templates/scenePreviewCompositeView.tpl'),
+
+	  dlgSaveProject: require('tpl!pb/templates/dlgSaveProject.tpl')
   };
 });

@@ -8,6 +8,10 @@
  * 1. Scene 삽입 => (구현중)
  * 2. Scene 미리보기 화면에서 선택된 Scene 보여주기
  *
+ * - 문제점 / 수정사항
+ * 1. 기존 dialog selector에 접근할 수 없다!
+ * (id가지고 접근하기에는 좀 더럽다;; View 관리범위 바깥이기 때문에 ui hash를 사용할 수 없음.)
+ * => static html을 없애고 초기 구동시 생성하는 방향으로 제작해야될듯
  */
 define([
   'marionette',

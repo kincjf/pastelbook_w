@@ -34,7 +34,7 @@ define([
 		initialize: function (model, attributes) {
 			myLogger.trace('Project - init');
 
-			this.set('id', this.cid);
+			this.set('_id', this.cid);
 
 			if ( !this.has('sceneList') ) {
 				this.set('sceneList', new SceneList());

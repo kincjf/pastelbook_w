@@ -22,15 +22,15 @@ define([
   var app = new Marionette.Application();
 
 	/** Data type은 namespace를 써야될 것 같음.*/
-	pb.type.Project = new Project({
+	pb.type.Model.Project = new Project({
 		sceneList: new SceneList()
 	});
 
 	/** 나중에 Project Save를 위해서 기능을 이렇게 하면 될 듯 */
-	pb.type.Project.save();
+	pb.type.Model.Project.save();
 
 	/** 테스트용으로 일단 바깥으로 꺼냈음*/
-	var sceneList = pb.type.Project.get("sceneList");
+	var sceneList = pb.type.Model.Project.get("sceneList");
 
 //	var objectList = new ObjectList();
 //

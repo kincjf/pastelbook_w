@@ -13,7 +13,20 @@ require(['jquery'],function($){
 
 		pb.type = pb.type || { }; // 파스텔북 내에서 쓰이는 각종 타입에 대한 설정을 extend 이용해서만들어 놓는다.
 
-		/** pb.type.model, view로 나눠야될 것 같음. */
+		/** Views */
+		pb.type.View = pb.type.View || {};
+
+		pb.type.View.menu = pb.type.View.menu || {};
+
+		pb.type.View.menu.project = pb.type.View.menu.project || {};
+
+		/** Models */
+		pb.type.Model = pb.type.Model || {};
+
+		pb.type.Model.Project = pb.type.Model.Project || {};
+
+
+
 		pb.type.Project = pb.type.Project || {};
 		pb.type.Scene = pb.type.Scene || {};
 		pb.type.Group = pb.type.Group || {};
@@ -26,9 +39,7 @@ require(['jquery'],function($){
 		pb.type.GroupView = pb.type.GroupView || {};
 		pb.type.ObjectView = pb.type.ObjectView || {};
 
-		//pb.type.ObjectContainer = pb.type.ObjectContainer || {};
-		//pb.type.SceneContainer = pb.type.SceneContainer || {};
-		//pb.type.GroupContainer = pb.type.GroupContainer || {};
+
 
 		// 여기서부터는 원기추가
 		
