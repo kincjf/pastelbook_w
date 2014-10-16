@@ -7,7 +7,7 @@
 
 var pb;
 
-require(['jquery'],function($){
+require(['jquery','pastelbook_pb'],function($){
 	$(function () {
 		pb = pb || {};
 

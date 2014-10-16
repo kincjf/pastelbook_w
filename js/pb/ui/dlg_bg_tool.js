@@ -1,14 +1,5 @@
 require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,jquery_ui,jquery_ui_custom){
-	var dlg_bg_tool= $( "#dlg_bg_tool" ).dialog({
-		autoOpen: true,
-		width: pb.ui.dlg_bg_tool.w,
-		height: pb.ui.dlg_bg_tool.h
-	});
-
-	$('#dlg_bg_tool').parent().css({
-		top: pb.ui.dlg_bg_tool.y,
-		left: pb.ui.dlg_bg_tool.x
-	});
+	pb.ui.dialog('dlg_bg_tool', { isCenter : false });
 
 	$('#dlg_bg_tool').parent().append('<div id="'+""+"inter_model"+'" style="position : absolute; bottom: 2px; left: 2px;">'
 		+'<ul>'

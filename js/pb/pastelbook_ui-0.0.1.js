@@ -31,6 +31,89 @@ require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,
 			'dlg_project_save'		: {		x : 500,			y : 500,		w : 170,		h : 100	}
 		};
 
+		pb.ui.widgets = new ( Backbone.Model.extend({}) );
+
+		pb.ui.dialog = function ( elementId, option, drawFunc ){
+			var tmp = {};
+			tmp.id = elementId;
+			tmp.selector = '#'+elementId;
+
+			tmp.data = null;
+			tmp.setData = function(data){
+				tmp.data = data;
+			}
+			tmp.child = Backbone.Model.extend({});
+
+			if (drawFunc !== undefined )
+			{
+				tmp.drawThis = drawFunc;
+			} else {
+				tmp.drawThis = function(){
+					$(tmp.selector+" ul").html(''); // 리스트에 있는거 지우고 ( 더미 태그들 )
+					for (var key in tmp.data) {
+						if (tmp.data.hasOwnProperty(key)) {
+							$(tmp.selector+" ul")
+								.append('<li><span class="ui-icon ui-icon-bullet"></span>'+key+' : <span id="'+key+'">'+tmp.data[key]+'<span></li>');
+							//console.log(key+':'+tmp.data[key]);
+						}
+					}
+				};
+			}
+			tmp.changeEffect = function(){
+				$( tmp.selector ).parent().addClass('change');
+				$( tmp.selector ).animate({
+					opacity: 0.0
+				}, 300).animate({
+					opacity:1.0
+				}, 700, function(){
+					$( tmp.selector ).parent().removeClass('change');	
+				});
+			};
+			tmp.reload = function(){ // 바인딩된 데이터를 읽어오면서, 이펙트 + 다시그리기
+				// 이펙트 처리
+				tmp.changeEffect();
+
+				// 다이얼로그의 경우
+					// 데이터에 따라 그리기
+					if ( tmp.drawThis !== null ){
+						tmp.drawThis();
+					} else {
+						debug.log('drawThis is null');
+					}
+					if ( tmp.child.length !== 0) {
+						tmp.drawChild();
+					}
+						// project_info의 경우임.
+				//debug.log('a '+tmp.data);
+				
+				//$(tmp.selector).find('#author').text(pb.current.get('project').get('author'));
+				//$(tmp.selector).find('#title').text(pb.current.get('project').get('title'));
+				//$(tmp.selector).find('#description').text(pb.current.get('project').get('description'));
+					// child 도 다시그린다. ( 재귀적으로 )
+			}
+
+			tmp.registerToWidgets = function(some_widget){ // 다이얼로그 말고 메뉴도 추가하고 싶다.
+				pb.ui.widgets.set(some_widget.id, some_widget);
+			}
+
+			// 다이얼로그 생성
+			$(tmp.selector).dialog({
+				autoOpen: true,
+				width: pb.ui[tmp.id].w,
+				height: pb.ui[tmp.id].h
+			});
+
+			if( option.isCenter == false ){
+				$(tmp.selector).parent().css({
+					top: pb.ui[tmp.id].y,
+					left: pb.ui[tmp.id].x
+				});
+			}
+
+			tmp.registerToWidgets(tmp);
+			return tmp;
+		}
+
 		require(['pastelbook_ui_dlg_animation'], function(pastelbook_ui_dlg_animation){
 		});
 		require(['pastelbook_ui_dlg_current_scene'], function(pastelbook_ui_dlg_current_scene){

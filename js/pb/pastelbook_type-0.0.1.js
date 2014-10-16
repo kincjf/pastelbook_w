@@ -66,7 +66,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 	$(function () {
 		pb.type.Project = Backbone.Model.extend({
 			defaults: {
-				scenes: [],
+				scenes: null,
 				author: '임지우',
 				title: "noname",
 				version: "0.0",
@@ -75,6 +75,16 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 				updateDate: 0
 			},
 			initialize: function () {
+				var tmpScenes = new (Backbone.Collection.extend([],{	model: pb.type.Scene	 }));
+				tmpScenes.prototype = Backbone.Collection.prototype;
+				this.set('scenes', tmpScenes );
+
+
+				//this.get('scenes').prototype
+				//console.log(this.get('scenes').prototype);
+
+
+
 				//프로젝트에 씬 하나는 있어야지
 				//this.push("scenes", new pb.type.Scene());
 
