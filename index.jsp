@@ -6,8 +6,10 @@
 		<title>Pastel Book ::: 편한 이북 저작 도구 :::</title>
 		<link href="js/lib/jquery_ui/jquery-ui.css" rel="stylesheet" /><!-- css for jquery-ui -->
 		<link href="css/pb_default.css" rel="stylesheet" />
-		<script src="js/lib/log4javascript_uncompressed.js"></script>
-		<script src="js/log4javascript-config.js"></script>
+
+        <script src="js/lib/log4javascript_uncompressed.js"></script>
+        <script src="js/log4javascript-config.js"></script>
+
 		<script data-main="js/pastelbook" src="js/lib/require.js"></script><!-- requirejs 사용 -->
 	</head>
 	<body>
@@ -16,14 +18,14 @@
 	<!-- 메뉴 도구모음 추가 -->
 	<%@ include file="/dlg_menu.jspf" %>
 
-	<!-- ui-dialog -->
-	<%@ include file="/dlg_current_scene.jspf" %>
-	<%@ include file="/dlg_scene_preview.jspf" %>
+	<!-- ui-dialog : 점진적으로 ./js/pb/templates로 옮길 예정임. /-->
+	<%@ include file="./js/pb/templates/dlg-current-scene.jspf" %>
+	<%@ include file="./js/pb/templates/dlg-scene-preview.jspf" %>
 	<%@ include file="/dlg_bottom_tab.jspf" %>
 	<%@ include file="/dlg_bg_tool.jspf" %>
 	<%@ include file="/dlg_animation.jspf" %>
 	<%@ include file="/dlg_oldtool.jspf" %>
-    <%@ include file="/js/pb/templates/dlg-add-image.jspf" %>
+    <%@ include file="./js/pb/templates/dlg-add-image.jspf" %>
     <!-- 프로젝트 - 내보내기 (파일 다이얼로그를 그대로 사용한다. 온클릭 이벤트 등록 -->
 	<!-- 프로젝트 - 불러오기 (파일 다이얼로그를 그대로 사용한다. 온클릭 이벤트 등록 -->
     <%@ include file="/dlg_project_info.jspf" %>

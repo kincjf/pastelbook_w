@@ -7,7 +7,7 @@
  */
 define([
 	'backbone',
-	'pb_models_scene',
+	'pb/models/Scene',
 	'localStorage'
 ], function (Backbone, Scene) {
 	'use strict';
@@ -15,6 +15,6 @@ define([
 	return Backbone.Collection.extend({
 		model: Scene,
 
-		localStorage: new Backbone.LocalStorage('pb-sceneList')
+		localStorage: new Backbone.LocalStorage('pb-scene')
 	});
 });

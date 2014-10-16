@@ -6,7 +6,7 @@
 
 require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, backbone, pastelbook_pb){
 	$(function () {
-		pb.current = Backbone.Model.extend({
+		pb.current = new (Backbone.Model.extend({
 			defaults: {
 				project: {},
 				scene: {},
@@ -21,7 +21,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 					//	$(pb.current.get('selected_menu_old')).css('visibility','hidden')
 					//);
 					//console.log(pb.current.get('selected_menu')+' hidden')
-				});
+				}); // bind()
 
 				this.bind('change:project',function(){
 					// current.project -> dlg_여러개
@@ -29,14 +29,14 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 					pb.ui.widgets.get('dlg_project_info').setData(pb.current.get('project').attributes);
 					pb.ui.widgets.get('dlg_project_info').reload();
 					//$( "#dlg_project_info" ).parent().addClass('change');
-				});
+				}); // bind()
 
 				this.bind('change:selected_scene',function(){
 					pb.ui.widgets.get('dlg_current_scene').setData(pb.current.get('selected_scene').attributes);
 					pb.ui.widgets.get('dlg_current_scene').reload();
 					//debug.toast('현재 씬이 변경됨');
 					//debug.log('현재 씬이 변경됨');
-				});
+				}); // bind()
 
 				this.bind('change:idx_scene',function(){
 					//debug.toast('마지막 씬번호가 변경됨');
@@ -50,10 +50,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 					//debug.toast('씬목록이변경됨');
 					//debug.log('씬목록이변경됨');
 				});
-
-
-			}
-		});
-		pb.current = new pb.current(); // 익명클래스로 쓰고 싶은데 잘 안되서 그냥 이렇게 씀 해당 타입은 여기 외에는 필요가 없어서
-	});
+			} // initialize ()
+		}))(); // pb.current  (IIFE Patterns) // 즉시 실행함수
+	}); // $function() - for scope
 }); // require

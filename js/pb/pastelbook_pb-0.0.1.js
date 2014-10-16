@@ -13,6 +13,7 @@ require(['jquery'],function($){
 
 		pb.type = pb.type || { }; // 파스텔북 내에서 쓰이는 각종 타입에 대한 설정을 extend 이용해서만들어 놓는다.
 
+		/** pb.type.model, view로 나눠야될 것 같음. */
 		pb.type.Project = pb.type.Project || {};
 		pb.type.Scene = pb.type.Scene || {};
 		pb.type.Group = pb.type.Group || {};

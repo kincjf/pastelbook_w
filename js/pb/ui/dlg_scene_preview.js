@@ -24,15 +24,15 @@ require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,
 
 	// 읽어오기 전에 새 씬 드래그가능하게 + 씬 순서 변경 가능하게
 	// 이거에 따른 데이터 변경은 안만듬
-	$(function() {
-		$( "#sortable" ).sortable({
-			revert: true
-		});
-		$( "#newscene" ).draggable({
-			connectToSortable: "#sortable",
-			helper: "clone",
-			revert: "invalid"
-		});
-		$( "ul, li" ).disableSelection();
-	});
+//	$(function() {
+//		$( ".sortable" ).sortable({
+//			revert: true
+//		});
+//		$( ".newscene" ).draggable({
+//			connectToSortable: "#sortable",
+//			helper: "clone",
+//			revert: "invalid"
+//		});
+//		$( "ul, li" ).disableSelection();
+//	});
 });

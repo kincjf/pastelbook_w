@@ -99,7 +99,7 @@ requirejs.config({
 			deps: ["pastelbook_ui", "pastelbook_type", "backbone"]
 		},
 		pb_app: {
-			deps: ['marionette']
+			deps: ['pastelbook_pb']
 		}
 	}
 });
