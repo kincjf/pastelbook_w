@@ -27,10 +27,15 @@ define([
 	});
 
 	/** 나중에 Project Save를 위해서 기능을 이렇게 하면 될 듯 */
-	pb.type.Model.Project.save();
+//	pb.type.Model.Project.save();
 
-	/** 테스트용으로 일단 바깥으로 꺼냈음*/
+	/** 테스트용으로 일단 바깥으로 꺼냈음 */
 	var sceneList = pb.type.Model.Project.get("sceneList");
+
+	/** Scene이 처음에 하나는 있어야 되기 때문에 */
+	sceneList.add({
+		sceneNumber: 1
+	});
 
 //	var objectList = new ObjectList();
 //
@@ -61,7 +66,7 @@ define([
     app.currentScene.show(sceneCompositeView);
 	  app.currentScenePreview.show(scenePreviewCompositeView);
 
-    sceneList.fetch();
+//    sceneList.fetch();
   });
 
   window.sceneList = sceneList;

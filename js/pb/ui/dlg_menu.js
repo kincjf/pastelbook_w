@@ -221,7 +221,7 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom', 'pb/views/menu
 
 			if (!isOpen) {
 				/** 안보였던 dialog를 보이게 함 */
-				pb.type.View.menu.saveProject.$el.dialog("open");
+				pb.type.View.menu.project.saveProject.$el.dialog("open");
 			}
 		});
 	}); // require

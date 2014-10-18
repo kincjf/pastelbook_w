@@ -14,7 +14,7 @@ define([
 	'use strict';
 
 	return Backbone.Model.extend({
-		localStorage: new Backbone.LocalStorage('pb-scene'),
+//		localStorage: new Backbone.LocalStorage('pb-scene'),
 
 		defaults: {
 			_id: '',

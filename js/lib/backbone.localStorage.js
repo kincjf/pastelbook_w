@@ -158,8 +158,8 @@ extend(Backbone.LocalStorage.prototype, {
   },
 
   _itemName: function(id) {
-    return this.name+"-"+id;
-  }
+		return this.name+"-"+id;
+	}
 
 });
 

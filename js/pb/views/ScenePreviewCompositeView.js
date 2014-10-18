@@ -103,8 +103,10 @@ define([
 			 *
 			 * objectList를 만들어서 넣으려고 했지만 이상하게 []로 들어가서
 			 * Scene.initialize에서 자동생성함.
+			 *
+			 * change .create() to .add()
 			 */
-			this.collection.create({
+			this.collection.add({
 				sceneNumber: _sceneNumber
 //				objectList: new ObjectList()
 			});

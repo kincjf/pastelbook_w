@@ -20,3 +20,9 @@ ___
 
 ###* objectCompositeView.tpl
 > ObjectCompositeView와 매칭됨.  
+
+###* menu/project/dlgSaveProject.tpl
+> views/menu/project/dlg-save와 매칭됨.
+
+###* menu/project/dlgSaveToText.tpl
+> views/menu/project/dlg-saveToText와 매칭됨.

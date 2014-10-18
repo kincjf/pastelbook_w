@@ -15,6 +15,6 @@ define([
 	return Backbone.Collection.extend({
 		model: Object,
 
-		localStorage: new Backbone.LocalStorage('pb-object')
+//		localStorage: new Backbone.LocalStorage('pb-object')
 	});
 });

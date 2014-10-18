@@ -20,6 +20,7 @@ define(function (require) {
 	  scenePreviewView: require('tpl!pb/templates/scenePreviewView.tpl'),
 	  scenePreviewCompositeView: require('tpl!pb/templates/scenePreviewCompositeView.tpl'),
 
-	  dlgSaveProject: require('tpl!pb/templates/dlgSaveProject.tpl')
+	  dlgSaveProject: require('tpl!pb/templates/menu/project/dlgSaveProject.tpl'),
+	  dlgSaveToText: require('tpl!pb/templates/menu/project/dlgSaveToText.tpl')
   };
 });

@@ -21,7 +21,7 @@ define([
 		 *    'pb-object-c2 : {"imgSrc": "img2"}
 		 * 자세한건 데이터를 직접 넣어보고 localStorage를 확인해 볼 것.
 		 */
-		localStorage: new Backbone.LocalStorage('pb-object'),
+//		localStorage: new Backbone.LocalStorage('pb-object'),
 
 		defaults: {
       _id:'',

@@ -142,7 +142,8 @@ div.change { /*변경 생긴 다이얼로그 강조*/
 
 
 .scene-wrap {
-    height: inherit
+    /* 일단 정해진게 없으니 400px로 함. */
+    height: 400px;
 }
 
 .scene {

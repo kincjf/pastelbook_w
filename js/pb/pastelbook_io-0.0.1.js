@@ -10,5 +10,7 @@ require(['jquery', 'pastelbook_ui'], function($,pastelbook_ui){
 		pb.io.ajax.getProjects = function(){ // 유저의 프로젝트 가져오기	
 			console.log('aaaa');
 		}
+
+
 	});
 }); // require

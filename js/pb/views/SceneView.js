@@ -62,8 +62,10 @@ define([
       var _imgSrc = $(ui.draggable.context).attr('src');
       var object = this.ui.object;
 
-	    /** this.collection : ObjectList */
-      this.collection.create({
+	    /** this.collection : ObjectList
+	     * change .create() to .add()
+	     */
+      this.collection.add({
         imgSrc: _imgSrc
       });
     },
