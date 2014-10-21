@@ -83,7 +83,7 @@ define([
 		},
 
 		/** this.parent - dlg-save : 감싸고 있는 layoutView */
-		closeDialog: function() {
+		closeDialog: function(event) {
 			myLogger.trace("menu | project | dlg-save | saveToText - closeDialog");
 
 			this.parent.$el.dlalog("close");
