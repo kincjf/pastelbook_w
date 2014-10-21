@@ -28,6 +28,7 @@ requirejs.config({
 		handlebars: "lib/handlebars-v2.0.0",
 		text: "lib/text",
 		tpl: 'lib/tpl',
+		html2canvas: 'lib/html2canvas',
 		// external library
 
 		pastelbook_pb: 'pb/pastelbook_pb-0.0.1',
@@ -46,7 +47,6 @@ requirejs.config({
 		pastelbook_type: 'pb/pastelbook_type-0.0.1',
 		pastelbook_io: 'pb/pastelbook_io-0.0.1',
 		pastelbook_model_event: 'pb/pastelbook_model_event-0.0.1',
-
 
 		// 공용 아님 테스트용 js 파일 건드리지 말것 - hong 14.10.13
 		pb_debug_hongs_only: 'pb/debug/pb_debug_hongs_only',
@@ -111,6 +111,27 @@ require(["pastelbook_ui_event"], function (pastelbook_ui_event) {
 require(['pb_debug_hongs_only'],function(pb_debug_hongs_only){ // 아무도 쓰지말 것, 공용 용도 아님 ( 테스트용 )
 });
 
+// html2canvas 테스트용 영역 html2canvas가 모듈화 되어있지 않고
+// 전역네임스페이스를 침범하여 추가 (이후삭제 필요)
+require(['html2canvas'],function(html2canvas){
+	debug.html2canvas = window.html2canvas;
+	window.html2canvas = undefined;
+	// source - htmlelement
+	// target - htmlelement
+	// option - 현재 사용안함 - 추가 필요
+	debug.capture = function(source, target, option){
+		debug.html2canvas(source, {
+			onrendered: function(canvas) {
+				if( option.targetId !== undefined ){
+					target.id = option.targetId;
+					target.src = canvas.toDataURL();
+					//target.appendChild(canvas);
+					//console.log(canvas.toDataURL());
+				}
+			} // onrendered()
+		});// debug.html2canvas();
+	}// debug.capture();
+});
 
 
 require(["pastelbook_ui", "pb_app"], function (pastelbook_ui, pb_app) {
