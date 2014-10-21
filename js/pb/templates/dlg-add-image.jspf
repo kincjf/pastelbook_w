@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<div id="add_image" title="이미지를 삽입하세요!">
+<div id="dlg_add_image" title="이미지를 삽입하세요!">
 	<p>이미지 삽입상자</p>
 	<div class="ui-widget-footer" style="bottom:.1em; right: .1em;;position:absolute">
 		a

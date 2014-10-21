@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <div id="dlg_current_scene" title="현재 씬 - 2">
 </div>
-
-<!-- <script src="js/pb/ui/dlg-current-scene.js"></script> -->
+<!-- <script src="js/pb/ui/dlg_current_scene.js"></script> -->
