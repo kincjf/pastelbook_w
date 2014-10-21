@@ -190,6 +190,7 @@ require(["pastelbook_ui"],function(pastelbook_ui){
 		$('#object_add_textbox').parent().css('visibility','hidden');
 	});
 
+	/* -- 삭제 필요 object_add_image으로 대동단결 14.10.21 // 10일 지나면 삭제할것 - Hong
 	$(document).delegate("#object_add_icon", "click", function() { // --  icon object 추가
 		if(pb.current === null){
 			//console.log( 'pb.current is null.' );
@@ -216,11 +217,13 @@ require(["pastelbook_ui"],function(pastelbook_ui){
 		//console.log("#object_add_character");
 		$('#object_add_character').parent().css('visibility','hidden');
 	});
-	$(document).delegate("#object_add_pic", "click", function() { // 그림 오브젝트 추가
+	*/
+
+	$(document).delegate("#object_add_image", "click", function() { // 그림 오브젝트 추가
 		// pb.current.scene.add(new pb.type.Object());
 		// pb.ui.show_dlg("dlg_add_ojbect", pb.io.getList("list_pic") )
 		//console.log("#object_add_pic");
-		$('#object_add_pic').parent().css('visibility','hidden');
+		$('#object_add_image').parent().css('visibility','hidden');
 	});
 	$(document).delegate("#object_add_background", "click", function() { // 배경 추가? 오브젝트에 배경 추가가 있는게 말이 안됨
 		// pb.current.scene.background = { pics : pb.type.Picture("pic_id_03"), option : "infinite-x" , etc : null}; // 타입으로 변경할필요 있음
