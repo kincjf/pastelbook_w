@@ -11,7 +11,7 @@ define([
 	'localStorage'
 ], function (Backbone) {
 	'use strict';
-  //console.log("Object");
+	//console.log("Object");
 
 	return Backbone.Model.extend({
 		/** .LocalStorage('name') : 'name이 Key이고 item과 쌍이 됨
@@ -24,8 +24,8 @@ define([
 //		localStorage: new Backbone.LocalStorage('pb-object'),
 
 		defaults: {
-      _id:'',
-      imgSrc:'',
+			_id: '',
+			imgSrc: '',
 			title: 'Object',
 			completed: false,
 			created: 0
@@ -34,13 +34,14 @@ define([
 		/** backend(REST DB)와 통신하기 위해서 기본 식별자 지정 */
 		idAttribute: "_id",
 
-    initialize: function(model, attributes) {
-      myLogger.trace('Object - init');
+		initialize: function (modelData, options) {
+			myLogger.trace('Object - init');
 
-      this.set('_id', this.cid);
-
-	    /** collection에 별칭을 지어서 model.attributes안에 가지고 있음 */
-    }
+			if (!_.has(modelData, "_id")) {
+				this.set('_id', this.cid);
+			}
+			/** collection에 별칭을 지어서 model.attributes안에 가지고 있음 */
+		}
 	});
 });
 

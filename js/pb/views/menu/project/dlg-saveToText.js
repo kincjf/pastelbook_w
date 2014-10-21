@@ -40,11 +40,18 @@ define([
 		},
 
 		events: {
-			'click @ui.saveComplete': "closeDlalog"
+			'click @ui.saveComplete': "closeDialog"
 		},
 
+		/** constructor로 전달된 parameter를 멤버변수로 쓰기 위해서는 initialize에서 반드시 매칭을 해주어야 함.
+		 * 그렇지 않으면 this.options로 접근을 해서 사용해야함.
+		 * 하지만 this.options 보다는 명시적으로 선언을 해서 의미있는 멤버변수로 사용하는 것을 권장함.
+		 * ex) collection, parent
+		 */
 		initialize: function (_options) {
 			myLogger.trace("menu | project | dlg-save | saveToText - init");
+			this.collection = _options.collection;
+			this.parent = _options.parent;
 		},
 
 		/** set up final bits just before rendering the view's `el` */
@@ -86,7 +93,7 @@ define([
 		closeDialog: function(event) {
 			myLogger.trace("menu | project | dlg-save | saveToText - closeDialog");
 
-			this.parent.$el.dlalog("close");
+			this.parent.$el.dialog("close");
 
 			this.destroy();
 		}
