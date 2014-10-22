@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %><%@page
-	import="com.pb.db.*, java.util.*, java.sql.*"%>
-<!doctype html>
-<html lang="ko">
-	<head>
-	</head>
-	<body>
-		<%
+	import="com.pb.db.*, java.util.*, java.sql.*,
+	com.google.gson.stream.JsonWriter,
+	java.io.OutputStreamWriter
+	"%><%
 			PbDAO dao = new PbDAO();
 			Connection conn = dao.getConnection();
-			PreparedStatement ptmt = conn.prepareStatement("select * from pb_resource;");
+			PreparedStatement ptmt = conn.prepareStatement("select * from pb_resource limit 5;");
 			
 			ResultSet rs = ptmt.executeQuery();
 
+			/*
 			out.println("<ul>");
 			while(rs.next()){
 				out.println("<li>");
@@ -21,13 +19,15 @@
 				out.println("</li>");
 			}
 			out.println("</ul>");
-		%>
-		<%
-			import com.google.gson.stream.JsonWriter;
+			*/
+		%><%
+			//import com.google.gson.stream.JsonWriter;
 
 			response.setContentType("application/json; charset=UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			JsonWriter writer = new JsonWriter(new OutputStreamWriter(response.getOutputStream(), "UTF-8"));
+			ResultSetMetaData rsmd = rs.getMetaData();
+			writer.beginArray();
 			while(rs.next()) {
 				writer.beginObject();
 				
@@ -39,8 +39,10 @@
 				
 				writer.endObject();
 			}
+			writer.endArray();
 			writer.close();
 			response.getOutputStream().flush();
+			rs.close();
+			ptmt.close();
+			conn.close();
 		%>
-	</body>
-</html>
