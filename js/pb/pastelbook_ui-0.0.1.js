@@ -29,7 +29,7 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'], function ($, 
 			'dlg_project_info': {    x: 995, y: 5, w: 250, h: 150  },
 			'dlg_project_close': {    x: 815, y: 5, w: 170, h: 100  },
 			'dlg_project_save': {	x: 500, y: 200, w: 300, h: 150  },
-			'dlg_add_image': {	x: 400, y: 800, w: 50, h: 200  }
+			'dlg_add_image': {	x: 815, y: 518, w: 180, h: 400  }
 		};
 
 		pb.ui.widgets = new ( Backbone.Model.extend({}) );
@@ -97,7 +97,7 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'], function ($, 
 			}
 
 			// 다이얼로그 생성
-			$(tmp.selector).dialog({
+			tmp.jquerySelector = $(tmp.selector).dialog({
 				autoOpen: true,
 				width: pb.ui[tmp.id].w,
 				height: pb.ui[tmp.id].h
@@ -132,7 +132,7 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'], function ($, 
 		});
 		require(['pastelbook_ui_dlg_project_close'], function (pastelbook_ui_dlg_project_close) {
 		});
-		require(['pb_ui_dlg_add_image'], function (pb_ui_dlg_add_image) {
+		require(['pastelbook_ui_dlg_add_image'], function (pastelbook_ui_dlg_add_image) {
 		});
 	});
 }); // require

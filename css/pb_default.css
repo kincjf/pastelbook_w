@@ -97,6 +97,13 @@ body {
 	border: 1px rgba(0,0,0,0.2) solid;
 }
 
+#dlg_add_image ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
 /*
 	디버그용
 */
