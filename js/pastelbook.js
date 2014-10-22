@@ -42,7 +42,7 @@ requirejs.config({
 		pastelbook_ui_dlg_scene_preview: 'pb/ui/dlg_scene_preview',
 		pastelbook_ui_dlg_current_scene: 'pb/ui/dlg_current_scene',
 		pastelbook_ui_dlg_project_close: 'pb/ui/dlg_project_close',
-		pb_ui_dlg_add_image: 'pb/ui/dlg_add_image',
+		pastelbook_ui_dlg_add_image: 'pb/ui/dlg_add_image',
 		pastelbook_ui_event: 'pb/pastelbook_ui_event-0.0.1',
 		pastelbook_type: 'pb/pastelbook_type-0.0.1',
 		pastelbook_io: 'pb/pastelbook_io-0.0.1',

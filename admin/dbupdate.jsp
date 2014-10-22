@@ -22,5 +22,25 @@
 			}
 			out.println("</ul>");
 		%>
+		<%
+			import com.google.gson.stream.JsonWriter;
+
+			response.setContentType("application/json; charset=UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			JsonWriter writer = new JsonWriter(new OutputStreamWriter(response.getOutputStream(), "UTF-8"));
+			while(rs.next()) {
+				writer.beginObject();
+				
+				// loop rs.getResultSetMetadata columns
+				for(int idx=1; idx<=rsmd.getColumnCount(); idx++) {
+					writer.name(rsmd.getColumnLabel(idx)); // write key:value pairs
+					writer.value(rs.getString(idx));
+				}
+				
+				writer.endObject();
+			}
+			writer.close();
+			response.getOutputStream().flush();
+		%>
 	</body>
 </html>
