@@ -7,7 +7,7 @@
  *
  * - 구현내용/순서
  * 1. 로컬스토리지내 저장    <= 완료
- * 2. 텍스트로 저장(클립보드로 복사)   <= 구현중
+ * 2. 텍스트로 저장(클립보드로 복사)   <= 완료
  * 3. 서버로 저장
  * 4. 소셜네트워크 사이트로 전송
  *
@@ -117,31 +117,15 @@ define([
 		saveToText: function () {
 			//var serializationData = JSON.stringify(this.model.toJSON());
 
-			/** 모듈과 똑같은 변수로 하면 error가 난다 ㅠㅠ 왜일까 */
+			/** 모듈과 똑같은 변수로 하면 error가 난다 ㅠㅠ 왜일까
+			 * this.model - pb.type.Model.Project
+			 */
 			var saveToTextDlalog = new dlgSaveToText({
 				model: this.model,
 				parent: this
 			});
 
 			this.saveToTextArea.show(saveToTextDlalog);
-
-			//this.$el.dialog("close");
 		}
-//
-//      updateToggleCheckbox: function () {
-//        var allCompleted = this.collection.reduce(function (lastModel, thisModel) {
-//          return lastModel && thisModel.get('completed');
-//        }, true);
-//
-//        this.ui.toggle.prop('checked', allCompleted);
-//      },
-
-//      onToggleAllClick: function (event) {
-//        var isChecked = event.currentTarget.checked;
-//
-//        this.collection.each(function (todo) {
-//				todo.save({ completed: isChecked });
-//			});
-//		}
 	});
 });

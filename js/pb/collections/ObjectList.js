@@ -13,7 +13,7 @@ define([
 	'use strict';
 
 	return Backbone.Collection.extend({
-		model: Object,
+		model: Object
 
 //		localStorage: new Backbone.LocalStorage('pb-object')
 	});

@@ -24,6 +24,7 @@ requirejs.config({
 
 		localStorage: 'lib/backbone.localStorage',
 		marionette: 'lib/backbone.marionette',
+		mutators: 'lib/backbone.mutators',
 
 		handlebars: "lib/handlebars-v2.0.0",
 		text: "lib/text",
@@ -73,6 +74,8 @@ requirejs.config({
 			deps: ["jquery"],
 			exports: '_'
 		},
+
+
 		backbone: {
 			deps: ["jquery", 'underscore'],
 			exports: 'Backbone'
@@ -81,6 +84,12 @@ requirejs.config({
 			exports: 'Backbone.Marionette',
 			deps: ['backbone']
 		},
+		mutators: {
+			deps: ['underscore', 'backbone'],
+			exports: 'Backbone.Mutators'
+		},
+
+
 		jquery_ui_custom: {
 			deps: ['jquery_ui']
 		},

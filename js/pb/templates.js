@@ -21,6 +21,12 @@ define(function (require) {
 	  scenePreviewCompositeView: require('tpl!pb/templates/scenePreviewCompositeView.tpl'),
 
 	  dlgSaveProject: require('tpl!pb/templates/menu/project/dlgSaveProject.tpl'),
-	  dlgSaveToText: require('tpl!pb/templates/menu/project/dlgSaveToText.tpl')
+	  dlgSaveToText: require('tpl!pb/templates/menu/project/dlgSaveToText.tpl'),
+
+	  dlgLoadProject: require('tpl!pb/templates/menu/project/dlgLoadProject.tpl'),
+	  dlgLoadFromLocalStorage: require('tpl!pb/templates/menu/project/dlgLoadFromLocalStorage.tpl'),
+	  dlgLoadFromText: require('tpl!pb/templates/menu/project/dlgLoadFromText.tpl'),
+	  dlgLoadFromFile: require('tpl!pb/templates/menu/project/dlgLoadFromFile.tpl'),
+	  dlgLoadFromServer: require('tpl!pb/templates/menu/project/dlgLoadFromServer.tpl')
   };
 });

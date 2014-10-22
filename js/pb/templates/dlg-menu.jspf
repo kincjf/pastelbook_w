@@ -26,16 +26,7 @@
    <li id="project_new">새 프로젝트</li>
    <li id="project_save">프로젝트 저장</li>
    <li id="project_export">프로젝트 내보내기</li>
-   <li id="project_load">
-      프로젝트 불러오기
-      <ul>
-         <li>Item 3-1</li>
-         <li>Item 3-2</li>
-         <li>Item 3-3</li>
-         <li>Item 3-4</li>
-         <li>Item 3-5</li>
-      </ul>
-   </li>
+   <li id="project_load">프로젝트 불러오기</li>
    <li id="project_print">인쇄</li>
    <li id="project_info">프로젝트 정보</li>
    <li id="project_exit">프로젝트 종료</li>

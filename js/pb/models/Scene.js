@@ -36,7 +36,7 @@ define([
 			if (!_.has(modelData, '_id')) {
 				this.set('_id', this.cid);
 			}
-			/** collection에 별칭을 지어서 model.attributes안에 가지고 있음 */
+
 			if (!_.has(modelData, 'objectList')) {
 				this.set('objectList', new ObjectList());
 
@@ -49,7 +49,7 @@ define([
 					this.set('objectList', _objectList);
 				} else {
 					/** 하지만 그냥 array type일 경우 wrapping을 해주어야한다. */
-					this.set('sceneList', new ObjectList(_objectList));
+					this.set('objectList', new ObjectList(_objectList));
 				}
 			}
 

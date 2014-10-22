@@ -11,8 +11,9 @@
  * @author HONG WON GI
  * @date 14. 9. 29.
  */
-require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom', 'pb/views/menu/project/dlg-save'],
-	function ($, _, jquery_ui, jquery_ui_custom, dlgSave) {
+require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom',
+		'pb/views/menu/project/dlg-save', 'pb/views/menu/project/dlg-load'],
+	function ($, _, jquery_ui, jquery_ui_custom, dlgSave, dlgLoad) {
 		// 1. 다이얼로그 호출 부분
 
 		pb.ui.dialog = function (elementId, option) {
@@ -112,7 +113,7 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom', 'pb/views/menu
 				console.log($('input#radio_btn_menu_project').is('mouseenter'));
 				console.log(1 + '' + $('input#radio_btn_menu_project').is('click'));
 
-					$("#menu_project").css('visibility', 'hidden');
+				$("#menu_project").css('visibility', 'hidden');
 			});
 
 			$("#menu_project").css('z-index', 120); // 가장 앞에 드러남
@@ -222,6 +223,20 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom', 'pb/views/menu
 			if (!isOpen) {
 				/** 안보였던 dialog를 보이게 함 */
 				pb.type.View.menu.project.saveProject.$el.dialog("open");
+			}
+		});
+
+		/** menu - load Project*/
+		$('#project_load').click(function () {
+			pb.type.View.menu.project.loadProject = pb.type.View.menu.project.loadProject || new dlgLoad({
+				model: pb.type.Model.Project
+			}).render();
+
+			var isOpen = pb.type.View.menu.project.loadProject.$el.dialog("isOpen");
+
+			if (!isOpen) {
+				/** 안보였던 dialog를 보이게 함 */
+				pb.type.View.menu.project.loadProject.$el.dialog("open");
 			}
 		});
 	}); // require

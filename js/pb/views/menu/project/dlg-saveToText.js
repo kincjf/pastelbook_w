@@ -6,9 +6,9 @@
  * 현재 작업중인 프로젝트 저장.
  *
  * - 구현내용/순서
- * 1. 새 미리보기 화면 생성 => (구현중)
- * 2. 선택시 해당 화면 표시
- * 3. Scene삭제(화면, 데이터)
+ * 1. 새 미리보기 화면 생성    <= 완료
+ * 2. 선택시 해당 화면 표시    <= 완료
+ * 3. Scene삭제(화면, 데이터)    <= 완료
  * 4. 잘라내기, 붙여넣기, 복사하기
  *
  */
@@ -23,7 +23,7 @@ define([
 
 		tagName: 'div',
 
-		id: 'wrap_dlg_save_projectToText',
+		id: 'wrap_dlg_save_toText',
 
 		/** CompositeView에서는 무조건 template을 써야되는 듯함. */
 		/** itemView에서는 잘 모르겠음. */
