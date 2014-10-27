@@ -9,7 +9,7 @@
 		name="jdbc/maria_pb"
 		password="hitit113112"
 		type="javax.sql.DataSource"
-		url="jdbc:mysql://localhost:3306/pb"
+		url="jdbc:mysql://54.65.24.182:3306/pb"
 		useUnicode="true"
 		username="pb"/>
 </Context>
