@@ -63,7 +63,7 @@ define([
 			var objectList = _model.get('objectList');
 
 			/** 초기 로딩시 로딩데이터는 원시 array이기 때문에 custom collection으로 wrapping을 함*/
-			if( !(objectList instanceof Backbone.Collection) ) {
+			if( !(objectList instanceof Object) ) {
 				objectList = new ObjectList(objectList);
 			}
 

@@ -26,6 +26,7 @@ requirejs.config({
 		marionette: 'lib/backbone.marionette',
 		mutators: 'lib/backbone.mutators',
 
+
 		handlebars: "lib/handlebars-v2.0.0",
 		text: "lib/text",
 		tpl: 'lib/tpl',

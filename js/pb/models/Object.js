@@ -7,8 +7,7 @@
  *
  */
 define([
-	'backbone',
-	'localStorage'
+	'backbone'
 ], function (Backbone) {
 	'use strict';
 	//console.log("Object");

@@ -16,6 +16,9 @@ require(['jquery','pastelbook_pb'],function($){
 		/** Views */
 		pb.type.View = pb.type.View || {};
 
+		/** collection/SceneViewSetList */
+		pb.type.View.SceneViewSetList = pb.type.View.SceneViewSetList || {};
+
 		pb.type.View.menu = pb.type.View.menu || {};
 
 		pb.type.View.menu.project = pb.type.View.menu.project || {};
@@ -25,7 +28,8 @@ require(['jquery','pastelbook_pb'],function($){
 
 		pb.type.Model.Project = pb.type.Model.Project || {};
 
-
+		/** Channels */
+		pb.type.Channels = pb.type.Channels | {};
 
 		pb.type.Project = pb.type.Project || {};
 		pb.type.Scene = pb.type.Scene || {};

@@ -8,9 +8,8 @@
  */
 define([
 	'backbone',
-	'localStorage',
 	'pb/collections/ObjectList'
-], function (Backbone, Localstorage, ObjectList) {
+], function (Backbone, ObjectList) {
 	'use strict';
 
 	return Backbone.Model.extend({

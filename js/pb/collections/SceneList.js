@@ -3,12 +3,13 @@
  * Created by KIMSEONHO
  *
  * Scene들을 저장하는 Collection
+ * rules
+ * 1. 시작시 scene
  *
  */
 define([
 	'backbone',
-	'pb/models/Scene',
-	'localStorage'
+	'pb/models/Scene'
 ], function (Backbone, Scene) {
 	'use strict';
 
