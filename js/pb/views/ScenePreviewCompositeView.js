@@ -45,21 +45,26 @@ define([
 
 			myLogger.debug(_options);
 
-			if ( _.has(_options.collection) ) {
+			if (_.has(_options.collection)) {
 				this.collection = _options.collection;
+
+				this.isReset = false;
+				this.listenTo(this.collection, "reset", function() {
+					this.isReset = true;
+				});
 			}
 //			this.listenTo(this.collection, 'add', this.render, this);
 		},
 
 		/** _model : Scene */
-		childViewOptions: function(_model, _index) {
+		childViewOptions: function (_model, _index) {
 			myLogger.trace("ScenePreviewCompositeView - childViewOptions");
 
 			var objectList = _model.get('objectList');
 
 			/** 초기 로딩시 로딩데이터는 원시 array이기 때문에 custom collection으로 wrapping을 함*/
 			/** 새로운 Scene 생성시에는 별 문제가 없는듯 함.*/
-			if( !(objectList instanceof Backbone.Collection) ) {
+			if (!(objectList instanceof ObjectList)) {
 				objectList = new ObjectList(objectList);
 			}
 
@@ -68,6 +73,7 @@ define([
 			 * 아닐경우 marionette Error 발생
 			 */
 			return {
+				model: _model,
 				collection: objectList,
 				index: _index
 			}
@@ -76,10 +82,10 @@ define([
 		onRender: function () {
 		},
 
-		onShow: function() {
+		onShow: function () {
 			this.ui.addScene.button();
 
-		/** 이건 나중에 하자. */
+			/** 이건 나중에 하자. */
 //	$( ".sortable" ).sortable({
 //			revert: true
 //		});
@@ -111,20 +117,5 @@ define([
 //				objectList: new ObjectList()
 			});
 		}
-//      updateToggleCheckbox: function () {
-//        var allCompleted = this.collection.reduce(function (lastModel, thisModel) {
-//          return lastModel && thisModel.get('completed');
-//        }, true);
-//
-//        this.ui.toggle.prop('checked', allCompleted);
-//      },
-//
-				/** best practice : 나중에 저장할 때 이렇게 하면 될듯 ㅇㅇ */
-//      onToggleAllClick: function (event) {
-//        var isChecked = event.currentTarget.checked;
-//
-//        this.collection.each(function (todo) {
-//				todo.save({ completed: isChecked });
-//			});
-		});
+	});
 });

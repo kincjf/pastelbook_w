@@ -123,8 +123,8 @@ require(['pb_debug_hongs_only'],function(pb_debug_hongs_only){ // 아무도 쓰�
 
 // html2canvas 테스트용 영역 html2canvas가 모듈화 되어있지 않고
 // 전역네임스페이스를 침범하여 추가 (이후삭제 필요)
-require(['html2canvas'],function(html2canvas){
-	debug.html2canvas = window.html2canvas;
+require(['html2canvas'], function(html2canvas){
+	debug.html2canvas = html2canvas;
 	window.html2canvas = undefined;
 	// source - htmlelement
 	// target - htmlelement

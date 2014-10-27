@@ -184,3 +184,7 @@ div.change { /*변경 생긴 다이얼로그 강조*/
 .underline {
     border-bottom: black 2px solid;
 }
+
+.ui-selected {
+    border: aqua 2px solid;
+}

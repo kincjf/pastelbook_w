@@ -41,12 +41,9 @@ define([
 		sceneNumber: 1
 	});
 
-//	var objectList = new ObjectList();
-//
-//  var options = {
-//    collection: objectList
-//  };
-
+	/** 실행순서 - SceneCompositeview/SceneView -> ScenePreviewCompositeView/ScenePreviewView
+	 * 아래의 코드와 같이 먼저 선언된 순서대로 event가 등록되는 것 같음.
+	 */
 	var sceneCompositeView = new SceneCompositeView({
 		collection: sceneList
 	});

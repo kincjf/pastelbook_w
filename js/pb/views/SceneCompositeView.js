@@ -48,9 +48,12 @@ define([
 
 			if ( _.has(options.collection) ) {
 				this.collection = options.collection;
-			}
 
-//			this.listenTo(this.collection, 'add', this.render, this);
+				this.isReset = false;
+				this.listenTo(this.collection, "reset", function() {
+					this.isReset = true;
+				});
+			}
     },
 
 		/** it does passing parameter, childView initialize(_options)
@@ -63,7 +66,7 @@ define([
 			var objectList = _model.get('objectList');
 
 			/** 초기 로딩시 로딩데이터는 원시 array이기 때문에 custom collection으로 wrapping을 함*/
-			if( !(objectList instanceof Object) ) {
+			if( !(objectList instanceof ObjectList) ) {
 				objectList = new ObjectList(objectList);
 			}
 
@@ -72,8 +75,10 @@ define([
 			 * 아닐경우 marionette Error 발생
 			 */
 			return {
+				model: _model,
 				collection: objectList,
-				index: _index
+				index: _index,
+				isReset: this.isReset
 			}
 		},
 
@@ -90,21 +95,6 @@ define([
 
 		createScene: function () {
 			myLogger.trace("SceneCompositeView - createScene");
-
-//			var _sceneNumber = this.collection.length + 1;
-//			myLogger.debug("_sceneNumber : ", _sceneNumber);
-//
-//			this.collection.create({
-//				sceneNumber: _sceneNumber
-//			});
 		}
-//
-//		onToggleAllClick: function (event) {
-//			var isChecked = event.currentTarget.checked;
-//
-//			this.collection.each(function (todo) {
-//				todo.save({ completed: isChecked });
-//			});
-//		}
 	});
 });
