@@ -65,7 +65,7 @@ require(['require', 'jquery'],function(require, $){
 		pb.io = pb.io || {};
 
 		pb.util = pb.util || {
-			html2canvas : require('html2canvas')
+			html2canvas : this.html2canvas || require('html2canvas')
 		};
 
 		// 총 12개

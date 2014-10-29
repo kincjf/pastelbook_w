@@ -71,9 +71,11 @@ define([
 			  parent: pb.type.View.SceneViewSetList
 		  });
 
-		  /** SceneView와 ScenePreviewView를 묶어놓은 Model*/
+		  /** SceneView와 ScenePreviewView를 묶어놓은 Model
+		   * this.options.index : CompositeView 내에서 몇번째 View인지 알려줌
+		   */
 		  this.sceneViewSet = pb.type.View.SceneViewSetList.at(
-			  pb.type.View.SceneViewSetList.length - 1
+			  this.options.index
 		  );
 
 		  if( this.sceneViewSet ) {

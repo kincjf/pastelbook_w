@@ -51,7 +51,7 @@ define([
 				this.isReset = false;
 				this.listenTo(this.collection, "reset", function() {
 					this.isReset = true;
-				});
+				}, this);
 			}
 //			this.listenTo(this.collection, 'add', this.render, this);
 		},
