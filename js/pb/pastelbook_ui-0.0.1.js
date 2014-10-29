@@ -95,13 +95,13 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'], function ($, 
 
 			tmp.registerToWidgets = function (some_widget) { // 다이얼로그 말고 메뉴도 추가하고 싶다.
 				pb.ui.widgets.set(some_widget.id, some_widget);
-			}
+		}
 
-			// 다이얼로그 생성
-			tmp.jquerySelector = $(tmp.selector).dialog({
-				autoOpen: true,
-				width: pb.ui[tmp.id].w,
-				height: pb.ui[tmp.id].h
+		// 다이얼로그 생성
+		tmp.jquerySelector = $(tmp.selector).dialog({
+			autoOpen: true,
+			width: pb.ui[tmp.id].w,
+			height: pb.ui[tmp.id].h
 			});
 
 			if (option.isCenter == false) {

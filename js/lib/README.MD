@@ -12,7 +12,7 @@
 * backbone.localStorage : 1.1.13
 * backbone.marionette : 2.2.0
 * backbone.mutators : 0.4.3
-
+* backbone.radio : 0.7.0
 
 
 * html2canvas : 0.4.1
@@ -20,3 +20,5 @@
 
 * text : 2.0.12
 * handlebars : 2.0.0
+
+* log4javascript : 1.4.10

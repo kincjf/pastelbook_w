@@ -31,6 +31,35 @@ wiki에 적은 후 추가할 점이나 지울 점, 변경할 점이 있으면 �
 *** `순서가 빠른 것부터 중요한 사항이라고 생각하면 됨. ㅇㅇ` **
 ___
 
+## naming
+1. pastelbook => pb로 줄일것
+
+2. 파일명으로 쓰임새를 구분하기 보다는 폴더구조로 구분하고, 파일명은 모듈이 하는 동작으로만 지을 것
+
+3. model 선언시 : Project, Scene와 같이 선언
+
+4. collection 선언시 : model명 + List
+
+5. View 선언시 : 모델명 + [기능1|기능2|...] + View
+( ex> ScenePreviewCompositeView
+   : Scene(모델명) + Preview(기능1) + CompositeView(기능2[marionette]) + View )
+
+6. template 명은 해당 View와 동일하게 지정함.
+
+7. file명에는 _(underline)말고 -(hyphen)을 사용하기
+
+8. 변수명에는 _(underline)은 Private 변수만 사용하기, 나머지는 다 낙타체로 선언
+
+9. 클래스(Object) 변수명은 첫 문자는 대문자로, 하지만 instance, 지역변수는 첫 글자는 소문자로 
+( ex> Project, Scene)
+
+10. event 지정은 :(colon)으로 구분하기
+( ex> loading:project(O), loadingProject(X) )
+
+11. css : class명은 "-"로만 구분하기, id명은 "_"로만 구분하기
+
+---
+
 * commit 사항에 변동사항(소스구조적으로), 추가/삭제/변경(기능적으로)건을 적었으면 좋겠음.
 
 * 각 폴더마다 README.md를 적고, 각 파일이 무엇을 하는지 기재하였음. 업데이트시 작성바람!
@@ -44,8 +73,8 @@ ___
 
 * backbone을 다루면서 debug가 힘들기 때문에 function이나 모듈구현별로 log를 찍어야 편리함(작동이 되는지, 로딩이 되는지 알 수 있음.)
 
-* ** log4js를 사용하는 것도 좋을 것 같음. 나중에 사용법을 약간 적겠음**
->#### ex) console.log(SceneView - addObject);
+* ** log4javascript를 사용하는 것도 좋을 것 같음. 나중에 사용법을 약간 적겠음**
+>#### ex) myLogger.trace(SceneView - addObject);, log4javascript-config.js를 참조하기 바람
 
 * backbone, jQuery(UI) 제공기능을 사용할 때 함수를 오버로딩할 경우에 이용할 수 있는 parameter값에 대하여 한번 검토를 해보고 연구를 하면 어렵게 생각했던 기능을 쉽게 구현할 수 있는 경우가 비일비재함.
 
