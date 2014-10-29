@@ -15,8 +15,8 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'],
 		pb.io.ajax.db('resource','pb', function(result){
 			$('ul#sortable').html('');
 			for (var i in result){
-				console.log(result[i]);
-				$('ul#sortable').append('<li class="ui-state-default">$1<img src="$2" width="100" height="100" class="ui-draggable ui-draggable-handle"></li>'.replace('$1',result[i].showName).replace('$2',result[i].imgSrc));
+//				console.log(result[i]);
+				$('ul#sortable').append('<li class="ui-state-default">$1<img insertable src="$2" width="100" height="100" class="ui-draggable ui-draggable-handle"></li>'.replace('$1',result[i].showName).replace('$2',result[i].imgSrc));
 			}
 
 			// 드래그 할 수 있게

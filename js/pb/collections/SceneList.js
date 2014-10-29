@@ -26,6 +26,7 @@ define([
 
 		resetSceneList: function() {
 			myLogger.trace("SceneList - resetSceneList");
+			myLogger.trace("SceneList.size = " + this.size);
 
 			/** reset(불러오기)시 ViewSet을 초기화함 */
 			pb.type.View.SceneViewSetList.reset();

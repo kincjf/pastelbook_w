@@ -25,6 +25,7 @@ requirejs.config({
 		localStorage: 'lib/backbone.localStorage',
 		marionette: 'lib/backbone.marionette',
 		mutators: 'lib/backbone.mutators',
+		radio: 'lib/backbone.radio',
 
 
 		handlebars: "lib/handlebars-v2.0.0",
@@ -75,6 +76,9 @@ requirejs.config({
 			deps: ["jquery"],
 			exports: '_'
 		},
+		html2canvas: {
+			exports: 'html2canvas'
+		},
 
 
 		backbone: {
@@ -89,7 +93,10 @@ requirejs.config({
 			deps: ['underscore', 'backbone'],
 			exports: 'Backbone.Mutators'
 		},
-
+		'radio': {
+			deps: ['underscore', 'backbone'],
+			exports: 'Backbone.Radio'
+		},
 
 		jquery_ui_custom: {
 			deps: ['jquery_ui']
@@ -142,7 +149,6 @@ require(['html2canvas'], function(html2canvas){
 		});// debug.html2canvas();
 	}// debug.capture();
 });
-
 
 require(["pastelbook_ui", "pb_app"], function (pastelbook_ui, pb_app) {
 	$(function () {

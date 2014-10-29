@@ -75,7 +75,8 @@ define([
 			return {
 				model: _model,
 				collection: objectList,
-				index: _index
+				index: _index,
+				isReset: this.isReset
 			}
 		},
 

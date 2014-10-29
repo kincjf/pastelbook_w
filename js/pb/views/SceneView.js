@@ -8,15 +8,16 @@
  */
 define([
   'marionette',
+	'radio',
   'pb_templates',
   'pb/views/ObjectView'
-], function (Marionette, templates, ObjectView) {
+], function (Marionette, Radio, templates, ObjectView) {
   'use strict';
   //console.log("SceneView");
 //	var ENTER_KEY = 13;
 //	var ESCAPE_KEY = 27;
 
-  return Marionette.CompositeView.extend({
+	return Marionette.CompositeView.extend({
     tagName: 'div',   // default div
     className: 'scene-wrap underline',
     template: templates.sceneView,
@@ -34,12 +35,20 @@ define([
 	  childViewContainer: '.scene',
 
     events: {
-      'drop .scene': 'addObject'
+      'drop @ui.scene': 'addObject'
     },
+
+	  /** trigger와 event가 동시에 작동하지 않는 것 같음.
+	   */
+//	  triggers: {
+//		  'drop @ui.scene': 'add:object'
+//	  },
 
 	  /** _options는 childViewOptions에서 받아온 데이터 */
     initialize: function (_options) {
 	    myLogger.trace("SceneView - init");
+
+		  _.extend(this, Radio.Commands);
 
 	    if ( _.has(_options.collection) ) {
 		    this.collection = _options.collection;
@@ -53,6 +62,10 @@ define([
 		   * 빈 Model을 생성함.
 		   * 호출 순서는 SceneCompositeView/SceneView -> ScenePreviewCompositeView/ScenePreviewView
 		   * 이기 때문에 현재 위치에 ViewSet을 Push함.
+		   * 이 순서는 reset때도 마찬가지임. 무슨뜻이냐면...
+		   *   [매우 중요함!]
+		   * reset event일 때도 만약 모델이 3개일 경우 3개에 해당하는 SceneView가 모두 생성 된 다음
+		   * ScenePreviewView가 생성됨.]
 		   */
 		  pb.type.View.SceneViewSetList.push({
 			  parent: pb.type.View.SceneViewSetList
@@ -60,16 +73,16 @@ define([
 
 		  /** SceneView와 ScenePreviewView를 묶어놓은 Model*/
 		  this.sceneViewSet = pb.type.View.SceneViewSetList.at(
-			  pb.type.View.SceneViewSetList.length
+			  pb.type.View.SceneViewSetList.length - 1
 		  );
 
 		  if( this.sceneViewSet ) {
+			  /** ViewSet이 등록되었다는 알림을 받으면 event binding을 함 */
+			  this.listenTo(this.sceneViewSet, "register:sceneViewSet", this.bindEvents);
+
 			  /** sceneView를 등록하고 viewSet에 알림. */
 			  this.sceneViewSet.set("sceneView", this);
 			  this.sceneViewSet.trigger("register:sceneView");
-
-			  /** ViewSet이 등록되었다는 알림을 받으면 event binding을 함 */
-			  this.listenTo(this.sceneViewSet, "register:sceneViewSet", this.bindEvents);
 		  }
 	  },
 
@@ -86,18 +99,22 @@ define([
       this.collection.add({
         imgSrc: _imgSrc
       });
+
+	    var scenePreviewView = this.sceneViewSet.get("scenePreviewView");
+	    /** 의미상 명확하게 하기 위하여 trigger보다는 command를 사용함 */
+	    scenePreviewView.command('change:thumbnail');
     },
 
     onRender: function (event, ui) {
       myLogger.trace("SceneView - onRender");
 
-	    this.showCurrentScene();
+	    this.renderCurrentScene();
 
 	    // 삭제할 때 좀비가 되지 않기 위해서는 droppable, selectable event 삭제해야함.
 	    // 이미 삽입된 개체는 삽입되면 안되기 때문에 필터링을 함
 	    // 필터링 모듈을 따로 만들어서 관리하는 것이 좋을 것 같음.
       this.ui.scene.droppable({
-        accept: "[inserted!='']"
+        accept: "[insertable]"
       }).selectable();
     },
 
@@ -106,30 +123,37 @@ define([
 	  },
 
 	  bindEvents: function() {
-		  myLogger.trace("scenePreviewView - bindEvents");
+		  myLogger.trace("sceneView - bindEvents");
 
 		  var scenePreviewView = this.sceneViewSet.get("scenePreviewView");
 		  /** click : selectScenePreview */
-		  this.listenTo(scenePreviewView, "click", this.selectSceneView);
+		  this.comply("change:currentScene", this.selectSceneView);
 	  },
 
-	  showCurrentScene: function() {
-		  myLogger.trace("SceneView - showCurrentScene");
+	  renderCurrentScene: function() {
+		  myLogger.trace("SceneView - renderCurrentScene");
 
-		  if( this.options.isReset && (pb.current.scene === null) ) {
-			  /** loading(reset)일 경우 제일 처음 Scene에 focus를 맞춤 */
-			  pb.current.scene = this;
-		  } else if( !this.options.isReset ){
+		  /** loading후 Preview 선택시 Scene 변경이 안되는 문제발생
+		   * 현재 문제를 정확히 알 수 없음
+		   * 해결이 되는대로 주석을 제거하겠음.
+		   */
+		  if (!this.options.isReset) {
 			  /** loading(reset)이 아닐경우 */
 
-			  if( pb.current.scene ) {
+			  if (pb.current.scene) {
 				  /** 기존 Scene이 존재하는 경우 */
 				  pb.current.scene.$el.hide();
 				  pb.current.scene = this;
 			  } else {
-				  /** sceneList가 비었을 경우 처음 구동시 */
+				  /** sceneList가 비었을 경우 : 처음 구동시 */
 				  pb.current.scene = this;
 			  }
+
+			  pb.current.scene.$el.show();
+		  } else if (pb.current.scene === null) {
+			  /** loading(reset)일 경우 제일 처음 Scene에 focus를 맞춤 */
+			  pb.current.scene = this;
+			  pb.current.scene.$el.show();
 		  }
 
 		  /** initialize에 하려고 했으나, 의미상 현재 선택된 Scene이기 때문에
@@ -139,6 +163,8 @@ define([
 	  },
 
 	  selectSceneView: function() {
+		  myLogger.trace("SceneView - selectSceneView");
+
 		  /** 이전 Scene을 감춤*/
 		  pb.current.scene.$el.hide();
 

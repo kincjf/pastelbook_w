@@ -2,12 +2,11 @@
  *  14. 9. 18.	v 0.0.1		Moved by HONG WON GI
  *  - 네임스페이스를 다루는 pb 스크립트를 따로 분리함 ( 관리상의 이유로 )
  *  - 네임스페이스에 타입을 넣음 ( 추후 pb.type.MoveAniParam ) 과 같은 형태로 바꾸기로
- *    
  */
 
 var pb;
 
-require(['jquery','pastelbook_pb'],function($){
+require(['require', 'jquery'],function(require, $){
 	$(function () {
 		pb = pb || {};
 
@@ -61,9 +60,13 @@ require(['jquery','pastelbook_pb'],function($){
 		pb.current.scene = pb.current.scene || null;
 		pb.current.scenePreview = pb.current.scenePreview || null;
 		
-		pb.ui = {}; // 사용자 개별의 ui 포지션, 혹은 크기 정보
+		pb.ui = pb.ui || {}; // 사용자 개별의 ui 포지션, 혹은 크기 정보
 
-		pb.io = {};
+		pb.io = pb.io || {};
+
+		pb.util = pb.util || {
+			html2canvas : require('html2canvas')
+		};
 
 		// 총 12개
 	});
