@@ -104,8 +104,8 @@ define([
 		 */
 		saveToLocalStorage: function () {
 			myLogger.trace("menu | project | dlg-save - onShow");
-			myLogger.debug(JSON.stringify(this.model.toJSON()));
 
+			this.model.command("save:project");
 			this.model.localStorage.update(this.model);
 
 			alert("브라우저에 저장이 완료되었습니다.");
@@ -120,6 +120,8 @@ define([
 			/** 모듈과 똑같은 변수로 하면 error가 난다 ㅠㅠ 왜일까
 			 * this.model - pb.type.Model.Project
 			 */
+
+			this.model.command("save:project");
 			var saveToTextDlalog = new dlgSaveToText({
 				model: this.model,
 				parent: this

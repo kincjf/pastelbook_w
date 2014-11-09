@@ -32,6 +32,7 @@ requirejs.config({
 		text: "lib/text",
 		tpl: 'lib/tpl',
 		html2canvas: 'lib/html2canvas',
+		moment: 'lib/moment.min',
 		// external library
 
 		pastelbook_pb: 'pb/pastelbook_pb-0.0.1',
@@ -73,7 +74,6 @@ requirejs.config({
 			exports: '$'
 		},
 		underscore: {
-			deps: ["jquery"],
 			exports: '_'
 		},
 		html2canvas: {
@@ -86,16 +86,11 @@ requirejs.config({
 			exports: 'Backbone'
 		},
 		marionette: {
-			exports: 'Backbone.Marionette',
+			exports: 'Marionette',
 			deps: ['backbone']
 		},
-		mutators: {
-			deps: ['underscore', 'backbone'],
-			exports: 'Backbone.Mutators'
-		},
 		'radio': {
-			deps: ['underscore', 'backbone'],
-			exports: 'Backbone.Radio'
+			exports: 'Radio'
 		},
 
 		jquery_ui_custom: {
@@ -117,6 +112,12 @@ requirejs.config({
 		},
 		pb_app: {
 			deps: ['pastelbook_pb']
+		}
+	},
+
+	config: {
+		moment: {
+			noGlobal: true
 		}
 	}
 });

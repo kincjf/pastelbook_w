@@ -68,6 +68,10 @@ require(['require', 'jquery'],function(require, $){
 			html2canvas : this.html2canvas || require('html2canvas')
 		};
 
+		/** global 변수 설정 */
+		pb.value = pb.value || {};
+		pb.value.VERSION = 0.1;
+
 		// 총 12개
 	});
 }); // require

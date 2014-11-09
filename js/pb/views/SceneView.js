@@ -7,172 +7,206 @@
  *
  */
 define([
-  'marionette',
-	'radio',
-  'pb_templates',
-  'pb/views/ObjectView'
-], function (Marionette, Radio, templates, ObjectView) {
-  'use strict';
-  //console.log("SceneView");
-//	var ENTER_KEY = 13;
-//	var ESCAPE_KEY = 27;
+	'pb_templates',
+	'pb/views/object/ImageView',
+	'pb/views/object/TextBoxView',
+	'pb/views/object/ShapeView',
+	'pb/views/object/VideoView',
+	'pb/views/object/AudioView',
+	'pb/views/object/TableView',
+	'pb/views/object/ChartView',
+	'pb/controllers/CustomError'
+], function (templates, ImageView, TextBoxView, ShapeView, VideoView, AudioView, TableView, ChartView, CustomError) {
+	'use strict';
 
 	return Marionette.CompositeView.extend({
-    tagName: 'div',   // default div
-    className: 'scene-wrap underline',
-    template: templates.sceneView,
+		tagName: 'div',   // default div
+		className: 'scene-wrap underline',
+		template: templates.sceneView,
 
-    value: '',
+		ui: {
+			scene: '.scene'
+		},
 
-    ui: {
-      scene: '.scene'
-    },
-		/** 기존 legacy API method : itemView*/
-    childView: ObjectView,
+		/** 기존 legacy API method : itemViewContainer*/
+		/** http://marionettejs.com/docs/marionette.compositeview.html#modelevents-and-collectionevents 참조*/
+		childViewContainer: '.scene',
 
-	  /** 기존 legacy API method : itemViewContainer*/
-	  /** http://marionettejs.com/docs/marionette.compositeview.html#modelevents-and-collectionevents 참조*/
-	  childViewContainer: '.scene',
+		events: {
+			'drop @ui.scene': 'addObject'
+		},
 
-    events: {
-      'drop @ui.scene': 'addObject'
-    },
-
-	  /** trigger와 event가 동시에 작동하지 않는 것 같음.
-	   */
+		/** trigger와 event가 동시에 작동하지 않는 것 같음.
+		 */
 //	  triggers: {
 //		  'drop @ui.scene': 'add:object'
 //	  },
 
-	  /** _options는 childViewOptions에서 받아온 데이터 */
-    initialize: function (_options) {
-	    myLogger.trace("SceneView - init");
+		/** _options는 childViewOptions에서 받아온 데이터 */
+		initialize: function (_options) {
+			myLogger.trace("SceneView - init");
 
-		  _.extend(this, Radio.Commands);
+			_.extend(this, Radio.Commands);
 
-	    if ( _.has(_options.collection) ) {
-		    this.collection = _options.collection;
-	    }
+			if (_.has(_options.collection)) {
+				this.collection = _options.collection;
+			}
 
-		  if ( _.has(_options.model) ) {
-			  this.model = _options.model;
-		  }
+			if (_.has(_options.model)) {
+				this.model = _options.model;
+			}
 
-		  /** SceneView, SceneViewSetList에서 index로 접근하여 instance를 할당할 수 있도록
-		   * 빈 Model을 생성함.
-		   * 호출 순서는 SceneCompositeView/SceneView -> ScenePreviewCompositeView/ScenePreviewView
-		   * 이기 때문에 현재 위치에 ViewSet을 Push함.
-		   * 이 순서는 reset때도 마찬가지임. 무슨뜻이냐면...
-		   *   [매우 중요함!]
-		   * reset event일 때도 만약 모델이 3개일 경우 3개에 해당하는 SceneView가 모두 생성 된 다음
-		   * ScenePreviewView가 생성됨.]
-		   */
-		  pb.type.View.SceneViewSetList.push({
-			  parent: pb.type.View.SceneViewSetList
-		  });
+			/** SceneView, SceneViewSetList에서 index로 접근하여 instance를 할당할 수 있도록
+			 * 빈 Model을 생성함.
+			 * 호출 순서는 SceneCompositeView/SceneView -> ScenePreviewCompositeView/ScenePreviewView
+			 * 이기 때문에 현재 위치에 ViewSet을 Push함.
+			 * 이 순서는 reset때도 마찬가지임. 무슨뜻이냐면...
+			 *   [매우 중요함!]
+			 * reset event일 때도 만약 모델이 3개일 경우 3개에 해당하는 SceneView가 모두 생성 된 다음
+			 * ScenePreviewView가 생성됨.]
+			 */
+			pb.type.View.SceneViewSetList.push({
+				parent: pb.type.View.SceneViewSetList
+			});
 
-		  /** SceneView와 ScenePreviewView를 묶어놓은 Model
-		   * this.options.index : CompositeView 내에서 몇번째 View인지 알려줌
-		   */
-		  this.sceneViewSet = pb.type.View.SceneViewSetList.at(
-			  this.options.index
-		  );
+			/** SceneView와 ScenePreviewView를 묶어놓은 Model
+			 * this.options.index : CompositeView 내에서 몇번째 View인지 알려줌
+			 */
+			this.sceneViewSet = pb.type.View.SceneViewSetList.at(
+				this.options.index
+			);
 
-		  if( this.sceneViewSet ) {
-			  /** ViewSet이 등록되었다는 알림을 받으면 event binding을 함 */
-			  this.listenTo(this.sceneViewSet, "register:sceneViewSet", this.bindEvents);
+			if (this.sceneViewSet) {
+				/** ViewSet이 등록되었다는 알림을 받으면 event binding을 함 */
+				this.listenTo(this.sceneViewSet, "register:sceneViewSet", this.bindEvents);
 
-			  /** sceneView를 등록하고 viewSet에 알림. */
-			  this.sceneViewSet.set("sceneView", this);
-			  this.sceneViewSet.trigger("register:sceneView");
-		  }
-	  },
+				/** sceneView를 등록하고 viewSet에 알림. */
+				this.sceneViewSet.set("sceneView", this);
+				this.sceneViewSet.trigger("register:sceneView");
+			}
+		},
 
-    addObject: function (event, ui) {
-      myLogger.trace("SceneView - addObject");
-      myLogger.debug(event);
-	    myLogger.debug(ui);
+		getChildView: function(item) {
+			// Choose which view class to render,
+			// depending on the properties of the item model
+			var modelType = item.get('type');
 
-      var _imgSrc = $(ui.draggable.context).attr('src');
+			if(modelType == 'image') {
+				return ImageView;
+			} else if (modelType == 'textbox') {
+				return TextBoxView;
+			} else if (modelType == 'shape') {
+				return ShapeView;
+			} else if (modelType == 'video') {
+				return VideoView;
+			} else if (modelType == 'audio') {
+				return AudioView;
+			} else if (modelType == 'table') {
+				return TableView;
+			} else if (modelType == 'chart') {
+				return ChartView;
+			} else {
+				try {
+					throw new CustomError({
+						name: 'SceneView - no ChildViewError',
+						message: 'Child(model) isn`t exist type!'
+					});
+				} catch(e) {
+					return null;
+				}
+			}
+		},
 
-	    /** this.collection : ObjectList
-	     * change .create() to .add()
-	     */
-      this.collection.add({
-        imgSrc: _imgSrc
-      });
+		behaviors: {
 
-	    var scenePreviewView = this.sceneViewSet.get("scenePreviewView");
-	    /** 의미상 명확하게 하기 위하여 trigger보다는 command를 사용함 */
-	    scenePreviewView.command('change:thumbnail');
-    },
+		},
 
-    onRender: function (event, ui) {
-      myLogger.trace("SceneView - onRender");
+		addObject: function (event, ui) {
+			myLogger.trace("SceneView - addObject");
+			myLogger.debug(event);
+			myLogger.debug(ui);
 
-	    this.renderCurrentScene();
+			var imgSrc = $(ui.draggable.context).attr('src');
 
-	    // 삭제할 때 좀비가 되지 않기 위해서는 droppable, selectable event 삭제해야함.
-	    // 이미 삽입된 개체는 삽입되면 안되기 때문에 필터링을 함
-	    // 필터링 모듈을 따로 만들어서 관리하는 것이 좋을 것 같음.
-      this.ui.scene.droppable({
-        accept: "[insertable]"
-      }).selectable();
-    },
+			/** this.collection : ObjectList
+			 * change .create() to .add()
+			 */
+			this.collection.push({
+				type: 'image',
+				imgSrc: imgSrc
+			});
 
-	  onShow: function() {
-		  myLogger.trace("SceneView - onShow");
-	  },
+			var scenePreviewView = this.sceneViewSet.get("scenePreviewView");
+			/** 의미상 명확하게 하기 위하여 trigger보다는 command를 사용함 */
+			scenePreviewView.command('change:thumbnail');
+		},
 
-	  bindEvents: function() {
-		  myLogger.trace("sceneView - bindEvents");
+		onRender: function (event, ui) {
+			myLogger.trace("SceneView - onRender");
 
-		  var scenePreviewView = this.sceneViewSet.get("scenePreviewView");
-		  /** click : selectScenePreview */
-		  this.comply("change:currentScene", this.selectSceneView);
-	  },
+			this.renderCurrentScene();
 
-	  renderCurrentScene: function() {
-		  myLogger.trace("SceneView - renderCurrentScene");
+			// 삭제할 때 좀비가 되지 않기 위해서는 droppable, selectable event 삭제해야함.
+			// 이미 삽입된 개체는 삽입되면 안되기 때문에 필터링을 함
+			// 필터링 모듈을 따로 만들어서 관리하는 것이 좋을 것 같음.
+			this.ui.scene.droppable({
+				accept: "[insertable]"
+			}).selectable();
+		},
 
-		  /** loading후 Preview 선택시 Scene 변경이 안되는 문제발생
-		   * 현재 문제를 정확히 알 수 없음
-		   * 해결이 되는대로 주석을 제거하겠음.
-		   */
-		  if (!this.options.isReset) {
-			  /** loading(reset)이 아닐경우 */
+		onShow: function () {
+			myLogger.trace("SceneView - onShow");
+		},
 
-			  if (pb.current.scene) {
-				  /** 기존 Scene이 존재하는 경우 */
-				  pb.current.scene.$el.hide();
-				  pb.current.scene = this;
-			  } else {
-				  /** sceneList가 비었을 경우 : 처음 구동시 */
-				  pb.current.scene = this;
-			  }
+		bindEvents: function () {
+			myLogger.trace("sceneView - bindEvents");
 
-			  pb.current.scene.$el.show();
-		  } else if (pb.current.scene === null) {
-			  /** loading(reset)일 경우 제일 처음 Scene에 focus를 맞춤 */
-			  pb.current.scene = this;
-			  pb.current.scene.$el.show();
-		  }
+			var scenePreviewView = this.sceneViewSet.get("scenePreviewView");
+			/** click : selectScenePreview */
+			this.comply("change:currentScene", this.selectSceneView);
+		},
 
-		  /** initialize에 하려고 했으나, 의미상 현재 선택된 Scene이기 때문에
-		   * loading시(reset)과 add시 current.scene 설정을 구분해야함.
-		   * - add시에는 삽입된 scene에 focus를 맞추면 되지만, loading은 처음 슬라이드를 기준으로 함.
-		   */
-	  },
+		renderCurrentScene: function () {
+			myLogger.trace("SceneView - renderCurrentScene");
 
-	  selectSceneView: function() {
-		  myLogger.trace("SceneView - selectSceneView");
+			/** loading후 Preview 선택시 Scene 변경이 안되는 문제발생
+			 * 현재 문제를 정확히 알 수 없음
+			 * 해결이 되는대로 주석을 제거하겠음.
+			 */
+			if (!this.options.isReset) {
+				/** loading(reset)이 아닐경우 */
 
-		  /** 이전 Scene을 감춤*/
-		  pb.current.scene.$el.hide();
+				if (pb.current.scene) {
+					/** 기존 Scene이 존재하는 경우 */
+					pb.current.scene.$el.hide();
+					pb.current.scene = this;
+				} else {
+					/** sceneList가 비었을 경우 : 처음 구동시 */
+					pb.current.scene = this;
+				}
 
-		  /** 새 Scene을 지정하고 보여줌.*/
-		  pb.current.scene = this;
-		  pb.current.scene.$el.show();
-	  }
-  });
+				pb.current.scene.$el.show();
+			} else if (pb.current.scene === null) {
+				/** loading(reset)일 경우 제일 처음 Scene에 focus를 맞춤 */
+				pb.current.scene = this;
+				pb.current.scene.$el.show();
+			}
+
+			/** initialize에 하려고 했으나, 의미상 현재 선택된 Scene이기 때문에
+			 * loading시(reset)과 add시 current.scene 설정을 구분해야함.
+			 * - add시에는 삽입된 scene에 focus를 맞추면 되지만, loading은 처음 슬라이드를 기준으로 함.
+			 */
+		},
+
+		selectSceneView: function () {
+			myLogger.trace("SceneView - selectSceneView");
+
+			/** 이전 Scene을 감춤*/
+			pb.current.scene.$el.hide();
+
+			/** 새 Scene을 지정하고 보여줌.*/
+			pb.current.scene = this;
+			pb.current.scene.$el.show();
+		}
+	});
 });

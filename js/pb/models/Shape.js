@@ -7,11 +7,12 @@
  *
  */
 define([
-	'backbone'
-], function (Backbone) {
+	'backbone',
+	'pb/models/Object'
+], function (Backbone, Object) {
 	'use strict';
 
-	return Backbone.Model.extend({
+	return Object.extend({
 		/** .LocalStorage('name') : 'name이 Key이고 item과 쌍이 됨
 		 * 초기 loading시 key에 해당하는 data set들을 읽어옴
 		 * ex)'pb-object : c1, c2
@@ -23,12 +24,11 @@ define([
 
 		defaults: {
 			_id: '',
-			top: 0,     // x
-			left: 0,    // y
-			z_index: 10000,    // z
-			width: 100,
-			height: 100,
-			opacity: 1
+			type: 'shape',
+			imgSrc: '',
+			title: 'Object',
+			completed: false,
+			created: 0
 		},
 
 		/** backend(REST DB)와 통신하기 위해서 기본 식별자 지정 */
@@ -37,23 +37,10 @@ define([
 		initialize: function (modelData, options) {
 			myLogger.trace('Object - init');
 
-			/**
-			 * - 초기화 확인사항
-			 * 1. _id 값 생성 (자동)
-			 * 2. top, left 설정
-			 * 3. width, height 설정
-			 * 4. z_index 설정
-			 */
 			if (!_.has(modelData, "_id")) {
 				this.set('_id', this.cid);
 			}
-
-			/**
-			 * this.collection : ObjectList
-			 * z-index 값은 ObjectList에서 관리함
-			 */
-			this.set('z_index', this.collection.z_index);
-			this.collection.command("add:z_index:+1");
+			/** collection에 별칭을 지어서 model.attributes안에 가지고 있음 */
 		}
 	});
 });

@@ -49,7 +49,7 @@ define([
 				this.collection = _options.collection;
 
 				this.isReset = false;
-				this.listenTo(this.collection, "reset", function() {
+				this.listenTo(this.collection, "reset", function () {
 					this.isReset = true;
 				}, this);
 			}
@@ -101,9 +101,6 @@ define([
 		createScene: function () {
 			myLogger.trace("ScenePreviewCompositeView - createScene");
 
-			var _sceneNumber = this.collection.length + 1;
-			myLogger.debug("_sceneNumber : ", _sceneNumber);
-
 			/** this.collection : SceneList */
 			/** 약간 코드가 꼬여있는 것 같다.
 			 * controller이나 mediator를 이용하여 이런 부분을 풀어줘야 될 것 같다.
@@ -113,10 +110,7 @@ define([
 			 *
 			 * change .create() to .add()
 			 */
-			this.collection.add({
-				sceneNumber: _sceneNumber
-//				objectList: new ObjectList()
-			});
+			this.collection.push({});
 		}
 	});
 });

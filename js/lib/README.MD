@@ -16,7 +16,7 @@
 
 
 * html2canvas : 0.4.1
-
+* moment : 2.8.3
 
 * text : 2.0.12
 * handlebars : 2.0.0

@@ -7,10 +7,9 @@
  *
  */
 define([
-  'marionette',
   'pb_templates',
-   'pb/views/ObjectView'
-], function (Marionette, templates, ObjectView) {
+  'pb/views/ObjectView'
+], function (templates, ObjectView) {
   'use strict';
 //	var ENTER_KEY = 13;
 //	var ESCAPE_KEY = 27;

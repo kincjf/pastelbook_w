@@ -4,29 +4,29 @@
 /**
  * Created by KIMSEONHO
  *
- * 추가요소를 구성하는 Model
- * - 아직 추가요소별로 확정된 데이터 구조가 없기 때문에 정해야함.
+ * 프로젝트 데이터를 가지고 있는 최상위 Model
+ * -
  *
  */
 define([
 	'backbone',
 	'localStorage',
-	'pb/collections/SceneList'
-], function (Backbone, LocalStorage, SceneList) {
+	'pb/collections/SceneList',
+	'Backbone.Radio'
+], function (Backbone, LocalStorage, SceneList, Radio) {
 	'use strict';
-	//console.log("Object");
 
 	return Backbone.Model.extend({
 		localStorage: new Backbone.LocalStorage('pb-project'),
 
-		/** 아직 Scene 데이터타입이 정해지지 않았음. */
 		defaults: {
 			_id: '',
 			title: 'Project',
+			createDate: '',
+			modifyDate: '',
 			sceneList: null,
-			completed: false,
-			created: 0,
-			previewImage: 'insert Project Preview Image'
+			comment: '',
+			previewImage: 'insert Project Preview Image Path'
 		},
 
 		/** backend(REST DB)와 통신하기 위해서 기본 식별자 지정 */
@@ -43,6 +43,7 @@ define([
 		initialize: function (attributes, options) {
 			myLogger.trace('Project - init');
 
+			_.extend(this, Radio.Commands);
 			/** listenTo : 다른 객체에 걸려있는 이벤트를 감지함.
 			 * 무슨뜻이냐면 .on으로 이벤트를 걸고 listenTo는 걸려있는 이벤트를 들을 수 있도록
 			 * 엮어주는 역할임. View에서 model, collection의 이벤트를 들을 수 있게 하는 경우에
@@ -50,9 +51,19 @@ define([
 			 */
 			// this.listenTo(this, "change", "changeSceneList");
 
+			/**
+			 * - 초기화 확인사항
+			 * 1. _id 값 생성
+			 * 2. createDate, modifyDate 생성
+			 * 3. sceneList 초기화
+			 */
 			if (!_.has(attributes, "_id")) {
 				this.set('_id', this.cid);
 			}
+
+			var initDate = Date.now();
+			this.set('createDate', initDate);
+			this.set('modifyDate', initDate);
 
 			if (!_.has(attributes, "sceneList")) {
 				/** attr에 sceneList가 없을경우 */
@@ -74,8 +85,7 @@ define([
 			 * 아니면 reset event를 만들고 로딩을 할 때 trigger를 하는 방법이 있음.
 			 */
 				this.on("loading:project", this.loadProject, this);
-			/** 아래와 같이 해도 된다. */
-//				this.listenTo(this, "loading:project", this.loadProject, this);
+				this.comply("save:project", this.saveProject);
 		},   // end initialize
 
 		/** .set('attrName', data, options)
@@ -92,7 +102,8 @@ define([
 		 * Backbone(.extend) Object는 단순 값 변경 뿐만 아니라 이벤트 바인딩등이 필요하고
 		 * 변경된 이전 데이터는 [this._previousAttributes]로 이동하는데 View에 걸린 이벤트들이
 		 * 현재의 attributes가 아닌 _previousAtributes에 계속 남아있기 때문에
-		 * sceneList는 변경하지 않고 재사용(reset)하면서 View에 바인딩된 이벤트들을 활용함.
+		 *
+		 * !sceneList는 변경하지 않고 재사용(reset)하면서 View에 바인딩된 이벤트들을 활용함.
 		 *
 		 * 차후 지원 format이 아닐경우 error handling을 할 수 있도록 해야 될 것 같음.
 		 * 사용자가 임의의 데이터를 넣을 수도 있기 때문에 지원 데이터 structure가 아니면
@@ -106,6 +117,11 @@ define([
 
 			this.set(projectInfo);
 			this.get('sceneList').reset(projectData);
+		},
+
+		saveProject: function() {
+			/** 최근 수정일 변경 */
+			this.set('modifyDate', Date.now());
 		}
 	});   // end Backbone.Model.extend
 });

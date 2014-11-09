@@ -77,11 +77,11 @@ define([
 		loadingProject: function(event, ui) {
 			myLogger.trace("menu | project | dlg-loadFromText - loadingProject");
 
-			var _rawData = this.ui.projectRawData.val();
-			var _rawObject = JSON.parse(_rawData);
+			var rawData = this.ui.projectRawData.val();
+			var rawObject = JSON.parse(rawData);
 
 			/** model(Project)에 걸려있는 event를 호출함 */
-			this.model.trigger("loading:project", _rawObject);
+			this.model.trigger("loading:project", rawObject);
 
 			this.parent.$el.dialog("close");
 

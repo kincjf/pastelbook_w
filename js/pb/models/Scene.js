@@ -20,8 +20,8 @@ define([
 			sceneNumber: '',
 			title: 'Scene',
 			objectList: null,
-			completed: false,
-			created: 0
+			previewImage: '',
+			comment: ''
 		},
 
 		/** backend(REST DB)와 통신하기 위해서 기본 식별자 지정 */
@@ -30,16 +30,30 @@ define([
 		initialize: function (modelData, options) {
 			myLogger.trace('Scene - init');
 
+			/**
+			 * - 초기화 확인사항
+			 * --
+			 * -- _id 값 생성
+			 * -- sceneNumber 생성
+			 * -- objectList 초기화
+			 */
+
 			/** cid는 attribute에 id가 없을 경우 Backbone이 자동으로 생성하는 식별자임 */
 			/** id가 있을 경우 id로 쉽게 검색이 가능하고, 없다면 cid로 검색이 가능함 */
 			if (!_.has(modelData, '_id')) {
 				this.set('_id', this.cid);
 			}
 
+			/** {@link http://backbonejs.org/#Model-constructor
+			* this.collection - SceneList : collection property를 지정하지 않을경우
+			* 자동으로 생성됨
+			*/
+			if (!_.has(modelData, 'sceneNumber')) {
+				this.set('sceneNumber', this.collection.length);
+			}
+
 			if (!_.has(modelData, 'objectList')) {
 				this.set('objectList', new ObjectList());
-
-//				this.collection = this.get('objectList');
 			} else {
 				var _objectList = modelData.objectList;
 
