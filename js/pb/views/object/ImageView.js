@@ -21,6 +21,7 @@ define([
 		ui: {
 			img: "img"
 		},
+
 		events: {
 			'dblclick img': 'editImage'
 		},
@@ -63,6 +64,8 @@ define([
 				selector: "img",
 				items: _.extend(this.objectContextMenus, this.imageContextMenus)
 			});
+
+			this.ui.img.addClass("image")
 
 			myLogger.trace("ImageView - onShow");
 		},

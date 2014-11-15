@@ -12,9 +12,7 @@ define([
 	'use strict';
 
 	return Marionette.ItemView.extend({
-		ui: {
-
-		},
+		ui: {},     // 다른 Object들과 extend됨.
 
 		events: {
 			'dragstop': 'changeDirection',
@@ -76,10 +74,21 @@ define([
 			myLogger.trace("BaseObjectView - onRender");
 
 			// 좀비뷰가 되지 않기 위해서는 draggable, resizable event를 삭제해야함.
-			this.$el.draggable().resizable();
+			this.$el.draggable({ opacity: 0.35 }).resizable({ handles: "all" });
+
+			this.$el.css({
+				position: "absolute",
+				top: this.model.get("top"),
+				left: this.model.get("left"),
+				width: this.model.get("width"),
+				height: this.model.get("height")
+			});
 		},
 
+		/** Marionette Override Methods */
 		onShow: function() {
+			this.ui.img.addClass("object");
+
 			myLogger.trace("BaseObjectView - onShow");
 		},
 
@@ -87,6 +96,30 @@ define([
 			$.contextMenu( 'destroy', this.$el );
 		},
 
+		/** Custom Methods - Event Callback */
+		/** 'dragstop' */
+		changeDirection: function(event, ui) {
+			this.model.setTopLeft(ui.position.top, ui.position.left);
+
+			myLogger.trace("BaseObjectView - changeDirection");
+		},
+
+		/** 'resizestop' */
+		changeSize: function(event, ui) {
+			this.model.setSize(ui.size.width, ui.size.height);
+		},
+
+		/** 'click .destroyBtn' */
+		destroyObject: function(event, ui) {
+
+		},
+
+		/** 'click .rotateBtn' */
+		rotateObject: function() {
+
+		},
+
+		/** Custom Methods - contextMenu Callback */
 		deleteObject: function () {
 			myLogger.trace("BaseObjectView - deleteObject");
 		},

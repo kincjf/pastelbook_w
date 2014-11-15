@@ -23,6 +23,7 @@ define([
 
 		defaults: {
 			_id: '',
+			type: 'object',
 			top: 0,     // x
 			left: 0,    // y
 			z_index: 10000,    // z
@@ -54,6 +55,21 @@ define([
 			 */
 			this.set('z_index', this.collection.z_index);
 			this.collection.command("add:z_index:+1");
+		},
+		/** custom Methods */
+		/** xAxis - left, yAxis - top */
+		setTopLeft: function(xAxis, yAxis) {
+			this.set({
+				top: yAxis,
+				left: xAxis
+			});
+		},
+
+		setSize: function(width, height) {
+			this.set({
+				width: width,
+				height: height
+			});
 		}
 	});
 });

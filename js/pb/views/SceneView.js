@@ -128,11 +128,20 @@ define([
 			var type = $baseObject.attr('type');
 
 			if(type == "image") {
-				var imgSrc = $(ui.draggable.context).attr('src');
+				var imgSrc = $baseObject.attr('src');
+				var size = $baseObject.css(["width", "height"]);
+
+				var imageOptions = {
+					top: ui.position.top,
+					left: ui.position.left,
+					src: imgSrc,
+					width: size.width,
+					height: size.height
+				}
 
 				/* The on{Name} callback methods will still be called
 				 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
-				this.triggerMethod("AddImage", imgSrc);
+				this.triggerMethod("AddImage", imageOptions);
 			}
 		},
 

@@ -152,7 +152,9 @@ div.change { /*변경 생긴 다이얼로그 강조*/
 	font-weight: bold;
 }
 
-
+/**
+* Scene
+*/
 .scene-wrap {
     /* 일단 정해진게 없으니 400px로 함. */
     height: 400px;
@@ -174,11 +176,11 @@ div.change { /*변경 생긴 다이얼로그 강조*/
 }
 
 .scene div {
-    margin: 3px;
-    padding: 0.4em;
-    font-size: 1.4em;
-    height: 18px;
+    /*margin: 3px;*/
+    /*padding: 0.4em;*/
+    /*font-size: 1.4em;*/
     display: inline-block;
+    position: absolute;
 }
 
 .underline {
@@ -187,4 +189,22 @@ div.change { /*변경 생긴 다이얼로그 강조*/
 
 .ui-selected {
     border: aqua 2px solid;
+}
+
+/**
+* Object
+*/
+
+.object {
+    /** 삽입시 기본크기 정의*/
+    width: 100px;
+    height: 100px;
+}
+
+/**
+* - Image
+*/
+.image {
+    width: inherit;
+    height: inherit;
 }

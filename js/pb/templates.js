@@ -13,9 +13,6 @@ define(function (require) {
 		SceneView: require('tpl!pb/templates/SceneView.tpl'),
 		SceneCompositeView: require('tpl!pb/templates/SceneCompositeView.tpl'),
 
-		BaseObjectView: require('tpl!pb/templates/BaseObjectView.tpl'),
-		BaseObjectCompositeView: require('tpl!pb/templates/BaseObjectCompositeView.tpl'),
-
 		ImageView: require('tpl!pb/templates/object/ImageView.tpl'),
 
 		ScenePreviewView: require('tpl!pb/templates/ScenePreviewView.tpl'),

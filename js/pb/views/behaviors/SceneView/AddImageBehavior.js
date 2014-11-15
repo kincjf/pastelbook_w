@@ -13,10 +13,11 @@ define([
 
   return Marionette.Behavior.extend({
      defaults: {
-        type: 'image'
+        type: 'image',
+        imageSrc: "./​img/​dummy/​dummy.png"
      },
 
-     onAddImage: function (imageSrc) {
+     onAddImage: function (imageOptions) {
         myLogger.trace("AddImageBehavior - addObject");
 
         /** this.collection : BaseObjectList
@@ -24,7 +25,11 @@ define([
          */
         this.view.collection.push({
            type: this.options.type,
-           imgSrc: imageSrc
+           imgSrc: imageOptions.src,
+           top: imageOptions.top,     // x
+           left: imageOptions.left,     // y
+           width: imageOptions.width,
+           height: imageOptions.height
         });
 
         var scenePreviewView = this.view.sceneViewSet.get("scenePreviewView");

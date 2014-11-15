@@ -8,32 +8,32 @@
 		</div>
 		<div id="tabs-2">
 			<ul>글상자종류
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>글상자종류1말풍선
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류1말풍선
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>글상자종류2더블말붕선
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류2더블말붕선
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>글상자종류3동그라미말풍선
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류3동그라미말풍선
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>글상자종류4구름말풍선
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류4구름말풍선
 				</li>
 			</ul>
 		</div>
 		<div id="tabs-3">도형종류1-8
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>동그라미
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>동그라미
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>-
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>-
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>+
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>+
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>ㅌ
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>ㅌ
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>x
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>x
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>클로버
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>클로버
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>별
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>별
 				</li>
-				<li><img src="../../img/dummy/dummy.png" width="80" height="80"/>오른쪽화살표
+				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>오른쪽화살표
 				</li>
 		</div>
 		<div id="tabs-4"><!-- 현재 씬 클릭후 오른쪽 클릭한다음에 배경서식 눌렀을때, 혹은 배경도구 밑에 작은 사이즈로 나오는 배경 썸네일 오른쪽 클릭 했을때?( 이건 좀 애매 ) -->
@@ -53,4 +53,3 @@
 		</div>
 	</div>
 </div>
-<!-- <script src="js/pb/ui/dlg-oldtool.js"></script> -->

@@ -15,7 +15,7 @@ define([
 	return BaseObject.extend({
 		defaults: {
 			type: 'image',
-			imgSrc: ''
+			imgSrc: './​img/​dummy/​dummy.png'
 		},
 
 		initialize: function (modelData, options) {
