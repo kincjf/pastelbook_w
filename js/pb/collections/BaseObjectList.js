@@ -6,6 +6,7 @@
  *
  */
 define([
+	'radio',
 	'pb/models/Image',
 	'pb/models/TextBox',
 	'pb/models/Shape',
@@ -14,7 +15,7 @@ define([
 	'pb/models/Table',
 	'pb/models/Chart',
 	'pb/controllers/CustomError'
-], function (Image, TextBox, Shape, Video, Audio, Table, Chart, CustomError) {
+], function (Radio, Image, TextBox, Shape, Video, Audio, Table, Chart, CustomError) {
 	'use strict';
 
 	return Backbone.Collection.extend({
@@ -36,8 +37,8 @@ define([
 			} else {
 				try {
 					throw new CustomError({
-						name: 'ObjectList - insert Error',
-						message: 'Object Type isn`t exist type!'
+						name: 'BaseObjectList - insert Error',
+						message: 'BaseObject Type isn`t exist type!'
 					});
 				} catch(e) {
 					return null;
@@ -46,10 +47,10 @@ define([
 		},
 
 		initialize: function(models, options) {
-			myLogger.trace('ObjectList - init');
+			myLogger.trace('BaseObjectList - init');
 			_.extend(this, Radio.Commands);
 
-			/** ObjectList 안에 있는 각 Object들의 z-index 값을 지정하는
+			/** BaseObjectList 안에 있는 각 BaseObject들의 z-index 값을 지정하는
 			 * Scene내 Global 변수
 			 */
 			this.z_index = 10000;

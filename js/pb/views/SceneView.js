@@ -3,10 +3,12 @@
  * Scene을 구성하는 개별화면
  *
  * - 구현내용/순서
- * 1. 추가요소(Object) 삽입 => (구현중)
+ * 1. 추가요소(BaseObject) 삽입 => (구현중)
  *
  */
 define([
+	'marionette',
+	'radio',
 	'pb_templates',
 	'pb/views/object/ImageView',
 	'pb/views/object/TextBoxView',
@@ -15,27 +17,29 @@ define([
 	'pb/views/object/AudioView',
 	'pb/views/object/TableView',
 	'pb/views/object/ChartView',
+	'pb/views/behaviors/SceneView/AddImageBehavior',
 	'pb/controllers/CustomError'
-], function (templates, ImageView, TextBoxView, ShapeView, VideoView, AudioView, TableView, ChartView, CustomError) {
+], function (Marionette, Radio, templates,
+             ImageView, TextBoxView, ShapeView, VideoView, AudioView, TableView, ChartView,
+             AddImageBehavior, CustomError) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
 		tagName: 'div',   // default div
 		className: 'scene-wrap underline',
-		template: templates.sceneView,
+		template: templates.SceneView,
 
 		ui: {
 			scene: '.scene'
 		},
 
-		/** 기존 legacy API method : itemViewContainer*/
-		/** http://marionettejs.com/docs/marionette.compositeview.html#modelevents-and-collectionevents 참조*/
-		childViewContainer: '.scene',
-
 		events: {
 			'drop @ui.scene': 'addObject'
 		},
 
+		/** 기존 legacy API method : itemViewContainer*/
+		/** http://marionettejs.com/docs/marionette.compositeview.html#modelevents-and-collectionevents 참조*/
+		childViewContainer: "@ui.scene",
 		/** trigger와 event가 동시에 작동하지 않는 것 같음.
 		 */
 //	  triggers: {
@@ -43,17 +47,17 @@ define([
 //	  },
 
 		/** _options는 childViewOptions에서 받아온 데이터 */
-		initialize: function (_options) {
+		initialize: function (options) {
 			myLogger.trace("SceneView - init");
 
 			_.extend(this, Radio.Commands);
 
-			if (_.has(_options.collection)) {
-				this.collection = _options.collection;
+			if (_.has(options.collection)) {
+				this.collection = options.collection;
 			}
 
-			if (_.has(_options.model)) {
-				this.model = _options.model;
+			if (_.has(options.model)) {
+				this.model = options.model;
 			}
 
 			/** SceneView, SceneViewSetList에서 index로 접근하여 instance를 할당할 수 있도록
@@ -86,12 +90,12 @@ define([
 			}
 		},
 
-		getChildView: function(item) {
+		getChildView: function (item) {
 			// Choose which view class to render,
 			// depending on the properties of the item model
 			var modelType = item.get('type');
 
-			if(modelType == 'image') {
+			if (modelType == 'image') {
 				return ImageView;
 			} else if (modelType == 'textbox') {
 				return TextBoxView;
@@ -111,34 +115,32 @@ define([
 						name: 'SceneView - no ChildViewError',
 						message: 'Child(model) isn`t exist type!'
 					});
-				} catch(e) {
+				} catch (e) {
 					return null;
 				}
 			}
 		},
 
-		behaviors: {
+		addObject: function (event, ui) {
+			myLogger.trace("AddImageBehavior - addObject");
 
+			var $baseObject = $(ui.draggable.context);
+			var type = $baseObject.attr('type');
+
+			if(type == "image") {
+				var imgSrc = $(ui.draggable.context).attr('src');
+
+				/* The on{Name} callback methods will still be called
+				 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
+				this.triggerMethod("AddImage", imgSrc);
+			}
 		},
 
-		addObject: function (event, ui) {
-			myLogger.trace("SceneView - addObject");
-			myLogger.debug(event);
-			myLogger.debug(ui);
-
-			var imgSrc = $(ui.draggable.context).attr('src');
-
-			/** this.collection : ObjectList
-			 * change .create() to .add()
-			 */
-			this.collection.push({
-				type: 'image',
-				imgSrc: imgSrc
-			});
-
-			var scenePreviewView = this.sceneViewSet.get("scenePreviewView");
-			/** 의미상 명확하게 하기 위하여 trigger보다는 command를 사용함 */
-			scenePreviewView.command('change:thumbnail');
+		behaviors: {
+			AddImageBehavior: {
+				behaviorClass: AddImageBehavior,
+				type: "image"
+			}
 		},
 
 		onRender: function (event, ui) {

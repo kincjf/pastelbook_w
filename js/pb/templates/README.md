@@ -15,11 +15,11 @@ ___
 하지만, 혹시나 그렇지 않은 경우 상세히 내용을 아래의 방법과 같이적는것이 좋음.
 ___
 
-###* objectView.tpl
-> ObjectView와 매칭됨.  
+###* BaseObjectView.tpl
+> BasebjectView와 매칭됨.
 
-###* objectCompositeView.tpl
-> ObjectCompositeView와 매칭됨.  
+###* BaseObjectCompositeView.tpl
+> BaseObjectCompositeView와 매칭됨.
 
 ###* menu/project/dlgSaveProject.tpl
 > views/menu/project/dlg-save와 매칭됨.

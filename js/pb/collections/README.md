@@ -1,8 +1,8 @@
 collection 설명
 ============
 
-###* ObjectList.js
-> Scene내 Object 관리를 위한 컨테이너  
+###* BaseObjectList.js
+> Scene내 BaseObject 관리를 위한 컨테이너
 
 ###* SceneList.js
 >  Project내 Scene 관리를 위한 컨테이너  

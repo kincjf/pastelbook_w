@@ -10,16 +10,16 @@ define(function (require) {
 	'use strict';
 
 	return {
-		sceneView: require('tpl!pb/templates/sceneView.tpl'),
-		sceneCompositeView: require('tpl!pb/templates/sceneCompositeView.tpl'),
+		SceneView: require('tpl!pb/templates/SceneView.tpl'),
+		SceneCompositeView: require('tpl!pb/templates/SceneCompositeView.tpl'),
 
-		objectView: require('tpl!pb/templates/objectView.tpl'),
-		objectCompositeView: require('tpl!pb/templates/objectCompositeView.tpl'),
+		BaseObjectView: require('tpl!pb/templates/BaseObjectView.tpl'),
+		BaseObjectCompositeView: require('tpl!pb/templates/BaseObjectCompositeView.tpl'),
 
-		ImageView: require('tpl!!pb/templates/object/ImageView.tpl'),
+		ImageView: require('tpl!pb/templates/object/ImageView.tpl'),
 
-		scenePreviewView: require('tpl!pb/templates/scenePreviewView.tpl'),
-		scenePreviewCompositeView: require('tpl!pb/templates/scenePreviewCompositeView.tpl'),
+		ScenePreviewView: require('tpl!pb/templates/ScenePreviewView.tpl'),
+		ScenePreviewCompositeView: require('tpl!pb/templates/ScenePreviewCompositeView.tpl'),
 
 		dlgSaveProject: require('tpl!pb/templates/menu/project/dlgSaveProject.tpl'),
 		dlgSaveToText: require('tpl!pb/templates/menu/project/dlgSaveToText.tpl'),

@@ -9,7 +9,7 @@ ___
 ___
 - ** ScenePreviewView.js ** : Scene 미리보기화면 개별창
 ___
-- ** ObjectView.js ** : Scene내 Object 삽입시 담당 View
+- ** BaseObjectView.js ** : Scene내 BaseObject 삽입시 담당 View
  
 
 ============

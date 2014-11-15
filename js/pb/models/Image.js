@@ -2,24 +2,24 @@
 /**
  * Created by KIMSEONHO
  *
- * 추가요소를 구성하는 Model
- * - 아직 추가요소별로 확정된 데이터 구조가 없기 때문에 정해야함.
+ * Image를 구성하는 Model
+ * -
  *
  */
 define([
 	'backbone',
-	'pb/models/Object'
-], function (Backbone, Object) {
+	'pb/models/BaseObject'
+], function (Backbone, BaseObject) {
 	'use strict';
 
-	return Object.extend({
+	return BaseObject.extend({
 		defaults: {
 			type: 'image',
 			imgSrc: ''
 		},
 
 		initialize: function (modelData, options) {
-			Object.prototype.initialize.call(this, options);
+			BaseObject.prototype.initialize.call(this, options);
 
 			myLogger.trace('Image - init');
 

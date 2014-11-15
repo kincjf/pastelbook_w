@@ -1,33 +1,28 @@
 /*global define */
 /**
- * ImageView extends ObjectView
+ * ImageView extends BaseObjectView
  *
  * - 구현내용/순서
- * 1. 추가요소(Object) 삽입 => (구현중)
+ * 1. 추가요소(BaseObject) 삽입 => (구현중)
  *
  */
 define([
+	'marionette',
 	'pb_templates',
-	'pb/views/ObjectView'
-], function (templates, ObjectView) {
+	'pb/views/BaseObjectView'
+], function (Marionette, templates, BaseObjectView) {
 	'use strict';
 
-	return ObjectView.extend({
+	return BaseObjectView.extend({
 		tagName: 'div',
 
 		template: templates.ImageView,
 
-		value: '',
-
-//		ui: {
-//			edit: '.edit'
-//		},
+		ui: {
+			img: "img"
+		},
 		events: {
-//			'click .toggle': 'toggle',
-//			'click .destroy': 'destroy',
-//			'dblclick label': 'onEditDblclick',
-//			'keydown .edit': 'onEditKeyDown',
-//			'blur .edit': 'onEditBlur'
+			'dblclick img': 'editImage'
 		},
 
 		attributes: {
@@ -38,28 +33,61 @@ define([
 		},
 
 		initialize: function (options) {
-			ObjectView.prototype.initialize.call(this, options);
+			BaseObjectView.prototype.initialize.call(this, options);
 			myLogger.trace("ImageView - init");
 
-			this.value = this.model.get('title');
+			_.extend(this.events, BaseObjectView.prototype.events);
+			_.extend(this.ui, BaseObjectView.prototype.ui);
 
-			this.listenTo(this.model, 'change', this.render, this);
+			this.imageContextMenus = {
+				"changeImage": {
+					name: "ChangeImage", icon: "icon",
+					callback: this.changeImage
+				},
+				"makeLink": {
+					name: "MakeLink", icon: "edit",
+					callback: this.makeLinkImage
+				},
+				"editImage": {
+					name: "editImage", icon: "edit",
+					callback: this.editImage
+				}
+			};
 		},
 
 		// "show" / onShow - Called on the view instance when the view has been rendered and displayed.
 		onShow: function (v) {
-			myLogger.trace("ObjectView - onShow");
-//      myLogger.debug(v);
+			BaseObjectView.prototype.onShow.call(this);
+
+			this.$el.contextMenu({
+				selector: "img",
+				items: _.extend(this.objectContextMenus, this.imageContextMenus)
+			});
+
+			myLogger.trace("ImageView - onShow");
 		},
 
 		// "render" / onRender - after everything has been rendered
 		onRender: function (v) {
-			myLogger.trace("ObjectView - onRender");
-//      myLogger.debug(v);
+			BaseObjectView.prototype.onRender.call(this);
 
-			// 좀비뷰가 되지 않기 위해서는 draggable, resizable event를 삭제해야함.
-			this.$el.draggable().resizable();
+			myLogger.trace("ImageView - onRender");
+		},
+
+		onBeforeDestroy: function() {
+			BaseObjectView.prototype.onBeforeDestroy.call(this);
+		},
+
+		changeImage: function() {
+			myLogger.trace("ImageView - changeImage");
+		},
+
+		makeLinkImage: function() {
+			myLogger.trace("ImageView - makeLinkImage");
+		},
+
+		editImage: function() {
+			myLogger.trace("ImageView - editImage");
 		}
-
 	});
 });

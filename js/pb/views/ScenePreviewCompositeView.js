@@ -18,13 +18,12 @@ define([
 	'marionette',
 	'pb_templates',
 	'pb/views/ScenePreviewView',
-	'pb/collections/ObjectList',
-	'pb/models/Scene'
-], function (Marionette, templates, ScenePreviewView, ObjectList, Scene) {
+	'pb/collections/BaseObjectList'
+], function (Marionette, templates, ScenePreviewView, BaseObjectList) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
-		template: templates.scenePreviewCompositeView,
+		template: templates.ScenePreviewCompositeView,
 		/** legacy API method : itemViewContainer */
 		childView: ScenePreviewView,
 
@@ -36,17 +35,15 @@ define([
 		},
 
 		events: {
-			'click #add_scene': 'createScene'
+			'click @ui.addScene': 'createScene'
 		},
 
 		/** options - instance 선언시 초기화 데이터가 들어가있음. */
-		initialize: function (_options) {
+		initialize: function (options) {
 			myLogger.trace("ScenePreviewCompositeView - init");
 
-			myLogger.debug(_options);
-
-			if (_.has(_options.collection)) {
-				this.collection = _options.collection;
+			if (_.has(options.collection)) {
+				this.collection = options.collection;
 
 				this.isReset = false;
 				this.listenTo(this.collection, "reset", function () {
@@ -56,16 +53,16 @@ define([
 //			this.listenTo(this.collection, 'add', this.render, this);
 		},
 
-		/** _model : Scene */
-		childViewOptions: function (_model, _index) {
+		/** model : Scene */
+		childViewOptions: function (model, index) {
 			myLogger.trace("ScenePreviewCompositeView - childViewOptions");
 
-			var objectList = _model.get('objectList');
+			var baseObjectList = model.get('baseObjectList');
 
 			/** 초기 로딩시 로딩데이터는 원시 array이기 때문에 custom collection으로 wrapping을 함*/
 			/** 새로운 Scene 생성시에는 별 문제가 없는듯 함.*/
-			if (!(objectList instanceof ObjectList)) {
-				objectList = new ObjectList(objectList);
+			if (!(baseObjectList instanceof BaseObjectList)) {
+				baseObjectList = new BaseObjectList(baseObjectList);
 			}
 
 			/** childView로 넘겨주는 init parameter의 collection type은
@@ -73,9 +70,9 @@ define([
 			 * 아닐경우 marionette Error 발생
 			 */
 			return {
-				model: _model,
-				collection: objectList,
-				index: _index,
+				model: model,
+				collection: baseObjectList,
+				index: index,
 				isReset: this.isReset
 			}
 		},
@@ -105,7 +102,7 @@ define([
 			/** 약간 코드가 꼬여있는 것 같다.
 			 * controller이나 mediator를 이용하여 이런 부분을 풀어줘야 될 것 같다.
 			 *
-			 * objectList를 만들어서 넣으려고 했지만 이상하게 []로 들어가서
+			 * baseObjectList를 만들어서 넣으려고 했지만 이상하게 []로 들어가서
 			 * Scene.initialize에서 자동생성함.
 			 *
 			 * change .create() to .add()

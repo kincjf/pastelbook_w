@@ -8,8 +8,8 @@
  */
 define([
 	'backbone',
-	'pb/collections/ObjectList'
-], function (Backbone, ObjectList) {
+	'pb/collections/BaseObjectList'
+], function (Backbone, BaseObjectList) {
 	'use strict';
 
 	return Backbone.Model.extend({
@@ -19,7 +19,7 @@ define([
 			_id: '',
 			sceneNumber: '',
 			title: 'Scene',
-			objectList: null,
+			baseObjectList: null,
 			previewImage: '',
 			comment: ''
 		},
@@ -35,7 +35,7 @@ define([
 			 * --
 			 * -- _id 값 생성
 			 * -- sceneNumber 생성
-			 * -- objectList 초기화
+			 * -- baseObjectList 초기화
 			 */
 
 			/** cid는 attribute에 id가 없을 경우 Backbone이 자동으로 생성하는 식별자임 */
@@ -48,21 +48,26 @@ define([
 			* this.collection - SceneList : collection property를 지정하지 않을경우
 			* 자동으로 생성됨
 			*/
+			/** ! Scene 초기화가 모두 완료된 뒤에 collection에 삽입됨.*/
 			if (!_.has(modelData, 'sceneNumber')) {
-				this.set('sceneNumber', this.collection.length);
+				this.set('sceneNumber', this.collection.length + 1);
 			}
 
-			if (!_.has(modelData, 'objectList')) {
-				this.set('objectList', new ObjectList());
-			} else {
-				var _objectList = modelData.objectList;
+			if(!_.has(modelData, 'title')) {
+				this.set('title', 'Scene No.' + this.get('sceneNumber'));
+			}
 
-				if (_objectList instanceof ObjectList) {
-					/** Backbone.Collection(ObjectList) type일 경우는 그냥 변경하면 된다. */
-					this.set('objectList', _objectList);
+			if (!_.has(modelData, 'baseObjectList')) {
+				this.set('baseObjectList', new BaseObjectList());
+			} else {
+				var baseObjectList = modelData.baseObjectList;
+
+				if (baseObjectList instanceof BaseObjectList) {
+					/** Backbone.Collection(BaseObjectList) type일 경우는 그냥 변경하면 된다. */
+					this.set('baseObjectList', baseObjectList);
 				} else {
 					/** 하지만 그냥 array type일 경우 wrapping을 해주어야한다. */
-					this.set('objectList', new ObjectList(_objectList));
+					this.set('baseObjectList', new BaseObjectList(baseObjectList));
 				}
 			}
 

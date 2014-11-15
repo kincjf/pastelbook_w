@@ -170,13 +170,13 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 			model: pb.type.Group
 		});
 	}); // ()
-	// 4.Object
+	// 4.BaseObject
 	// - Group을 상속한 이유 : Group의 기능들(이동, 크기조정, 애니메이션 지정)을 Object에서도 사용해야 하기 때문에
 	// - 그런데 막상 UI상에서 조작을 해보니 클릭할때 Object는 선택이 안되고 Group만 선택이 되는 문제가 있었음
 	// - 그래서 Object의 CSS옵션들을 inherit해서 Group을 조정하면 Object가 움직이는 기형적인 구조가 되었음
 	// - 차후에 Group지정을 위해서는 <div>로 감싸는 방식이 아니고(View상) 내부 데이터의 집합으로 관리해야 될 것 같음.
 	$(function () {
-		pb.type.Object = pb.type.Group.extend({
+		pb.type.BaseObject = pb.type.Group.extend({
 			defaults: {
 				aniName: null,
 				aniParam: null,
@@ -200,7 +200,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 	// 5.ObjectContainer
 	$(function () {
 		pb.type.ObjectContainer = Backbone.Collection.extend({
-			model: pb.type.Object
+			model: pb.type.BaseObject
 		});
 	}); // ()
 	// 6.Scene
@@ -404,7 +404,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 	// 11.GroupView
 	$(function () {
 	   pb.type.GroupView = Backbone.View.extend({
-			// Object 집합을 담당하는 GroupView
+			// BaseObject 집합을 담당하는 GroupView
 			// id는 $(scene.id)_group_ + m.cid로 생성시 attr로 추가한다.
 			tagName: 'div',
 			className: 'ui-draggable ui-resizable',
@@ -477,7 +477,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 
 				var imgSrc = $(selectedIcon).children().attr("imgSrc");
 
-				this.model.get("objectContainer").add(new pb.type.Object({
+				this.model.get("objectContainer").add(new pb.type.BaseObject({
 					imgSrc: imgSrc
 				}));
 
@@ -624,7 +624,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 	$(function () {
 		pb.type.ObjectView = Backbone.View.extend({
 			initialize: function (options) {
-				// Object
+				// BaseObject
 				this.model.bind('change:aniName', this.updateObjectAnimation, this);
 				this.model.bind('change:opacity', this.updateObjectOpacity, this);
 
@@ -702,7 +702,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 				// this.model.setDim(ui.size.width, ui.size.height);
 			// },
 			deleteObject: function () {
-				// Object 삭제시
+				// BaseObject 삭제시
 				// model.collection : objectContainer
 				this.model.collection.remove(this.model);
 			},
@@ -743,7 +743,7 @@ require(['jquery', 'underscore', 'backbone', 'pastelbook_pb'],function($, _, bac
 				duration: ""
 			},
 			initialize: function(options) {
-				// - new pb.type.blabla(Object)를 하는 경우 Object를 읽어서 해당 값을 초기화시 지정함.
+				// - new pb.type.blabla(BaseObject)를 하는 경우 Object를 읽어서 해당 값을 초기화시 지정함.
 				this.toX = this.get("toX");
 				this.toY = this.get("toY");
 				this.easingX = this.get("easingX");

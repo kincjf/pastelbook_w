@@ -8,11 +8,11 @@
  */
 define([
 	'backbone',
-	'pb/models/Object'
-], function (Backbone, Object) {
+	'pb/models/BaseObject'
+], function (Backbone, BaseObject) {
 	'use strict';
 
-	return Object.extend({
+	return BaseObject.extend({
 		/** .LocalStorage('name') : 'name이 Key이고 item과 쌍이 됨
 		 * 초기 loading시 key에 해당하는 data set들을 읽어옴
 		 * ex)'pb-object : c1, c2
@@ -25,7 +25,7 @@ define([
 			_id: '',
 			type: 'video',
 			imgSrc: '',
-			title: 'Object',
+			title: 'BaseObject',
 			completed: false,
 			created: 0
 		},
@@ -34,7 +34,7 @@ define([
 		idAttribute: "_id",
 
 		initialize: function (modelData, options) {
-			myLogger.trace('Object - init');
+			myLogger.trace('BaseObject - init');
 
 			if (!_.has(modelData, "_id")) {
 				this.set('_id', this.cid);

@@ -14,11 +14,11 @@
  * => static html을 없애고 초기 구동시 생성하는 방향으로 제작해야될듯
  */
 define([
-  'marionette',
-  'pb_templates',
-	'pb/collections/ObjectList',
-  'pb/views/SceneView'
-], function (Marionette, templates, ObjectList, SceneView) {
+	'marionette',
+	'pb_templates',
+	'pb/collections/BaseObjectList',
+	'pb/views/SceneView'
+], function (Marionette, templates, BaseObjectList, SceneView) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
@@ -26,7 +26,7 @@ define([
 
 		/** CompositeView에서는 무조건 template을 써야되는 듯함. */
 		/** itemView에서는 잘 모르겠음. */
-    template: templates.sceneCompositeView,
+    template: templates.SceneCompositeView,
 
 		/** 기존 legacy API method : itemView, itemViewContainer */
 		childView: SceneView,
@@ -60,14 +60,14 @@ define([
 		 * ex) _options : {collection, index}
 		 */
 		/** model - Scene Data in SceneList */
-		childViewOptions: function(_model, _index) {
+		childViewOptions: function(model, index) {
 			myLogger.trace("SceneCompositeView - childViewOptions");
 
-			var objectList = _model.get('objectList');
+			var baseObjectList = model.get('baseObjectList');
 
 			/** 초기 로딩시 로딩데이터는 원시 array이기 때문에 custom collection으로 wrapping을 함*/
-			if( !(objectList instanceof ObjectList) ) {
-				objectList = new ObjectList(objectList);
+			if( !(baseObjectList instanceof BaseObjectList) ) {
+				BaseObjectList = new BaseObjectList(baseObjectList);
 			}
 
 			/** childView로 넘겨주는 init parameter의 collection type은
@@ -75,9 +75,9 @@ define([
 			 * 아닐경우 marionette Error 발생
 			 */
 			return {
-				model: _model,
-				collection: objectList,
-				index: _index,
+				model: model,
+				collection: baseObjectList,
+				index: index,
 				isReset: this.isReset
 			}
 		},

@@ -35,7 +35,7 @@ define([
 		idAttribute: "_id",
 
 		initialize: function (modelData, options) {
-			myLogger.trace('Object - init');
+			myLogger.trace('BaseObject - init');
 
 			/**
 			 * - 초기화 확인사항
@@ -49,8 +49,8 @@ define([
 			}
 
 			/**
-			 * this.collection : ObjectList
-			 * z-index 값은 ObjectList에서 관리함
+			 * this.collection : BaseObjectList
+			 * z-index 값은 BaseObjectList에서 관리함
 			 */
 			this.set('z_index', this.collection.z_index);
 			this.collection.command("add:z_index:+1");

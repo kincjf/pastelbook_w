@@ -3,29 +3,32 @@
  * 차후에 정리할 예정임
  */
 'use strict';
-(function() {
+(function () {
+	var testPath = '../test/';
+
 	require.config({
+		baseUrl: '../js/',
 		paths: {
-			backbone: '../js/lib/backbone',
-			jquery: '../js/lib/jquery-1.10.2',
-			underscore: '../js/lib/underscore',
+			backbone: 'lib/backbone',
+			jquery: 'lib/jquery-1.10.2',
+			underscore: 'lib/underscore',
 
 
-			localStorage: '../js/lib/backbone.localStorage',
-			marionette: '../js/lib/backbone.marionette',
+			localStorage: 'lib/backbone.localStorage',
+			marionette: 'lib/backbone.marionette',
 
-			tpl: '../js/lib/tpl',
-			html2canvas: '../js/lib/html2canvas',
+			tpl: 'lib/tpl',
+			html2canvas: 'lib/html2canvas',
 			// external library
 
-			pastelbook_pb: '../js/pb/pastelbook_pb-0.0.1',
+			pastelbook_pb: 'pb/pastelbook_pb-0.0.1',
 
-			pb_templates: '../js/pb/templates',
+			pb_templates: 'pb/templates',
 
-			pb_app: '../js/pb/app',		//main start point
+			pb_app: 'pb/app',		//main start point
 			//
 			//qunit: 'lib/qunit/qunit-1.15.0',
-			pubsub: 'lib/pubsub-1.5.0'
+			pubsub: testPath + 'lib/pubsub-1.5.0'
 			//
 			//sinon: 'lib/sinon/sinon-1.11.1',
 			//'sinon-qunit': 'lib/sinon/sinon-qunit-1.0.0',
@@ -81,11 +84,14 @@
 		test1: []
 	};
 
-	/* require test suite */
-	require(testSuite.specs,
-		function () {
-			QUnit.start();
-		}
-	);
+	require(['underscore'], function (_) {
+		/* require test suite */
+		require(_.map(testSuite.specs, function (testCase) {
+				return testPath + testCase;
+			}), function () {
+				QUnit.start();
+			}
+		);
+	});
 })();
   

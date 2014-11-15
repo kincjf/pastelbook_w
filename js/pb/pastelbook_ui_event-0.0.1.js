@@ -206,13 +206,13 @@ require(["pastelbook_ui"],function(pastelbook_ui){
 				}
 			}
 		}
-		//pb.current.scene.add(new pb.type.Object());
+		//pb.current.scene.add(new pb.type.BaseObject());
 		// pb.ui.show_dlg("dlg_add_ojbect", pb.io.getList("list_icon") )
 		//console.log("#object_add_icon"); // 아이콘 추가.
 		$('#object_add_icon').parent().css('visibility','hidden');
 	});
 	$(document).delegate("#object_add_character", "click", function() { // 캐릭터 오브젝트 추가
-		// pb.current.scene.add(new pb.type.Object());
+		// pb.current.scene.add(new pb.type.BaseObject());
 		// pb.ui.show_dlg("dlg_add_ojbect", pb.io.getList("list_character") )
 		//console.log("#object_add_character");
 		$('#object_add_character').parent().css('visibility','hidden');
@@ -220,7 +220,7 @@ require(["pastelbook_ui"],function(pastelbook_ui){
 	*/
 
 	$(document).delegate("#object_add_image", "click", function() { // 그림 오브젝트 추가
-		// pb.current.scene.add(new pb.type.Object());
+		// pb.current.scene.add(new pb.type.BaseObject());
 		// pb.ui.show_dlg("dlg_add_ojbect", pb.io.getList("list_pic") )
 		//console.log("#object_add_pic");
 		$('#object_add_image').parent().css('visibility','hidden');

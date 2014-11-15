@@ -13,7 +13,7 @@ ___
 **            최신 API 문서를 활용하기 위하여 구버전 framework, lib파일을 업데이트함 **
 **            사용 lib 버전참조 : meta.txt **
 ___
-** 14-10-14 : Scene - Object간 Data, View 연동 완료 **
+** 14-10-14 : Scene - BaseObject간 Data, View 연동 완료 **
 ___
 ** 14-10-17 : 프로젝트 저장하기 기능 추가(데이터만 저장가능) **
 ___

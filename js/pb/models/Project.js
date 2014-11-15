@@ -10,10 +10,10 @@
  */
 define([
 	'backbone',
+	'radio',
 	'localStorage',
 	'pb/collections/SceneList',
-	'Backbone.Radio'
-], function (Backbone, LocalStorage, SceneList, Radio) {
+], function (Backbone, Radio, LocalStorage, SceneList) {
 	'use strict';
 
 	return Backbone.Model.extend({

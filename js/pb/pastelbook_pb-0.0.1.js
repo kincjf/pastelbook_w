@@ -40,16 +40,17 @@ require(['require', 'jquery'],function(require, $){
 		pb.type.Project = pb.type.Project || {};
 		pb.type.Scene = pb.type.Scene || {};
 		pb.type.Group = pb.type.Group || {};
-		pb.type.Object = pb.type.Object || {};
+		pb.type.BaseObject = pb.type.BaseObject || {};
 
 		pb.type.MoveAniParam = pb.type.MoveAniParam || {};
 
 		pb.type.ProjectView = pb.type.ProjectView || {};
 		pb.type.SceneView = pb.type.SceneView || {};
 		pb.type.GroupView = pb.type.GroupView || {};
-		pb.type.ObjectView = pb.type.ObjectView || {};
+		pb.type.BaseObjectView = pb.type.BaseObjectView || {};
 
-
+		pb.Behaviors = pb.Behaviors || {};
+		pb.Behaviors.SceneView = pb.Behaviors.SceneView || {};
 
 		// 여기서부터는 원기추가
 		

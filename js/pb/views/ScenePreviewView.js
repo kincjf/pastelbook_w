@@ -21,7 +21,7 @@ define([
 
 	return Marionette.ItemView.extend({
 
-		template: templates.scenePreviewView,
+		template: templates.ScenePreviewView,
 
 		ui: {
 			scenePreview: 'li'
@@ -31,17 +31,17 @@ define([
 			'click @ui.scenePreview': 'selectScenePreview'
 		},
 
-		initialize: function (_options) {
+		initialize: function (options) {
 			myLogger.trace("ScenePreviewView - init");
 
 			_.extend(this, Radio.Commands);
 
-			if (_.has(_options.collection)) {
-				this.collection = _options.collection;
+			if (_.has(options.collection)) {
+				this.collection = options.collection;
 			}
 
-			if (_.has(_options.model)) {
-				this.model = _options.model;
+			if (_.has(options.model)) {
+				this.model = options.model;
 			}
 
 			/** SceneView와 ScenePreviewView를 묶어놓은 Model
@@ -137,14 +137,14 @@ define([
 			 */
 		},
 
-		setThumbnail: function (_options) {
+		setThumbnail: function (options) {
 			myLogger.trace("scenePreviewView - setThumbnail");
 			/** 썸네일 구동 시기
 			 * 1. Scene 추가시, Project 로딩시
 			 * - onRender에서 해결
-			 * 2. Object 추가/삭제
+			 * 2. BaseObject 추가/삭제
 			 * - messaging OR listenTo(add|remove)로 해결
-			 * 3. Object 수정
+			 * 3. BaseObject 수정
 			 * - messaging call로 해야될 것 같음.
 			 */
 
@@ -157,7 +157,7 @@ define([
 			this.capturePreview(sceneView.$el, target, pb.current.scene.$el);
 		},
 
-		bindEvents: function (_model, _value) {
+		bindEvents: function (model, value) {
 			myLogger.trace("scenePreviewView - bindEvents");
 
 			var sceneView = this.sceneViewSet.get("sceneView");

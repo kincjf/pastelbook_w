@@ -6,7 +6,7 @@
  * app.start()시 아래에 있는 일련의 작업들이 수행됨.
  *
  * - 구현내용/순서
- * 1. Collection(SceneList, ObjectList)과 각각 View를 매칭하여 로딩시킴.
+ * 1. Collection(SceneList, BaseObjectList)과 각각 View를 매칭하여 로딩시킴.
  *
  */
 define([
@@ -16,9 +16,11 @@ define([
 	'pb/collections/SceneViewSetList',
 	'pb/views/SceneCompositeView',
 	'pb/views/ScenePreviewCompositeView'
-], function (Marionette, Project, SceneList, SceneViewSetList, SceneCompositeView, ScenePreviewCompositeView) {
+], function (Marionette,
+             Project,
+             SceneList, SceneViewSetList,
+             SceneCompositeView, ScenePreviewCompositeView) {
 	'use strict';
-	//console.log("app");
 
 	var app = new Marionette.Application();
 
@@ -37,9 +39,7 @@ define([
 	var sceneList = pb.type.Model.Project.get("sceneList");
 
 	/** Scene이 처음에 하나는 있어야 되기 때문에 */
-	sceneList.add({
-		sceneNumber: 1
-	});
+	sceneList.push({});
 
 	/** 실행순서 - SceneCompositeview/SceneView -> ScenePreviewCompositeView/ScenePreviewView
 	 * 아래의 코드와 같이 먼저 선언된 순서대로 event가 등록되는 것 같음.

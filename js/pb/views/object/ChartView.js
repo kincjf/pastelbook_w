@@ -1,23 +1,23 @@
 /*global define */
 /**
- * ImageView extends ObjectView
+ * ImageView extends BaseObjectView
  *
  * - 구현내용/순서
- * 1. 추가요소(Object) 삽입 => (구현중)
+ * 1. 추가요소(BaseObject) 삽입 => (구현중)
  *
  */
 define([
   'pb_templates',
-  'pb/views/ObjectView'
-], function (templates, ObjectView) {
+  'pb/views/BaseObjectView'
+], function (templates, BaseObjectView) {
   'use strict';
 //	var ENTER_KEY = 13;
 //	var ESCAPE_KEY = 27;
 
-  return ObjectView.extend({
+  return BaseObjectView.extend({
     tagName: 'div',
 
-    template: templates.objectView,
+    template: templates.BaseObjectView,
 
     value: '',
 
@@ -40,7 +40,7 @@ define([
     },
 
     initialize: function () {
-	    myLogger.trace("ObjectView - init");
+	    myLogger.trace("BaseObjectView - init");
 	    this.value = this.model.get('title');
 
       this.listenTo(this.model, 'change', this.render, this);
@@ -48,13 +48,13 @@ define([
 
     // "show" / onShow - Called on the view instance when the view has been rendered and displayed.
     onShow: function(v) {
-      myLogger.trace("ObjectView - onShow");
+      myLogger.trace("BaseObjectView - onShow");
 //      myLogger.debug(v);
     },
 
     // "render" / onRender - after everything has been rendered
     onRender: function (v) {
-      myLogger.trace("ObjectView - onRender");
+      myLogger.trace("BaseObjectView - onRender");
 //      myLogger.debug(v);
 
       // 좀비뷰가 되지 않기 위해서는 draggable, resizable event를 삭제해야함.

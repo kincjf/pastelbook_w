@@ -72,7 +72,6 @@ define(['jquery', 'underscore', 'pubsub'], function (jQuery, _, PubSub) {
 		assert.expect(3);
 		assert.ok(jQuery.ajax.calledOnce)
 
-
 		assert.equal(jQuery.ajax.getCall(0).args[0].url, '/todos/completed');
 		assert.equal(jQuery.ajax.getCall(0).args[0].dataType, 'json');
 	});

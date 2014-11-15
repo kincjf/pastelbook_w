@@ -8,7 +8,7 @@
  * - 구현내용/순서    <= 완료
  * 1. 텍스트를 입력받는다.
  * 2. 입력한 텍스트 읽어서 Object로 변환하기(파싱)
- * 3. [loading:project] event 호출하기 - parameter : 변환된 Object data
+ * 3. [loading:project] event 호출하기 - parameter : 변환된 BaseObject data
  * 4. 나머지는 모델(Project)에서 알아서함.
  */
 
@@ -78,10 +78,10 @@ define([
 			myLogger.trace("menu | project | dlg-loadFromText - loadingProject");
 
 			var rawData = this.ui.projectRawData.val();
-			var rawObject = JSON.parse(rawData);
+			var rawBaseObject = JSON.parse(rawData);
 
 			/** model(Project)에 걸려있는 event를 호출함 */
-			this.model.trigger("loading:project", rawObject);
+			this.model.trigger("loading:project", rawBaseObject);
 
 			this.parent.$el.dialog("close");
 

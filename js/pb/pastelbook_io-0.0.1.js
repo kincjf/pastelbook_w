@@ -28,7 +28,8 @@ require(['jquery', 'pastelbook_ui'], function($,pastelbook_ui){
 					_handler(args);
 				}
 				,error:function(e) {	// 이곳의 ajax에서 에러가 나면 얼럿창으로 에러 메시지 출력
-					alert(e.responseText);
+					console.log("dbupdate.jsp - pb.io.ajax.db error");
+					//alert(e.responseText);
 				}
 			});
 		}
