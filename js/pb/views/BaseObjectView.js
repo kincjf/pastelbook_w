@@ -27,7 +27,7 @@ define([
 			this.objectContextMenus = {
 				"delete": {
 					name: "삭제", icon: "delete",
-					callback: this.deleteObject
+					callback: _.bind(this.deleteObject, this)
 				},
 				"separator1": "--------",
 				"cut": {
@@ -96,6 +96,17 @@ define([
 			$.contextMenu( 'destroy', this.$el );
 		},
 
+		onDestroy: function() {
+			/**
+			 * this.options.sceneViewSet : SceneView.sceneViewSet
+			 * 담당 preview에게 thumbnail을 다시 찍으라고 함.
+			 */
+			var scenePreviewView = this.options.sceneViewSet.get("scenePreviewView");
+			scenePreviewView.command("change:thumbnail");
+
+			myLogger.trace("BaseObjectView - onDestroy");
+		},
+
 		/** Custom Methods - Event Callback */
 		/** 'dragstop' */
 		changeDirection: function(event, ui) {
@@ -107,6 +118,7 @@ define([
 		/** 'resizestop' */
 		changeSize: function(event, ui) {
 			this.model.setSize(ui.size.width, ui.size.height);
+			myLogger.trace("BaseObjectView - changeSize");
 		},
 
 		/** 'click .destroyBtn' */
@@ -120,7 +132,13 @@ define([
 		},
 
 		/** Custom Methods - contextMenu Callback */
-		deleteObject: function () {
+		deleteObject: function (key, opt) {
+			$.contextMenu( 'destroy', this.$el );
+			this.$el.resizable( "destroy").draggable( "destroy");
+
+			/** this.model - Image, this.model.collection - BaseObjectList */
+			this.model.collection.remove(this.model);
+
 			myLogger.trace("BaseObjectView - deleteObject");
 		},
 
