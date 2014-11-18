@@ -14,8 +14,10 @@ define([
 	'pb/models/Audio',
 	'pb/models/Table',
 	'pb/models/Chart',
+	'pb/models/BaseObject',
 	'pb/controllers/CustomError'
-], function (Radio, Image, TextBox, Shape, Video, Audio, Table, Chart, CustomError) {
+], function (Radio, Image, TextBox, Shape, Video, Audio, Table, Chart, BaseObject,
+             CustomError) {
 	'use strict';
 
 	return Backbone.Collection.extend({
@@ -34,6 +36,8 @@ define([
 				return new Table(attrs, options);
 			} else if (attrs.type == 'chart') {
 				return new Chart(attrs, options);
+			} else if (attrs.type == 'object') {
+				return new BaseObject(attrs, options);
 			} else {
 				try {
 					throw new CustomError({
