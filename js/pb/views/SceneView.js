@@ -121,13 +121,25 @@ define([
 			}
 		},
 
+		/**
+		 * Object 삭제 후 .command('change:thumbnail')을 수행하기 위해서
+		 * option으로 sceneViewSet을 전달함.
+		 */
+		childViewOptions: function (model, index) {
+			myLogger.trace("SceneView - childViewOptions");
+
+			return {
+				sceneViewSet: this.sceneViewSet
+			}
+		},
+
 		addObject: function (event, ui) {
-			myLogger.trace("AddImageBehavior - addObject");
+			myLogger.trace("SceneView - addObject");
 
 			var $baseObject = $(ui.draggable.context);
 			var type = $baseObject.attr('type');
 
-			if(type == "image") {
+			if (type == "image") {
 				var imgSrc = $baseObject.attr('src');
 				var size = $baseObject.css(["width", "height"]);
 
