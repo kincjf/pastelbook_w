@@ -5,7 +5,7 @@
  */
 require(['jquery', 'underscore',  'jquery_ui',  'jquery_ui_custom'], function($, _, jquery_ui, jquery_ui_custom){
 	$(function () {
-		pb.ui.dialog('dlg_animation', { isCenter : false });
+		pb.ui.dialog('dlg_animation', { isCenter : false, closeOnEscape: false });
 
 		$( "#dlg_animation #tabs-animation" ).tabs();
 		$( "#dlg_animation #tabs-animation_show_hide" ).tabs();

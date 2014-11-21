@@ -62,8 +62,12 @@ define([
 				},
 				"separator4": "--------",
 				"editSizeDirection": {
-					name: "EditSizePosition", icon: "edit",
+					name: "크기, 위치 수정", icon: "edit",
 					callback: this.editSizePositionObject
+				},
+				"editShape": {
+					name: "도형 서식", icon: "edit",
+					callback: this.editShapeObject
 				},
 				"separator5": "--------"
 			}
@@ -172,6 +176,10 @@ define([
 
 		editSizePositionObject: function() {
 			myLogger.trace("BaseObjectView - editSizePositionObject");
+		},
+
+		editShapeObject: function() {
+			myLogger.trace("BaseObjectView - editShapeObject");
 		}
 	});
 });

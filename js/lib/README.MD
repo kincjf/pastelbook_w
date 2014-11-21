@@ -17,8 +17,15 @@
 
 * html2canvas : 0.4.1
 * moment : 2.8.3
+* jquery_contextMenu :
+* ckeditor(source) : 4.4.5
+
 
 * text : 2.0.12
 * handlebars : 2.0.0
+
+
+* bootstrap(dist) : 3.3.1
+
 
 * log4javascript : 1.4.10

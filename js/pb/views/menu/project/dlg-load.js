@@ -75,7 +75,8 @@ define([
 				modal: true,
 				//autoOpen: true,
 				width: pb.ui.dlg_project_load.w,
-				height: pb.ui.dlg_project_load.h
+				height: pb.ui.dlg_project_load.h,
+				closeOnEscape: false
 			}).parent().css({
 				top: pb.ui.dlg_project_load.y,
 				left: pb.ui.dlg_project_load.x

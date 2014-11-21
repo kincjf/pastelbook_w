@@ -43,7 +43,7 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom',
 			this.changeEffect();
 		};
 
-		pb.ui.dialog('dlg_menu', { isCenter: false });
+		pb.ui.dialog('dlg_menu', { isCenter: false, closeOnEscape: false });
 
 
 		/*
@@ -238,5 +238,11 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom',
 				/** 안보였던 dialog를 보이게 함 */
 				pb.type.View.menu.project.loadProject.$el.dialog("open");
 			}
+		});
+
+		$('#object_add_textbox').click(function () {
+			pb.current.scene.command("add:object:textbox", {
+				type: "textbox"
+			})
 		});
 	}); // require

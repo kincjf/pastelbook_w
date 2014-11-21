@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>쉬운 저작도구 - PastelBook</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta name="author" content="Pastel-ePub"/>
+    <meta name="description" content="interactive eBook Authoring tool."/>
+    <meta name="keywords" content="pastelbook, interactive, ebook, epub"/>
+    <meta name="Resource-type" content="Document"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="./js/lib/fullpage/jquery.fullPage.custom.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="./css/index.css"/>
+
+    <script src="./js/lib/jquery-1.10.2.js"></script>
+    <script src="./js/lib/jquery_ui/jquery-ui.js"></script>
+    <script src="./js/lib/jquery_ui/jquery.ui.touch-punch.js"></script>
+
+    <script src="./js/lib/fullpage/jquery.fullPage.custom.js"></script>
+    <script src="./js/lib/fullpage/jquery.leanModal.min.js"></script>
+
+    <script src="./js/custom/facebook-sync.js"></script>
+    <!-- jQuery plugin leanModal under MIT License http://leanmodal.finelysliced.com.au/ -->
+    <script>
+        $(document).ready(function () {
+            var pepe = $.fn.fullpage({
+                slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#FFA07A'],
+                anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
+                menu: '#menu',
+                loopTop: true,
+                loopBottom: true
+            });
+            $('#loginform').submit(function (e) {
+                return true;
+            });
+            $('#modaltrigger').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
+        });
+    </script>
+</head>
+<body>
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({appId: '1418643838390630', status: true, cookie: true, xfbml: true});
+
+        FB.Event.subscribe('auth.authResponseChange', function (response) {
+            if (response.status === 'connected') {
+                console.log('Logged in');
+            } else {
+                FB.login();
+            }
+        });
+    };
+
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- navigator -->
+<ul id="menu">
+    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">PastelBook?</a></li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">특징(Point)</a></li>
+    <li data-menuanchor="3rdPage"><a href="#3rdPage">사용방법(How)</a></li>
+    <li data-menuanchor="4thPage"><a href="#4thPage">Example</a></li>
+    <li class="flatbtn"><a href="#loginmodal" id="modaltrigger">Login/Join</a></li>
+    <li class="flatbtn">
+        <div onclick="facebookLogin()" style="cursor: pointer;">
+            <img src="./img/res/icon/facebook.png" style="width:50px; height:50px;">
+        </div>
+    </li>
+</ul>
+<!-- fullpage contents -->
+<div class="section" id="section0">
+    <h1>동화&만화(Comic)</h1>
+
+    <h2><span class="color2">e-Book 제작 도우미</span></h2>
+    <img src="./img/res/logo.png" alt="fullPage" class="white-backcolor"/>
+</div>
+<div class="section" id="section1">
+    <div class="intro">
+        <h1>PastelBook으로</h1>
+
+        <h2>움직이는 <span class="color">e-Book을</span></h2>
+
+        <h2><span class="color1">PC & Mobile에서</span></h2>
+
+        <h1>만들어 보세요!</h1>
+    </div>
+</div>
+<!-- slide content -->
+<div class="section" id="section2">
+    <div class="slide">
+        <div class="intro">
+            <h1>1. 로그인(Login)</h1>
+            <img src="img/manual/intro1.png" alt="login"/>
+        </div>
+
+    </div>
+
+    <div class="slide">
+        <div class="intro">
+            <h1>2. 프로젝트 생성</h1>
+            <img src="img/manual/make_project.png" alt="create empty project"/>
+
+            <p>e-Book 제작을 위한 빈 프로젝트</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="intro">
+            <h1>3. 개체 추가</h1>
+            <img src="img/manual/add_image.png" alt="add object"/>
+
+            <p>원하는 개체를 Click, Drag & Drop으로 추가할 수 있습니다.</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="intro">
+            <h1>4. 개체 편집</h1>
+            <img src="img/manual/modify_image.png" alt="modify icon"/>
+
+            <p>삽입한 개체를 오른쪽 마우스 버튼을 이용하여 편집할 수 있습니다.</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="intro">
+            <h1>5. 저장하기</h1>
+            <img src="img/manual/save_project.png" alt="located icon"/>
+
+            <p>지금까지 꾸민 나만의 PastelBook을 저장하세요~ 그리고 간직하세요!</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="intro">
+            <h1>6. 불러오기</h1>
+            <img src="img/manual/load_project.png" alt="located icon"/>
+
+            <p>저장했던 나의 PastelBook을 다시 보거나 수정하고 싶으신가요?</p>
+            <p>불러오기 기능을 이용하여 나만의 스토리를 다시 감상하거나 편집하세요!</p>
+        </div>
+    </div>
+</div>
+<!-- end slide content -->
+</div>
+<div class="section" id="section3">
+    <div class="intro">
+        <h1>Example</h1>
+        <img src="./img/manual/example_scene.gif" class="example-scene" alt="example scene"/>
+    </div>
+</div>
+
+<!-- loginmodal-->
+<div id="loginmodal" style="display:none;">
+    <h1 style="font-size: 2em; text-align: center; margin-bottom: 10px;">User Login</h1>
+
+    <form id="loginform" name="loginform" method="post" action="mainview.jsp">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" class="txtfield" tabindex="1">
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" class="txtfield" tabindex="2">
+
+        <div class="center">
+            <input type="submit" name="joinbtn" id="joinbtn" class="flatbtn-blu hidemodal"
+                   value="Join" tabindex="3">
+            <input type="submit" name="loginbtn" id="loginbtn" class="flatbtn-blu hidemodal"
+                   value="LogIn" tabindex="3" style="float:right;">
+        </div>
+    </form>
+</div>
+</body>
+</html>

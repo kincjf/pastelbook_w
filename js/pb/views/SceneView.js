@@ -18,10 +18,11 @@ define([
 	'pb/views/object/TableView',
 	'pb/views/object/ChartView',
 	'pb/views/behaviors/SceneView/AddImageBehavior',
+	'pb/views/behaviors/SceneView/AddTextBoxBehavior',
 	'pb/controllers/CustomError'
 ], function (Marionette, Radio, templates,
              ImageView, TextBoxView, ShapeView, VideoView, AudioView, TableView, ChartView,
-             AddImageBehavior, CustomError) {
+             AddImageBehavior, AddTextBoxBehavior, CustomError) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
@@ -34,7 +35,7 @@ define([
 		},
 
 		events: {
-			'drop @ui.scene': 'addObject'
+			'drop @ui.scene': 'addObjectByDrop'
 		},
 
 		/** 기존 legacy API method : itemViewContainer*/
@@ -88,6 +89,8 @@ define([
 				this.sceneViewSet.set("sceneView", this);
 				this.sceneViewSet.trigger("register:sceneView");
 			}
+
+
 		},
 
 		getChildView: function (item) {
@@ -133,7 +136,7 @@ define([
 			}
 		},
 
-		addObject: function (event, ui) {
+		addObjectByDrop: function (event, ui) {
 			myLogger.trace("SceneView - addObject");
 
 			var $baseObject = $(ui.draggable.context);
@@ -161,6 +164,10 @@ define([
 			AddImageBehavior: {
 				behaviorClass: AddImageBehavior,
 				type: "image"
+			},
+			AddTextBoxBehavior: {
+				behaviorClass: AddTextBoxBehavior,
+				type: "textbox"
 			}
 		},
 
@@ -184,9 +191,10 @@ define([
 		bindEvents: function () {
 			myLogger.trace("sceneView - bindEvents");
 
-			var scenePreviewView = this.sceneViewSet.get("scenePreviewView");
 			/** click : selectScenePreview */
 			this.comply("change:currentScene", this.selectSceneView);
+
+			this.comply("add:object:textbox", this.addObjectByClick, this);
 		},
 
 		renderCurrentScene: function () {
@@ -230,6 +238,54 @@ define([
 			/** 새 Scene을 지정하고 보여줌.*/
 			pb.current.scene = this;
 			pb.current.scene.$el.show();
+		},
+
+		addObjectByClick: function (options) {
+			if (options.type == "textbox") {
+				this.$el.tooltip({
+					content: function () {
+						return "Click and Insert TextBox!"
+					},
+					items: ".scene",
+					track: true
+				});
+
+				/** 삽입을 알리기 위해서 cursor 변경 */
+				this.ui.scene.css({cursor: "crosshair"});
+
+				/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
+				$(document).one("keyup.cancel.textbox", _.bind(function (event) {
+						if (event.which == 27 || event.namespace == "cancel.textbox") {
+							this.ui.scene.css({cursor: "default"});
+							this.$el.tooltip("destroy");
+						}
+
+						this.ui.scene.off('click.add.textbox');
+
+						myLogger.trace("SceneView - 'keyup.cancel.textbox'");
+					}, this)
+				);
+
+				/** scene에 click을 할 경우 TextBox가 삽입됨.
+				 * 기본크기 : 가로 - 50px, 세로 50px */
+				$(this.ui.scene).one('click.add.textbox', _.bind(function (event) {
+						var textBoxOptions = {
+							top: event.pageY,
+							left: event.pageX,
+							width: "50px",
+							height: "50px"
+						};
+
+						$(document).trigger("keyup.cancel.textbox");
+
+						/* The on{Name} callback methods will still be called
+						 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
+						this.triggerMethod("AddTextBox", textBoxOptions);
+
+						myLogger.trace("SceneView - 'click.add.textbox'");
+					}, this)
+				);
+			}
 		}
-	});
+	})
 });

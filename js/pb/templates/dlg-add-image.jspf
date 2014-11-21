@@ -9,11 +9,11 @@
 	</ul>
 
 	<ul id="sortable">
-		<li class="ui-state-default">이미지1<img src="./img/dummy/dummy.png" width="100" height="100"/></li>
-		<li class="ui-state-default">이미지2<img src="./img/dummy/dummy.png" width="100" height="100"/></li>
-		<li class="ui-state-default">이미지3<img src="./img/dummy/dummy.png" width="100" height="100"/></li>
-		<li class="ui-state-default"><img src="./img/dummy/dummy.png" width="100" height="100"/></li>
-		<li class="ui-state-default">씬 5<img src="./img/dummy/dummy.png" width="100" height="100"/></li>
+		<li class="ui-state-default">1<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQQ9acrPmEoe4DpRd4QKPA7JLO452gFgFisXDYM3kp6uXGDf4JWJg" width="100" height="100"/></li>
+		<li class="ui-state-default">2<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-FGBnbiUs3lPoNF0c4jWOloCeY34QlPyoY-7B5BRvUkGq2xlqDA" width="100" height="100"/></li>
+		<li class="ui-state-default">3<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQzO-RNyYjEt7YOsFAaLVlRdMHSvHfQo3EbZnqbu2aUeVePriJe" width="100" height="100"/></li>
+		<li class="ui-state-default">4<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTehNcIQG0YJ3IbknSTr9VCwZ3j49MH3oHa4v6lzRQPY9cf6cIg" width="100" height="100"/></li>
+		<li class="ui-state-default">5<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQEBO0BTLAXDP1rO9ud1zQf3sS8B9NJtqChCleBzM4pU1nj5xeo" width="100" height="100"/></li>
 	</ul>
 </div>
 <!-- <script src="js/pb/ui/dlg-scene-preview.js"></script> -->

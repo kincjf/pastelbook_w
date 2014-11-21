@@ -160,8 +160,6 @@ define([
 		bindEvents: function (model, value) {
 			myLogger.trace("scenePreviewView - bindEvents");
 
-			var sceneView = this.sceneViewSet.get("sceneView");
-
 			/** SceneView - addObject */
 			this.comply("change:thumbnail", this.setThumbnail);
 		},

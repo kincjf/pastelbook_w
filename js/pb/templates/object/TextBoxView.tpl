@@ -1,0 +1,1 @@
+<section contenteditable="true"><%= htmlString %></section>

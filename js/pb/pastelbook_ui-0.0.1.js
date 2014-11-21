@@ -99,6 +99,7 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'], function ($, 
 
 		// 다이얼로그 생성
 		tmp.jquerySelector = $(tmp.selector).dialog({
+			closeOnEscape: false,
 			autoOpen: true,
 			width: pb.ui[tmp.id].w,
 			height: pb.ui[tmp.id].h

@@ -7,59 +7,94 @@
  *
  */
 define([
-  'pb_templates',
-  'pb/views/BaseObjectView'
-], function (templates, BaseObjectView) {
-  'use strict';
+	'pb_templates',
+	'pb/views/BaseObjectView',
+	'ckeditor'
+], function (templates, BaseObjectView, CKEDITOR) {
+	'use strict';
 //	var ENTER_KEY = 13;
 //	var ESCAPE_KEY = 27;
 
-  return BaseObjectView.extend({
-    tagName: 'div',
+	return BaseObjectView.extend({
+		tagName: 'div',
 
-    template: templates.BaseObjectView,
+		template: templates.TextBoxView,
 
-    value: '',
+		ui: {
+			content: "section"
+		},
 
-//		ui: {
-//			edit: '.edit'
-//		},
-    events: {
+		events: {
 //			'click .toggle': 'toggle',
 //			'click .destroy': 'destroy',
 //			'dblclick label': 'onEditDblclick',
 //			'keydown .edit': 'onEditKeyDown',
 //			'blur .edit': 'onEditBlur'
-    },
+		},
 
-    attributes: {
-      // 이미 들어간거이기 떄문에 넣지 말라는 표시임.
-      // Scene에 삽입된 개체를 드래그시 계속 삽입되는 버그를 방지하기위한 표시.
-      // 삽입되었다는 표시임.
-//      'inserted': 'false'
-    },
+		attributes: {
+			// 이미 들어간거이기 떄문에 넣지 말라는 표시임.
+			// Scene에 삽입된 개체를 드래그시 계속 삽입되는 버그를 방지하기위한 표시.
+			// 삽입되었다는 표시임.
+	      'type': 'textbox'
+		},
 
-    initialize: function () {
-	    myLogger.trace("BaseObjectView - init");
-	    this.value = this.model.get('title');
+		initialize: function (options) {
+			BaseObjectView.prototype.initialize.call(this, options);
+			_.extend(this.events, BaseObjectView.prototype.events);
+			_.extend(this.ui, BaseObjectView.prototype.ui);
 
-      this.listenTo(this.model, 'change', this.render, this);
-    },
+			this.textBoxContextMenus = {
+				"changeImage": {
+					name: "텍스트 편집", icon: "icon",
+					callback: this.changeText
+				},
+				"makeLink": {
+					name: "링크 만들기", icon: "edit",
+					callback: this.makeLinkText
+				},
+				"editImage": {
+					name: "텍스트 효과 편집", icon: "edit",
+					callback: this.editTextEffect
+				}
+			};
 
-    // "show" / onShow - Called on the view instance when the view has been rendered and displayed.
-    onShow: function(v) {
-      myLogger.trace("BaseObjectView - onShow");
-//      myLogger.debug(v);
-    },
+			this.value = this.model.get('title');
 
-    // "render" / onRender - after everything has been rendered
-    onRender: function (v) {
-      myLogger.trace("BaseObjectView - onRender");
-//      myLogger.debug(v);
+			this.listenTo(this.model, 'change', this.render, this);
+			myLogger.trace("TextBoxView - init");
 
-      // 좀비뷰가 되지 않기 위해서는 draggable, resizable event를 삭제해야함.
-      this.$el.draggable().resizable();
-    }
+		},
 
-  });
+		// "show" / onShow - Called on the view instance when the view has been rendered and displayed.
+		onShow: function (v) {
+			this.$el.contextMenu({
+				selector: ".ui-resizable-handle",
+				items: _.extend(this.objectContextMenus, this.textBoxContextMenus)
+			});
+
+			CKEDITOR.inline(this.ui.content);
+
+			myLogger.trace("TextBoxView - onShow");
+		},
+
+		// "render" / onRender - after everything has been rendered
+		onRender: function (v) {
+			BaseObjectView.prototype.onRender.call(this);
+
+			myLogger.trace("TextBoxView - onRender");
+		},
+
+		changeText: function () {
+			myLogger.trace("TextBoxView - changeText");
+		},
+
+		makeLinkText: function () {
+			myLogger.trace("TextBoxView - makeLinkText");
+		},
+
+		editTextEffect: function () {
+			myLogger.trace("TextBoxView - editTextEffect");
+		}
+	});
 });

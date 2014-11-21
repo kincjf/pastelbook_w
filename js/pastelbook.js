@@ -35,13 +35,15 @@ requirejs.config({
 		handlebars: "lib/handlebars-v2.0.0",
 		text: "lib/text",
 		tpl: 'lib/tpl',
+
 		html2canvas: 'lib/html2canvas',
 		moment: 'lib/moment.min',
+
+		ckeditor: 'lib/ckeditor_source/ckeditor',
 		// external library
 
 		pastelbook_pb: 'pb/pastelbook_pb-0.0.1',
 		pastelbook_ui: 'pb/pastelbook_ui-0.0.1',
-		pb_behaviors: 'pb/views/behaviors/behaviorsLookup',
 
 		pastelbook_ui_dlg_animation: 'pb/ui/dlg_animation',
 		pastelbook_ui_dlg_bg_tool: 'pb/ui/dlg_bg_tool',

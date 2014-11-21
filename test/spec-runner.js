@@ -81,12 +81,12 @@
 
 	var testSuite = {
 		specs: ['spec/exampleTest'],
-		test1: []
+		fetchTest: ['spec/fetchTest']
 	};
 
-	require(['underscore'], function (_) {
+	require(['jquery', 'backbone', 'underscore'], function (_) {
 		/* require test suite */
-		require(_.map(testSuite.specs, function (testCase) {
+		require(_.map(testSuite.fetchTest, function (testCase) {
 				return testPath + testCase;
 			}), function () {
 				QUnit.start();

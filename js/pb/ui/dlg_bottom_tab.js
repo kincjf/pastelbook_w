@@ -1,5 +1,5 @@
 require(['jquery', 'underscore',  'jquery_ui', 'jquery_ui_custom'],function($,_,jquery_ui,jquery_ui_custom){
-	pb.ui.dialog('dlg_bottom_tab', { isCenter : false });
+	pb.ui.dialog('dlg_bottom_tab', { isCenter : false, closeOnEscape: false });
 
 	$( "#tabs-bottom" ).tabs();
 

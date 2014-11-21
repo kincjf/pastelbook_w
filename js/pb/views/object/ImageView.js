@@ -30,7 +30,7 @@ define([
 			// 이미 들어간거이기 떄문에 넣지 말라는 표시임.
 			// Scene에 삽입된 개체를 드래그시 계속 삽입되는 버그를 방지하기위한 표시.
 			// 삽입되었다는 표시임.
-//      'inserted': 'false'
+	      'type': 'image'
 		},
 
 		initialize: function (options) {
@@ -61,7 +61,7 @@ define([
 			BaseObjectView.prototype.onShow.call(this);
 
 			this.$el.contextMenu({
-				selector: "img",
+				selector: ".ui-resizable-handle",
 				items: _.extend(this.objectContextMenus, this.imageContextMenus)
 			});
 

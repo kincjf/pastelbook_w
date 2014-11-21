@@ -14,6 +14,7 @@ define(function (require) {
 		SceneCompositeView: require('tpl!pb/templates/SceneCompositeView.tpl'),
 
 		ImageView: require('tpl!pb/templates/object/ImageView.tpl'),
+		TextBoxView: require('tpl!pb/templates/object/TextBoxView.tpl'),
 
 		ScenePreviewView: require('tpl!pb/templates/ScenePreviewView.tpl'),
 		ScenePreviewCompositeView: require('tpl!pb/templates/ScenePreviewCompositeView.tpl'),
