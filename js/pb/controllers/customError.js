@@ -2,10 +2,10 @@
 /**
  * custom Error Module
  */
-define(function () {
+define(['marionette'], function (Marionette) {
 	'use strict';
 
 	return Marionette.Error.extend({
-		urlRoot: 'http://www.pastelepub.com/docs/' + pb.value.VERSION + '/'
-	})
+		urlRoot: 'http://www.pastelbook.com/docs/' + pb.value.VERSION + '/'
+	});
 });

@@ -15,34 +15,6 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom',
 		'pb/views/menu/project/dlg-save', 'pb/views/menu/project/dlg-load'],
 	function ($, _, jquery_ui, jquery_ui_custom, dlgSave, dlgLoad) {
 		// 1. 다이얼로그 호출 부분
-
-		pb.ui.dialog = function (elementId, option) {
-			this.id = elementId;
-			this.selector = '#' + elementId;
-			this.changeEffect = function () {
-				$(this.selector).animate({
-					opacity: 0.0
-				}, 300).animate({
-					opacity: 1.0
-				}, 700);
-			};
-
-			// 다이얼로그 생성
-			$(this.selector).dialog({
-				autoOpen: true,
-				width: pb.ui[this.id].w,
-				height: pb.ui[this.id].h
-			});
-
-			if (option.isCenter == false) {
-				$(this.selector).parent().css({
-					top: pb.ui[this.id].y,
-					left: pb.ui[this.id].x
-				});
-			}
-			this.changeEffect();
-		};
-
 		pb.ui.dialog('dlg_menu', { isCenter: false, closeOnEscape: false });
 
 

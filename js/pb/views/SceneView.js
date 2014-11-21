@@ -268,7 +268,7 @@ define([
 
 				/** scene에 click을 할 경우 TextBox가 삽입됨.
 				 * 기본크기 : 가로 - 50px, 세로 50px */
-				$(this.ui.scene).one('click.add.textbox', _.bind(function (event) {
+				this.ui.scene.one('click.add.textbox', _.bind(function (event) {
 						var textBoxOptions = {
 							top: event.pageY,
 							left: event.pageX,

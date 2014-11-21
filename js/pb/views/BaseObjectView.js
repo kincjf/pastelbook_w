@@ -96,6 +96,10 @@ define([
 			myLogger.trace("BaseObjectView - onShow");
 		},
 
+		onDomRefresh: function() {
+			myLogger.trace("BaseObjectView - onDomRefresh");
+		},
+
 		onBeforeDestroy: function() {
 			$.contextMenu( 'destroy', this.$el );
 		},

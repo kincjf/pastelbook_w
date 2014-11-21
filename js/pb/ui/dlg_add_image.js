@@ -1,8 +1,8 @@
 require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'],
-	function ($, _, jquery_ui, jquery_ui_custom) {
+	function ($, _, jquery_ui, jquery_ui_custom, pastelbook_io) {
 		//console.log("dlg_add_image");
 
-		var dlg_addImage = pb.ui.dialog('dlg_add_image', { isCenter : false, closeOnEscape: false });
+		var dlg_addImage = pb.ui.dialog('dlg_add_image', { isCenter : false });
 		var $dlg_addImage = dlg_addImage.jquerySelector;
 //		console.log($dlg_addImage);
 
@@ -29,6 +29,4 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'],
 				appendTo: $(".scene")   // 드래그한걸 어디에 붙일 것인가
 			}); // draggable()
 		});
-
-		$('ul#sortable')
 	}); // function()

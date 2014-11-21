@@ -70,7 +70,13 @@ requirejs.config({
 		pb_app: 'pb/app'		//main start point
 	},
 
-
+	/** shim은 non-AMD에서는 종속성을 뜻하지만
+	 * require, module에서는 종속성이 아니라 단순히 해당 모듈을
+	 * 호출하는 순서임.
+	 * 또한 require 내부에 require로 호출을 한 경우에는 shim 설정을 따로 잡아줘야 함.
+	 * ex) pb_ui에 있는 require 선언중 dlg_add_image에는 io가 필요할 경우
+	 * shim: { dlg_add_image = { deps: [pb_io] } }
+	 */
 	shim: {
 		jquery: {
 			exports: '$'
@@ -108,18 +114,21 @@ requirejs.config({
 			extension: '.tpl'	 // default = '.html'
 		},
 		// 여기까진 공용 라이브러리
+		pastelbook_pb: {
+			deps: ["jquery"]
+		},
 
 		pastelbook_ui: {
 			deps: ["jquery", "jquery_ui", "pastelbook_pb"]
-		},
-		pastelbook_pb: {
-			deps: ["jquery"]
 		},
 		pastelbook_ui_event: {
 			deps: ["pastelbook_ui", /*"pastelbook_type",*/ "backbone"]
 		},
 		pb_app: {
 			deps: ['pastelbook_pb']
+		},
+		pastelbook_ui_dlg_add_image: {
+			deps: ['pastelbook_io', "pastelbook_pb"]
 		}
 	},
 
@@ -130,54 +139,8 @@ requirejs.config({
 	}
 });
 
-require(['jquery'], function () {
-	require(['jquery_ui_position'], function () {
-		require(['jquery_contextMenu'], function () {
-			myLogger.trace("jquery, jquery_ui_position, jquery_contextMenu loading Complete");
-		});
-	});
-});
-
-require(["pastelbook_ui_event"], function (pastelbook_ui_event) {
-});
-
-require(['pb_debug_hongs_only'], function (pb_debug_hongs_only) { // 아무도 쓰지말 것, 공용 용도 아님 ( 테스트용 )
-});
-
-// html2canvas 테스트용 영역 html2canvas가 모듈화 되어있지 않고
-// 전역네임스페이스를 침범하여 추가 (이후삭제 필요)
-require(['html2canvas'], function (html2canvas) {
-	debug.html2canvas = html2canvas;
-	window.html2canvas = undefined;
-	// source - htmlelement
-	// target - htmlelement
-	// option - 현재 사용안함 - 추가 필요
-	debug.capture = function (source, target, option) {
-		debug.html2canvas(source, {
-			onrendered: function (canvas) {
-				if (option.targetId !== undefined) {
-					target.id = option.targetId;
-					target.src = canvas.toDataURL();
-					//target.appendChild(canvas);
-					//console.log(canvas.toDataURL());
-				}
-			} // onrendered()
-		});// debug.html2canvas();
-	}// debug.capture();
-});
-
-require(["pb_app"], function (pb_app) {
-		/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
-
-		pb_app.start();	 // Application start
-		myLogger.trace("pb_app loading Complete");
-});
-
-/** not used */
-// require(['pastelbook_model_event'], function (pastelbook_model_event) {
-// });
-
-// ajax 작업위해 추가 2014.10.07 by HONG WON GI
-require(["pastelbook_io"], function (pastelbook_io) {
-	myLogger.trace("pastelbook_io loading Complete");
+require(["pb_app", 'jquery_contextMenu', "pastelbook_ui_event", "pb_debug_hongs_only"], function (pb_app) {
+	/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
+	pb_app.start(); // Application start
+	myLogger.trace("pb_app loading Complete");
 });

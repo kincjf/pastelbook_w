@@ -15,8 +15,9 @@
 define([
 	'marionette',
 	'radio',
-	'pb_templates'
-], function (Marionette, Radio, templates) {
+	'pb_templates',
+	'pb/controllers/CaptureController'
+], function (Marionette, Radio, templates, CaptureController) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -83,8 +84,9 @@ define([
 		/** This event / callback is useful for DOM-dependent UI plugins such as jQueryUI or KendoUI.
 		 */
 		onDomRefresh: function() {
-			myLogger.trace("ScenePreviewView - onDomRefresh");
 			this.setThumbnail(this.options);
+
+			myLogger.trace("ScenePreviewView - onDomRefresh");
 		},
 
 		selectScenePreview: function (event, ui) {
@@ -154,7 +156,7 @@ define([
 			/** hidden 상태인 경우 capture가 안됨 그래서 임시방편으로 잠깐 보였다가 다시 없애는 것임
 			 * UI상 많은 문제가 있기 때문에 해결책을 capture보다는 dom Rendering으로 고민해봐야됨.
 			 */
-			this.capturePreview(sceneView.$el, target, pb.current.scene.$el);
+			pb.util.CaptureController.capturePreview(sceneView.ui.scene, target, (pb.current.scene).ui.scene);
 		},
 
 		bindEvents: function (model, value) {
@@ -162,29 +164,6 @@ define([
 
 			/** SceneView - addObject */
 			this.comply("change:thumbnail", this.setThumbnail);
-		},
-
-		/** source - capture을 할 부분(jQuery Selector)
-		 * target - 저장할 대상(jQuery Selector)
-		 * currentScene - 현재 Focus가 되어있는 Scene인지 비교하기 위함 (jQuery Selector)
-		 */
-		capturePreview: function (source, target, currentScene) {
-			source.show();
-
-			pb.util.html2canvas(source, {
-				onrendered: function (canvas) {
-					if (target) {
-						target[0].src = canvas.toDataURL();
-
-						/** 스크린샷을 찍기 위해서 모든 Scene을 Show를 했기 때문에
-						 * 현재 Scene이 아닌 경우 다시 Hide를 해야함
-						 */
-						if(source !== currentScene) {
-							source.hide();
-						}
-					}
-				}
-			});
 		}
 	});
 });

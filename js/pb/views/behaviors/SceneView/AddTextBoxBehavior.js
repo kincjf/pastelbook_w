@@ -17,7 +17,6 @@ define([
      },
 
      onAddTextBox: function (textBoxOptions) {
-        myLogger.trace("AddTextBoxBehavior - addTextBox");
 
         /** this.collection : BaseObjectList
          * change .create() to .add()
@@ -31,9 +30,7 @@ define([
            htmlString: this.options.htmlString
         });
 
-        var scenePreviewView = this.view.sceneViewSet.get("scenePreviewView");
-        /** 의미상 명확하게 하기 위하여 trigger보다는 command를 사용함 */
-        scenePreviewView.command('change:thumbnail');
+        myLogger.trace("AddTextBoxBehavior - addTextBox");
      }
   });
 });
