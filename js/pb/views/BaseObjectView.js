@@ -91,8 +91,6 @@ define([
 
 		/** Marionette Override Methods */
 		onShow: function() {
-			this.ui.img.addClass("object");
-
 			myLogger.trace("BaseObjectView - onShow");
 		},
 

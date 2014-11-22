@@ -61,11 +61,9 @@ define([
 			BaseObjectView.prototype.onShow.call(this);
 
 			this.$el.contextMenu({
-				selector: ".ui-resizable-handle",
+				selector: "img",
 				items: _.extend(this.objectContextMenus, this.imageContextMenus)
 			});
-
-			this.ui.img.addClass("image")
 
 			myLogger.trace("ImageView - onShow");
 		},

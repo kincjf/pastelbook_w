@@ -30,7 +30,7 @@ define([
 		childViewContainer: '#scene_previews',
 
 		ui: {
-			addScene: '#add_scene',
+			addScene: "li[data-behavior='addScene']",
 			scenePreviews: '#scene_previews'
 		},
 

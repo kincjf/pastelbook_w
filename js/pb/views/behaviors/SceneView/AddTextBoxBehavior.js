@@ -30,6 +30,9 @@ define([
            htmlString: this.options.htmlString
         });
 
+        var scenePreviewView = this.view.sceneViewSet.get("scenePreviewView");
+        scenePreviewView.command('change:thumbnail');
+
         myLogger.trace("AddTextBoxBehavior - addTextBox");
      }
   });

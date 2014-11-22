@@ -41,6 +41,8 @@ require(['require', 'jquery', 'pb/controllers/CaptureController'],
 
 			pb.type.MoveAniParam = pb.type.MoveAniParam || {};
 
+			pb.type.SceneList = pb.type.SceneList || {};
+
 			pb.type.ProjectView = pb.type.ProjectView || {};
 			pb.type.SceneView = pb.type.SceneView || {};
 			pb.type.GroupView = pb.type.GroupView || {};

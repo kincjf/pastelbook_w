@@ -181,7 +181,9 @@ define([
 			// 필터링 모듈을 따로 만들어서 관리하는 것이 좋을 것 같음.
 			this.ui.scene.droppable({
 				accept: "[insertable]"
-			}).selectable();
+			});
+			/** */
+				//.selectable();
 		},
 
 		onShow: function () {
@@ -194,7 +196,8 @@ define([
 			/** click : selectScenePreview */
 			this.comply("change:currentScene", this.selectSceneView);
 
-			this.comply("add:object:textbox", this.addObjectByClick, this);
+			/** 가로 텍스트박스 추가 */
+			this.comply("add:object:textbox:h", this.addObjectByClick, this);
 		},
 
 		renderCurrentScene: function () {
@@ -267,13 +270,16 @@ define([
 				);
 
 				/** scene에 click을 할 경우 TextBox가 삽입됨.
-				 * 기본크기 : 가로 - 50px, 세로 50px */
-				this.ui.scene.one('click.add.textbox', _.bind(function (event) {
+				 * 기본크기 : 가로 - 100px, 세로 100px
+				 * ! - 이상하게 click event가 먹지 않는다
+				 * 그래서 [야메]로 하기로 했음
+				 */
+				$("body").one('click.add.textbox', this.ui.scene, _.bind(function (event) {
 						var textBoxOptions = {
-							top: event.pageY,
-							left: event.pageX,
-							width: "50px",
-							height: "50px"
+							top: 250/* event.pageY */,
+							left: 250/* event.pageX */,
+							width: "100px",
+							height: "100px"
 						};
 
 						$(document).trigger("keyup.cancel.textbox");

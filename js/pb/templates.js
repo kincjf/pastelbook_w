@@ -19,6 +19,8 @@ define(function (require) {
 		ScenePreviewView: require('tpl!pb/templates/ScenePreviewView.tpl'),
 		ScenePreviewCompositeView: require('tpl!pb/templates/ScenePreviewCompositeView.tpl'),
 
+		MenuDialogView: require('tpl!pb/templates/menu/MenuDialogView.tpl'),
+
 		dlgSaveProject: require('tpl!pb/templates/menu/project/dlgSaveProject.tpl'),
 		dlgSaveToText: require('tpl!pb/templates/menu/project/dlgSaveToText.tpl'),
 

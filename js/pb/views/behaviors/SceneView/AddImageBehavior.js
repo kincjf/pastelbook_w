@@ -35,7 +35,7 @@ define([
         /** 의미상 명확하게 하기 위하여 trigger보다는 command를 사용함 */
         scenePreviewView.command('change:thumbnail');
 
-        myLogger.trace("AddImageBehavior - addObject");
+        myLogger.trace("AddImageBehavior - addImage");
      }
   });
 });

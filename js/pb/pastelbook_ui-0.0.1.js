@@ -22,7 +22,8 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'],
 		'dlg_current_scene': {x: 200, y: 110, w: 800, h: 450},
 		'dlg_scene_preview': {x: 5, y: 110, w: 180, h: 400},
 		'dlg_bottom_tab': {x: 5, y: 515, w: 800, h: 250},
-		'dlg_menu': {x: 5, y: 5, w: 800, h: 100},
+		'dlg_menu': {x: 5, y: 5, w: 600, h: 100},
+		'dlg_mainMenu': {x: 615, y: 5, w: 300, h: 60},
 		'dlg_bg_tool': {x: 1009, y: 158, w: 152, h: 264},
 		'dlg_animation': {x: 1015, y: 510, w: 400, h: 900},
 		'dlg_oldtool': {x: 1215, y: 510, w: 400, h: 500},
@@ -136,4 +137,5 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'],
 	});
 	require(['pastelbook_ui_dlg_add_image'], function (pastelbook_ui_dlg_add_image) {
 	});
+
 }); // require

@@ -6,7 +6,7 @@
 <div class="ui-widget-footer" style="bottom:.1em; right: .1em;;position:absolute">
 </div>
 <ul>
-    <li id="add_scene" class="ui-state-highlight">새 씬 생성</li>
+    <li data-behavior="addScene" class="ui-state-highlight">새 씬 생성</li>
 </ul>
 
 <ul id="scene_previews" class="sortable">

@@ -1,0 +1,2 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<div id="dlg_main_menu" class="wrap" title="메뉴 도구모음"></div>

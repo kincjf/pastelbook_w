@@ -211,10 +211,4 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom',
 				pb.type.View.menu.project.loadProject.$el.dialog("open");
 			}
 		});
-
-		$('#object_add_textbox').click(function () {
-			pb.current.scene.command("add:object:textbox", {
-				type: "textbox"
-			})
-		});
 	}); // require

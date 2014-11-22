@@ -22,9 +22,7 @@ requirejs.config({
 		jquery_ui: 'lib/jquery_ui/jquery-ui',
 		jquery_ui_custom: 'lib/jquery_ui/jquery-ui.custom',
 		jquery_ui_position: 'lib/jquery_ui/jquery.ui.position',
-
 		jquery_contextMenu: 'lib/jquery_contextMenu/jquery.contextMenu',
-
 
 		localStorage: 'lib/backbone.localStorage',
 		marionette: 'lib/backbone.marionette',
@@ -39,7 +37,8 @@ requirejs.config({
 		html2canvas: 'lib/html2canvas',
 		moment: 'lib/moment.min',
 
-		ckeditor: 'lib/ckeditor_source/ckeditor',
+		'ckeditor-core': 'lib/ckeditor/ckeditor',
+		'ckeditor-jquery': 'lib/ckeditor/adapters/jquery',
 		// external library
 
 		pastelbook_pb: 'pb/pastelbook_pb-0.0.1',
@@ -110,8 +109,18 @@ requirejs.config({
 		jquery_ui_custom: {
 			deps: ['jquery_ui']
 		},
+		bootstrap: {
+			deps: ['jquery']
+		},
 		tpl: {
 			extension: '.tpl'	 // default = '.html'
+		},
+
+		'ckeditor-core' :{
+			exports: 'CKEDITOR'
+		},
+		'ckeditor-jquery': {
+			deps: ['jquery', 'ckeditor-core']
 		},
 		// 여기까진 공용 라이브러리
 		pastelbook_pb: {
@@ -143,4 +152,7 @@ require(["pb_app", 'jquery_contextMenu', "pastelbook_ui_event", "pb_debug_hongs_
 	/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
 	pb_app.start(); // Application start
 	myLogger.trace("pb_app loading Complete");
+
+	/** 요놈이 이상하게 덮어씌워짐.. 이상하게 */
+	$(".ui-widget-overlay.ui-front").remove();
 });

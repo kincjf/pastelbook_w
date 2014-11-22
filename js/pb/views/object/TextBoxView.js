@@ -9,8 +9,8 @@
 define([
 	'pb_templates',
 	'pb/views/BaseObjectView',
-	'ckeditor'
-], function (templates, BaseObjectView, CKEDITOR) {
+	'ckeditor-jquery'
+], function (templates, BaseObjectView) {
 	'use strict';
 //	var ENTER_KEY = 13;
 //	var ESCAPE_KEY = 27;
@@ -25,8 +25,8 @@ define([
 		},
 
 		events: {
-//			'click .toggle': 'toggle',
-//			'click .destroy': 'destroy',
+			'focusin @ui.content': 'enableEditing',
+			'focusout @ui.content': 'saveContent'
 //			'dblclick label': 'onEditDblclick',
 //			'keydown .edit': 'onEditKeyDown',
 //			'blur .edit': 'onEditBlur'
@@ -59,21 +59,19 @@ define([
 				}
 			};
 
-			this.value = this.model.get('title');
-
-			this.listenTo(this.model, 'change', this.render, this);
+			//this.listenTo(this.model, 'change', this.render, this);
 			myLogger.trace("TextBoxView - init");
 
 		},
 
 		// "show" / onShow - Called on the view instance when the view has been rendered and displayed.
 		onShow: function (v) {
+			BaseObjectView.prototype.onShow.call(this);
+
 			this.$el.contextMenu({
 				selector: ".ui-resizable-handle",
 				items: _.extend(this.objectContextMenus, this.textBoxContextMenus)
 			});
-
-			CKEDITOR.inline(this.ui.content);
 
 			myLogger.trace("TextBoxView - onShow");
 		},
@@ -83,6 +81,12 @@ define([
 			BaseObjectView.prototype.onRender.call(this);
 
 			myLogger.trace("TextBoxView - onRender");
+		},
+
+		onDomRefresh: function() {
+			this.ui.content.ckeditor({
+				disableReadonlyStyling : true
+			});
 		},
 
 		changeText: function () {
@@ -95,6 +99,15 @@ define([
 
 		editTextEffect: function () {
 			myLogger.trace("TextBoxView - editTextEffect");
+		},
+
+		enableEditing: function() {
+			myLogger.trace("TextBoxView - enableEditing");
+		},
+
+		saveContent: function() {
+			this.model.set('htmlString', this.ui.content.html());
+			myLogger.trace("TextBoxView - saveContent");
 		}
 	});
 });

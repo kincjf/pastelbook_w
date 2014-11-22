@@ -57,11 +57,10 @@ define([
 			this.collection.command("add:z_index:+1");
 		},
 		/** custom Methods */
-		/** xAxis - left, yAxis - top */
-		setTopLeft: function(xAxis, yAxis) {
+		setTopLeft: function(top, left) {
 			this.set({
-				top: yAxis,
-				left: xAxis
+				top: top,
+				left: left
 			});
 		},
 

@@ -15,11 +15,14 @@ define([
 	'pb/collections/SceneList',
 	'pb/collections/SceneViewSetList',
 	'pb/views/SceneCompositeView',
-	'pb/views/ScenePreviewCompositeView'
+	'pb/views/ScenePreviewCompositeView',
+
+	'pb/views/menu/MenuDialogView'
 ], function (Marionette,
              Project,
              SceneList, SceneViewSetList,
-             SceneCompositeView, ScenePreviewCompositeView) {
+             SceneCompositeView, ScenePreviewCompositeView,
+				MenuDialogView) {
 	'use strict';
 
 	var app = new Marionette.Application();
@@ -37,6 +40,7 @@ define([
 
 	/** 테스트용으로 일단 바깥으로 꺼냈음 */
 	var sceneList = pb.type.Model.Project.get("sceneList");
+	pb.type.SceneList = sceneList;
 
 	/** Scene이 처음에 하나는 있어야 되기 때문에 */
 	sceneList.push({});
@@ -59,7 +63,8 @@ define([
 	 * {@link https://github.com/marionettejs/backbone.radio}
 	 */
 //	pb.type.Channels.globalChannel = Backbone.Radio.channel('global');
-
+	/** User Interface Loading*/
+	var menuDialogView = new MenuDialogView();
 	/** 관리할 View Area를 설정함.
 	 * 간단하게 scope를 설정하는 방법이므로 더 자세하게 설정하는 방법도 있음
 	 * marionette API 참조
@@ -67,19 +72,36 @@ define([
 	 */
 	app.addRegions({
 		currentScene: '#dlg_current_scene',
-		currentScenePreview: '#dlg_scene_preview'
+		currentScenePreview: '#dlg_scene_preview',
+
+		menuDialogView:'#dlg_main_menu'
 	});
 
-	app.addInitializer(function () {
+	app.addInitializer(function (options) {
 		app.currentScene.show(sceneCompositeView);
 		app.currentScenePreview.show(scenePreviewCompositeView);
 
-//    sceneList.fetch();
+		app.menuDialogView.show(menuDialogView);
 	});
 
-	/** for debugging */
-	window.project = pb.type.Model.Project;
-	window.sceneList = pb.type.Model.Project.get('sceneList');
+	/** 각 Menu들에 대한  jqueryUI.dialog */
+	app.addInitializer(function (options) {
+		app.menuDialogView.$el.dialog({
+				modal: true,
+				//autoOpen: true,
+				width: pb.ui.dlg_mainMenu.w,
+				height: pb.ui.dlg_mainMenu.h,
+				closeOnEscape: false,
+				minHeight: 50
+			}).parent().css({
+				top: pb.ui.dlg_mainMenu.y,
+				left: pb.ui.dlg_mainMenu.x
+			});
+	});
+
+	///** for debugging */
+	//window.project = pb.type.Model.Project;
+	//window.sceneList = pb.type.Model.Project.get('sceneList');
 
 	return window.app = app
 });

@@ -8,9 +8,9 @@ body {
     background-color: gray
 }
 
-.fakewindowcontain .ui-widget-overlay {
-    position: absolute;
-}
+/*.fakewindowcontain .ui-widget-overlay {*/
+    /*position: absolute;*/
+/*}*/
 
 /* hong */
 
@@ -26,7 +26,6 @@ body {
 
 .ui-dialog .ui-dialog-content {
     padding: 0px;
-    border: .1em solid #aaa;
 }
 
 .ui-draggable .ui-dialog-titlebar {
@@ -153,6 +152,29 @@ div.change { /*변경 생긴 다이얼로그 강조*/
 }
 
 /**
+* Global
+*/
+.wrap {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.fit {
+  width: inherit;
+  height: inherit;
+}
+
+
+/**
+* Menu
+*/
+#projectData {
+    width: 270px;
+    height: 200px;
+}
+
+/**
 * Scene
 */
 .scene-wrap {
@@ -194,7 +216,6 @@ div.change { /*변경 생긴 다이얼로그 강조*/
 /**
 * Object
 */
-
 .object {
     /** 삽입시 기본크기 정의*/
     width: 100px;
@@ -205,6 +226,14 @@ div.change { /*변경 생긴 다이얼로그 강조*/
 * - Image
 */
 .image {
+    width: inherit;
+    height: inherit;
+}
+
+/**
+* - TextBox
+*/
+.textbox {
     width: inherit;
     height: inherit;
 }

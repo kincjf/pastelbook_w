@@ -156,7 +156,8 @@ define([
 			/** hidden 상태인 경우 capture가 안됨 그래서 임시방편으로 잠깐 보였다가 다시 없애는 것임
 			 * UI상 많은 문제가 있기 때문에 해결책을 capture보다는 dom Rendering으로 고민해봐야됨.
 			 */
-			pb.util.CaptureController.capturePreview(sceneView.ui.scene, target, (pb.current.scene).ui.scene);
+			pb.util.CaptureController.capturePreview(sceneView.$el, target,
+				(pb.current.scene !== null ? pb.current.scene.$el : null));
 		},
 
 		bindEvents: function (model, value) {
