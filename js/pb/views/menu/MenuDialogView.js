@@ -5,9 +5,9 @@
  */
 define([
 	'marionette',
-	'pb_templates',
-	'pb/views/menu/addBaseObject/dlg-addVideo'
-], function (Marionette, templates, dlgAddVideo) {
+	'pb_templates'
+	//'pb/views/menu/addBaseObject/dlg-addVideo'
+], function (Marionette, templates/*dlgAddVideo*/) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -66,20 +66,20 @@ define([
 					type: "textbox"
 				});
 			myLogger.trace("MenuDialogView - addTextBoxH");
-		},
-
-		openDlgAddVideo: function(event) {
-			pb.type.View.menu.addBaseObject.videoOffline
-				= pb.type.View.menu.addBaseObject.videoOffline || new dlgAddVideo().render();
-
-			var isOpen = pb.type.View.menu.addBaseObject.videoOffline.$el.dialog("isOpen");
-
-			if (!isOpen) {
-				/** 안보였던 dialog를 보이게 함 */
-				pb.type.View.menu.addBaseObject.videoOffline.$el.dialog("open");
-			}
-
-			myLogger.trace("MenuDialogView - openDlgAddVideo");
 		}
+
+		//openDlgAddVideo: function(event) {
+		//	pb.type.View.menu.addBaseObject.videoOffline
+		//		= pb.type.View.menu.addBaseObject.videoOffline || new dlgAddVideo().render();
+		//
+		//	var isOpen = pb.type.View.menu.addBaseObject.videoOffline.$el.dialog("isOpen");
+		//
+		//	if (!isOpen) {
+		//		/** 안보였던 dialog를 보이게 함 */
+		//		pb.type.View.menu.addBaseObject.videoOffline.$el.dialog("open");
+		//	}
+		//
+		//	myLogger.trace("MenuDialogView - openDlgAddVideo");
+		//}
 	});
 });
