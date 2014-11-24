@@ -25,6 +25,7 @@ require(['require', 'jquery', 'pb/controllers/CaptureController'],
 			pb.type.View.menu = pb.type.View.menu || {};
 
 			pb.type.View.menu.project = pb.type.View.menu.project || {};
+			pb.type.View.menu.addBaseObject = pb.type.View.menu.addBaseObject || {};
 
 			/** Models */
 			pb.type.Model = pb.type.Model || {};

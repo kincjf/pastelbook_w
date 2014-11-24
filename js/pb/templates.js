@@ -24,6 +24,8 @@ define(function (require) {
 		dlgSaveProject: require('tpl!pb/templates/menu/project/dlgSaveProject.tpl'),
 		dlgSaveToText: require('tpl!pb/templates/menu/project/dlgSaveToText.tpl'),
 
+		dlgAddVideo: require('tpl!pb/templates/menu/addBaseObject/dlgAddVideo.tpl'),
+
 		dlgLoadProject: require('tpl!pb/templates/menu/project/dlgLoadProject.tpl'),
 		dlgLoadFromLocalStorage: require('tpl!pb/templates/menu/project/dlgLoadFromLocalStorage.tpl'),
 		dlgLoadFromText: require('tpl!pb/templates/menu/project/dlgLoadFromText.tpl'),

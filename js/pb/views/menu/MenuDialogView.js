@@ -5,8 +5,9 @@
  */
 define([
 	'marionette',
-	'pb_templates'
-], function (Marionette, templates) {
+	'pb_templates',
+	'pb/views/menu/addBaseObject/dlg-addVideo'
+], function (Marionette, templates, dlgAddVideo) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -19,7 +20,9 @@ define([
 		ui: {
 			mainNav: '#main_nav',
 			addScene: "li[data-behavior='addScene']",
-			addTextBoxH: "li[data-behavior='addTextBoxH']"
+			addTextBoxH: "li[data-behavior='addTextBoxH']",
+
+			setVideoDataOffline: "li[data-behavior='addVideo']"
 		},
 
 		className: "wrap fit",
@@ -34,8 +37,10 @@ define([
 
 		events: {
 			'click @ui.addScene': 'addScene',
-			'click @ui.addTextBoxH': 'addTextBoxH'
+			'click @ui.addTextBoxH': 'addTextBoxH',
+			'click @ui.addVideoOffline': 'openDlgAddVideo'
 		},
+
 		initialize: function (options) {
 			myLogger.trace("MenuDialogView - init");
 		},
@@ -61,6 +66,20 @@ define([
 					type: "textbox"
 				});
 			myLogger.trace("MenuDialogView - addTextBoxH");
+		},
+
+		openDlgAddVideo: function(event) {
+			pb.type.View.menu.addBaseObject.videoOffline
+				= pb.type.View.menu.addBaseObject.videoOffline || new dlgAddVideo().render();
+
+			var isOpen = pb.type.View.menu.addBaseObject.videoOffline.$el.dialog("isOpen");
+
+			if (!isOpen) {
+				/** 안보였던 dialog를 보이게 함 */
+				pb.type.View.menu.addBaseObject.videoOffline.$el.dialog("open");
+			}
+
+			myLogger.trace("MenuDialogView - openDlgAddVideo");
 		}
 	});
 });

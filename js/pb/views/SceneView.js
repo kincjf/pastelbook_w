@@ -35,7 +35,7 @@ define([
 		},
 
 		events: {
-			'drop @ui.scene': 'addObjectByDrop'
+			'drop @ui.scene': 'setupForInsertObjectByDrop'
 		},
 
 		/** 기존 legacy API method : itemViewContainer*/
@@ -136,7 +136,7 @@ define([
 			}
 		},
 
-		addObjectByDrop: function (event, ui) {
+		setupForInsertObjectByDrop: function (event, ui) {
 			myLogger.trace("SceneView - addObject");
 
 			var $baseObject = $(ui.draggable.context);
@@ -196,8 +196,9 @@ define([
 			/** click : selectScenePreview */
 			this.comply("change:currentScene", this.selectSceneView);
 
-			/** 가로 텍스트박스 추가 */
-			this.comply("add:object:textbox:h", this.addObjectByClick, this);
+			/** 가로 텍스트박스 추가 비디오 추가 */
+			this.comply("add:object:textbox:h add:object:video", this.setupForInsertObjectByClick, this);
+
 		},
 
 		renderCurrentScene: function () {
@@ -243,55 +244,112 @@ define([
 			pb.current.scene.$el.show();
 		},
 
-		addObjectByClick: function (options) {
+		/** 각 type별로 Click Event로 삽입할 수 있도록 Event를 지정함 */
+		setupForInsertObjectByClick: function (options) {
 			if (options.type == "textbox") {
-				this.$el.tooltip({
-					content: function () {
-						return "Click and Insert TextBox!"
-					},
-					items: ".scene",
-					track: true
-				});
-
-				/** 삽입을 알리기 위해서 cursor 변경 */
-				this.ui.scene.css({cursor: "crosshair"});
-
-				/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
-				$(document).one("keyup.cancel.textbox", _.bind(function (event) {
-						if (event.which == 27 || event.namespace == "cancel.textbox") {
-							this.ui.scene.css({cursor: "default"});
-							this.$el.tooltip("destroy");
-						}
-
-						this.ui.scene.off('click.add.textbox');
-
-						myLogger.trace("SceneView - 'keyup.cancel.textbox'");
-					}, this)
-				);
-
-				/** scene에 click을 할 경우 TextBox가 삽입됨.
-				 * 기본크기 : 가로 - 100px, 세로 100px
-				 * ! - 이상하게 click event가 먹지 않는다
-				 * 그래서 [야메]로 하기로 했음
-				 */
-				$("body").one('click.add.textbox', this.ui.scene, _.bind(function (event) {
-						var textBoxOptions = {
-							top: 250/* event.pageY */,
-							left: 250/* event.pageX */,
-							width: "100px",
-							height: "100px"
-						};
-
-						$(document).trigger("keyup.cancel.textbox");
-
-						/* The on{Name} callback methods will still be called
-						 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
-						this.triggerMethod("AddTextBox", textBoxOptions);
-
-						myLogger.trace("SceneView - 'click.add.textbox'");
-					}, this)
-				);
+				this.setupForInsertTextBox(options);
+			} else if (options.type == "video") {
+				this.setupForInsertVideo(options);
 			}
+		},
+
+		/** Custom Methods */
+		setupForInsertTextBox: function(options) {
+			this.$el.tooltip({
+				content: function () {
+					return "Click and Insert TextBox!"
+				},
+				items: ".scene",
+				track: true
+			});
+
+			/** 삽입을 알리기 위해서 cursor 변경 */
+			this.ui.scene.css({cursor: "crosshair"});
+
+			/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
+			$(document).one("keyup.cancel.textbox", _.bind(function (event) {
+					if (event.which == 27 || event.namespace == "cancel.textbox") {
+						this.ui.scene.css({cursor: "default"});
+						this.$el.tooltip("destroy");
+					}
+
+					this.ui.scene.off('click.add.textbox');
+
+					myLogger.trace("SceneView - 'keyup.cancel.textbox'");
+				}, this)
+			);
+
+			/** scene에 click을 할 경우 TextBox가 삽입됨.
+			 * 기본크기 : 가로 - 100px, 세로 100px
+			 * ! - 이상하게 click event가 먹지 않는다
+			 * 그래서 [야메]로 하기로 했음
+			 */
+			$("body").one('click.add.textbox', this.ui.scene, _.bind(function (event) {
+					var textBoxOptions = {
+						top: 250/* event.pageY */,
+						left: 250/* event.pageX */,
+						width: "100px",
+						height: "100px"
+					};
+
+					$(document).trigger("keyup.cancel.textbox");
+
+					/* The on{Name} callback methods will still be called
+					 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
+					this.triggerMethod("AddTextBox", textBoxOptions);
+
+					myLogger.trace("SceneView - 'click.add.textbox'");
+				}, this)
+			);
+		},
+
+		setupForInsertVideo: function(options) {
+			this.$el.tooltip({
+				content: function () {
+					return "Click and Insert Video!"
+				},
+				items: ".scene",
+				track: true
+			});
+
+			/** 삽입을 알리기 위해서 cursor 변경 */
+			this.ui.scene.css({cursor: "crosshair"});
+
+			/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
+			$(document).one("keyup.cancel.video", _.bind(function (event) {
+					if (event.which == 27 || event.namespace == "cancel.video") {
+						this.ui.scene.css({cursor: "default"});
+						this.$el.tooltip("destroy");
+					}
+
+					this.ui.scene.off('click.add.video');
+
+					myLogger.trace("SceneView - 'keyup.cancel.video'");
+				}, this)
+			);
+
+			/** scene에 click을 할 경우 Video가 삽입됨.
+			 * 기본크기 : 가로 - 640px, 세로 480px
+			 * ! - 이상하게 click event가 먹지 않는다
+			 * 그래서 [야메]로 하기로 했음
+			 */
+			$("body").one('click.add.textbox', this.ui.scene, _.bind(function (event) {
+					var videoOptions = {
+						top: 250/* event.pageY */,
+						left: 250/* event.pageX */,
+						width: "640px",
+						height: "480px"
+					};
+
+					$(document).trigger("keyup.cancel.video");
+
+					/* The on{Name} callback methods will still be called
+					 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
+					this.triggerMethod("AddVideo", videoOptions);
+
+					myLogger.trace("SceneView - 'click.add.video'");
+				}, this)
+			);
 		}
 	})
 });

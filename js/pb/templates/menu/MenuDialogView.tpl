@@ -9,12 +9,11 @@
     </li>
     <li><a>추가요소</a>
         <ul>
-            <li data-behavior="addScene"><a>Scene</a></li>
-            <li><a>그림</a>
-                <ul>
-                    <li><a>오프라인</a></li>
-                    <li><a>온라인</a></li>
-                </ul>
+            <li data-behavior="addScene">
+                <a>Scene</a>
+            </li>
+            <li data-behavior="addImage">
+                <a>그림</a>
             </li>
             <li><a>글상자</a>
                 <ul>
@@ -29,17 +28,11 @@
                     <li><a>동그라미</a></li>
                 </ul>
             </li>
-            <li><a>Audio</a>
-                <ul>
-                    <li><a>오프라인</a></li>
-                    <li><a>온라인</a></li>
-                </ul>
+            <li data-behavior="addAudio">
+                <a>Audio</a>
             </li>
-            <li><a>Video</a>
-                <ul>
-                    <li><a>오프라인</a></li>
-                    <li><a>온라인</a></li>
-                </ul>
+            <li data-behavior="addVideo">
+                <a>Video</a>
             </li>
             <li><a>표</a></li>
             <li><a>레이아웃</a></li>

@@ -9,7 +9,7 @@ body {
 }
 
 /*.fakewindowcontain .ui-widget-overlay {*/
-    /*position: absolute;*/
+/*position: absolute;*/
 /*}*/
 
 /* hong */
@@ -88,12 +88,12 @@ body {
 
 /* 드래그시 스크롤 되서 정신사납지 않게 하기 위해*/
 #dlg_current_scene {
-	overflow:hidden;
+    overflow: hidden;
 }
 
 /* 씬 미리보기 화면 테두리 추가 */
 .ui-state-default img {
-	border: 1px rgba(0,0,0,0.2) solid;
+    border: 1px rgba(0, 0, 0, 0.2) solid;
 }
 
 #dlg_add_image ul {
@@ -133,38 +133,43 @@ body {
     padding: 0px;
 }
 
-div.change { /*변경 생긴 다이얼로그 강조*/
-	border: 2px solid rgba(255,0,0,0.5);
+div.change {
+    /*변경 생긴 다이얼로그 강조*/
+    border: 2px solid rgba(255, 0, 0, 0.5);
 }
 
 /* 다이얼로그 제목표시줄, 색상 변경을 위해*/
 .ui-widget-header {
-	border: 1px solid #aaaaaa;
-	background: #aaaaaa;
-	color: #222222;
-	font-weight: bold;
+    border: 1px solid #aaaaaa;
+    background: #aaaaaa;
+    color: #222222;
+    font-weight: bold;
 }
-.active{
-	border: 1px solid #aaaaaa;
-	background: red;
-	color: #222222;
-	font-weight: bold;
+
+.active {
+    border: 1px solid #aaaaaa;
+    background: red;
+    color: #222222;
+    font-weight: bold;
 }
 
 /**
 * Global
 */
-.wrap {
+.wrap {s
     border: none;
     margin: 0;
     padding: 0;
 }
 
 .fit {
-  width: inherit;
-  height: inherit;
+    width: inherit;
+    height: inherit;
 }
 
+.hide {
+    display: none;
+}
 
 /**
 * Menu
@@ -236,4 +241,11 @@ div.change { /*변경 생긴 다이얼로그 강조*/
 .textbox {
     width: inherit;
     height: inherit;
+}
+
+/**
+ * - Video
+ */
+.vjs-paused .vjs-big-play-button {
+    display: none;
 }
