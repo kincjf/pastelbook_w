@@ -2,9 +2,9 @@
 /**
  * Created by Hong
  *
- * Image À» ÀúÀåÇÏ´Â Collection
+ * Image ì„ ì €ì¥í•˜ëŠ” Collection
  *
- * js ±âº» Image Å¬·¡½º¿Í ÀÌ¸§ÀÌ °ãÄ¡¹Ç·Î ÇÔ¼ö³»ºÎ¿¡¼­´Â PBImage¶ó°í »ç¿ëÇß´Ù.
+ * js ê¸°ë³¸ Image í´ë˜ìŠ¤ì™€ ì´ë¦„ì´ ê²¹ì¹˜ë¯€ë¡œ í•¨ìˆ˜ë‚´ë¶€ì—ì„œëŠ” PBImageë¼ê³  ì‚¬ìš©í–ˆë‹¤.
  */
 define([
 	'backbone',
