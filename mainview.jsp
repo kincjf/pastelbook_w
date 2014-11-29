@@ -43,6 +43,7 @@
 <%@ include file="./js/pb/templates/dlg-animation.jspf" %>
 <%@ include file="./js/pb/templates/dlg-oldtool.jspf" %>
 <%@ include file="./js/pb/templates/dlg-add-image.jspf" %>
+<%@ include file="./js/pb/templates/dlg-upload-image.jspf" %>
 <!-- 프로젝트 - 내보내기 (파일 다이얼로그를 그대로 사용한다. 온클릭 이벤트 등록 -->
 <!-- 프로젝트 - 불러오기 (파일 다이얼로그를 그대로 사용한다. 온클릭 이벤트 등록 -->
 <%@ include file="./js/pb/templates/dlg-project-info.jspf" %>

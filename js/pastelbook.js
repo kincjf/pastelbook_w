@@ -1,4 +1,4 @@
-﻿/**
+/**
  *   14. 9. 18.   v 0.0.1      Moved by HONG WON GI
  *   - 파스텔북 메인(requirejs의 메인) 자바스크립트 함수
  *   - requirejs의 의존성 설정들을 하였고, 파스텔북의 자체소스를 pb폴더로 옮겨 관리 및 버전(을 매김)
@@ -54,6 +54,7 @@ requirejs.config({
 		pastelbook_ui_dlg_current_scene: 'pb/ui/dlg_current_scene',
 		pastelbook_ui_dlg_project_close: 'pb/ui/dlg_project_close',
 		pastelbook_ui_dlg_add_image: 'pb/ui/dlg_add_image',
+		pastelbook_ui_dlg_upload_image: 'pb/ui/dlg_upload_image',
 		pastelbook_ui_event: 'pb/pastelbook_ui_event-0.0.1',
 		pastelbook_type: 'pb/pastelbook_type-0.0.1',
 		pastelbook_io: 'pb/pastelbook_io-0.0.1',
@@ -138,6 +139,9 @@ requirejs.config({
 		},
 		pastelbook_ui_dlg_add_image: {
 			deps: ['pastelbook_io', "pastelbook_pb"]
+		},
+		pastelbook_ui_dlg_upload_image: {
+			deps: ['pastelbook_io', "pastelbook_pb", "handlebars"]
 		}
 	},
 

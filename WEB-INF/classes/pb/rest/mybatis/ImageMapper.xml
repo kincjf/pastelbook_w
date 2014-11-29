@@ -14,15 +14,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
  <insert id="create" parameterType="pb.rest.jaxrs.vo.Image" useGeneratedKeys="true" keyProperty="_id">
   INSERT INTO pb_image
+  ( accountId, path, thumbPath, name, size, width, height, type )
   VALUES (
-  	#{type}, #{iconSrc}, #{imgSrc}, #{name}, #{showName}
-  	, #{theme}, #{owner}, #{rsc_type}, #{emotion}, #{rsc_style}
+  	1, #{path}, #{thumbPath}, #{name}, #{size}, #{width}, #{height}, #{type}
   )
  </insert>
  <update id="update" parameterType="pb.rest.jaxrs.vo.Image" useGeneratedKeys="true" keyProperty="_id">
   UPDATE pb_image 
   SET 
-    type =#{type} , iconSrc =#{iconSrc}, imgSrc =#{imgSrc}, name =#{name}, showName =#{showName}
+    type =#{type} , thumbPath =#{thumbPath}, path =#{path}, name =#{name}, showName =#{showName}
  	, theme =#{theme}, owner =#{owner}, rsc_type =#{rsc_type}, emotion =#{emotion}, rsc_style =#{rsc_style}
   where _id= #{ _id } 
  </update>

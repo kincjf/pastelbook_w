@@ -1,0 +1,54 @@
+    <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+		<!--
+		<link href="css/pb_default.css" rel="stylesheet"/>
+		<link href="js/lib/jquery_ui/jquery-ui.css" rel="stylesheet"/>
+		<link href="js/lib/jquery_ui/jquery-ui.structure.css" rel="stylesheet"/>
+		<link href="js/lib/jquery_ui/jquery-ui.theme.css" rel="stylesheet"/>
+		<script src="js/lib/jquery-1.10.2.js"></script>
+		<script src="js/lib/jquery_ui/jquery-ui.js"></script>
+		-->
+		
+
+
+        <div id="dlg_upload_image" title="이미지 업로드">
+		   <form>
+			  <div id="radioset_upload_src">
+				 <input type="radio" id="radio_btn_local" name="radio"><label for="radio_btn_local">로컬</label>
+				 <input type="radio" id="radio_btn_internet" name="radio"><label for="radio_btn_internet">인터넷</label>
+			  </div>
+		   </form>
+		   <div id="layout_panel">
+
+		   </div>
+		   <img id="targetImage" width="98%" height="200px"/>
+		   <input id="btnUpload" type="button" value="업로드"/>
+
+			<script id="panel_local" type="text/x-handlebars-template">
+				<label for="text_local_url">파일 위치</label><input type="file" id="text_local_url" src="" placeholder="파일을 선택하세요"/>
+			</script>
+			<script id="panel_internet" type="text/x-handlebars-template">
+				<label for="text_internet_url">인터넷 url</label><input type="text" id="text_internet_url" src="" placeholder="업로드할 이미지 주소를 입력하세요"/>
+			</script>
+        </div>
+
+		<style>
+			#dlg_upload_image {
+				padding:5px;
+				position:relative;
+			}
+
+			#dlg_upload_image #layout_panel {
+				margin-top:5px;
+			}
+
+			#dlg_upload_image #text_internet_url,
+			#dlg_upload_image #text_local_url {
+				width : 96%;
+				margin-top: 5px;
+				margin-bottom:5px;
+			}
+			#dlg_upload_image #btnUpload{
+				width : 98%;
+				margin-top: 5px;
+			}
+		</style>

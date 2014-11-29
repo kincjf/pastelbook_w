@@ -45,7 +45,7 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		List<T> result;
 		
 		init();
-		session = sqlMapper.openSession();
+		session = sqlMapper.openSession(true);
 		result = session.selectList(objectName+"Mapper.findAll");
 		session.close();
 		
