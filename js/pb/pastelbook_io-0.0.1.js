@@ -17,7 +17,8 @@ require(['jquery'], function ($) {
 		
 		// owner 는 pb_resouce.owner = pb
 		var data = 'section=' + section + '&' + 'owner=' + params;
-
+		
+		/*
 		$.ajax({
 			type: "post"		// 포스트방식
 			, url: url		// url 주소
@@ -31,5 +32,6 @@ require(['jquery'], function ($) {
 				//alert(e.responseText);
 			}
 		});
+		*/
 	}
 }); // require

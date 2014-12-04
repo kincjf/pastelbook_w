@@ -1,19 +1,20 @@
     <%@ page language="java" contentType="text/html; charset=UTF-8" %>
         <div id="dlg_add_image" title="이미지를 삽입하세요!">
         <p>이미지 삽입상자</p>
+	<input type="button" value="이미지업로드"></input>
         <div class="ui-widget-footer" style="bottom:.1em; right: .1em;;position:absolute">
         a
         </div>
         <ul>
-        <li id="newslide" class="ui-state-highlight">새 이미지</li>
+		<li id="newslide" class="ui-state-highlight">새 이미지</li>
         </ul>
 
         <ul id="sortable">
-        <li class="ui-state-default">1<img src="./img/content/ice_kingdom/fire_girl.png" width="100" height="100"/></li>
-        <li class="ui-state-default">2<img src="./img/content/ice_kingdom/iceman.png" width="100" height="100"/></li>
-        <li class="ui-state-default">3<img src="./img/content/ice_kingdom/snow_ants_1.png" width="100" height="100"/></li>
-        <li class="ui-state-default">4<img src="./img/content/ice_kingdom/snow_ants_2.png" width="100" height="100"/></li>
-        <li class="ui-state-default">5<img src="./img/content/ice_kingdom/snow_lake.png" width="100" height="100"/></li>
-        <li class="ui-state-default">5<img src="./img/content/ice_kingdom/snow_world_background.jpg" width="100" height="100"/></li>
+		<li class="ui-state-default">1<img src="./img/content/ice_kingdom/fire_girl.png" width="100" height="100"/></li>
+		<li class="ui-state-default">2<img src="./img/content/ice_kingdom/iceman.png" width="100" height="100"/></li>
+		<li class="ui-state-default">3<img src="./img/content/ice_kingdom/snow_ants_1.png" width="100" height="100"/></li>
+		<li class="ui-state-default">4<img src="./img/content/ice_kingdom/snow_ants_2.png" width="100" height="100"/></li>
+		<li class="ui-state-default">5<img src="./img/content/ice_kingdom/snow_lake.png" width="100" height="100"/></li>
+		<li class="ui-state-default">5<img src="./img/content/ice_kingdom/snow_world_background.jpg" width="100" height="100"/></li>
         </ul>
         </div>
