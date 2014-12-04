@@ -39,6 +39,7 @@ requirejs.config({
 
 		'ckeditor-core': 'lib/ckeditor/ckeditor',
 		'ckeditor-jquery': 'lib/ckeditor/adapters/jquery',
+		videojs: 'lib/video-js/video.dev',
 		// external library
 
 		pastelbook_pb: 'pb/pastelbook_pb-0.0.1',
@@ -122,6 +123,9 @@ requirejs.config({
 		'ckeditor-jquery': {
 			deps: ['jquery', 'ckeditor-core']
 		},
+		videojs: {
+			exports: 'videojs'
+		},
 		// 여기까진 공용 라이브러리
 		pastelbook_pb: {
 			deps: ["jquery"]
@@ -148,7 +152,7 @@ requirejs.config({
 	}
 });
 
-require(["pb_app", 'jquery_contextMenu', "pastelbook_ui_event", "pb_debug_hongs_only"], function (pb_app) {
+require(["pb_app", 'jquery_contextMenu', "pastelbook_ui_event"/*, "pb_debug_hongs_only"*/], function (pb_app) {
 	/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
 	pb_app.start(); // Application start
 	myLogger.trace("pb_app loading Complete");

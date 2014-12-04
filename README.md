@@ -34,31 +34,33 @@ wiki에 적은 후 추가할 점이나 지울 점, 변경할 점이 있으면 �
 ___
 
 ## naming
-1. pastelbook => pb로 줄일것
+* test를 위한 resource 경로 : [ http://hitit.jbnu.ac.kr/resources/ ]
 
-2. 파일명으로 쓰임새를 구분하기 보다는 폴더구조로 구분하고, 파일명은 모듈이 하는 동작으로만 지을 것
+* pastelbook => pb로 줄일것
 
-3. model 선언시 : Project, Scene와 같이 선언
+* 파일명으로 쓰임새를 구분하기 보다는 폴더구조로 구분하고, 파일명은 모듈이 하는 동작으로만 지을 것
 
-4. collection 선언시 : model명 + List
+* model 선언시 : Project, Scene와 같이 선언
 
-5. View 선언시 : 모델명 + [기능1|기능2|...] + View
+* collection 선언시 : model명 + List
+
+* View 선언시 : 모델명 + [기능1|기능2|...] + View
 ( ex> ScenePreviewCompositeView
    : Scene(모델명) + Preview(기능1) + CompositeView(기능2[marionette]) + View )
 
-6. template 명은 해당 View와 동일하게 지정함.
+* template 명은 해당 View와 동일하게 지정함.
 
-7. file명에는 _(underline)말고 -(hyphen)을 사용하기
+* file명에는 _(underline)말고 -(hyphen)을 사용하기
 
-8. 변수명에는 _(underline)은 Private 변수만 사용하기, 나머지는 다 낙타체로 선언
+* 변수명에는 _(underline)은 Private 변수만 사용하기, 나머지는 다 낙타체로 선언
 
-9. 클래스(Object) 변수명은 첫 문자는 대문자로, 하지만 instance, 지역변수는 첫 글자는 소문자로 
+* 클래스(Object) 변수명은 첫 문자는 대문자로, 하지만 instance, 지역변수는 첫 글자는 소문자로
 ( ex> Project, Scene)
 
-10. event 지정은 :(colon)으로 구분하기
+* event 지정은 :(colon)으로 구분하기
 ( ex> loading:project(O), loadingProject(X) )
 
-11. css : class명은 "-"로만 구분하기, id명은 "_"로만 구분하기
+* css : class명은 "-"로만 구분하기, id명은 "_"로만 구분하기
 
 ---
 

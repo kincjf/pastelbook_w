@@ -27,7 +27,7 @@ define([
            left: textBoxOptions.left,     // y
            width: this.options.width,
            height: this.options.height,
-           htmlString: this.options.htmlString
+           htmlString: textBoxOptions.htmlString || this.options.htmlString
         });
 
         var scenePreviewView = this.view.sceneViewSet.get("scenePreviewView");

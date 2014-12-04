@@ -1,65 +1,102 @@
 /*global define */
 /**
- * ImageView extends BaseObjectView
+ * VideoView extends BaseObjectView
  *
  * - 구현내용/순서
  * 1. 추가요소(BaseObject) 삽입 => (구현중)
  *
  */
 define([
-  'pb_templates',
-  'pb/views/BaseObjectView'
-], function (templates, BaseObjectView) {
-  'use strict';
-//	var ENTER_KEY = 13;
-//	var ESCAPE_KEY = 27;
+   'marionette',
+   'pb_templates',
+   'pb/views/BaseObjectView',
+   'videojs'
+], function (Marionette, templates, BaseObjectView, videojs) {
+   'use strict';
 
-  return BaseObjectView.extend({
-    tagName: 'div',
+   return BaseObjectView.extend({
+      tagName: 'div',
 
-    template: templates.BaseObjectView,
+      template: templates.VideoView,
 
-    value: '',
+      ui: {
+         video: "video"
+      },
 
-//		ui: {
-//			edit: '.edit'
-//		},
-    events: {
-//			'click .toggle': 'toggle',
-//			'click .destroy': 'destroy',
-//			'dblclick label': 'onEditDblclick',
-//			'keydown .edit': 'onEditKeyDown',
-//			'blur .edit': 'onEditBlur'
-    },
+      events: {
+         //'dblclick img': 'editVideo'
+      },
 
-    attributes: {
-      // 이미 들어간거이기 떄문에 넣지 말라는 표시임.
-      // Scene에 삽입된 개체를 드래그시 계속 삽입되는 버그를 방지하기위한 표시.
-      // 삽입되었다는 표시임.
-//      'inserted': 'false'
-    },
+      attributes: {
+         'type': 'video'
+      },
 
-    initialize: function () {
-	    myLogger.trace("BaseObjectView - init");
-	    this.value = this.model.get('title');
+      className: "video",
 
-      this.listenTo(this.model, 'change', this.render, this);
-    },
+      initialize: function (options) {
+         BaseObjectView.prototype.initialize.call(this, options);
+         myLogger.trace("VideoView - init");
 
-    // "show" / onShow - Called on the view instance when the view has been rendered and displayed.
-    onShow: function(v) {
-      myLogger.trace("BaseObjectView - onShow");
-//      myLogger.debug(v);
-    },
+         this.className = BaseObjectView.prototype.className + " "
+         + this.className;
+         _.extend(this.events, BaseObjectView.prototype.events);
+         _.extend(this.ui, BaseObjectView.prototype.ui);
 
-    // "render" / onRender - after everything has been rendered
-    onRender: function (v) {
-      myLogger.trace("BaseObjectView - onRender");
-//      myLogger.debug(v);
+         this.videoContextMenus = {
+            "changeVideo": {
+               name: "ChangeVideo", icon: "icon",
+               callback: this.changeVideo
+            },
+            "editImage": {
+               name: "editVideo", icon: "edit",
+               callback: this.editVideo
+            }
+         };
+      },
 
-      // 좀비뷰가 되지 않기 위해서는 draggable, resizable event를 삭제해야함.
-      this.$el.draggable().resizable();
-    }
+      // "show" / onShow - Called on the view instance when the view has been rendered and displayed.
+      onShow: function (v) {
+         BaseObjectView.prototype.onShow.call(this);
 
-  });
+         this.$el.contextMenu({
+            selector: ".ui-resizable-handle",
+            items: _.extend(this.objectContextMenus, this.videoContextMenus)
+         });
+
+         myLogger.trace("VideoView - onShow");
+      },
+
+      // "render" / onRender - after everything has been rendered
+      onRender: function (v) {
+         BaseObjectView.prototype.onRender.call(this);
+
+         this.videoInstance = videojs(this.ui.video[0], {}, function() {
+            console.log("video init");
+         });
+
+         this.$el.css({
+            width: this.model.get("width"),
+            height: this.model.get("height")
+         });
+
+         this.ui.video.parent().css({
+            width: "inherit",
+            height: "inherit"
+         });
+
+         myLogger.trace("VideoView - onRender");
+      },
+
+      onBeforeDestroy: function() {
+         BaseObjectView.prototype.onBeforeDestroy.call(this);
+      },
+
+      changeVideo: function() {
+         myLogger.trace("VideoView - changeVideo");
+      },
+
+      editVideo: function() {
+         myLogger.trace("VideoView - editVideo");
+      }
+   });
 });

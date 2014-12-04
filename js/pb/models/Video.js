@@ -13,7 +13,7 @@ define([
 		defaults: {
 			type: 'video',
 			videoSrc: '',
-			poster: './img/dummy/dummy.png'
+			videoPreviewImage: './img/dummy/dummy.png'
 		},
 
 		initialize: function (attrs, options) {

@@ -15,6 +15,7 @@ define(function (require) {
 
 		ImageView: require('tpl!pb/templates/object/ImageView.tpl'),
 		TextBoxView: require('tpl!pb/templates/object/TextBoxView.tpl'),
+		VideoView: require('tpl!pb/templates/object/VideoView.tpl'),
 
 		ScenePreviewView: require('tpl!pb/templates/ScenePreviewView.tpl'),
 		ScenePreviewCompositeView: require('tpl!pb/templates/ScenePreviewCompositeView.tpl'),
@@ -24,7 +25,7 @@ define(function (require) {
 		dlgSaveProject: require('tpl!pb/templates/menu/project/dlgSaveProject.tpl'),
 		dlgSaveToText: require('tpl!pb/templates/menu/project/dlgSaveToText.tpl'),
 
-		dlgAddVideo: require('tpl!pb/templates/menu/addBaseObject/dlgAddVideo.tpl'),
+		AddVideoDlg: require('tpl!pb/templates/menu/addBaseObject/AddVideoDlg.tpl'),
 
 		dlgLoadProject: require('tpl!pb/templates/menu/project/dlgLoadProject.tpl'),
 		dlgLoadFromLocalStorage: require('tpl!pb/templates/menu/project/dlgLoadFromLocalStorage.tpl'),

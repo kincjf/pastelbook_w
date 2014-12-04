@@ -39,8 +39,13 @@ define([
 	      'type': 'textbox'
 		},
 
+		className: "textbox",
+
 		initialize: function (options) {
 			BaseObjectView.prototype.initialize.call(this, options);
+
+			this.className = BaseObjectView.prototype.className + " "
+			+ this.className;
 			_.extend(this.events, BaseObjectView.prototype.events);
 			_.extend(this.ui, BaseObjectView.prototype.ui);
 
@@ -105,6 +110,7 @@ define([
 			myLogger.trace("TextBoxView - enableEditing");
 		},
 
+		/** this.model : TextBox (Marionette default member variable) */
 		saveContent: function() {
 			this.model.set('htmlString', this.ui.content.html());
 			myLogger.trace("TextBoxView - saveContent");

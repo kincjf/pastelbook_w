@@ -156,7 +156,7 @@ div.change {
 /**
 * Global
 */
-.wrap {s
+.wrap {
     border: none;
     margin: 0;
     padding: 0;
@@ -202,14 +202,6 @@ div.change {
     color: white;
 }
 
-.scene div {
-    /*margin: 3px;*/
-    /*padding: 0.4em;*/
-    /*font-size: 1.4em;*/
-    display: inline-block;
-    position: absolute;
-}
-
 .underline {
     border-bottom: black 2px solid;
 }
@@ -221,10 +213,10 @@ div.change {
 /**
 * Object
 */
+
 .object {
-    /** 삽입시 기본크기 정의*/
-    width: 100px;
-    height: 100px;
+    display: inline-block;
+    position: absolute;
 }
 
 /**

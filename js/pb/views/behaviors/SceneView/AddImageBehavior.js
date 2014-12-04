@@ -1,6 +1,6 @@
 /*global define */
 /**
- * Scene을 구성하는 개별화면
+ * Image 삽입을 위한 Behavior
  *
  * - 구현내용/순서
  * 1. 추가요소(BaseObject) 삽입 => (구현중)
@@ -14,7 +14,7 @@ define([
   return Marionette.Behavior.extend({
      defaults: {
         type: 'image',
-        imageSrc: "./​img/​dummy/​dummy.png"
+        imgSrc: "./​img/​dummy/​dummy.png"
      },
 
      onAddImage: function (imageOptions) {
@@ -24,7 +24,7 @@ define([
          */
         this.view.collection.push({
            type: this.options.type,
-           imgSrc: imageOptions.src,
+           imgSrc: imageOptions.imgSrc,
            top: imageOptions.top,     // x
            left: imageOptions.left,     // y
            width: imageOptions.width,

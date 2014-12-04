@@ -5,9 +5,10 @@
  */
 define([
 	'marionette',
-	'pb_templates'
-	//'pb/views/menu/addBaseObject/dlg-addVideo'
-], function (Marionette, templates/*dlgAddVideo*/) {
+	'pb_templates',
+	'pb/views/menu/addBaseObject/AddVideoDlg'
+], function (Marionette, templates,
+             AddVideoDlg) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -21,8 +22,7 @@ define([
 			mainNav: '#main_nav',
 			addScene: "li[data-behavior='addScene']",
 			addTextBoxH: "li[data-behavior='addTextBoxH']",
-
-			setVideoDataOffline: "li[data-behavior='addVideo']"
+			openAddVideoDlg: "li[data-behavior='addVideo']"
 		},
 
 		className: "wrap fit",
@@ -38,7 +38,7 @@ define([
 		events: {
 			'click @ui.addScene': 'addScene',
 			'click @ui.addTextBoxH': 'addTextBoxH',
-			'click @ui.addVideoOffline': 'openDlgAddVideo'
+			'click @ui.openAddVideoDlg': 'openAddVideoDlg'
 		},
 
 		initialize: function (options) {
@@ -56,30 +56,31 @@ define([
 		},
 
 		/** Custom Event Callbacks */
-		addScene: function(e) {
+		addScene: function(event) {
+			//pb.current.scene.command("add:scene");
 			pb.type.SceneList.push({});
 			myLogger.trace("MenuDialogView - addScene");
 		},
 
-		addTextBoxH: function(e) {
+		addTextBoxH: function(event) {
 			pb.current.scene.command("add:object:textbox:h", {
 					type: "textbox"
 				});
 			myLogger.trace("MenuDialogView - addTextBoxH");
-		}
+		},
 
-		//openDlgAddVideo: function(event) {
-		//	pb.type.View.menu.addBaseObject.videoOffline
-		//		= pb.type.View.menu.addBaseObject.videoOffline || new dlgAddVideo().render();
-		//
-		//	var isOpen = pb.type.View.menu.addBaseObject.videoOffline.$el.dialog("isOpen");
-		//
-		//	if (!isOpen) {
-		//		/** 안보였던 dialog를 보이게 함 */
-		//		pb.type.View.menu.addBaseObject.videoOffline.$el.dialog("open");
-		//	}
-		//
-		//	myLogger.trace("MenuDialogView - openDlgAddVideo");
-		//}
+		openAddVideoDlg: function(event) {
+			pb.type.View.menu.addBaseObject.AddVideoDlg
+				= pb.type.View.menu.addBaseObject.AddVideoDlg || new AddVideoDlg().render();
+
+			var isOpen = pb.type.View.menu.addBaseObject.AddVideoDlg.$el.dialog("isOpen");
+
+			if (!isOpen) {
+				/** 안보였던 dialog를 보이게 함 */
+				pb.type.View.menu.addBaseObject.AddVideoDlg.$el.dialog("open");
+			}
+
+			myLogger.trace("MenuDialogView - openAddVideoDlg");
+		}
 	});
 });

@@ -19,10 +19,12 @@ define([
 	'pb/views/object/ChartView',
 	'pb/views/behaviors/SceneView/AddImageBehavior',
 	'pb/views/behaviors/SceneView/AddTextBoxBehavior',
+	'pb/views/behaviors/SceneView/AddVideoBehavior',
 	'pb/controllers/CustomError'
 ], function (Marionette, Radio, templates,
              ImageView, TextBoxView, ShapeView, VideoView, AudioView, TableView, ChartView,
-             AddImageBehavior, AddTextBoxBehavior, CustomError) {
+             AddImageBehavior, AddTextBoxBehavior, AddVideoBehavior,
+             CustomError) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
@@ -136,30 +138,6 @@ define([
 			}
 		},
 
-		setupForInsertObjectByDrop: function (event, ui) {
-			myLogger.trace("SceneView - addObject");
-
-			var $baseObject = $(ui.draggable.context);
-			var type = $baseObject.attr('type');
-
-			if (type == "image") {
-				var imgSrc = $baseObject.attr('src');
-				var size = $baseObject.css(["width", "height"]);
-
-				var imageOptions = {
-					top: ui.position.top,
-					left: ui.position.left,
-					src: imgSrc,
-					width: size.width,
-					height: size.height
-				}
-
-				/* The on{Name} callback methods will still be called
-				 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
-				this.triggerMethod("AddImage", imageOptions);
-			}
-		},
-
 		behaviors: {
 			AddImageBehavior: {
 				behaviorClass: AddImageBehavior,
@@ -168,6 +146,10 @@ define([
 			AddTextBoxBehavior: {
 				behaviorClass: AddTextBoxBehavior,
 				type: "textbox"
+			},
+			AddVideoBehavior: {
+				behaviorClass: AddVideoBehavior,
+				type: "video"
 			}
 		},
 
@@ -182,8 +164,6 @@ define([
 			this.ui.scene.droppable({
 				accept: "[insertable]"
 			});
-			/** */
-				//.selectable();
 		},
 
 		onShow: function () {
@@ -198,7 +178,6 @@ define([
 
 			/** 가로 텍스트박스 추가 비디오 추가 */
 			this.comply("add:object:textbox:h add:object:video", this.setupForInsertObjectByClick, this);
-
 		},
 
 		renderCurrentScene: function () {
@@ -224,7 +203,7 @@ define([
 			} else if (pb.current.scene === null) {
 				/** loading(reset)일 경우 제일 처음 Scene에 focus를 맞춤 */
 				pb.current.scene = this;
-				pb.current.scene.$el.show();
+				pb.current.scene.$el.  show();
 			}
 
 			/** initialize에 하려고 했으나, 의미상 현재 선택된 Scene이기 때문에
@@ -244,6 +223,8 @@ define([
 			pb.current.scene.$el.show();
 		},
 
+		/** Custom Methods */
+
 		/** 각 type별로 Click Event로 삽입할 수 있도록 Event를 지정함 */
 		setupForInsertObjectByClick: function (options) {
 			if (options.type == "textbox") {
@@ -253,7 +234,30 @@ define([
 			}
 		},
 
-		/** Custom Methods */
+		setupForInsertObjectByDrop: function (event, ui) {
+			myLogger.trace("SceneView - addObject");
+
+			var $baseObject = $(ui.draggable.context);
+			var type = $baseObject.attr('type');
+
+			if (type == "image") {
+				var imgSrc = $baseObject.attr('src');
+				var size = $baseObject.css(["width", "height"]);
+
+				var imageOptions = {
+					top: ui.position.top,
+					left: ui.position.left,
+					src: imgSrc,
+					width: size.width,
+					height: size.height
+				};
+
+				/* The on{Name} callback methods will still be called
+				 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
+				this.triggerMethod("AddImage", imageOptions);
+			}
+		},
+
 		setupForInsertTextBox: function(options) {
 			this.$el.tooltip({
 				content: function () {
@@ -303,6 +307,7 @@ define([
 			);
 		},
 
+
 		setupForInsertVideo: function(options) {
 			this.$el.tooltip({
 				content: function () {
@@ -333,8 +338,10 @@ define([
 			 * ! - 이상하게 click event가 먹지 않는다
 			 * 그래서 [야메]로 하기로 했음
 			 */
-			$("body").one('click.add.textbox', this.ui.scene, _.bind(function (event) {
+			this.$el.one('click.add.textbox', this.ui.scene, _.bind(function (event) {
 					var videoOptions = {
+						videoSrc: options.videoSrc,
+						videoPreviewImage: options.videoPreviewImage,
 						top: 250/* event.pageY */,
 						left: 250/* event.pageX */,
 						width: "640px",

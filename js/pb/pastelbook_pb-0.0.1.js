@@ -70,7 +70,8 @@ require(['require', 'jquery', 'pb/controllers/CaptureController'],
 			};
 
 			/** global 변수 설정 */
-			pb.value = pb.value || {};
-			pb.value.VERSION = 0.1;
+			pb.value = pb.value || {
+				VERSION: 0.1
+			};
 			// 총 12개
 	}); // require

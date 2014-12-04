@@ -21,6 +21,8 @@ define([
 			'click .rotateBtn': 'rotateObject'
 		},
 
+		className: "object",
+
 		initialize: function () {
 			myLogger.trace("BaseObjectView - init");
 

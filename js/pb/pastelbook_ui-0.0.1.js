@@ -31,7 +31,8 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom'],
 		'dlg_project_close': {x: 815, y: 5, w: 170, h: 100},
 		'dlg_project_save': {x: 500, y: 200, w: 300, h: 150},
 		'dlg_project_load': {x: 500, y: 200, w: 300, h: 150},
-		'dlg_add_image': {x: 815, y: 518, w: 180, h: 400}
+		'dlg_add_image': {x: 815, y: 518, w: 180, h: 400},
+		'addVideoDlg': {x: 250, y: 250, w: 300, h: 300}
 	};
 
 	pb.ui.widgets = new ( Backbone.Model.extend({}) );

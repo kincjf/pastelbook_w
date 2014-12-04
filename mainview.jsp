@@ -14,6 +14,9 @@
     <!-- css for jquery-contextMenu -->
     <link href="js/lib/jquery_contextMenu/jquery.contextMenu.css" rel="stylesheet" type="text/css"/>
 
+    <!-- css for videojs -->
+    <link href="js/lib/video-js/video-js.min.css" rel="stylesheet" type="text/css"/>
+
     <%--<!-- css for bootstrap -->--%>
     <%--<link href="js/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>--%>
     <%--<link href="js/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>--%>
