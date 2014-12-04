@@ -1,4 +1,4 @@
-/**
+﻿/**
  *   14. 9. 18.   v 0.0.1      Moved by HONG WON GI
  *   - 파스텔북 메인(requirejs의 메인) 자바스크립트 함수
  *   - requirejs의 의존성 설정들을 하였고, 파스텔북의 자체소스를 pb폴더로 옮겨 관리 및 버전(을 매김)
@@ -20,7 +20,6 @@ requirejs.config({
 		underscore: 'lib/underscore',
 
 		jquery_ui: 'lib/jquery_ui/jquery-ui',
-		jquery_ui_custom: 'lib/jquery_ui/jquery-ui.custom',
 		jquery_ui_position: 'lib/jquery_ui/jquery.ui.position',
 		jquery_contextMenu: 'lib/jquery_contextMenu/jquery.contextMenu',
 
@@ -42,8 +41,11 @@ requirejs.config({
 		videojs: 'lib/video-js/video.dev',
 		// external library
 
-		pastelbook_pb: 'pb/pastelbook_pb-0.0.1',
-		pastelbook_ui: 'pb/pastelbook_ui-0.0.1',
+		pb_namespace: 'pb/pb-namespace',
+		pb_ui: 'pb/pb-ui',
+		pb_io: 'pb/pb-io',
+
+		pastelbook_ui_dlg_current_scene: 'pb/ui/dlg_current_scene',
 
 		pastelbook_ui_dlg_animation: 'pb/ui/dlg_animation',
 		pastelbook_ui_dlg_bg_tool: 'pb/ui/dlg_bg_tool',
@@ -52,14 +54,10 @@ requirejs.config({
 		pastelbook_ui_dlg_oldtool: 'pb/ui/dlg_oldtool',
 		pastelbook_ui_dlg_project_info: 'pb/ui/dlg_project_info',
 		pastelbook_ui_dlg_scene_preview: 'pb/ui/dlg_scene_preview',
-		pastelbook_ui_dlg_current_scene: 'pb/ui/dlg_current_scene',
+
 		pastelbook_ui_dlg_project_close: 'pb/ui/dlg_project_close',
 		pastelbook_ui_dlg_add_image: 'pb/ui/dlg_add_image',
 		pastelbook_ui_dlg_upload_image: 'pb/ui/dlg_upload_image',
-		pastelbook_ui_event: 'pb/pastelbook_ui_event-0.0.1',
-		pastelbook_type: 'pb/pastelbook_type-0.0.1',
-		pastelbook_io: 'pb/pastelbook_io-0.0.1',
-		pastelbook_model_event: 'pb/pastelbook_model_event-0.0.1',
 
 		// 공용 아님 테스트용 js 파일 건드리지 말것 - hong 14.10.13
 		pb_debug_hongs_only: 'pb/debug/pb_debug_hongs_only',
@@ -108,9 +106,7 @@ requirejs.config({
 			exports: 'Radio'
 		},
 
-		jquery_ui_custom: {
-			deps: ['jquery_ui']
-		},
+
 		bootstrap: {
 			deps: ['jquery']
 		},
@@ -128,24 +124,17 @@ requirejs.config({
 			exports: 'videojs'
 		},
 		// 여기까진 공용 라이브러리
-		pastelbook_pb: {
-			deps: ["jquery"]
-		},
-
-		pastelbook_ui: {
-			deps: ["jquery", "jquery_ui", "pastelbook_pb"]
-		},
-		pastelbook_ui_event: {
-			deps: ["pastelbook_ui", /*"pastelbook_type",*/ "backbone"]
+		pb_ui: {
+			deps: ["backbone", "jquery_ui", "pb_namespace"]
 		},
 		pb_app: {
-			deps: ['pastelbook_pb']
+			deps: ['pb_ui']
 		},
 		pastelbook_ui_dlg_add_image: {
-			deps: ['pastelbook_io', "pastelbook_pb"]
+			deps: ['pb_io', "pb_namespace"]
 		},
 		pastelbook_ui_dlg_upload_image: {
-			deps: ['pastelbook_io', "pastelbook_pb", "handlebars"]
+			deps: ['pb_io', "pb_namespace", "handlebars"]
 		}
 	},
 
@@ -156,7 +145,7 @@ requirejs.config({
 	}
 });
 
-require(["pb_app", 'jquery_contextMenu', "pastelbook_ui_event"/*, "pb_debug_hongs_only"*/], function (pb_app) {
+require(["pb_app", 'jquery_contextMenu', /*, "pb_debug_hongs_only"*/], function (pb_app) {
 	/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
 	pb_app.start(); // Application start
 	myLogger.trace("pb_app loading Complete");

@@ -3,7 +3,7 @@
  *  - pastellbook ui 의 require를 통해 로딩됨
  *  - 애니메이션 추가옵션 설정용 다이얼로그 js
  */
-require(['jquery', 'underscore',  'jquery_ui',  'jquery_ui_custom'], function($, _, jquery_ui, jquery_ui_custom){
+require(['jquery', 'underscore',  'jquery_ui'], function($, _, jquery_ui){
 	$(function () {
 		pb.ui.dialog('dlg_animation', { isCenter : false, closeOnEscape: false });
 

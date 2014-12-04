@@ -1,0 +1,105 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<div id="dlg_menu" title="메뉴 도구모음">
+   <form>
+      <div id="radioset_history">
+         <input type="radio" id="radio_btn_undo" name="radio"><label for="radio_btn_undo">뒤로</label>
+         <input type="radio" id="radio_btn_history" name="radio"><label for="radio_btn_history">히스토리</label>
+         <input type="radio" id="radio_btn_redo" name="radio"><label for="radio_btn_redo">앞으로</label>
+      </div>
+   </form>
+   <form>
+      <div id="radioset_menu_category">
+         <input type="radio" id="radio_btn_menu_project" name="radio"><label for="radio_btn_menu_project">프로젝트</label>
+         <input type="radio" id="radio5" name="radio"><label for="radio5">도구</label>
+         <input type="radio" id="radio_btn_menu_change" name="radio"><label for="radio_btn_menu_change">전환</label>
+         <input type="radio" id="radio_btn_menu_animation" name="radio"><label for="radio_btn_menu_animation">애니메이션</label>
+         <input type="radio" id="radio_btn_menu_simulation" name="radio"><label for="radio_btn_menu_simulation">시뮬레이션</label>
+         <input type="radio" id="radio_btn_menu_scene" name="radio"><label for="radio_btn_menu_scene">씬</label>
+         <input type="radio" id="radio_btn_menu_object" name="radio"><label for="radio_btn_menu_object">개체</label>
+         <input type="radio" id="radio_btn_menu_input" name="radio"><label for="radio_btn_menu_input">입력</label>
+         <input type="radio" id="radio_btn_menu_help" name="radio"><label for="radio_btn_menu_help">도움말</label>
+         <!--<input type="radio" id="radio_btn_menu_exit" name="radio"><label for="radio_btn_menu_exit">Exit</label>-->
+      </div>
+   </form>
+</div>
+<ul style="width:140px;" id="menu_project">
+   <li id="project_new">새 프로젝트</li>
+   <li id="project_save">프로젝트 저장</li>
+   <li id="project_export">프로젝트 내보내기</li>
+   <li id="project_load">프로젝트 불러오기</li>
+   <li id="project_print">인쇄</li>
+   <li id="project_info">프로젝트 정보</li>
+   <li id="project_exit">프로젝트 종료</li>
+</ul>
+<ul style="width:140px;" id="menu_change">
+   <li id="change_effect">전환 효과</li>
+   <li id="change_sound">전환시 효과음</li>
+   <li id="change_bgm">배경음악 변경</li>
+</ul>
+<ul style="width:140px;" id="menu_animation">
+   <!-- 애니메이션 -->
+   <li id="animation_show_hide">나타내기/끝내기</li>
+   <li id="animation_move">이동경로</li>
+   <li id="animation_multimedia">Audio/Video적용</li>
+   <!--입력란과 중복-->
+</ul>
+<ul style="width:140px;" id="menu_simulation">
+   <li id="simulation_first_scene">첫 씬부터</li>
+   <li id="simulation_current_scene">현재 씬 부터</li>
+</ul>
+<ul style="width:140px;" id="menu_object">
+   <li id="object_add_textbox">글상자 추가 -> 목록</li>
+   <!-- 그림추가로 대동단결, 필요없어짐 10일 지나면 주석에서도 삭제할것, 2014.10.21 Hong
+   <li id="object_add_icon">아이콘 추가 -> 목록</li>
+   <li id="object_add_character">캐릭터 추가 -> 목록</li>
+      -->
+   <li id="object_add_pic">그림 추가 -> 목록</li>
+   <li id="object_add_background">배경 추가 -> 목록</li>
+   <li id="object_conf_background">배경조합(위의 배경추가랑 겹침)</li>
+</ul>
+<ul style="width:140px;" id="menu_input">
+   <!-- 입력 -->
+   <li id="input_textbox">글상자 추가</li>
+   <li id="input_shape">도형 그리기</li>
+   <li id="input_audio">오디오 추가</li>
+   <li id="input_video">비디오 추가</li>
+</ul>
+<ul style="width:140px;" id="menu_help">
+   <!-- 도움말 -->
+   <li id="help_forum">Forum</li>
+   <li id="help_topics">Help Topics</li>
+   <li id="help_language">Language</li>
+   <li id="help_terms">Terms of Service(약관)</li>
+   <li id="help_about">About PastelBook</li>
+</ul>
+<ul style="width:140px;" id="menu_etc_scene">
+   <!-- 현재 씬 화면에서 바닥 오른쪽 클릭시 나오는 화면 -->
+   <li>이름 지정</li>
+   <!-- 팝업 메뉴에서 구분선 넣 법 찾기 -->
+   <li>잘라내기</li>
+   <li>복사</li>
+   <li>붙여넣기</li>
+   <li>삭제</li>
+   <li>앞으로 가져오기</li>
+   <li>뒤로 보내기</li>
+   <li>맨 앞으로 가져오기</li>
+   <li>맨 뒤로 보내기</li>
+   <li>하이퍼링크</li>
+   <li>애니메이션</li>
+   <li>개체 서식</li>
+   <!-- 온클릭 이벤트로 개체서식 창 뜨도록 -->
+</ul>
+
+
+<ul style="width:140px;" id="menu_etc_timeline">
+   <!-- 타임라인 옆 반복 아이콘 오른쪽 클릭시 -->
+   <li>애니메이션 반복</li>
+   <!-- 현재 상태가 나타나야 될 것 같다. -->
+   <!-- 아래는 일반 html라디오버튼 처럼 -->
+   <li>*없음</li>
+   <li>[2]회 반복</li>
+   <!-- 텍스트 필드로 -->
+   <li>*무한반복</li>
+   <!-- 별은 라디오 버튼의 선택부분 -->
+</ul>
+<!-- <script src="js/pb/ui/dlg-menu.js"></script> -->

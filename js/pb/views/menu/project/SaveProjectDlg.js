@@ -1,67 +1,64 @@
 /**
- * Created by KIMSEONHO on 2014-10-23.
+ * Created by KIMSEONHO on 2014-10-15.
  */
 /*global define */
 /**
- * 프로젝트 불러오기.
+ * 현재 작업중인 프로젝트 저장.
  *
  * - 구현내용/순서
- * 1. 로컬스토리지내 저장된 프로젝트 불러오기
- *  a. 로컬스토리지에 저장된 프로젝트 리스트 보여주기
- *  b. 선택한 프로젝트 불러오기
- * 2. 파일로 저장된 프로젝트 불러오기
- * 3. 텍스트로 불러오기   <= 완료
- * 4. 서버내 프로젝트 불러오기
+ * 1. 로컬스토리지내 저장    <= 완료
+ * 2. 텍스트로 저장(클립보드로 복사)   <= 완료
+ * 3. 서버로 저장
+ * 4. 소셜네트워크 사이트로 전송
+ *
  */
 
 define([
 	'marionette',
 	'pb_templates',
-	'pb/views/menu/project/dlg-loadFromText'
-], function (Marionette, templates, dlgLoadFromText) {
+	'pb/views/menu/project/SaveProjectToTextDlg'
+], function (Marionette, templates, SaveProjectToTextDlg) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
 		tagName: 'div',
 
-		id: 'wrap_dlg_load_project',
+		id: 'wrap_dlg_save_project',
 		/** CompositeView에서는 무조건 template을 써야되는 듯함. */
 		/** itemView에서는 잘 모르겠음. */
-		template: templates.dlgLoadProject,
+		template: templates.SaveProjectDlg,
 
 		attributes: {
-			title: '프로젝트 불러오기'
+			title: '프로젝트 저장하기'
 		},
 		//className: 'scene-wrap',
 
 		regions: {
-			loadFromLocalStorageArea: "wrap_load_fromLocalStorage",
-			loadFromTextArea: "#wrap_load_fromText",
-			loadFromFileArea: "#wrap_load_fromFile",
-
-			loadFromServerArea: "#wrap_load_fromServer"
+//			saveLocalStorage - alert창으로 대신함.
+			saveToTextArea: "#wrap_save_toText"
+//			saveToServer, saveToSocial
 		},
 
 		ui: {
-			loadFromLocalStorage: "button[name='localStorage']",
-			loadFromText: "button[name='text']",
-			loadFromFile: "button[name='file']",
+			saveToLocalStorage: "section[title='offline'] button[name='localStorage']",
+			saveToText: "section button[name='text']",
 
-			loadFromServer: "button[name='server']"
+			saveToServer: "section[title='online'] button[name='server']",
+			saveToSocial: "section[title='online'] button[name='social']"
 		},
 
 		events: {
-			'click @ui.loadFromLocalStorage': 'loadFromLocalStorage',
-			'click @ui.loadFromText': 'loadFromText'
+			'click @ui.saveToLocalStorage': 'saveToLocalStorage',
+			'click @ui.saveToText': 'saveToText'
 		},
 
 		initialize: function (_options) {
-			myLogger.trace("menu | project | dlg-load - init");
+			myLogger.trace("menu | project | dlg-save - init");
 		},
 
 		/** set up final bits just before rendering the view's `el` */
 		onBeforeRender: function () {
-			myLogger.trace("menu | project | dlg-load - onBeforeRender");
+			myLogger.trace("menu | project | dlg-save - onBeforeRender");
 		},
 
 		/** manipulate the `el` here.
@@ -69,22 +66,22 @@ define([
 		 * HTML, ready to go.
 		 */
 		onRender: function () {
-			myLogger.trace("menu | project | dlg-load - onRender");
+			myLogger.trace("menu | project | dlg-save - onRender");
 
 			this.$el.dialog({
 				modal: true,
 				//autoOpen: true,
-				width: pb.ui.dlg_project_load.w,
-				height: pb.ui.dlg_project_load.h,
+				width: pb.ui.dlg_project_save.w,
+				height: pb.ui.dlg_project_save.h,
 				closeOnEscape: false
 			}).parent().css({
-				top: pb.ui.dlg_project_load.y,
-				left: pb.ui.dlg_project_load.x
+				top: pb.ui.dlg_project_save.y,
+				left: pb.ui.dlg_project_save.x
 			});
 		},
 
 		onShow: function () {
-			myLogger.trace("menu | project | dlg-load - onShow");
+			myLogger.trace("menu | project | dlg-save - onShow");
 
 		},
 
@@ -106,35 +103,32 @@ define([
 		 * 또한 현재 서버와 연결된 부분인 Backbone.sync가 localStorage와 묶여있기 때문에
 		 * 서버와 연동을 하는 부분에서 API의 sync부분을 변경해주어야 함.
 		 */
-		loadFromLocalStorage: function () {
-			myLogger.trace("menu | project | dlg-load - loadFromLocalStorage");
-			/** operation logic(mockup의 프로젝트블러오기 참조)
-			 * 1. dlg-loadFromLocal.show
-			 * 2. 현재 localStorage에 저장되어있는 Project 데이터를 검색한다.
-			 * (select * from project)
-			 * 3. 검색된 결과를 미리보기와 함께 출력한다.
-			 * 4. 사용자가 출력하고자 하는 데이터를 선택한다.
-			 * 5. 선택된 데이터를 로딩(불러오기)한다.
-			 */
+		saveToLocalStorage: function () {
+			myLogger.trace("menu | project | dlg-save - onShow");
 
-			alert("구현중입니다.");
+			this.model.command("save:project");
+			this.model.localStorage.update(this.model);
+
+			alert("브라우저에 저장이 완료되었습니다.");
 
 			// do css(dlsplay : none)
 			this.$el.dialog("close");
 		},
 
-		loadFromText: function () {
-			myLogger.trace("menu | project | dlg-load - loadFromText");
+		saveToText: function () {
+			//var serializationData = JSON.stringify(this.model.toJSON());
 
 			/** 모듈과 똑같은 변수로 하면 error가 난다 ㅠㅠ 왜일까
 			 * this.model - pb.type.Model.Project
 			 */
-			var loadFromTextDialog = new dlgLoadFromText({
+
+			this.model.command("save:project");
+			var saveToTextDlalog = new SaveProjectToTextDlg({
 				model: this.model,
 				parent: this
 			});
 
-			this.loadFromTextArea.show(loadFromTextDialog);
+			this.saveToTextArea.show(saveToTextDlalog);
 		}
 	});
 });

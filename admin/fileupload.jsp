@@ -28,8 +28,8 @@ dlg-add-image 가 초기화 될때, Image 모델을 일어옴  ( ImageList.fetch
 6. load uploadPath from xml // 이미지 업로드 패스를 xml으로부터 가져오게 하기 & link를 이용해서 파일업로드 경로와 실제 폴더 위치를 분리 ( 백업 편하게 하기위해 )
 7. log4j or logback setting -> for mybatis sql exception check // mybatis 에러확인을 위해 log4j 혹은 logback을 등록
 
-notice ... ( error occured -> BaseObject.prototype ( : Image.js ) --> // is commen 
-// 알림 : Image.js 에 보면 BaseObject.prototype. ..... 호출 하는 부분이 있는데 에러나길래 주석처리함
+notice ... ( error occured -> BaseObject.prototype ( : ResImage.js ) --> // is commen
+// 알림 : ResImage.js 에 보면 BaseObject.prototype. ..... 호출 하는 부분이 있는데 에러나길래 주석처리함
 // cid 를 _id로 등록하는 부분 db에 _id가 autoincrement integer 로 되어있어서 주석처리함
 */
 

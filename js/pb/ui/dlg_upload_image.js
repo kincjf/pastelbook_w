@@ -1,5 +1,6 @@
-require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom', 'handlebars', 'pb/models/Image'],
-function ($, _, jquery_ui, jquery_ui_custom, handlebars, PBImage) {
+require(['jquery', 'underscore', 'jquery_ui', 'handlebars',
+		'pb/models/resources/ResImage'],
+function ($, _, jquery_ui, handlebars, ResImage) {
 
 	var dlg_uploadImage = pb.ui.dialog('dlg_upload_image', { isCenter : true });
 	var $dlg_uploadImage = dlg_uploadImage.jquerySelector;
@@ -10,13 +11,14 @@ function ($, _, jquery_ui, jquery_ui_custom, handlebars, PBImage) {
 	// 로컬로부터 파일 업로드
 	$("#radio_btn_local").on('click',function(){
 		$("#targetImage")[0].src = "";
-		var imageModel = new PBImage();
+		var imageModel = new ResImage();
 
 		var source = $("#panel_local").html();
 		var template = handlebars.compile(source);
 		$("#layout_panel").html(template());
 
 		$("#btnUpload").on('click',function(){
+			/** expected error occured point */
 			imageModel.save();
 		});
 
@@ -59,7 +61,7 @@ function ($, _, jquery_ui, jquery_ui_custom, handlebars, PBImage) {
 	// 인터넷으로부터 파일 업로드
 	$("#radio_btn_internet").on('click',function(){
 		$("#targetImage")[0].src = "";
-		var imageModel = new PBImage();
+		var imageModel = new ResImage();
 
 		var source = $("#panel_internet").html();
 		var template = handlebars.compile(source);
@@ -67,6 +69,7 @@ function ($, _, jquery_ui, jquery_ui_custom, handlebars, PBImage) {
 
 
 		$("#btnUpload").on('click',function(){
+			/** expected error occured point */
 			imageModel.save();
 		});
 
@@ -125,10 +128,6 @@ function ($, _, jquery_ui, jquery_ui_custom, handlebars, PBImage) {
 	});
 
 	$("#radioset_upload_src #radio_btn_local").click();
-
-
-	
-
 	
 	// upload JPEG files
 	function UploadFile(file) {

@@ -22,14 +22,14 @@ define(function (require) {
 
 		MenuDialogView: require('tpl!pb/templates/menu/MenuDialogView.tpl'),
 
-		dlgSaveProject: require('tpl!pb/templates/menu/project/dlgSaveProject.tpl'),
-		dlgSaveToText: require('tpl!pb/templates/menu/project/dlgSaveToText.tpl'),
+		SaveProjectDlg: require('tpl!pb/templates/menu/project/SaveProjectDlg.tpl'),
+		SaveProjectToText: require('tpl!pb/templates/menu/project/SaveProjectToTextDlg.tpl'),
 
 		AddVideoDlg: require('tpl!pb/templates/menu/addBaseObject/AddVideoDlg.tpl'),
 
-		dlgLoadProject: require('tpl!pb/templates/menu/project/dlgLoadProject.tpl'),
+		LoadProjectDlg: require('tpl!pb/templates/menu/project/LoadProjectDlg.tpl'),
 		dlgLoadFromLocalStorage: require('tpl!pb/templates/menu/project/dlgLoadFromLocalStorage.tpl'),
-		dlgLoadFromText: require('tpl!pb/templates/menu/project/dlgLoadFromText.tpl'),
+		LoadProjectFromTextDlg: require('tpl!pb/templates/menu/project/LoadProjectFromTextDlg.tpl'),
 		dlgLoadFromFile: require('tpl!pb/templates/menu/project/dlgLoadFromFile.tpl'),
 		dlgLoadFromServer: require('tpl!pb/templates/menu/project/dlgLoadFromServer.tpl')
 	};

@@ -1,6 +1,6 @@
 // 개발 중 디버그 편의성을 위해 추가 
 var debug = {};
-require(["pastelbook_ui"], function (pastelbook_ui) {
+require(["pb_ui"], function (pb_ui) {
 	$(function () {
 		// 1. 다이얼로그에 다이얼로그 id표시
 		debug.showDialogName = function(){

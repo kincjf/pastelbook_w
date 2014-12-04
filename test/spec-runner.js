@@ -21,7 +21,7 @@
 			html2canvas: 'lib/html2canvas',
 			// external library
 
-			pastelbook_pb: 'pb/pastelbook_pb-0.0.1',
+			pb_namespace: 'pb/pb_namespace',
 
 			pb_templates: 'pb/templates',
 
@@ -58,11 +58,11 @@
 			},
 			// 여기까진 공용 라이브러리
 
-			pastelbook_pb: {
+			pb_namespace: {
 				deps: ["jquery"]
 			},
 			pb_app: {
-				deps: ['pastelbook_pb']
+				deps: ['pb_namespace']
 			}
 			//
 			//qunit: {

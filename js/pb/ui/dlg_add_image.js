@@ -1,5 +1,5 @@
-require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom','pb/collections/ImageList'],
-	function ($, _, jquery_ui, jquery_ui_custom, ImageList) {
+require(['jquery', 'underscore', 'jquery_ui', 'pb/collections/resources/ResImageList'],
+	function ($, _, jquery_ui, ResImageList) {
 
 		var dlg_addImage = pb.ui.dialog('dlg_add_image', { isCenter : false });
 		var $dlg_addImage = dlg_addImage.jquerySelector;
@@ -14,17 +14,18 @@ require(['jquery', 'underscore', 'jquery_ui', 'jquery_ui_custom','pb/collections
 		}); // draggable()
 
 		
-		var pbImages = new ImageList();
-		pbImages.fetch({
+		var resImageList = new ResImageList();
+		/** expected - error occured point : ResImageList url error */
+		resImageList.fetch({
 			reset: false,
 			success: function(){
-				pbImages.each(function(model){
+				resImageList.each(function(model){
 					$('ul#sortable').append(
 						'<li class="ui-state-default">$1<img src="$2" width="100" height="100" class="ui-draggable ui-draggable-handle" insertable="true" type="image"></li>'
 						.replace('$1',model.get("name")).replace('$2',model.get("thumbPath"))
 					);
 				});
-				
+
 				// dlg_addImageVal 처리 ( 함수로 만드는게 좋을 듯 )
 				dlg_addImageVal = $("img", $dlg_addImage).draggable({
 					containment: "document",    // 드래그로 움직임이 가능함 기준점을 설정함

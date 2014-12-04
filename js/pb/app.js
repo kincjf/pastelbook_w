@@ -17,12 +17,12 @@ define([
 	'pb/views/SceneCompositeView',
 	'pb/views/ScenePreviewCompositeView',
 
-	'pb/views/menu/MenuDialogView'
+	'pb/views/menu/MenuDialog'
 ], function (Marionette,
              Project,
              SceneList, SceneViewSetList,
              SceneCompositeView, ScenePreviewCompositeView,
-				MenuDialogView) {
+             MenuDialog) {
 	'use strict';
 
 	var app = new Marionette.Application();
@@ -64,7 +64,7 @@ define([
 	 */
 //	pb.type.Channels.globalChannel = Backbone.Radio.channel('global');
 	/** User Interface Loading*/
-	var menuDialogView = new MenuDialogView();
+	var menuDialog = new MenuDialog();
 	/** 관리할 View Area를 설정함.
 	 * 간단하게 scope를 설정하는 방법이므로 더 자세하게 설정하는 방법도 있음
 	 * marionette API 참조
@@ -74,28 +74,28 @@ define([
 		currentScene: '#dlg_current_scene',
 		currentScenePreview: '#dlg_scene_preview',
 
-		menuDialogView:'#dlg_main_menu'
+		menuDialog:'#dlg_main_menu'
 	});
 
 	app.addInitializer(function (options) {
 		app.currentScene.show(sceneCompositeView);
 		app.currentScenePreview.show(scenePreviewCompositeView);
 
-		app.menuDialogView.show(menuDialogView);
+		app.menuDialog.show(menuDialog);
 	});
 
 	/** 각 Menu들에 대한  jqueryUI.dialog */
 	app.addInitializer(function (options) {
-		app.menuDialogView.$el.dialog({
+		app.menuDialog.$el.dialog({
 				modal: true,
 				//autoOpen: true,
-				width: pb.ui.dlg_mainMenu.w,
-				height: pb.ui.dlg_mainMenu.h,
+				width: pb.ui.menuDlg.w,
+				height: pb.ui.menuDlg.h,
 				closeOnEscape: false,
 				minHeight: 50
 			}).parent().css({
-				top: pb.ui.dlg_mainMenu.y,
-				left: pb.ui.dlg_mainMenu.x
+				top: pb.ui.menuDlg.y,
+				left: pb.ui.menuDlg.x
 			});
 	});
 

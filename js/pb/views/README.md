@@ -15,5 +15,5 @@ ___
 ============
 ##* menu
 > project
-- ** dlg-load.js ** : 프로젝트 불러오기 기능 수행.
-- ** dlg-save.js ** : 프로젝트 저장하기 기능 수행.
+- ** LoadProjectDlg.js ** : 프로젝트 불러오기 기능 수행.
+- ** SaveProjectDlg.js ** : 프로젝트 저장하기 기능 수행.

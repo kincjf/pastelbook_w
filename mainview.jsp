@@ -35,20 +35,19 @@
 <input id="ip" style="visibility:hidden" value="<%=request.getRemoteAddr()%>"/>
 
 <!-- 메뉴 도구모음 추가 -->
-<%@ include file="./js/pb/templates/dlg-menu.jspf" %>
-<%@ include file="./js/pb/templates/dlg-new-menu.jspf" %>
+<%@ include file="./js/pb/templates/menu-dlg.jspf" %>
 
 <!-- ui-dialog : 점진적으로 ./js/pb/templates로 옮길 예정임. /-->
 <%@ include file="./js/pb/templates/dlg-current-scene.jspf" %>
 <%@ include file="./js/pb/templates/dlg-scene-preview.jspf" %>
-<%@ include file="./js/pb/templates/dlg-bottom-tab.jspf" %>
-<%@ include file="./js/pb/templates/dlg-bg-tool.jspf" %>
-<%@ include file="./js/pb/templates/dlg-animation.jspf" %>
-<%@ include file="./js/pb/templates/dlg-oldtool.jspf" %>
 <%@ include file="./js/pb/templates/dlg-add-image.jspf" %>
+
 <%@ include file="./js/pb/templates/dlg-upload-image.jspf" %>
-<!-- 프로젝트 - 내보내기 (파일 다이얼로그를 그대로 사용한다. 온클릭 이벤트 등록 -->
-<!-- 프로젝트 - 불러오기 (파일 다이얼로그를 그대로 사용한다. 온클릭 이벤트 등록 -->
-<%@ include file="./js/pb/templates/dlg-project-info.jspf" %>
+
+<%--<%@ include file="./js/pb/templates/dlg-bottom-tab.jspf" %>--%>
+<%--<%@ include file="./js/pb/templates/dlg-bg-tool.jspf" %>--%>
+<%--<%@ include file="./js/pb/templates/dlg-animation.jspf" %>--%>
+<%--<%@ include file="./js/pb/templates/dlg-oldtool.jspf" %>--%>
+<%--<%@ include file="./js/pb/templates/dlg-project-info.jspf" %>--%>
 </body>
 </html>
