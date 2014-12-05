@@ -293,8 +293,8 @@ define([
 			this.$el.one('click.add.image', this.ui.scene, _.bind(function (event) {
 					var imageOptions = {
 						imgSrc: options.imgSrc,
-						top: 250/* event.pageY */,
-						left: 250/* event.pageX */,
+						top: event.offsetY,
+						left: event.offsetX,
 						width: "100px",
 						height: "100px"
 					};
@@ -342,8 +342,8 @@ define([
 			 */
 			this.$el.one('click.add.textbox', this.ui.scene, _.bind(function (event) {
 					var textBoxOptions = {
-						top: event.pageY,
-						left: event.pageX,
+						top: event.offsetY,
+						left: event.offsetX,
 						width: "100px",
 						height: "100px"
 					};
@@ -394,8 +394,8 @@ define([
 					var videoOptions = {
 						videoSrc: options.videoSrc,
 						videoPreviewImage: options.videoPreviewImage,
-						top: 250/* event.pageY */,
-						left: 250/* event.pageX */,
+						top: event.offsetY,
+						left: event.offsetX,
 						width: "640px",
 						height: "480px"
 					};
