@@ -13,7 +13,7 @@
 		   <input id="btnUpload" type="button" value="업로드"/>
 
 			<script id="panel_local" type="text/x-handlebars-template">
-				<label for="text_local_url">파일 위치</label><input type="file" id="text_local_url" src="" placeholder="파일을 선택하세요"/>
+				<label for="text_local_url">파일 위치</label><form id="file_upload"><input type="file" id="text_local_url" src="" placeholder="파일을 선택하세요"/></form>
 			</script>
 			<script id="panel_internet" type="text/x-handlebars-template">
 				<label for="text_internet_url">인터넷 url</label><input type="text" id="text_internet_url" src="" placeholder="업로드할 이미지 주소를 입력하세요"/>

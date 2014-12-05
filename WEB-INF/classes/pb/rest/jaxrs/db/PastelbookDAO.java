@@ -9,8 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import pb.rest.jaxrs.vo.Image;
-
 public class PastelbookDAO<T> implements SimpleDAO<T> {
 	public final static String DB_PREFIX = "pb";
 	static String objectName = null;
@@ -45,13 +43,14 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		List<T> result;
 		
 		init();
-		session = sqlMapper.openSession(true);
+		session = sqlMapper.openSession();
 		result = session.selectList(objectName+"Mapper.findAll");
 		session.close();
 		
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public T findById(int parseInt) {
 		T result;
 		
@@ -67,7 +66,7 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		//Image result;
 		
 		init();
-		session = sqlMapper.openSession();
+		session = sqlMapper.openSession(true);
 		session.insert(objectName+"Mapper.create", picture);
 		//result = (Image)session.selectOne("ImageMapper.findByNotId", picture);
 		session.close();

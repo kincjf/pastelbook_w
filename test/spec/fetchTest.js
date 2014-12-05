@@ -47,7 +47,7 @@ define(['jquery', 'underscore', 'backbone', 'pubsub'],
 				//	return Backbone.sync(method, model, options);
 				//},
 
-				url: '/rest/picture',
+				url: 'rest/resource/resimage',
 
 				addEvent: function (model, collection, options) {
 					console.log("objCollection - addEvent");

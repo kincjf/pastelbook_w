@@ -12,7 +12,7 @@ define([
 
 	return Backbone.Collection.extend({
 		model: ResImage,
-		url: 'rest/picture',
+		url: 'rest/resource/image',
 		initialize: function(models, options) {
 
 		}

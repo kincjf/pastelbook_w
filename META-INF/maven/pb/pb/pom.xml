@@ -25,13 +25,7 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.1</version>
-      </plugin>
     </plugins>
-    <finalName>pastelbook_w</finalName>
   </build>
   <dependencies>
   	<dependency>
@@ -73,6 +67,21 @@
   		<groupId>com.sun.jersey</groupId>
   		<artifactId>jersey-servlet</artifactId>
   		<version>1.18.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.google.code.gson</groupId>
+  		<artifactId>gson</artifactId>
+  		<version>2.3.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.servlets</groupId>
+  		<artifactId>cos</artifactId>
+  		<version>05Nov2002</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-io</groupId>
+  		<artifactId>commons-io</artifactId>
+  		<version>20030203.000550</version>
   	</dependency>
   </dependencies>
 </project>

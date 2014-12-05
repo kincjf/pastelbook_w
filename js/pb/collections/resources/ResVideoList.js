@@ -12,7 +12,7 @@ define([
 
 	return Backbone.Collection.extend({
 		model: ResVideo,
-		url: 'rest/video',
+		url: 'rest/resource/video',
 		initialize: function(models, options) {
 
 		}

@@ -1,12 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<div id="dlg_project_info" title="프로젝트 정보"><!-- 메뉴로부터 온클릭 이벤트 등록 필요 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<div id="dlg_project_info" title="프로젝트 정보">
+	<!-- 메뉴로부터 온클릭 이벤트 등록 필요 -->
 	<ul>
 		<!--<li><span class="ui-icon ui-icon-bullet"></span><span id="create_date">제작날짜: 2014/05/27 12:39<span></li>-->
-		<li><span class="ui-icon ui-icon-bullet"></span>제목 : <span id="title"><span></li>
+		<li><span class="ui-icon ui-icon-bullet"></span>제목 : <span
+			id="title"></span></li>
 		<!--<li><span class="ui-icon ui-icon-bullet"></span><span id="path">경로 : D:\work <span></li>-->
-		<li><span class="ui-icon ui-icon-bullet"></span>저자 : <span id="author"><span></li>
+		<li><span class="ui-icon ui-icon-bullet"></span>저자 : <span
+			id="author"></span></li>
 		<!--<li><span class="ui-icon ui-icon-bullet"></span><span id="license">cc라이센스 : qweree 의 qwerqwer ( 링크 url or mail. ) <span></li>-->
-		<li><span class="ui-icon ui-icon-bullet"></span>설명 : <span id="description"><span></li>
+		<li><span class="ui-icon ui-icon-bullet"></span>설명 : <span
+			id="description"></span></li>
 	</ul>
 </div>
 <!-- <script src="js/pb/ui/dlg_project_info.js"></script> -->
