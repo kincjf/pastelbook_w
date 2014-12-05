@@ -39,13 +39,11 @@ define([
 	      'type': 'textbox'
 		},
 
-		className: "textbox",
+		className: BaseObjectView.prototype.className,
 
 		initialize: function (options) {
 			BaseObjectView.prototype.initialize.call(this, options);
 
-			this.className = BaseObjectView.prototype.className + " "
-			+ this.className;
 			_.extend(this.events, BaseObjectView.prototype.events);
 			_.extend(this.ui, BaseObjectView.prototype.ui);
 

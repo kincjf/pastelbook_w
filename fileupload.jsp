@@ -9,7 +9,9 @@
 	request.setCharacterEncoding("UTF-8");
 	String realFolder = "";
 	String filename1 = "";
-	int maxSize = 1024 * 1024 * 5;
+
+	int maxSize = 1024 * 1024 * 50;
+
 	String encType = "UTF-8";
 	
 	String saveDir = "resource"; // 나중에 지울것

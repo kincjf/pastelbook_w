@@ -31,6 +31,7 @@ require(['jquery', 'underscore', 'jquery_ui'],
 			'dlg_project_save': {x: 500, y: 200, w: 300, h: 150},
 			'dlg_project_load': {x: 500, y: 200, w: 300, h: 150},
 			'dlg_add_image': {x: 815, y: 518, w: 180, h: 400},
+			'addImageDlg': {x: 250, y: 250, w: 300, h: 500},
 			'addVideoDlg': {x: 250, y: 250, w: 300, h: 300},
 			'dlg_upload_image': {x: 815, y: 518, w: 180, h: 400}
 		};
@@ -126,11 +127,6 @@ require(['jquery', 'underscore', 'jquery_ui'],
 		require(['pastelbook_ui_dlg_scene_preview'], function (pastelbook_ui_dlg_scene_preview) {
 		});
 		require(['pastelbook_ui_dlg_add_image'], function (pastelbook_ui_dlg_add_image) {
-		});
-
-		/** error occured
-		 * - Data 구조를 위한 Image Object와 내 컬렉션을 위한 Image Object는 다르게 구성해야함 */
-		require(['pastelbook_ui_dlg_upload_image'], function (pastelbook_ui_dlg_upload_image) {
 		});
 
 		//require(['pastelbook_ui_dlg_animation'], function (pastelbook_ui_dlg_animation) {

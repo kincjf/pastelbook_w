@@ -15,9 +15,8 @@
 define([
 	'marionette',
 	'radio',
-	'pb_templates',
-	'pb/controllers/CaptureController'
-], function (Marionette, Radio, templates, CaptureController) {
+	'pb_templates'
+], function (Marionette, Radio, templates) {
 	'use strict';
 
 	return Marionette.ItemView.extend({

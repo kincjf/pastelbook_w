@@ -1,5 +1,5 @@
 require(['jquery', 'underscore', 'jquery_ui', 'handlebars',
-		'pb/models/resources/ResImage'],
+		'../models/resources/ResImage'],
 function ($, _, jquery_ui, handlebars, ResImage) {
 
 	var dlg_uploadImage = pb.ui.dialog('dlg_upload_image', { isCenter : true });
@@ -39,13 +39,11 @@ function ($, _, jquery_ui, handlebars, ResImage) {
 			    	contentType: false,
 			        success  : function(data, textStatus,jqXHR) {
 			        	imageModel.set({
-							"path" : data,
-							//"thumbPath" : "i_"+data
-							"thumbPath" : data
-			        	});
-			        	console.log(imageModel);
-			        	imageModel.save();
-			        	console.log('save?');
+					        "path" : data,
+					        //"thumbPath" : "i_"+data
+					        "thumbPath" : data
+				        });
+				        imageModel.save();
 			        	//alert("파일 "+data+"가 업로드 완료 되었습니다.");
 			        	//console.log('success.');
 			            //console.log(data);
@@ -104,6 +102,7 @@ function ($, _, jquery_ui, handlebars, ResImage) {
 
 		$("#btnUpload").on('click',function(){
 			/** expected error occured point */
+			console.log(imageModel);
 			imageModel.save();
 		});
 

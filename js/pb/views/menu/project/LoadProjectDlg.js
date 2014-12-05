@@ -27,7 +27,7 @@ define([
 		id: 'wrap_dlg_load_project',
 		/** CompositeView에서는 무조건 template을 써야되는 듯함. */
 		/** itemView에서는 잘 모르겠음. */
-		template: templates.dlgLoadProject,
+		template: templates.LoadProjectDlg,
 
 		attributes: {
 			title: '프로젝트 불러오기'

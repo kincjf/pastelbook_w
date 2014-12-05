@@ -3,7 +3,7 @@
  */
 /*global define */
 /**
- * Offline형 Video를 삽입하기 위한 대화창
+ * Video(Offline, Online)을 삽입하기 위한 대화창
  *
  */
 define([
@@ -61,7 +61,6 @@ define([
 		 */
 		onRender: function () {
 			this.$el.dialog({
-				modal: true,
 				//autoOpen: true,
 				width: pb.ui.addVideoDlg.w,
 				height: pb.ui.addVideoDlg.h,

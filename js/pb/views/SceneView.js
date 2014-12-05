@@ -176,8 +176,8 @@ define([
 			/** click : selectScenePreview */
 			this.comply("change:currentScene", this.selectSceneView);
 
-			/** 가로 텍스트박스 추가 비디오 추가 */
-			this.comply("add:object:textbox:h add:object:video", this.setupForInsertObjectByClick, this);
+			/** 이미지, 가로 텍스트박스, 비디오 추가 */
+			this.comply("add:object:image add:object:textbox:h add:object:video", this.setupForInsertObjectByClick, this);
 		},
 
 		renderCurrentScene: function () {
@@ -227,7 +227,9 @@ define([
 
 		/** 각 type별로 Click Event로 삽입할 수 있도록 Event를 지정함 */
 		setupForInsertObjectByClick: function (options) {
-			if (options.type == "textbox") {
+			if (options.type == "image") {
+				this.setupForInsertImage(options);
+			}else if (options.type == "textbox") {
 				this.setupForInsertTextBox(options);
 			} else if (options.type == "video") {
 				this.setupForInsertVideo(options);
@@ -241,13 +243,13 @@ define([
 			var type = $baseObject.attr('type');
 
 			if (type == "image") {
-				var imgSrc = $baseObject.attr('src');
+				var imageSrc = $baseObject.attr('src');
 				var size = $baseObject.css(["width", "height"]);
 
 				var imageOptions = {
 					top: ui.position.top,
 					left: ui.position.left,
-					src: imgSrc,
+					imgSrc: imageSrc,
 					width: size.width,
 					height: size.height
 				};
@@ -256,6 +258,56 @@ define([
 				 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
 				this.triggerMethod("AddImage", imageOptions);
 			}
+		},
+
+		setupForInsertImage: function(options) {
+			this.$el.tooltip({
+				content: function () {
+					return "Click and Insert Image!"
+				},
+				items: ".scene",
+				track: true
+			});
+
+			/** 삽입을 알리기 위해서 cursor 변경 */
+			this.ui.scene.css({cursor: "crosshair"});
+
+			/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
+			$(document).one("keyup.cancel.image", _.bind(function (event) {
+					if (event.which == 27 || event.namespace == "cancel.image") {
+						this.ui.scene.css({cursor: "default"});
+						this.$el.tooltip("destroy");
+					}
+
+					this.ui.scene.off('click.add.image');
+
+					myLogger.trace("SceneView - 'keyup.cancel.image'");
+				}, this)
+			);
+
+			/** scene에 click을 할 경우 TextBox가 삽입됨.
+			 * 기본크기 : 가로 - 100px, 세로 100px
+			 * ! - 이상하게 click event가 먹지 않는다
+			 * 그래서 [야메]로 하기로 했음
+			 */
+			this.$el.one('click.add.image', this.ui.scene, _.bind(function (event) {
+					var imageOptions = {
+						imgSrc: options.imgSrc,
+						top: 250/* event.pageY */,
+						left: 250/* event.pageX */,
+						width: "100px",
+						height: "100px"
+					};
+
+					$(document).trigger("keyup.cancel.image");
+
+					/* The on{Name} callback methods will still be called
+					 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
+					this.triggerMethod("AddImage", imageOptions);
+
+					myLogger.trace("SceneView - 'click.add.image'");
+				}, this)
+			);
 		},
 
 		setupForInsertTextBox: function(options) {
@@ -288,10 +340,10 @@ define([
 			 * ! - 이상하게 click event가 먹지 않는다
 			 * 그래서 [야메]로 하기로 했음
 			 */
-			$("body").one('click.add.textbox', this.ui.scene, _.bind(function (event) {
+			this.$el.one('click.add.textbox', this.ui.scene, _.bind(function (event) {
 					var textBoxOptions = {
-						top: 250/* event.pageY */,
-						left: 250/* event.pageX */,
+						top: event.pageY,
+						left: event.pageX,
 						width: "100px",
 						height: "100px"
 					};

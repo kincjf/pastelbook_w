@@ -6,8 +6,10 @@
 
 var pb = pb || {};
 
-require(['require', 'pb/controllers/CaptureController'],
-	function (require, CaptureController) {
+require(['require',
+		'pb/controllers/CaptureController', 'pb/controllers/FileController'],
+	function (require,
+	          CaptureController, FileController) {
 			/** 다이얼로그, current 정보등 단순 data instance는 낙타체로 하고,
 			 * Model, Collection, View, Channel, Scene등 Backbone instance는
 			 * 클래스 타입으로 명시할 것
@@ -66,7 +68,8 @@ require(['require', 'pb/controllers/CaptureController'],
 			pb.io = pb.io || {};
 
 			pb.util = pb.util || {
-				CaptureController: this.CaptureController || new CaptureController()
+				CaptureController: this.CaptureController || new CaptureController(),
+				FileController: this.FileController || new FileController()
 			};
 
 			/** global 변수 설정 */

@@ -8,10 +8,11 @@ define([
 	'pb_templates',
 	'pb/views/menu/project/SaveProjectDlg',
 	'pb/views/menu/project/LoadProjectDlg',
+	'pb/views/menu/addBaseObject/AddImageDlg',
 	'pb/views/menu/addBaseObject/AddVideoDlg'
 ], function (Marionette, templates,
              SaveProjectDlg, LoadProjectDlg,
-             AddVideoDlg) {
+             AddImageDlg, AddVideoDlg) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -30,6 +31,7 @@ define([
 
 			/** addBaseObject */
 			addSceneBtn: "li[data-behavior='addScene']",
+			openAddImageDlgBtn: "li[data-behavior='addImage']",
 			addTextBoxHBtn: "li[data-behavior='addTextBoxH']",
 			openAddVideoDlgBtn: "li[data-behavior='addVideo']"
 		},
@@ -45,6 +47,7 @@ define([
 			'click @ui.openExitDlgBtn': 'openExitProjectDlg',
 
 			'click @ui.addSceneBtn': 'addScene',
+			'click @ui.openAddImageDlgBtn': 'openAddImageDlg',
 			'click @ui.addTextBoxHBtn': 'addTextBoxH',
 			'click @ui.openAddVideoDlgBtn': 'openAddVideoDlg'
 		},
@@ -103,6 +106,20 @@ define([
 			//pb.current.scene.command("add:scene");
 			pb.type.SceneList.push({});
 			myLogger.trace("MenuDialogView - addScene");
+		},
+
+		openAddImageDlg: function(event) {
+			pb.type.View.menu.addBaseObject.AddImageDlg
+				= pb.type.View.menu.addBaseObject.AddImageDlg || new AddImageDlg().render();
+
+			var isOpen = pb.type.View.menu.addBaseObject.AddImageDlg.$el.dialog("isOpen");
+
+			if (!isOpen) {
+				/** 안보였던 dialog를 보이게 함 */
+				pb.type.View.menu.addBaseObject.AddImageDlg.$el.dialog("open");
+			}
+
+			myLogger.trace("MenuDialogView - openAddVideoDlg");
 		},
 
 		addTextBoxH: function(event) {

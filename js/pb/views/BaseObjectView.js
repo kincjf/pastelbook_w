@@ -27,6 +27,11 @@ define([
 			myLogger.trace("BaseObjectView - init");
 
 			this.objectContextMenus = {
+				"myCollection": {
+					name: "나의 컨텐츠", icon: "delete",
+					callback: _.bind(this.addMyContents, this)
+				},
+				"separator0": "--------",
 				"delete": {
 					name: "삭제", icon: "delete",
 					callback: _.bind(this.deleteObject, this)
@@ -140,6 +145,10 @@ define([
 		},
 
 		/** Custom Methods - contextMenu Callback */
+		addMyContents: function () {
+			myLogger.trace("BaseObjectView - addMyContents");
+		},
+
 		deleteObject: function (key, opt) {
 			$.contextMenu( 'destroy', this.$el );
 			this.$el.resizable( "destroy").draggable( "destroy");

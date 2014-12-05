@@ -39,10 +39,8 @@
 
 <!-- ui-dialog : 점진적으로 ./js/pb/templates로 옮길 예정임. /-->
 <%@ include file="./js/pb/templates/dlg-current-scene.jspf" %>
-<%@ include file="./js/pb/templates/dlg-scene-preview.jspf" %>
+<%@ include file="js/pb/deprecated/dlg-scene-preview.jspf" %>
 <%@ include file="./js/pb/templates/dlg-add-image.jspf" %>
-
-<%@ include file="./js/pb/templates/dlg-upload-image.jspf" %>
 
 <%--<%@ include file="./js/pb/templates/dlg-bottom-tab.jspf" %>--%>
 <%--<%@ include file="./js/pb/templates/dlg-bg-tool.jspf" %>--%>

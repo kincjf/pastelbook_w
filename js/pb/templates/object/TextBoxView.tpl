@@ -1,1 +1,1 @@
-<section contenteditable="true"><%= htmlString %></section>
+<section contenteditable="true" class="textbox"><%= htmlString %></section>

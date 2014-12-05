@@ -1,4 +1,4 @@
-<video class="video-js vjs-default-skin object video" controls
+<video class="video-js vjs-default-skin video" controls
        preload="auto" width="<%= width %>" height="<%= height %>"
        poster="<%= videoPreviewImage %>" >
     <source src="<%= videoSrc %>" type='video/mp4'>

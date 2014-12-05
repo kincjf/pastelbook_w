@@ -236,6 +236,14 @@ div.change {
 }
 
 /**
+* - Video
+*/
+.video {
+    width: inherit;
+    height: inherit;
+}
+
+/**
  * - Video
  */
 .vjs-paused .vjs-big-play-button {

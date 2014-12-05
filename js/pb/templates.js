@@ -23,8 +23,9 @@ define(function (require) {
 		MenuDialogView: require('tpl!pb/templates/menu/MenuDialogView.tpl'),
 
 		SaveProjectDlg: require('tpl!pb/templates/menu/project/SaveProjectDlg.tpl'),
-		SaveProjectToText: require('tpl!pb/templates/menu/project/SaveProjectToTextDlg.tpl'),
+		SaveProjectToTextDlg: require('tpl!pb/templates/menu/project/SaveProjectToTextDlg.tpl'),
 
+		AddImageDlg: require('tpl!pb/templates/menu/addBaseObject/AddImageDlg.tpl'),
 		AddVideoDlg: require('tpl!pb/templates/menu/addBaseObject/AddVideoDlg.tpl'),
 
 		LoadProjectDlg: require('tpl!pb/templates/menu/project/LoadProjectDlg.tpl'),

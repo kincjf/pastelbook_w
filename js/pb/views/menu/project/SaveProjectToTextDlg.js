@@ -27,7 +27,7 @@ define([
 
 		/** CompositeView에서는 무조건 template을 써야되는 듯함. */
 		/** itemView에서는 잘 모르겠음. */
-		template: templates.dlgSaveToText,
+		template: templates.SaveProjectToTextDlg,
 
 		attributes: {
 			title: '프로젝트 저장하기 - 텍스트'

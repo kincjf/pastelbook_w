@@ -14,7 +14,7 @@ define([
   return Marionette.Behavior.extend({
      defaults: {
         type: 'image',
-        imgSrc: "./​img/​dummy/​dummy.png"
+        imgSrc: "./img/dummy/dummy.png"
      },
 
      onAddImage: function (imageOptions) {

@@ -31,14 +31,12 @@ define([
          'type': 'video'
       },
 
-      className: "video",
+      className: BaseObjectView.prototype.className,
 
       initialize: function (options) {
          BaseObjectView.prototype.initialize.call(this, options);
          myLogger.trace("VideoView - init");
 
-         this.className = BaseObjectView.prototype.className + " "
-         + this.className;
          _.extend(this.events, BaseObjectView.prototype.events);
          _.extend(this.ui, BaseObjectView.prototype.ui);
 
