@@ -15,5 +15,6 @@ function showDetail() {
 	<div id="detail" style="display:none">
 		<% exception.printStackTrace(new java.io.PrintWriter(out)); %>
 	</div>
+</div>
 </BODY>
 </HTML>

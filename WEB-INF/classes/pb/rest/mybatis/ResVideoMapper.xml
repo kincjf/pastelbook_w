@@ -2,25 +2,25 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="VideoMapper">
+<mapper namespace="ResVideoMapper">
  <!-- findById -->
- <select id="findAll" resultType="pb.rest.jaxrs.vo.Video">
+ <select id="findAll" resultType="pb.rest.jaxrs.vo.ResVideo">
   select *
-  from pb_video 
+  from pb_res_video 
  </select>
- <select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.Video">
+ <select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.ResVideo">
   select *
-  from pb_video where _id= #{ _id }
+  from pb_res_video where _id= #{ _id }
  </select>
- <insert id="create" parameterType="pb.rest.jaxrs.vo.Video" useGeneratedKeys="true" keyProperty="_id">
-  INSERT INTO pb_video
+ <insert id="create" parameterType="pb.rest.jaxrs.vo.ResVideo" useGeneratedKeys="true" keyProperty="_id">
+  INSERT INTO pb_res_video
   VALUES (
   	#{type}, #{iconSrc}, #{imgSrc}, #{name}, #{showName}
   	, #{theme}, #{owner}, #{rsc_type}, #{emotion}, #{rsc_style}
   )
  </insert>
- <update id="update" parameterType="pb.rest.jaxrs.vo.Video" useGeneratedKeys="true" keyProperty="_id">
-  UPDATE pb_video 
+ <update id="update" parameterType="pb.rest.jaxrs.vo.ResVideo" useGeneratedKeys="true" keyProperty="_id">
+  UPDATE pb_res_video 
   SET 
     type =#{type} , iconSrc =#{iconSrc}, imgSrc =#{imgSrc}, name =#{name}, showName =#{showName}
  	, theme =#{theme}, owner =#{owner}, rsc_type =#{rsc_type}, emotion =#{emotion}, rsc_style =#{rsc_style}
@@ -28,11 +28,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </update>
  <delete id="remove" parameterType="int">
   delete 
-  from pb_video
+  from pb_res_video
   where _id= #{ _id }
  </delete>
- <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.Video">
+ <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResVideo">
   select *
-  from pb_video where _id= #{ _id }
+  from pb_res_video where _id= #{ _id }
  </select>
 </mapper>

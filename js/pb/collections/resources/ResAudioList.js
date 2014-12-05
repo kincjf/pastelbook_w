@@ -12,7 +12,7 @@ define([
 
 	return Backbone.Collection.extend({
 		model: ResAudio,
-		url: 'rest/audio',
+		url: 'rest/resource/audio',
 		initialize: function(models, options) {
 
 		}

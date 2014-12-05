@@ -7,7 +7,8 @@
 			버튼_(동영상 크기), 라벨_w*h(영상 가로세로 크기), 버튼_삽입<br />
 		</div>
 		<div id="tabs-2">
-			<ul>글상자종류
+			<p>글상자종류</p>
+			<ul>
 				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류1말풍선
 				</li>
 				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>글상자종류2더블말붕선
@@ -18,7 +19,9 @@
 				</li>
 			</ul>
 		</div>
-		<div id="tabs-3">도형종류1-8
+		<div id="tabs-3">
+			<p>도형종류1-8</p>
+			<ul>
 				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>동그라미
 				</li>
 				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>-
@@ -35,6 +38,7 @@
 				</li>
 				<li><img src="./img/dummy/dummy.png" width="80" height="80"/>오른쪽화살표
 				</li>
+			</ul>
 		</div>
 		<div id="tabs-4"><!-- 현재 씬 클릭후 오른쪽 클릭한다음에 배경서식 눌렀을때, 혹은 배경도구 밑에 작은 사이즈로 나오는 배경 썸네일 오른쪽 클릭 했을때?( 이건 좀 애매 ) -->
 			-배경-
