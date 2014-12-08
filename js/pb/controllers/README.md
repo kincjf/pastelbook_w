@@ -11,5 +11,7 @@ http://marionettejs.com/docs/marionette.controller.html
 를 참조바람
 ___
 
-###* test1
-> test1  
+##* /controllers
+- ** CaptureController.js ** : 해당 화면 캡처 기능(html2canvas), 현재는 ScenePreview에서만 사용중임
+- ** CustomError.js ** : Tool 사용시 에러가 나는 경우, 예외처리와 안내문구 표시, 가이드를 제공함
+- ** FileController.js ** : 각-각의 로컬 파일을 읽고 DOM을 이용하여 처리하는 기능을 제공함

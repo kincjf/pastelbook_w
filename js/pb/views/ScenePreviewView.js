@@ -77,14 +77,13 @@ define([
 		 * Trace 로그를 보면 알 수 있음.
 		 */
 		onShow: function(v, c) {
+			this.setThumbnail(this.options);
 			myLogger.trace("ScenePreviewView - onShow");
 		},
 
 		/** This event / callback is useful for DOM-dependent UI plugins such as jQueryUI or KendoUI.
 		 */
 		onDomRefresh: function() {
-			this.setThumbnail(this.options);
-
 			myLogger.trace("ScenePreviewView - onDomRefresh");
 		},
 
