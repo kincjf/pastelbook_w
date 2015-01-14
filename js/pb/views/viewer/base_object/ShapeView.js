@@ -40,11 +40,11 @@ define([
     },
 
     initialize: function () {
-        myLogger.trace("BaseObjectView - init");
-        this.value = this.model.get('title');
+	    myLogger.trace("BaseObjectView - init");
+	    this.value = this.model.get('title');
 
-        this.listenTo(this.model, 'change', this.render, this);
-     },
+      this.listenTo(this.model, 'change', this.render, this);
+    },
 
     // "show" / onShow - Called on the view instance when the view has been rendered and displayed.
     onShow: function(v) {

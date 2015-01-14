@@ -1,0 +1,252 @@
+/**
+ *  14. 9. 25.	v 0.0.1		Checked by HONG WON GI
+ *  - jquery ui css중 너비 많이 차지하는 제목표시줄 등을 줄이기 위해서 작업한내용을 금일 저장
+ */
+
+body {
+    font: 62.5% "돋움", sans-serif;
+    margin: 0.1em;
+    background-color: gray
+}
+
+/*.fakewindowcontain .ui-widget-overlay {*/
+/*position: absolute;*/
+/*}*/
+
+/* hong */
+
+/* pb-win */
+.ui-widget-content {
+    border-width: .2em;
+    padding: .1em;
+}
+
+.ui-widget-content p {
+    margin: .0em;
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 0px;
+}
+
+.ui-draggable .ui-dialog-titlebar {
+    cursor: pointer;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    padding: .2em;
+    margin-bottom: .1em;
+}
+
+/*
+	ui-icon 의 줄바꿈 ( line break 문제 해결 하기 위해 )  - 줄바꿈 안되게
+*/
+.ui-icon {
+    display: inline-block;
+}
+
+/*
+	각 다이얼로그 세부 항목
+*/
+/* 리스트 왼쪽 여백과 불릿 아이콘 안나오게 하기 위해 */
+
+#dlg_scene_preview ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#dlg_scene_preview li {
+    margin: 5px;
+    padding: 5px;
+    width: 150px;
+}
+
+#dlg_bg_tool ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#dlg_bg_too li {
+    margin: 5px;
+    padding: 5px;
+    width: 150px;
+}
+
+#dlg_project_info {
+    padding: 5px;
+}
+
+#dlg_project_info ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+/* 드래그시 스크롤 되서 정신사납지 않게 하기 위해*/
+#dlg_current_scene {
+    overflow: hidden;
+}
+
+/* 씬 미리보기 화면 테두리 추가 */
+.ui-state-default img {
+    border: 1px rgba(0, 0, 0, 0.2) solid;
+}
+
+#dlg_add_image ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+/*
+	디버그용
+*/
+#dlgname {
+    color: #6666ff;
+    font-size: 8px;
+}
+
+#dlg_dim_2D {
+    color: gray;
+    font-size: 8px;
+}
+
+#inter_model {
+    border: 1px gray solid;
+    color: gray;
+    font-size: 8px;
+}
+
+#inter_model ul {
+    list-style-type: none;
+    margin: 2px;
+    padding: 2px;
+}
+
+#inter_model li {
+    margin: 0px;
+    padding: 0px;
+}
+
+div.change {
+    /*변경 생긴 다이얼로그 강조*/
+    border: 2px solid rgba(255, 0, 0, 0.5);
+}
+
+/* 다이얼로그 제목표시줄, 색상 변경을 위해*/
+.ui-widget-header {
+    border: 1px solid #aaaaaa;
+    background: #aaaaaa;
+    color: #222222;
+    font-weight: bold;
+}
+
+.active {
+    border: 1px solid #aaaaaa;
+    background: red;
+    color: #222222;
+    font-weight: bold;
+}
+
+/**
+* Global
+*/
+.wrap {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.fit {
+    width: inherit;
+    height: inherit;
+}
+
+.hide {
+    display: none;
+}
+
+/**
+* Menu
+*/
+#projectData {
+    width: 270px;
+    height: 200px;
+}
+
+/**
+* Scene
+*/
+.scene-wrap {
+    /* 일단 정해진게 없으니 400px로 함. */
+    height: 400px;
+}
+
+.scene {
+    height: 100%;
+    list-style-type: none;
+}
+
+/*  jQuery UI Selectable  */
+.scene .ui-selecting {
+    background: #FECA40;
+}
+
+.scene .ui-selected {
+    background: #F39814;
+    color: white;
+}
+
+.underline {
+    border-bottom: black 2px solid;
+}
+
+.ui-selected {
+    border: aqua 2px solid;
+}
+
+/**
+* Object
+*/
+
+.object {
+    display: inline-block;
+    position: absolute;
+}
+
+/**
+* - Image
+*/
+.image {
+    width: inherit;
+    height: inherit;
+}
+
+/**
+* - TextBox
+*/
+.textbox {
+    width: inherit;
+    height: inherit;
+}
+
+/**
+* - Video
+*/
+.video {
+    width: inherit;
+    height: inherit;
+}
+
+/**
+ * - Video
+ */
+.vjs-paused .vjs-big-play-button {
+    display: none;
+}

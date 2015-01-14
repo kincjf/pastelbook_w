@@ -1,185 +1,734 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>쉬운 저작도구 - PastelBook</title>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
-    <meta name="author" content="Pastel-ePub"/>
-    <meta name="description" content="interactive eBook Authoring tool."/>
-    <meta name="keywords" content="pastelbook, interactive, ebook, epub"/>
-    <meta name="Resource-type" content="Document"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
+    <meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
+    <meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
+    <title>SENTIR AGENCY</title>
 
-    <link rel="stylesheet" type="text/css"
-          href="./js/lib/fullpage/jquery.fullPage.custom.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="./css/index.css"/>
+    <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="./js/lib/jquery-1.10.2.js"></script>
-    <script src="./js/lib/jquery_ui/jquery-ui.js"></script>
-    <script src="./js/lib/jquery_ui/jquery.ui.touch-punch.js"></script>
+    <!-- PLUGINS CSS-->
+    <link href="assets/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
 
-    <script src="./js/lib/fullpage/jquery.fullPage.custom.js"></script>
-    <script src="./js/lib/fullpage/jquery.leanModal.min.js"></script>
 
-    <script src="js/service/facebook-sync.js"></script>
-    <!-- jQuery plugin leanModal under MIT License http://leanmodal.finelysliced.com.au/ -->
-    <script>
-        $(document).ready(function () {
-            var pepe = $.fn.fullpage({
-                slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#FFA07A'],
-                anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage'],
-                menu: '#menu',
-                loopTop: true,
-                loopBottom: true
-            });
-            $('#loginform').submit(function (e) {
-                return true;
-            });
-            $('#modaltrigger').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
-        });
-    </script>
+    <!-- MAIN CSS (REQUIRED ALL PAGE)-->
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-<div id="fb-root"></div>
-<script>
-    window.fbAsyncInit = function () {
-        FB.init({appId: '1418643838390630', status: true, cookie: true, xfbml: true});
 
-        FB.Event.subscribe('auth.authResponseChange', function (response) {
-            if (response.status === 'connected') {
-                console.log('Logged in');
-            } else {
-                FB.login();
+<body class="tooltips no-padding">
+
+<!--
+===========================================================
+BEGIN PAGE
+===========================================================
+-->
+
+
+<!-- BEGIN TOP NAVBAR -->
+<div class="top-navbar">
+    <div class="container">
+
+        <!-- Begin logo -->
+        <div class="logo">
+            <a href="index.html"><img src="assets/img/logo.png" alt="Logo"></a>
+        </div>
+        <!-- /.logo -->
+        <!-- End logo -->
+
+        <!-- Begin button toggle nav -->
+        <div class="btn-toggle-nav" id="btn-toggle-nav"><i class="fa fa-bars"></i></div>
+        <div class="btn-toggle-search" id="btn-icon-search"><i class="fa fa-search"></i></div>
+        <div class="btn-toggle-phone" id="btn-icon-phone"><i class="fa fa-phone"></i></div>
+        <!-- End button toggle nav -->
+
+        <!-- Begin visible phone and search nav -->
+        <div id="phone-sub" class="nav-right-info">
+            <i class="fa fa-times times-icon" id="close-phone-nav"></i>
+
+            <p class="phone">Call us : <strong>+1 123 4567 7899</strong></p>
+        </div>
+        <div id="search-sub" class="nav-right-info">
+            <i class="fa fa-times times-icon" id="close-search-nav"></i>
+
+            <form role="form">
+                <input type="text" class="form-control" placeholder="Search something...">
+            </form>
+        </div>
+        <!-- End visible phone and search nav -->
+
+        <!-- Begin nav menu -->
+        <ul class="menus">
+            <li class="parent">
+                <a href="#fakelink">Home</a>
+                <ul class="sub-menus">
+                    <li class="sub-list"><a href="index.html">Default</a></li>
+
+                    <li class="sub-list"><a href="index-fancy-color.html">Fancy color navbar <span
+                            class="label label-danger">HOT</span></a></li>
+                    <li class="sub-list"><a href="index-static-nav.html">Static nav position</a></li>
+                    <li class="sub-list">
+                        <a href="#fakelink">Dark nav color <span class="badge badge-success">3</span></a>
+                        <ul class="subsub-menus">
+                            <li class="subsub-list"><a href="index-dark-nav-static-image.html">Static image header</a>
+                            </li>
+                            <li class="subsub-list"><a href="index-dark-nav-image-slide.html">Image slide</a></li>
+                            <li class="subsub-list"><a href="index-dark-nav-content-slide.html">Content slide</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-list">
+                        <a href="#fakelink">Light nav color <span class="badge badge-warning">3</span></a>
+                        <ul class="subsub-menus">
+                            <li class="subsub-list"><a href="index-light-nav-static-image.html">Static image header</a>
+                            </li>
+                            <li class="subsub-list"><a href="index-light-nav-image-slide.html">Image slide</a></li>
+                            <li class="subsub-list"><a href="index-light-nav-content-slide.html">Content slide</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-list">
+                        <a href="#fakelink">Transparent nav <span class="badge badge-info">3</span></a>
+                        <ul class="subsub-menus">
+                            <li class="subsub-list"><a href="index-trans-nav-static-image.html">Static image header</a>
+                            </li>
+                            <li class="subsub-list"><a href="index.html">Image slide <span class="label label-primary">DEFAULT</span></a>
+                            </li>
+                            <li class="subsub-list"><a href="index-trans-nav-content-slide.html">Content slide</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sub-list"><a href="index-background-color.html">Background color</a></li>
+                    <li class="sub-list">
+                        <a href="#fakelink">Templates <span class="label label-primary">PACKAGE</span></a>
+                        <ul class="subsub-menus">
+                            <li class="subsub-list"><a href="../../index.html" target="_blank">Sentir - Admin
+                                template</a></li>
+                            <li class="subsub-list"><a href="index-onepage.html">Sentir - One page</a></li>
+                            <li class="subsub-list"><a href="../comingsoon/index.html">Sentir - Coming soon</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent">
+                <a href="#fakelink">Pages</a>
+                <ul class="sub-menus">
+                    <li class="sub-list"><a href="about-us.html">About us</a></li>
+                    <li class="sub-list"><a href="full-width.html">Full width</a></li>
+                    <li class="sub-list"><a href="sidebar-left.html">Sidebar left</a></li>
+                    <li class="sub-list"><a href="sidebar-right.html">Sidebar right</a></li>
+                    <li class="sub-list"><a href="service.html">Services</a></li>
+                    <li class="sub-list"><a href="testimonial.html">Testimonial</a></li>
+                    <li class="sub-list"><a href="pricing-table.html">Pricing table</a></li>
+                    <li class="sub-list"><a href="blank.html">Blank page</a></li>
+                </ul>
+            </li>
+            <li class="parent">
+                <a href="shortcodes.html">Shortcodes</a>
+            </li>
+            <li class="parent">
+                <a href="#fakelink">Portfolio</a>
+                <ul class="sub-menus">
+                    <li class="sub-list"><a href="portfolio-4-column.html">4 columns</a></li>
+                    <li class="sub-list"><a href="portfolio-3-column.html">3 columns</a></li>
+                    <li class="sub-list"><a href="portfolio-single.html">Portfolio single</a></li>
+                </ul>
+            </li>
+            <li class="parent">
+                <a href="#fakelink">Blog</a>
+                <ul class="sub-menus">
+                    <li class="sub-list"><a href="blog-list.html">Blog list</a></li>
+                    <li class="sub-list"><a href="blog-detail.html">Blog detail</a></li>
+                </ul>
+            </li>
+            <li class="parent"><a href="contact.html">Contact</a></li>
+
+            <!-- Begin right icon -->
+            <li class="parent right-icon">
+                <i class="fa fa-search" id="nav-icon-search"></i>
+            </li>
+            <li class="parent right-icon">
+                <i class="fa fa-phone" id="nav-icon-phone"></i>
+            </li>
+            <!-- End right icon -->
+        </ul>
+        <!-- End nav menu -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.top-navbar -->
+<!-- END TOP NAVBAR -->
+
+
+<!-- BEGIN HEADER FULL IMAGE SLIDE -->
+<div class="full-slide-image" id="full-img-slide">
+    <div class="slide-inner more-padding">
+        <div class="slide-text-content">
+            <div class="container-fluid">
+                <h1>BOOTSTRAP TEMPLATE SPECIALIST</h1>
+
+                <div class="clear"></div>
+                <h3>
+                    필요한 내용을 채워 넣으세요
+                </h3>
+
+                <div class="clear"></div>
+                <button class="btn btn-lg btn-warning btn-learn-more btn-border-only">LEARN MORE</button>
+                <a href="http://goo.gl/V32dLM" target="_blank" class="btn btn-lg btn-success btn-learn-more">PURCHASE
+                    NOW</a>
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /.slide-text-content -->
+    </div>
+    <!-- /.slide-inner -->
+</div>
+<!-- /.full-slide-image -->
+<!-- END HEADER FULL IMAGE SLIDE -->
+
+
+<!-- BEGIN LATEST WORK SECTION -->
+<div class="section work-section">
+    <div class="container">
+        <div class="section-heading">
+            <div class="inner-border"></div>
+            <h3>LATEST WORK</h3>
+        </div>
+        <!-- /.section-heading -->
+        <ul class="work-category-wrap">
+            <li class="filter" data-filter="all">ALL</li>
+            <li class="filter" data-filter="template">TEMPLATE</li>
+            <li class="filter" data-filter="web_design">WEB DESIGN</li>
+            <li class="filter" data-filter="mobile_apps">MOBILE APPS</li>
+            <li class="filter" data-filter="printing">PRINTING</li>
+            <li class="filter" data-filter="other">OTHER</li>
+        </ul>
+
+        <div id="work-mixitup" class="work-content">
+            <div class="row">
+
+                <!-- Begin work item -->
+                <div class="col-sm-4 col-md-3 col-xs-6 mix printing">
+                    <div class="work-item">
+                        <div class="hover-wrap">
+                            <!-- data-target의 값과 해당 modal id의 값을 동일하게 하면
+                                 클릭시 model popup이 작동함-->
+                            <a>
+								<i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
+                            </a>
+                        </div>
+                        <!-- /.hover-wrap -->
+                        <img src="assets/img/work/work.jpg" alt="Img work">
+
+                        <div class="the-box no-border transparent no-margin">
+                            <p class="project-name">Awesome project name</p>
+
+                            <p class="project-category">PRINTING</p>
+                        </div>
+                        <!-- /.the-box no-border transparent -->
+                    </div>
+                    <!-- /.work-item -->
+                </div>
+                <!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+                <!-- End work item -->
+
+                <!-- Begin work item -->
+                <div class="col-sm-4 col-md-3 col-xs-6 mix template">
+                    <div class="work-item">
+                        <div class="hover-wrap">
+                            <a>
+                                <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
+                            </a>
+                        </div>
+                        <!-- /.hover-wrap -->
+                        <img src="assets/img/work/work.jpg" alt="Img work">
+
+                        <div class="the-box no-border transparent no-margin">
+                            <p class="project-name">Awesome project name</p>
+
+                            <p class="project-category">TEMPLATE</p>
+                        </div>
+                        <!-- /.the-box no-border transparent -->
+                    </div>
+                    <!-- /.work-item -->
+                </div>
+                <!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+                <!-- End work item -->
+
+                <!-- Begin work item -->
+                <div class="col-sm-4 col-md-3 col-xs-6 mix web_design">
+                    <div class="work-item">
+                        <div class="hover-wrap">
+                            <a>
+                                <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
+                            </a>
+                        </div>
+                        <!-- /.hover-wrap -->
+                        <img src="assets/img/work/work.jpg" alt="Img work">
+
+                        <div class="the-box no-border transparent no-margin">
+                            <p class="project-name">Awesome project name</p>
+
+                            <p class="project-category">WEB DESIGN</p>
+                        </div>
+                        <!-- /.the-box no-border transparent -->
+                    </div>
+                    <!-- /.work-item -->
+                </div>
+                <!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+                <!-- End work item -->
+
+                <!-- Begin work item -->
+                <div class="col-sm-4 col-md-3 col-xs-6 mix mobile_apps">
+                    <div class="work-item">
+                        <div class="hover-wrap">
+                            <a>
+                                <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
+                            </a>
+                        </div>
+                        <!-- /.hover-wrap -->
+                        <img src="assets/img/work/work.jpg" alt="Img work">
+
+                        <div class="the-box no-border transparent no-margin">
+                            <p class="project-name">Awesome project name</p>
+
+                            <p class="project-category">MOBILE APPS</p>
+                        </div>
+                        <!-- /.the-box no-border transparent -->
+                    </div>
+                    <!-- /.work-item -->
+                </div>
+                <!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+                <!-- End work item -->
+
+                <!-- Begin work item -->
+                <div class="col-sm-4 col-md-3 col-xs-6 mix template">
+                    <div class="work-item">
+                        <div class="hover-wrap">
+                            <a>
+                                <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
+                            </a>
+                        </div>
+                        <!-- /.hover-wrap -->
+                        <img src="assets/img/work/work.jpg" alt="Img work">
+
+                        <div class="the-box no-border transparent no-margin">
+                            <p class="project-name">Awesome project name</p>
+
+                            <p class="project-category">TEMPLATE</p>
+                        </div>
+                        <!-- /.the-box no-border transparent -->
+                    </div>
+                    <!-- /.work-item -->
+                </div>
+                <!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+                <!-- End work item -->
+
+                <!-- Begin work item -->
+                <div class="col-sm-4 col-md-3 col-xs-6 mix mobile_apps">
+                    <div class="work-item">
+                        <div class="hover-wrap">
+                            <a>
+                                <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
+                            </a>
+                        </div>
+                        <!-- /.hover-wrap -->
+                        <img src="assets/img/work/work.jpg" alt="Img work">
+
+                        <div class="the-box no-border transparent no-margin">
+                            <p class="project-name">Awesome project name</p>
+
+                            <p class="project-category">MOBILE APPS</p>
+                        </div>
+                        <!-- /.the-box no-border transparent -->
+                    </div>
+                    <!-- /.work-item -->
+                </div>
+                <!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+                <!-- End work item -->
+
+                <!-- Begin work item -->
+                <div class="col-sm-4 col-md-3 col-xs-6 mix printing">
+                    <div class="work-item">
+                        <div class="hover-wrap">
+                            <a>
+                                <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
+                            </a>
+                        </div>
+                        <!-- /.hover-wrap -->
+                        <img src="assets/img/work/work.jpg" alt="Img work">
+
+                        <div class="the-box no-border transparent no-margin">
+                            <p class="project-name">Awesome project name</p>
+
+                            <p class="project-category">PRINTING</p>
+                        </div>
+                        <!-- /.the-box no-border transparent -->
+                    </div>
+                    <!-- /.work-item -->
+                </div>
+                <!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+                <!-- End work item -->
+
+                <!-- Begin work item -->
+                <div class="col-sm-4 col-md-3 col-xs-6 mix other">
+                    <div class="work-item">
+                        <div class="hover-wrap">
+                            <a>
+                                <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
+                            </a>
+                        </div>
+                        <!-- /.hover-wrap -->
+                        <img src="assets/img/work/work.jpg" alt="Img work">
+
+                        <div class="the-box no-border transparent no-margin">
+                            <p class="project-name">Awesome project name</p>
+
+                            <p class="project-category">OTHER</p>
+                        </div>
+                        <!-- /.the-box no-border transparent -->
+                    </div>
+                    <!-- /.work-item -->
+                </div>
+                <!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+                <!-- End work item -->
+
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#work-mixitup -->
+
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.section -->
+<!-- END LATEST WORK SECTION -->
+
+
+<!-- BEGIN HAPPY CLIENT SECTION -->
+<div class="section bg-light">
+    <div class="container">
+        <div class="section-heading">
+            <div class="inner-border"></div>
+            <h3>HAPPY CLIENT</h3>
+        </div>
+        <!-- /.section-heading -->
+
+        <div id="owl-testimonial" class="owl-carousel testimonial">
+            <div class="item">
+                <p class="text-testi">
+                    파스텔플러스는 사람과 컨텐츠, 문화를 더해서 따뜻한 디지털 컨텐츠를 위한 다양한 IT 솔루션을 제공합니다.
+                </p>
+                <img src="assets/img/avatar/small/avatar.jpg" class="avatar img-circle" alt="Avatar">
+
+                <p class="client-name">Karen Wallace</p>
+
+                <p class="client-home text-danger">CEO - Yogyakarta, Indonesia</p>
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <p class="text-testi">
+                    파스텔플러스는 재미와 경험, 감동을 담아 다양한 스마트 디바이스에 딱 맞는 더 스마트한 전자책, 컨텐츠를 만드는 방법에 대하여 항상 고민하고 연구합니다.
+                </p>
+                <img src="assets/img/avatar/small/avatar.jpg" class="avatar img-circle" alt="Avatar">
+
+                <p class="client-name">Phillip Lucas</p>
+
+                <p class="client-home text-danger">CEO - Yogyakarta, Indonesia</p>
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <p class="text-testi">
+                    또한 기록문화의 변화에 맞춰 누구나 스마트 컨텐츠를 쉽게 만들고 간직할 수 있는 환경을 제공하기 위한 핵심기술, 플랫폼 개발, 미디어 컨텐츠 활용 및 구현 기술등을 연구/개발하고
+                    있습니다.
+                </p>
+                <img src="assets/img/avatar/small/avatar.jpg" class="avatar img-circle" alt="Avatar">
+
+                <p class="client-name">yours</p>
+
+                <p class="client-home text-danger">CEO - Kim SeonHo</p>
+            </div>
+            <!-- /.item -->
+        </div>
+        <!-- /#owl-testimonial -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.section -->
+<!-- END HAPPY CLIENT SECTION -->
+
+
+<!-- BEGIN CLIENT LOGO SECTION -->
+<div class="section">
+    <div class="container">
+        <div id="owl-client-logo" class="owl-carousel client-logo">
+            <div class="item">
+                <img src="assets/img/client-logo/graphicriver.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <img src="assets/img/client-logo/photodune.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <img src="assets/img/client-logo/themeforest.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <img src="assets/img/client-logo/codecanyon.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <img src="assets/img/client-logo/3docean.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <img src="assets/img/client-logo/graphicriver.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <img src="assets/img/client-logo/photodune.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <img src="assets/img/client-logo/themeforest.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <img src="assets/img/client-logo/codecanyon.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+            <div class="item">
+                <img src="assets/img/client-logo/3docean.png" alt="Client logo">
+            </div>
+            <!-- /.item -->
+        </div>
+        <!-- /#owl-client-logo -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.section -->
+<!-- END CLIENT LOGO SECTION -->
+
+
+<!-- BEGIN FOOTER -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <h4>ABOUT SENTIR AGENCY</h4>
+
+                <p>
+                    주소안내 : 전북 전주시 덕진구 백제대로 567 기초교양교육원 111호 파스텔플러스
+                </p>
+
+                <p>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Facebook"
+                                           class="fa fa-facebook icon-sm icon-rounded icon-social-footer icon-facebook"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Twitter"
+                                           class="fa fa-twitter icon-sm icon-rounded icon-social-footer icon-twitter"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Google plus"
+                                           class="fa fa-google-plus icon-sm icon-rounded icon-social-footer icon-google-plus"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Dribbble"
+                                           class="fa fa-dribbble icon-sm icon-rounded icon-social-footer icon-dribbble"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Pinterest"
+                                           class="fa fa-pinterest icon-sm icon-rounded icon-social-footer icon-pinterest"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Github"
+                                           class="fa fa-github icon-sm icon-rounded icon-social-footer icon-github"></i></a>
+                </p>
+            </div>
+            <!-- /.col-sm-4 -->
+            <div class="col-sm-6 col-md-3">
+                <h4>CONTACT</h4>
+
+                <div class="media media-contact">
+						  <span class="pull-left">
+							<i class="fa fa-map-marker media-object"></i>
+						  </span>
+
+                    <div class="media-body">
+                        <address>
+                            PastelPlus, Inc.<br>
+                            전북 전주시 덕진구 백제대로 567<br>
+                            기초교양교육원 111호 파스텔플러스<br>
+                            <abbr title="Phone">P:</abbr> (123) 456-7890
+                        </address>
+                    </div>
+                    <!-- /.media-body -->
+                </div>
+                <!-- /.media -->
+                <div class="media media-contact">
+						  <span class="pull-left">
+							<i class="fa fa-envelope media-object"></i>
+						  </span>
+
+                    <div class="media-body">
+                        <address>
+                            Full Name<br>
+                            <a href="mailto:#">pastelplus@example.com</a>
+                        </address>
+                    </div>
+                    <!-- /.media-body -->
+                </div>
+                <!-- /.media -->
+            </div>
+            <!-- /.col-sm-3 -->
+            <div class="clearfix visible-sm"></div>
+            <div class="col-sm-6 col-md-2">
+                <h4>NAVIGATION</h4>
+                <ul class="list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html">About us</a></li>
+                    <li><a href="index.html">Our services</a></li>
+                    <li><a href="index.html">Portfolio</a></li>
+                    <li><a href="index.html">Pricing</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                </ul>
+            </div>
+            <!-- /.col-sm-2 -->
+            <div class="col-sm-6 col-md-3">
+                <h4>SIGN UP NEWSLETTER</h4>
+
+                <p>
+                    솔루션 / 플랫폼 개발, Web Service / Application
+                </p>
+
+                <form role="form">
+                    <div class="input-group subscribe">
+                        <input type="text" class="form-control" placeholder="Enter email address">
+							  <span class="input-group-btn">
+								<button class="btn btn-info" type="button"><i class="fa fa-chevron-right"></i></button>
+							  </span>
+                    </div>
+                    <!-- /input-group -->
+                </form>
+            </div>
+            <!-- /.col-sm-3 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</footer>
+<!-- /.section -->
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                Copyright &copy; 2014 <a href="#fakelink">Your company</a>
+            </div>
+            <!-- /.col-sm-5 -->
+            <div class="col-sm-7 text-right">
+                <ul class="list-inline">
+                    <li><a href="#fakelink">Terms and condition</a></li>
+                    <li><a href="#fakelink">Privacy policy</a></li>
+                    <li><a href="#fakelink">FAQ</a></li>
+                </ul>
+            </div>
+            <!-- /.col-sm-7 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.footer -->
+<!-- END FOOTER -->
+
+
+<!-- BEGIN BACK TO TOP BUTTON -->
+<div id="back-top">
+    <i class="fa fa-chevron-up"></i>
+</div>
+<!-- END BACK TO TOP -->
+
+<!-- BEGIN PROJECT SHOW MODAL TEMPLATE -->
+<!-- 해당 id를 인식하여 model popup이 작동함-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:auto;height:auto">
+        <div class="modal-content" style="width:auto;height:auto">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="false">close</button>
+                <div style="float:right; margin-right:1.0em;">view수</div>
+                <div><h4 class="modal-title">Modal title</h4></div>
+            </div>
+            <div class="modal-body" data-dismiss="modal">
+                <div style="background-color:black; margin:auto">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div style="float:left">ID</div>
+                <div>날짜</div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- END PROJECT PROJECT SHOW MODAL TEMPLATE -->
+
+<!--
+===========================================================
+END PAGE
+===========================================================
+-->
+
+
+<!--
+===========================================================
+Placed at the end of the document so the pages load faster
+===========================================================
+-->
+<!-- MAIN JAVASRCIPT (REQUIRED ALL PAGE)-->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/plugins/retina/retina.min.js"></script>
+<script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+<script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="assets/plugins/mixitup/jquery.mixitup.js"></script>
+<script>
+    $("#full-img-slide").backstretch([
+        "assets/img/image-1.jpg",
+        "assets/img/image-3.jpg"
+    ], {
+        fade: 750,
+        duration: 6000
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $(function () {
+            var shrinkHeader = 250;
+            $(window).scroll(function () {
+                var scroll = getCurrentScroll();
+                if (scroll >= shrinkHeader) {
+                    $('.top-navbar').addClass('shrink-nav');
+                    $('.top-navbar').addClass('dark-color');
+                }
+                else {
+                    $('.top-navbar').removeClass('shrink-nav');
+                    $('.top-navbar').removeClass('dark-color');
+                }
+            });
+            function getCurrentScroll() {
+                return window.pageYOffset || document.documentElement.scrollTop;
             }
         });
-    };
-
-    (function (d) {
-        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement('script');
-        js.id = id;
-        js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        ref.parentNode.insertBefore(js, ref);
-    }(document, 'script', 'facebook-jssdk'));
+    })
 </script>
-<!-- navigator -->
-<ul id="menu">
-    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">PastelBook?</a></li>
-    <li data-menuanchor="secondPage"><a href="#secondPage">특징(Point)</a></li>
-    <li data-menuanchor="3rdPage"><a href="#3rdPage">사용방법(How)</a></li>
-    <li data-menuanchor="4thPage"><a href="#4thPage">Example</a></li>
-    <li class="flatbtn"><a href="#loginmodal" id="modaltrigger">Login/Join</a></li>
-    <li class="flatbtn">
-        <div onclick="facebookLogin()" style="cursor: pointer;">
-            <img src="./img/res/icon/facebook.png" style="width:50px; height:50px;">
-        </div>
-    </li>
-</ul>
-<!-- fullpage contents -->
-<div class="section" id="section0">
-    <h1>동화 &amp; 만화(Comic)</h1>
-
-    <h2><span class="color2">e-Book 제작 도우미</span></h2>
-    <img src="./img/res/logo.png" alt="fullPage" class="white-backcolor"/>
-</div>
-<div class="section" id="section1">
-    <div class="intro">
-        <h1>PastelBook으로</h1>
-
-        <h2>움직이는 <span class="color">e-Book을</span></h2>
-
-        <h2><span class="color1">PC &amp; Mobile에서</span></h2>
-
-        <h1>만들어 보세요!</h1>
-    </div>
-</div>
-<!-- slide content -->
-<div class="section" id="section2">
-    <div class="slide">
-        <div class="intro">
-            <h1>1. 로그인(Login)</h1>
-            <img src="img/manual/intro1.png" alt="login"/>
-        </div>
-
-    </div>
-
-    <div class="slide">
-        <div class="intro">
-            <h1>2. 프로젝트 생성</h1>
-            <img src="img/manual/make_project.png" alt="create empty project"/>
-
-            <p>e-Book 제작을 위한 빈 프로젝트</p>
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="intro">
-            <h1>3. 개체 추가</h1>
-            <img src="img/manual/add_image.png" alt="add object"/>
-
-            <p>원하는 개체를 Click, Drag &amp; Drop으로 추가할 수 있습니다.</p>
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="intro">
-            <h1>4. 개체 편집</h1>
-            <img src="img/manual/modify_image.png" alt="modify icon"/>
-
-            <p>삽입한 개체를 오른쪽 마우스 버튼을 이용하여 편집할 수 있습니다.</p>
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="intro">
-            <h1>5. 저장하기</h1>
-            <img src="img/manual/save_project.png" alt="located icon"/>
-
-            <p>지금까지 꾸민 나만의 PastelBook을 저장하세요~ 그리고 간직하세요!</p>
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="intro">
-            <h1>6. 불러오기</h1>
-            <img src="img/manual/load_project.png" alt="located icon"/>
-
-            <p>저장했던 나의 PastelBook을 다시 보거나 수정하고 싶으신가요?</p>
-            <p>불러오기 기능을 이용하여 나만의 스토리를 다시 감상하거나 편집하세요!</p>
-        </div>
-    </div>
-</div>
-<!-- end slide content -->
-<div class="section" id="section3">
-    <div class="intro">
-        <h1>Example</h1>
-        <img src="./img/manual/example_scene.gif" class="example-scene" alt="example scene"/>
-    </div>
-</div>
-
-<!-- loginmodal-->
-<div id="loginmodal" style="display:none;">
-    <h1 style="font-size: 2em; text-align: center; margin-bottom: 10px;">User Login</h1>
-
-    <form id="loginform" name="loginform" method="post" action="mainview.jsp">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" class="txtfield" tabindex="1">
-
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" class="txtfield" tabindex="2">
-
-        <div class="center">
-            <input type="submit" name="joinbtn" id="joinbtn" class="flatbtn-blu hidemodal"
-                   value="Join" tabindex="3">
-            <input type="submit" name="loginbtn" id="loginbtn" class="flatbtn-blu hidemodal"
-                   value="LogIn" tabindex="3" style="float:right;">
-        </div>
-    </form>
-</div>
+<script src="assets/js/apps.js"></script>
 </body>
 </html>

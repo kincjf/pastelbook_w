@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pastelbook Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 부트스트랩 -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet" type="text/css" href="assets/css/viewer_common.css" />
+</head>
+<body>
+<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
+<script src="//code.jquery.com/jquery.js"></script>
+<!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
+<script src="js/bootstrap.min.js"></script>
+
+<div class="wrap">
+    <div class="viewer"></div>
+    <div class="bottom">
+        <div class="bottom_up"></div>
+        <div class="bottom_down" style="display:table">
+            <ul class="pager">
+                <li><button type="button" class="btn btn-default btn responsive-width" style="float:left;">공유</button></li>
+                <li><a href="#">← 처음</a></li>
+                <li><a href="#">이전</a></li>
+                <li><input type="text" value="1" size="1" style="text-align:center;" /></li>
+                <li><a href="#">다음</a></li>
+                <li><a href="#">끝 →</a></li>
+                <li><button type="button" class="btn btn-default btn responsive-width" style="float:right;">
+                    <span class="glyphicon glyphicon-fullscreen"></span></button></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
