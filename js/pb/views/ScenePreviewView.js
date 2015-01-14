@@ -47,7 +47,7 @@ define([
 			/** SceneView와 ScenePreviewView를 묶어놓은 Model
 			 * push만 하였기 때문에 rear(맨 뒤)가 현재 매칭된 ViewSet임
 			 */
-			this.sceneViewSet = pb.type.View.SceneViewSetList.at(
+			this.sceneViewSet = pb.type.view.sceneViewSetList.at(
 					this.options.index
 			);
 
@@ -154,7 +154,7 @@ define([
 			/** hidden 상태인 경우 capture가 안됨 그래서 임시방편으로 잠깐 보였다가 다시 없애는 것임
 			 * UI상 많은 문제가 있기 때문에 해결책을 capture보다는 dom Rendering으로 고민해봐야됨.
 			 */
-			pb.util.CaptureController.capturePreview(sceneView.$el, target,
+			pb.util.captureController.capturePreview(sceneView.$el, target,
 				(pb.current.scene !== null ? pb.current.scene.$el : null));
 		},
 

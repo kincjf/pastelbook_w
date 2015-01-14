@@ -19,7 +19,7 @@
 require(['jquery', 'underscore', 'jquery_ui'],
 	function ($, _, jquery_ui) {
 		pb.ui = {
-			'dlg_current_scene': {x: 200, y: 110, w: 1280, h: 720},     // 4:3
+			'dlg_current_scene': {x: 200, y: 110, w: 960, h: 540},     // 16:9
 			'dlg_scene_preview': {x: 5, y: 110, w: 180, h: 400},
 			'dlg_bottom_tab': {x: 5, y: 515, w: 800, h: 250},
 			'menuDlg': {x: 5, y: 5, w: 600, h: 100},

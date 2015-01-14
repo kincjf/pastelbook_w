@@ -1,5 +1,5 @@
-/* Viewer는 반응형 이 포함되었기 때문에 따로 삽입하였음 */
-@CHARSET "EUC-KR";
+/* Viewer는 반응형이므로 따로 작성하였음 */
+@CHARSET "UTF-8";
 @media all and (max-width: 1200px) { /* screen size until 1200px */
     body {
         font-size: 1.5em; /* 1.5x default size */
@@ -16,14 +16,14 @@
     }
 }
 
-.wrap{
+.viewer_wrap {
     width:100%;
     height:100%;
     max-width:960px;
     margin:auto;
 }
 
-.viewer{
+.contents {
     width:100%;
     height:100%;
     min-height:150px;
@@ -34,35 +34,29 @@
     border-bottom:1px solid black;
 }
 
-.bottom{
+.navigator {
     width:100%;
     height:auto;
     border:1px solid black;
     float:left;
 }
 
-.bottom_up{
+.nav-bar {
     width:100%;
     height:100%;
-    min-height:30px;
+    min-height:20px;
     max-width:960px;
     float:left;
     border:1px solid black;
 }
 
-.bottom_down{
+.nav-bottom {
     width:100%;
     height:100%;
-    min-height:60px;
+    min-height:50px;
     max-width:960px;
     float:left;
     border:1px solid black;
-}
-
-.butn{
-    width:100%;
-    max-width:70px;
-    background-color:red;
 }
 
 .responsive-width {

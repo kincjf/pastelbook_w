@@ -31,7 +31,7 @@
     <script src="js/log4javascript-config.js"></script>
 
     <!-- requirejs -->
-    <script data-main="js/pastelbook" src="js/lib/require.js"></script>
+    <script data-main="js/pastelbook_tool" src="js/lib/require.js"></script>
 </head>
 <body>
 <input id="ip" style="visibility:hidden" value="<%=request.getRemoteAddr()%>"/>
@@ -49,18 +49,5 @@
 <%--<%@ include file="./js/pb/templates/dlg-animation.jspf" %>--%>
 <%--<%@ include file="./js/pb/templates/dlg-oldtool.jspf" %>--%>
 <%--<%@ include file="./js/pb/templates/dlg-project-info.jspf" %>--%>
-    <%--<script>--%>
-        <%--require(["pb_app", 'jquery_contextMenu' /*, "pb_debug_hongs_only"*/], function (pb_app) {--%>
-
-        <%--/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/--%>
-
-        <%--pb_app.start(); // Application start--%>
-        <%--myLogger.trace("pb_app loading Complete");--%>
-
-        <%--/** 요놈이 이상하게 덮어씌워짐.. 이상하게 */--%>
-
-        <%--$(".ui-widget-overlay.ui-front").remove();--%>
-        <%--});--%>
-    <%--</script>--%>
 </body>
 </html>

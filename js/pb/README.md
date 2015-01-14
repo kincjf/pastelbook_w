@@ -8,7 +8,7 @@ ___
 
 
 ###* /pb
-- ** app.js ** : 전체 Application의 구동순서와 관련 설정을 하는 파일, View(Dialog포함)를 로딩하고 Region으로 관리함.
+- ** app_viewer.js ** : 전체 Application의 구동순서와 관련 설정을 하는 파일, View(Dialog포함)를 로딩하고 Region으로 관리함.
 - ** templates.js ** : /template/*.tpl 파일을 동적으로 로딩하여 사용 가능하게 구성함.
 - ** pb-io.js ** : ajax, db access 관련 작업을 수행함.
 - ** pb-ui.js ** : 전체 UI의 좌표 설정, UI 구성을 위한 Dialog 생성에 필요한 기능 제공

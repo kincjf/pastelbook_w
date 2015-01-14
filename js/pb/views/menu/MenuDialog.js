@@ -68,28 +68,28 @@ define([
 
 		/** Custom Event Callbacks */
 		openSaveProjectDlg: function(event) {
-			pb.type.View.menu.project.saveProject = pb.type.View.menu.project.saveProject || new SaveProjectDlg({
-				model: pb.type.Model.Project
+			pb.type.view.menu.project.saveProject = pb.type.view.menu.project.saveProject || new SaveProjectDlg({
+				model: pb.type.model.project
 			}).render();
 
-			var isOpen = pb.type.View.menu.project.saveProject.$el.dialog("isOpen");
+			var isOpen = pb.type.view.menu.project.saveProject.$el.dialog("isOpen");
 
 			if (!isOpen) {
 				/** 안보였던 dialog를 보이게 함 */
-				pb.type.View.menu.project.saveProject.$el.dialog("open");
+				pb.type.view.menu.project.saveProject.$el.dialog("open");
 			}
 		},
 
 		openLoadProjectDlg: function(event) {
-			pb.type.View.menu.project.loadProject = pb.type.View.menu.project.loadProject || new LoadProjectDlg({
-				model: pb.type.Model.Project
+			pb.type.view.menu.project.loadProject = pb.type.view.menu.project.loadProject || new LoadProjectDlg({
+				model: pb.type.model.project
 			}).render();
 
-			var isOpen = pb.type.View.menu.project.loadProject.$el.dialog("isOpen");
+			var isOpen = pb.type.view.menu.project.loadProject.$el.dialog("isOpen");
 
 			if (!isOpen) {
 				/** 안보였던 dialog를 보이게 함 */
-				pb.type.View.menu.project.loadProject.$el.dialog("open");
+				pb.type.view.menu.project.loadProject.$el.dialog("open");
 			}
 		},
 
@@ -104,19 +104,19 @@ define([
 			 * 향후 event driven 방식으로 수정해야겠음 아래 주석같이
 			 */
 			//pb.current.scene.command("add:scene");
-			pb.type.SceneList.push({});
+			pb.type.collection.sceneList.push({});
 			myLogger.trace("MenuDialogView - addScene");
 		},
 
 		openAddImageDlg: function(event) {
-			pb.type.View.menu.addBaseObject.AddImageDlg
-				= pb.type.View.menu.addBaseObject.AddImageDlg || new AddImageDlg().render();
+			pb.type.view.menu.addBaseObject.addImageDlg
+				= pb.type.view.menu.addBaseObject.addImageDlg || new AddImageDlg().render();
 
-			var isOpen = pb.type.View.menu.addBaseObject.AddImageDlg.$el.dialog("isOpen");
+			var isOpen = pb.type.view.menu.addBaseObject.addImageDlg.$el.dialog("isOpen");
 
 			if (!isOpen) {
 				/** 안보였던 dialog를 보이게 함 */
-				pb.type.View.menu.addBaseObject.AddImageDlg.$el.dialog("open");
+				pb.type.view.menu.addBaseObject.addImageDlg.$el.dialog("open");
 			}
 
 			myLogger.trace("MenuDialogView - openAddVideoDlg");
@@ -130,14 +130,14 @@ define([
 		},
 
 		openAddVideoDlg: function(event) {
-			pb.type.View.menu.addBaseObject.AddVideoDlg
-				= pb.type.View.menu.addBaseObject.AddVideoDlg || new AddVideoDlg().render();
+			pb.type.view.menu.addBaseObject.addVideoDlg
+				= pb.type.view.menu.addBaseObject.addVideoDlg || new AddVideoDlg().render();
 
-			var isOpen = pb.type.View.menu.addBaseObject.AddVideoDlg.$el.dialog("isOpen");
+			var isOpen = pb.type.view.menu.addBaseObject.addVideoDlg.$el.dialog("isOpen");
 
 			if (!isOpen) {
 				/** 안보였던 dialog를 보이게 함 */
-				pb.type.View.menu.addBaseObject.AddVideoDlg.$el.dialog("open");
+				pb.type.view.menu.addBaseObject.addVideoDlg.$el.dialog("open");
 			}
 
 			myLogger.trace("MenuDialogView - openAddVideoDlg");

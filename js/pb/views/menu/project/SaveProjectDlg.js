@@ -121,8 +121,10 @@ define([
 			/** 모듈과 똑같은 변수로 하면 error가 난다 ㅠㅠ 왜일까
 			 * this.model - pb.type.Model.Project
 			 */
+			var scenePreviewView = pb.type.view.sceneViewSetList.at(0).get("scenePreviewView");
+			var previewImage = scenePreviewView.$el.find("img").attr("src");
 
-			this.model.command("save:project");
+			this.model.command("save:project", previewImage);
 			var saveToTextDlalog = new SaveProjectToTextDlg({
 				model: this.model,
 				parent: this

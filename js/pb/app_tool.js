@@ -25,22 +25,22 @@ define([
              MenuDialog) {
 	'use strict';
 
-	var app = new Marionette.Application();
+	var app_tool = new Marionette.Application();
 
 	/** Data type은 namespace를 써야될 것 같음.*/
-	pb.type.Model.Project = new Project({
+	pb.type.model.project = new Project({
 		sceneList: new SceneList()
 	}, {
 		parse: false
 	});
 
-	pb.type.View.SceneViewSetList = new SceneViewSetList();
+	pb.type.view.sceneViewSetList = new SceneViewSetList();
 	/** 나중에 Project Save를 위해서 기능을 이렇게 하면 될 듯 */
 //	pb.type.Model.Project.save();
 
 	/** 테스트용으로 일단 바깥으로 꺼냈음 */
-	var sceneList = pb.type.Model.Project.get("sceneList");
-	pb.type.SceneList = sceneList;
+	var sceneList = pb.type.model.project.get("sceneList");
+	pb.type.collection.sceneList = sceneList;
 
 	/** Scene이 처음에 하나는 있어야 되기 때문에 */
 	sceneList.push({});
@@ -51,6 +51,7 @@ define([
 	var sceneCompositeView = new SceneCompositeView({
 		collection: sceneList
 	});
+	pb.type.view.sceneCompositeView = sceneCompositeView;
 
 	var scenePreviewCompositeView = new ScenePreviewCompositeView({
 		collection: sceneList
@@ -70,23 +71,23 @@ define([
 	 * marionette API 참조
 	 * !# 현재 있는 DOM이 아니면 el이 없다는 error 발생함.
 	 */
-	app.addRegions({
+	app_tool.addRegions({
 		currentScene: '#dlg_current_scene',
 		currentScenePreview: '#dlg_scene_preview',
 
 		menuDialog:'#dlg_main_menu'
 	});
 
-	app.addInitializer(function (options) {
-		app.currentScene.show(sceneCompositeView);
-		app.currentScenePreview.show(scenePreviewCompositeView);
+	app_tool.addInitializer(function (options) {
+		app_tool.currentScene.show(sceneCompositeView);
+		app_tool.currentScenePreview.show(scenePreviewCompositeView);
 
-		app.menuDialog.show(menuDialog);
+		app_tool.menuDialog.show(menuDialog);
 	});
 
 	/** 각 Menu들에 대한  jqueryUI.dialog */
-	app.addInitializer(function (options) {
-		app.menuDialog.$el.dialog({
+	app_tool.addInitializer(function (options) {
+		app_tool.menuDialog.$el.dialog({
 				modal: true,
 				//autoOpen: true,
 				width: pb.ui.menuDlg.w,
@@ -103,5 +104,5 @@ define([
 	//window.project = pb.type.Model.Project;
 	//window.sceneList = pb.type.Model.Project.get('sceneList');
 
-	return window.app = app
+	return window.app_tool = app_tool
 });

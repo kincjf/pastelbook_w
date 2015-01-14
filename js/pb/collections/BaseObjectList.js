@@ -67,7 +67,7 @@ define([
 			}, this);
 			this.on('reset', function() {
 				this.z_index = 10000;
-			}, this)
+			}, this);
 		}
 	});
 });

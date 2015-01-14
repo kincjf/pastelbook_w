@@ -7,7 +7,7 @@ ___
 
 
 ###* /js
-- ** pastelbook.js ** : requireJS 설정을 가지고 있는 파일
+- ** pastelbook_tool.js ** : Tool 구현에 필요한 requireJS 설정을 가지고 있는 파일
 - ** log4javascript-config.js ** : logging을 위한 설정 파일
 
 ###* /js/pb

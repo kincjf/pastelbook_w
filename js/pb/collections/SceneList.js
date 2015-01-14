@@ -29,7 +29,7 @@ define([
 			myLogger.trace("SceneList.size = " + this.size());
 
 			/** reset(불러오기)시 ViewSet을 초기화함 */
-			pb.type.View.SceneViewSetList.reset();
+			pb.type.view.sceneViewSetList.reset();
 			pb.current.scene = null;
 			pb.current.scenePreview = null;
 		}

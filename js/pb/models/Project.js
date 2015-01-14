@@ -22,6 +22,8 @@ define([
 		defaults: {
 			_id: '',
 			title: 'Project',
+			width: 0,
+			height: 0,
 			createDate: '',
 			modifyDate: '',
 			sceneList: null,
@@ -85,7 +87,7 @@ define([
 			 * 아니면 reset event를 만들고 로딩을 할 때 trigger를 하는 방법이 있음.
 			 */
 				this.on("loading:project", this.loadProject, this);
-				this.comply("save:project", this.saveProject);
+				this.comply("save:project", this.saveProject, this);
 		},   // end initialize
 
 		/** .set('attrName', data, options)
@@ -119,9 +121,14 @@ define([
 			this.get('sceneList').reset(projectData);
 		},
 
-		saveProject: function() {
+		saveProject: function(previewImage) {
 			/** 최근 수정일 변경 */
 			this.set('modifyDate', Date.now());
+			this.set({
+				width: pb.ui.dlg_current_scene.w,
+				height: pb.ui.dlg_current_scene.h,
+				previewImage: previewImage
+			});
 		}
 	});   // end Backbone.Model.extend
 });

@@ -72,14 +72,14 @@ define([
 			 * reset event일 때도 만약 모델이 3개일 경우 3개에 해당하는 SceneView가 모두 생성 된 다음
 			 * ScenePreviewView가 생성됨.]
 			 */
-			pb.type.View.SceneViewSetList.push({
-				parent: pb.type.View.SceneViewSetList
+			pb.type.view.sceneViewSetList.push({
+				parent: pb.type.view.sceneViewSetList
 			});
 
 			/** SceneView와 ScenePreviewView를 묶어놓은 Model
 			 * this.options.index : CompositeView 내에서 몇번째 View인지 알려줌
 			 */
-			this.sceneViewSet = pb.type.View.SceneViewSetList.at(
+			this.sceneViewSet = pb.type.view.sceneViewSetList.at(
 				this.options.index
 			);
 

@@ -102,7 +102,7 @@ define([
 
 		/** Custom Methods */
 		changePreviewImageOffline: function(event) {
-			pb.util.FileController.loadFile(
+			pb.util.fileController.loadFile(
 				this.ui.imageSource[0].files[0], this.ui.previewImageOffline, {type: "image"});
 			myLogger.trace("AddImageDlg - changePreviewImageOffline");
 		},
