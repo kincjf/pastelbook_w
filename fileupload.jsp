@@ -18,6 +18,11 @@
 	ServletContext scontext = getServletContext();
 	realFolder = scontext.getRealPath(saveDir);
 	
+	System.out.println(realFolder);
+	
+	// 없으면 폴더 만들기
+	new File(realFolder).mkdirs();
+	
 	DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
 	
 	MultipartRequest multi = new MultipartRequest(request,
@@ -39,7 +44,8 @@
 			FileUtils.forceMkdir(
 					new File(
 							realFolder+"/"+multi.getParameter("type")));
-			
+			// 폴더 생성
+			new File(realFolder+"/"+multi.getParameter("type")).mkdirs();
 			
 			
 			File newFilename = policy.rename(new File(scontext.getRealPath(correctPath))); // 파일이름 중복 해결

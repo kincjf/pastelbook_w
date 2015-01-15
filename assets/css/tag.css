@@ -1,0 +1,48 @@
+@CHARSET "EUC-KR";
+
+.dsn{
+	width:600px;
+	height:600px;
+}
+
+.title1{
+	width:100px; height:200px;
+}
+
+
+.myMargin{
+	margin: 10px;
+	align:center;
+}
+
+.pic{
+	width:100%;
+	height:auto;
+	background-color:black;
+	max-width:848px;
+	min-height:100px;
+	
+}
+
+.btcolor1{
+	background-color:#8CC152;
+	font-size: 16px;
+	color:#fff;
+}
+
+.textarea_size_1{
+	width:300px;
+	height:50px;
+}
+.textarea_size_2{
+	width:300px;
+	height:100px;
+}
+.textarea_size_3{
+	width:300px;
+	height:200px;
+}
+
+.title_font{
+	
+}
