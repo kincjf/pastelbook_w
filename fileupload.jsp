@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-	import="com.oreilly.servlet.MultipartRequest
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
+			 pageEncoding="UTF-8"
+			 import="com.oreilly.servlet.MultipartRequest
 		,com.oreilly.servlet.multipart.DefaultFileRenamePolicy
 		,java.util.*
 		,java.io.*
@@ -17,6 +17,11 @@
 	String saveDir = "resource"; // 나중에 지울것
 	ServletContext scontext = getServletContext();
 	realFolder = scontext.getRealPath(saveDir);
+	
+	System.out.println(realFolder);
+	
+	// 없으면 폴더 만들기
+	new File(realFolder).mkdirs();
 	
 	DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
 	
@@ -39,7 +44,8 @@
 			FileUtils.forceMkdir(
 					new File(
 							realFolder+"/"+multi.getParameter("type")));
-			
+			// 폴더 생성
+			new File(realFolder+"/"+multi.getParameter("type")).mkdirs();
 			
 			
 			File newFilename = policy.rename(new File(scontext.getRealPath(correctPath))); // 파일이름 중복 해결

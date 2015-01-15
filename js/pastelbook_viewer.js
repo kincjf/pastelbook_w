@@ -26,6 +26,7 @@ requirejs.config({
 
 		html2canvas: 'lib/html2canvas',
 		moment: 'lib/moment.min',
+		screenfull: 'lib/screenfull.min',
 
 		'ckeditor-core': 'lib/ckeditor/ckeditor',
 		'ckeditor-jquery': 'lib/ckeditor/adapters/jquery',
@@ -101,6 +102,10 @@ requirejs.config({
 		},
 		tpl: {
 			extension: '.tpl'	 // default = '.html'
+		},
+
+		screenfull: {
+			exports: 'screenfull'
 		},
 
 		'ckeditor-core' :{

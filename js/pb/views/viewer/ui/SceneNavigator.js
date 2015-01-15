@@ -4,17 +4,17 @@
  *
  */
 define([
+	'radio',
 	'marionette',
-	'pb_templates'
-], function (Marionette) {
+	'pb_templates',
+	'screenfull'
+], function (Radio, Marionette, templates) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
-		el: "navigator",
-
 		/** CompositeView에서는 무조건 template을 써야되는 듯함. */
 		/** itemView에서는 잘 모르겠음. */
-		template: false,
+		template: templates.SceneNavigator,
 
 		ui: {
 			navBar: '.nav-bar',
@@ -25,8 +25,8 @@ define([
 			previousBtn: "a[data-behavior='previous']",
 			indexTextBox: "input[data-behavior='index']",
 			nextBtn: "a[data-behavior='next']",
-			endPointBtn: "li[data-behavior='endPoint']",
-			fullScreenBtn: "li[data-behavior='addTextBoxH']"
+			endPointBtn: "a[data-behavior='endPoint']",
+			fullScreenBtn: "button[data-behavior='fullScreen']"
 		},
 
 		regions: {
@@ -45,46 +45,74 @@ define([
 		},
 
 		initialize: function (options) {
-			myLogger.trace("Navigator - init");
+			_.extend(this, Radio.Commands);
+			this.maxPage = this.collection.size();
+
+			this.comply("change:pager", this.changePager, this);
+			myLogger.trace("SceneNavigator - init");
 		},
 
 		onRender: function () {
-			this.ui.mainNav.find("a").button();
-			this.ui.mainNav.menu({position: {at: "left bottom"}});
-			myLogger.trace("Navigator - onRender");
+			myLogger.trace("SceneNavigator - onRender");
 		},
 
 		onShow: function () {
-			myLogger.trace("Navigator - onShow");
+			myLogger.trace("SceneNavigator - onShow");
 		},
 
 		/** Custom Event Callbacks */
 		openShareDlg: function (event) {
-			myLogger.trace("Navigator - openShareDlg");
+			myLogger.trace("SceneNavigator - openShareDlg");
 		},
 
 		showStartPointScene: function (event) {
-			myLogger.trace("Navigator - showStartPointScene");
+			Backbone.history.navigate("search/" + 1, {trigger: true});
+			myLogger.trace("SceneNavigator - showStartPointScene");
 		},
 
 		showPreviousScene: function (event) {
-			myLogger.trace("Navigator - showPreviousScene");
+			var previousPage = parseInt(this.ui.indexTextBox.val(), 10) - 1;
+			previousPage = (previousPage < 1 ? 1 : previousPage);
+			Backbone.history.navigate("search/" + previousPage, {trigger: true});
+			myLogger.trace("SceneNavigator - showPreviousScene");
 		},
 
 		showSelectScene: function (event) {
-			myLogger.trace("Navigator - showSelectScene");
+			var currentPage = parseInt(this.ui.indexTextBox.val(), 10);
+			if (currentPage < 1) {
+				currentPage = 1;
+			} else if (currentPage > this.maxPage) {
+				currentPage = this.maxPage;
+			}
+
+			Backbone.history.navigate("search/" + currentPage, {trigger: true});
+			myLogger.trace("SceneNavigator - showSelectScene");
 		},
 
 		showNextScene: function (event) {
-			myLogger.trace("Navigator - showNextScene");
+			var nextPage = parseInt(this.ui.indexTextBox.val(), 10) + 1;
+			nextPage = (nextPage > this.maxPage ? this.maxPage : nextPage);
+			Backbone.history.navigate("search/" + nextPage, {trigger: true});
+			myLogger.trace("SceneNavigator - showNextScene");
 		},
 
 		showEndPointScene: function (event) {
-			myLogger.trace("Navigator - showEndPointScene");
+			Backbone.history.navigate("search/" + this.maxPage, {trigger: true});
+			myLogger.trace("SceneNavigator - showEndPointScene");
 		},
 
 		toggleFullScreen: function (event) {
-			myLogger.trace("Navigator - toggleFullScreen");
+			if (screenfull.enabled) {
+				// We can use `this` since we want the clicked element
+				screenfull.toggle($('.viewer-wrap')[0]);
+			}
+
+			myLogger.trace("SceneNavigator - toggleFullScreen");
+		},
+
+		changePager: function(page) {
+			this.ui.indexTextBox.val(page);
+			myLogger.trace("SceneNavigator - changePager");
 		}
 	});
 });

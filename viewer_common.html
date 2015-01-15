@@ -11,29 +11,9 @@
     <link rel="stylesheet" type="text/css" href="assets/css/viewer_common.css" />
 </head>
 <body>
-<div class="viewer-wrap">
-    <div class="contents"></div>
-    <div class="navigator">
-        <div class="nav-bar"></div>
-        <div class="nav-bottom" style="display:table">
-            <ul class="pager">
-                <li><button type="button" class="btn btn-default btn responsive-width"
-                            data-behavior="share" style="float:left;">공유</button></li>
-                <li><a href="#" data-behavior="startPoint">← 처음</a></li>
-                <li><a href="#" data-behavior="previous">이전</a></li>
-                <li><input type="text" data-behavior="index"
-                           value="1" size="1" style="text-align:center;" /></li>
-                <li><a href="#" data-behavior="next">다음</a></li>
-                <li><a href="#" data-behavior="endPoint">끝 →</a></li>
-                <li>
-                    <button type="button" class="btn btn-default btn responsive-width"
-                            data-behavior="fullScreen" style="float:right;">
-                        <span class="glyphicon glyphicon-fullscreen"></span>
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
+<div class="viewer-wrap fit">
+    <div class="contents fit"></div>
+    <div class="navigator fit-width"></div>
 </div>
 
 <script src="assets/js/jquery.js"></script>

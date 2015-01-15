@@ -184,8 +184,7 @@ div.change {
 * Scene
 */
 .scene-wrap {
-    /* 일단 정해진게 없으니 400px로 함. */
-    height: 400px;
+    height: inherit;
 }
 
 .scene {

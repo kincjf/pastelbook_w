@@ -32,6 +32,8 @@ define(function (require) {
 		dlgLoadFromLocalStorage: require('tpl!pb/templates/menu/project/dlgLoadFromLocalStorage.tpl'),
 		LoadProjectFromTextDlg: require('tpl!pb/templates/menu/project/LoadProjectFromTextDlg.tpl'),
 		dlgLoadFromFile: require('tpl!pb/templates/menu/project/dlgLoadFromFile.tpl'),
-		dlgLoadFromServer: require('tpl!pb/templates/menu/project/dlgLoadFromServer.tpl')
+		dlgLoadFromServer: require('tpl!pb/templates/menu/project/dlgLoadFromServer.tpl'),
+
+		SceneNavigator: require('tpl!pb/templates/SceneNavigator.tpl')
 	};
 });
