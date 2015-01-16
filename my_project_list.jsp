@@ -66,7 +66,7 @@ BEGIN PAGE
 
         <!-- Begin logo -->
         <div class="logo">
-            <a href="index.html"><img src="assets/img/logo.png" alt="Logo" height="60px"></a>
+            <a href="index.jsp"><img src="assets/img/logo.png" alt="Logo" height="60px"></a>
         </div><!-- /.logo -->
         <!-- End logo -->
 
@@ -95,69 +95,33 @@ BEGIN PAGE
             <li class="parent">
                 <a href="#fakelink">Category</a>
                 <ul class="sub-menus">
-                    <li class="sub-list"><a href="index.html">Default</a></li>
+                    <li class="sub-list"><a href="index.jsp">Default</a></li>
 
-                    <li class="sub-list"><a href="index-fancy-color.html">Fancy color navbar <span class="label label-danger">HOT</span></a></li>
-                    <li class="sub-list"><a href="index-static-nav.html">Static nav position</a></li>
+                    <li class="sub-list"><a href=""><span class="label label-danger">HOT</span>IT</a></li>
+                    <li class="sub-list"><a href="fakelink">시사</a></li>
                     <li class="sub-list">
-                        <a href="#fakelink">Dark nav color <span class="badge badge-success">3</span></a>
-                        <ul class="subsub-menus">
-                            <li class="subsub-list"><a href="index-dark-nav-static-image.html">Static image header</a></li>
-                            <li class="subsub-list"><a href="index-dark-nav-image-slide.html">Image slide</a></li>
-                            <li class="subsub-list"><a href="index-dark-nav-content-slide.html">Content slide</a></li>
-                        </ul>
+                        <a href="#fakelink">사진</a>
                     </li>
                     <li class="sub-list">
-                        <a href="#fakelink">Light nav color <span class="badge badge-warning">3</span></a>
-                        <ul class="subsub-menus">
-                            <li class="subsub-list"><a href="index-light-nav-static-image.html">Static image header</a></li>
-                            <li class="subsub-list"><a href="index-light-nav-image-slide.html">Image slide</a></li>
-                            <li class="subsub-list"><a href="index-light-nav-content-slide.html">Content slide</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-list">
-                        <a href="#fakelink">Transparent nav <span class="badge badge-info">3</span></a>
-                        <ul class="subsub-menus">
-                            <li class="subsub-list"><a href="index-trans-nav-static-image.html">Static image header</a></li>
-                            <li class="subsub-list"><a href="index.html">Image slide <span class="label label-primary">DEFAULT</span></a></li>
-                            <li class="subsub-list"><a href="index-trans-nav-content-slide.html">Content slide</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="sub-list"><a href="index-background-color.html">Background color</a></li>
-                    <li class="sub-list">
-                        <a href="#fakelink">Templates <span class="label label-primary">PACKAGE</span></a>
-                        <ul class="subsub-menus">
-                            <li class="subsub-list"><a href="../../index.html" target="_blank">Sentir - Admin template</a></li>
-                            <li class="subsub-list"><a href="index-onepage.html">Sentir - One page</a></li>
-                            <li class="subsub-list"><a href="../comingsoon/index.html">Sentir - Coming soon</a></li>
-                        </ul>
+                        <a href="#fakelink">창작</a>
                     </li>
                 </ul>
             </li>
             <li class="parent">
                 <a href="#fakelink">Manual</a>
-                <ul class="sub-menus">
-                    <li class="sub-list"><a href="about-us.html">About us</a></li>
-                    <li class="sub-list"><a href="full-width.html">Full width</a></li>
-                    <li class="sub-list"><a href="sidebar-left.html">Sidebar left</a></li>
-                    <li class="sub-list"><a href="sidebar-right.html">Sidebar right</a></li>
-                    <li class="sub-list"><a href="service.html">Services</a></li>
-                    <li class="sub-list"><a href="testimonial.html">Testimonial</a></li>
-                    <li class="sub-list"><a href="pricing-table.html">Pricing table</a></li>
-                    <li class="sub-list"><a href="blank.html">Blank page</a></li>
-                </ul>
             </li>
 
             <!-- Begin right icon -->
             <li class="parent right-icon">
-                <i class="fa fa-plus" id="nav-icon-new"></i>
+                <i class="fa fa-plus" id="nav-icon-new"><a href="./tool_pc.jsp"></a></i>
             </li>
             <li class="parent right-icon">
                 <i class="fa fa-search" id="nav-icon-search"></i>
             </li>
             <li class="parent right-icon">
-                <i class="fa fa-user" id="nav-icon-profile"></i>
+                <i class="fa fa-user" id="nav-icon-profile">
+                    <a href="./my_project_list.jsp"></a>
+                </i>
             </li>
             <!-- End right icon -->
         </ul>
@@ -174,9 +138,9 @@ BEGIN PAGE
         <ol class="breadcrumb">
             <li><a href="index.html">Home</a></li>
             <li><a href="#fakelink">Portfolio</a></li>
-            <li class="active">Portfolio 3 columns</li>
+            <li class="active">My Portfolio</li>
         </ol>
-        <h2 class="page-title">Portfolio 3 columns</h2>
+        <h2 class="page-title">My Portfolio </h2>
     </div><!-- /.container -->
 
     <div class="border-bottom">
@@ -302,18 +266,17 @@ BEGIN PAGE
 
 
 
-
 <!-- BEGIN CALL TO ACTION -->
 <div class="section section-call-to-action">
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-sm-8">
                 <div class="wrapper">
-                    It's <span class="text-danger">not the best template</span>, but will give you more option to create <span class="text-success">awesome website</span>!
+                    It's <span class="text-danger">not the best template</span>, but will give you more option to create <span class="text-success">awesome e-Book</span>!
                 </div><!-- /.wrapper-->
             </div><!-- /.col-sm-9 -->
             <div class="col-md-3 col-sm-4">
-                <a class="btn btn-danger" href="http://goo.gl/V32dLM" target="_blank">PURCHASE NOW</a>
+                <a class="btn btn-danger" href="./index.jsp" target="_blank">Join NOW</a>
             </div><!-- /.col-sm-3 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
@@ -369,96 +332,120 @@ BEGIN PAGE
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <h4>ABOUT SENTIR AGENCY</h4>
+
                 <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                    diam nonummy nibh euismod tincidunt ut laoreet dolore
-                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                    quis nostrud exerci tation ullamcorper suscipit lobortis
+                    주소안내 : 전북 전주시 덕진구 백제대로 567 기초교양교육원 111호 파스텔플러스
                 </p>
+
                 <p>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Facebook" class="fa fa-facebook icon-sm icon-rounded icon-social-footer icon-facebook"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Twitter" class="fa fa-twitter icon-sm icon-rounded icon-social-footer icon-twitter"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Google plus" class="fa fa-google-plus icon-sm icon-rounded icon-social-footer icon-google-plus"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Dribbble" class="fa fa-dribbble icon-sm icon-rounded icon-social-footer icon-dribbble"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Pinterest" class="fa fa-pinterest icon-sm icon-rounded icon-social-footer icon-pinterest"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Github" class="fa fa-github icon-sm icon-rounded icon-social-footer icon-github"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Facebook"
+                                           class="fa fa-facebook icon-sm icon-rounded icon-social-footer icon-facebook"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Twitter"
+                                           class="fa fa-twitter icon-sm icon-rounded icon-social-footer icon-twitter"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Google plus"
+                                           class="fa fa-google-plus icon-sm icon-rounded icon-social-footer icon-google-plus"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Dribbble"
+                                           class="fa fa-dribbble icon-sm icon-rounded icon-social-footer icon-dribbble"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Pinterest"
+                                           class="fa fa-pinterest icon-sm icon-rounded icon-social-footer icon-pinterest"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Github"
+                                           class="fa fa-github icon-sm icon-rounded icon-social-footer icon-github"></i></a>
                 </p>
-            </div><!-- /.col-sm-4 -->
+            </div>
+            <!-- /.col-sm-4 -->
             <div class="col-sm-6 col-md-3">
                 <h4>CONTACT</h4>
+
                 <div class="media media-contact">
 						  <span class="pull-left">
 							<i class="fa fa-map-marker media-object"></i>
 						  </span>
+
                     <div class="media-body">
                         <address>
-                            Twitter, Inc.<br>
-                            795 Folsom Ave, Suite 600<br>
-                            San Francisco, CA 94107<br>
-                            <abbr title="Phone">P:</abbr> (123) 456-7890
+                            PastelPlus, Inc.<br>
+                            전북 전주시 덕진구 백제대로 567<br>
+                            기초교양교육원 111호 파스텔플러스<br>
+                            <abbr title="Phone">Phone:</abbr> (010) 3800 - 2109
                         </address>
-                    </div><!-- /.media-body -->
-                </div><!-- /.media -->
+                    </div>
+                    <!-- /.media-body -->
+                </div>
+                <!-- /.media -->
                 <div class="media media-contact">
 						  <span class="pull-left">
 							<i class="fa fa-envelope media-object"></i>
 						  </span>
+
                     <div class="media-body">
                         <address>
-                            Full Name<br>
-                            <a href="mailto:#">first.last@example.com</a>
+                            Kim Seonho<br>
+                            <a href="mailto:#">pastelbook89@gmail.com</a>
                         </address>
-                    </div><!-- /.media-body -->
-                </div><!-- /.media -->
-            </div><!-- /.col-sm-3 -->
+                    </div>
+                    <!-- /.media-body -->
+                </div>
+                <!-- /.media -->
+            </div>
+            <!-- /.col-sm-3 -->
             <div class="clearfix visible-sm"></div>
             <div class="col-sm-6 col-md-2">
                 <h4>NAVIGATION</h4>
                 <ul class="list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html">About us</a></li>
-                    <li><a href="index.html">Our services</a></li>
-                    <li><a href="index.html">Portfolio</a></li>
-                    <li><a href="index.html">Pricing</a></li>
-                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="http://www.pastelplus.com/bbs/content.php?co_id=company">About us</a></li>
+                    <li><a href="http://www.pastelplus.com/bbs/content.php?co_id=biz1">Our services</a></li>
+                    <li><a href="http://www.pastelplus.com/bbs/content.php?co_id=inter">Product</a></li>
+                    <li><a href="ihttp://www.pastelplus.com/bbs/content.php?co_id=blog">Blog</a></li>
                 </ul>
-            </div><!-- /.col-sm-2 -->
+            </div>
+            <!-- /.col-sm-2 -->
             <div class="col-sm-6 col-md-3">
                 <h4>SIGN UP NEWSLETTER</h4>
+
                 <p>
-                    Laritas est etiam processus dynamicus, qui
-                    sequitur mutationem consuetudium
-                    lectorum. Mirum est notare quam littera.
+                    pastelbook89@gmail.com
                 </p>
+
                 <form role="form">
                     <div class="input-group subscribe">
                         <input type="text" class="form-control" placeholder="Enter email address">
 							  <span class="input-group-btn">
 								<button class="btn btn-info" type="button"><i class="fa fa-chevron-right"></i></button>
 							  </span>
-                    </div><!-- /input-group -->
+                    </div>
+                    <!-- /input-group -->
                 </form>
-            </div><!-- /.col-sm-3 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</footer><!-- /.section -->
+            </div>
+            <!-- /.col-sm-3 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</footer>
+<!-- /.section -->
 
 <div class="footer">
     <div class="container">
         <div class="row">
             <div class="col-sm-5">
-                Copyright &copy; 2014 <a href="#fakelink">Your company</a>
-            </div><!-- /.col-sm-5 -->
+                Copyright &copy; 2015 <a href="#fakelink">PastelPlus corp</a>
+            </div>
+            <!-- /.col-sm-5 -->
             <div class="col-sm-7 text-right">
                 <ul class="list-inline">
                     <li><a href="#fakelink">Terms and condition</a></li>
                     <li><a href="#fakelink">Privacy policy</a></li>
                     <li><a href="#fakelink">FAQ</a></li>
                 </ul>
-            </div><!-- /.col-sm-7 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div><!-- /.footer -->
+            </div>
+            <!-- /.col-sm-7 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.footer -->
 <!-- END FOOTER -->
 
 
@@ -468,6 +455,37 @@ BEGIN PAGE
     <i class="fa fa-chevron-up"></i>
 </div>
 <!-- END BACK TO TOP -->
+
+
+<!-- BEGIN PROJECT SHOW MODAL TEMPLATE -->
+<!-- 해당 id를 인식하여 model popup이 작동함-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:auto;height:auto">
+        <div class="modal-content" style="width:auto;height:auto">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="false">close</button>
+                <div style="float:right; margin-right:1.0em;">view수</div>
+                <div><h4 class="modal-title">Modal title</h4></div>
+            </div>
+            <div class="modal-body" data-dismiss="modal">
+                <div style="background-color:black; margin:auto">
+                    <iframe src="./viewer_common.jsp?id=1" width="960px" height="540px" frameborder="0" marginwidth="0" marginheight="0"
+                    scrolling="no" max-width="100%" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div style="float:left">ID</div>
+                <div>날짜</div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- END PROJECT PROJECT SHOW MODAL TEMPLATE -->
+
 
 <!--
 ===========================================================
