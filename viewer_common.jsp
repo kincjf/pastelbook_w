@@ -2,7 +2,8 @@
              pageEncoding="UTF-8"%>
 <%@page import="com.pb.techtree.ProjectBean"%>
 <%@page import="com.pb.techtree.ProjectDAO"%>
-<%@page import="java.util.*, java.sql.*"%><%
+<%@page import="java.util.*, java.sql.*"%>
+<%
 	String docId = request.getParameter("id");
 	int id = 0;
 		if(docId != null){
@@ -10,17 +11,12 @@
 		} else {
 			id = 4;
 		}
-
-	ProjectDAO dao = new ProjectDAO();
-	ProjectBean result = dao.findById(4);
-
-	String data = result.getSceneList();
 %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <script>
-        var docData = <%=data%>;
+        var docId = <%=id%>;
     </script>
     <title>Pastelbook Viewer</title>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -38,20 +38,20 @@ define([
 
 	});
 
-	var projectData = docData;
+	var projectData = null;
 
-	//var url = "http://pastelbook.com:82/pastelbook_w/projectData.jsp";
-	//$.ajax(url, {
-	//	type: 'GET',
-	//	data: {id: docId},
-	//	crossDomain: true
-	//})
-	//	.done(function(data) {
-	//		projectData = data;
-	//	})
-	//	.fail(function() {
-	//		console.log("fail to get ProjectData - /projectData.jsp");
-	//	});
+	var url = "http://pastelbook.com:82/pastelbook_w/projectData.jsp";
+	$.ajax(url, {
+		type: 'GET',
+		data: {id: docId},
+		crossDomain: true
+	})
+		.done(function(data) {
+			projectData = data;
+		})
+		.fail(function() {
+			console.log("fail to get ProjectData - /projectData.jsp");
+		});
 
 	/** Data type은 namespace를 써야될 것 같음.*/
 	pb.type.model.project = new Project(projectData, {

@@ -452,7 +452,7 @@ BEGIN PAGE
             </div>
             <div class="modal-body" data-dismiss="modal">
                 <div style="background-color:black; margin:auto">
-                    <iframe src="./viewer_common.jsp?id=24" width="960px" height="540px" frameborder="0" marginwidth="0" marginheight="0"
+                    <iframe src="./viewer_common.jsp?id=25" width="960px" height="540px" frameborder="0" marginwidth="0" marginheight="0"
                     scrolling="no" max-width="100%" allowfullscreen>
                     </iframe>
                 </div>
