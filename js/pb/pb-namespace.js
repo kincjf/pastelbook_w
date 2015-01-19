@@ -7,9 +7,10 @@
 var pb = pb || {};
 
 require(['require',
-		'pb/controllers/CaptureController', 'pb/controllers/FileController'],
+		'pb/controllers/CaptureController', 'pb/controllers/FileController',
+	'pb/controllers/ScreenController'],
 	function (require,
-	          CaptureController, FileController) {
+	          CaptureController, FileController, ScreenController) {
 		/** 다이얼로그, current 정보등 단순 data instance는 낙타체로 하고,
 		 * Model, Collection, View, Channel, Scene등 Backbone instance는
 		 * 클래스 타입으로 명시할 것
@@ -61,12 +62,25 @@ require(['require',
 
 		pb.util = pb.util || {
 			captureController: this.captureController || new CaptureController(),
-			fileController: this.fileController || new FileController()
+			fileController: this.fileController || new FileController(),
+			screenController: this.screenController || new ScreenController()
 		};
 
 		/** global 변수 설정 */
 		pb.value = pb.value || {
-			VERSION: 0.1
+			VERSION: 0.1,
+			PROJECT_WIDTH: this.PROJECT_WIDTH || 0,
+			PROJECT_HEIGHT: this.PROJECT_HEIGHT || 0,
+			RESOLUTION: this.RESOLUTION || {
+				WIDTH: this.WIDTH || 0,
+				HEIGHT: this.HEIGHT || 0,
+				FACTOR: this.FACTOR || 1,
+				PADDING: this.PADDING || {}
+			},
+			SCREEN_TYPE: {
+				PORTRAIT: 0,      // 세로모드
+				LANDSCAPE: 1      // 가로모드
+			}
 		};
 		// 총 12개
 	}); // require

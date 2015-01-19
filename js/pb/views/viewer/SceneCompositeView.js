@@ -13,21 +13,22 @@
  * => static html을 없애고 초기 구동시 생성하는 방향으로 제작해야될듯
  */
 define([
+	'radio',
 	'marionette',
 	'pb_templates',
 	'pb/collections/BaseObjectList',
 	'pb/views/viewer/SceneView'
-], function (Marionette, templates, BaseObjectList, SceneView) {
+], function (Radio, Marionette, templates, BaseObjectList, SceneView) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
-		el: ".contents",
-
 		/** CompositeView에서는 무조건 template을 써야되는 듯함. */
 		/** itemView에서는 잘 모르겠음. */
-		template: false,
+		template: templates.SceneCompositeView,
 		/** 기존 legacy API method : itemView, itemViewContainer */
 		childView: SceneView,
+
+		childViewContainer: '#scenes_wrapper',
 
 		ui: {
 			contents: '.contents'
@@ -39,23 +40,34 @@ define([
 		/** options : instance 초기화시 받은 parameter object*/
 		initialize: function (options) {
 			myLogger.trace("SceneCompositeView - init");
+			_.extend(this, Radio.Commands);
 
-			if ( _.has(options.collection) ) {
+			if (_.has(options.collection)) {
 				this.collection = options.collection;
 			}
-    },
+
+			$(window).resize(_.bind(function () {
+				_.extend(pb.value.RESOLUTION, pb.util.screenController.calculateResolution(
+					pb.value.PROJECT_WIDTH, pb.value.PROJECT_HEIGHT, pb.value.RESOLUTION.PADDING
+				));
+
+				this.render();
+			}, this));
+
+			this.comply("change:currentScene", this.changeCurrentScene, this);
+		},
 
 		/** it does passing parameter, childView initialize(_options)
 		 * ex) _options : {collection, index}
 		 */
 		/** model - Scene Data in SceneList */
-		childViewOptions: function(model, index) {
+		childViewOptions: function (model, index) {
 			myLogger.trace("SceneCompositeView - childViewOptions");
 
 			var baseObjectList = model.get('baseObjectList');
 
 			/** 초기 로딩시 로딩데이터는 원시 array이기 때문에 custom collection으로 wrapping을 함*/
-			if( !(baseObjectList instanceof BaseObjectList) ) {
+			if (!(baseObjectList instanceof BaseObjectList)) {
 				BaseObjectList = new BaseObjectList(baseObjectList);
 			}
 
@@ -74,15 +86,25 @@ define([
 		 * 대신 pb_ui_0.0.1에서는 로딩을 하지 않음(삭제됨)
 		 */
 		onRender: function () {
+			this.$el.css({
+				width: pb.value.RESOLUTION.WIDTH,
+				height: pb.value.RESOLUTION.HEIGHT
+			});
+
+			this.trigger('resize');
 			myLogger.trace("SceneCompositeView - onRender");
 		},
 
-		onShow: function() {
+		onShow: function () {
 			myLogger.trace("SceneCompositeView - onShow");
 		},
 
 		createScene: function () {
 			myLogger.trace("SceneCompositeView - createScene");
+		},
+
+		changeCurrentScene: function(idx) {
+			this.children.findByIndex(idx).command("show:scene");
 		}
 	});
 });

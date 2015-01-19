@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.pb.techtree.TreeNodeViewDAO"%>
@@ -9,14 +8,16 @@
 			String docId = request.getParameter("id");
 			int id = 0;
 			if(docId != null){
-				id = Integer.parseInt(docId);		
+				id = Integer.parseInt(docId);
 			} else {
 				id = 1;
 			}
-			
+
 			TreeNodeViewDAO dao = new TreeNodeViewDAO();
 			// to do -> findByAccountId();
 			ArrayList<TreeNodeViewBean> myProjects = dao.findRecents(2);
+
+			int iter = 0;
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -66,7 +67,7 @@ BEGIN PAGE
 
         <!-- Begin logo -->
         <div class="logo">
-            <a href="index.html"><img src="assets/img/logo.png" alt="Logo" height="60px"></a>
+            <a href="index.jsp"><img src="assets/img/logo.png" alt="Logo" height="60px"></a>
         </div><!-- /.logo -->
         <!-- End logo -->
 
@@ -95,69 +96,33 @@ BEGIN PAGE
             <li class="parent">
                 <a href="#fakelink">Category</a>
                 <ul class="sub-menus">
-                    <li class="sub-list"><a href="index.html">Default</a></li>
+                    <li class="sub-list"><a href="index.jsp">Default</a></li>
 
-                    <li class="sub-list"><a href="index-fancy-color.html">Fancy color navbar <span class="label label-danger">HOT</span></a></li>
-                    <li class="sub-list"><a href="index-static-nav.html">Static nav position</a></li>
+                    <li class="sub-list"><a href=""><span class="label label-danger">HOT</span>IT</a></li>
+                    <li class="sub-list"><a href="fakelink">시사</a></li>
                     <li class="sub-list">
-                        <a href="#fakelink">Dark nav color <span class="badge badge-success">3</span></a>
-                        <ul class="subsub-menus">
-                            <li class="subsub-list"><a href="index-dark-nav-static-image.html">Static image header</a></li>
-                            <li class="subsub-list"><a href="index-dark-nav-image-slide.html">Image slide</a></li>
-                            <li class="subsub-list"><a href="index-dark-nav-content-slide.html">Content slide</a></li>
-                        </ul>
+                        <a href="#fakelink">사진</a>
                     </li>
                     <li class="sub-list">
-                        <a href="#fakelink">Light nav color <span class="badge badge-warning">3</span></a>
-                        <ul class="subsub-menus">
-                            <li class="subsub-list"><a href="index-light-nav-static-image.html">Static image header</a></li>
-                            <li class="subsub-list"><a href="index-light-nav-image-slide.html">Image slide</a></li>
-                            <li class="subsub-list"><a href="index-light-nav-content-slide.html">Content slide</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-list">
-                        <a href="#fakelink">Transparent nav <span class="badge badge-info">3</span></a>
-                        <ul class="subsub-menus">
-                            <li class="subsub-list"><a href="index-trans-nav-static-image.html">Static image header</a></li>
-                            <li class="subsub-list"><a href="index.html">Image slide <span class="label label-primary">DEFAULT</span></a></li>
-                            <li class="subsub-list"><a href="index-trans-nav-content-slide.html">Content slide</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="sub-list"><a href="index-background-color.html">Background color</a></li>
-                    <li class="sub-list">
-                        <a href="#fakelink">Templates <span class="label label-primary">PACKAGE</span></a>
-                        <ul class="subsub-menus">
-                            <li class="subsub-list"><a href="../../index.html" target="_blank">Sentir - Admin template</a></li>
-                            <li class="subsub-list"><a href="index-onepage.html">Sentir - One page</a></li>
-                            <li class="subsub-list"><a href="../comingsoon/index.html">Sentir - Coming soon</a></li>
-                        </ul>
+                        <a href="#fakelink">창작</a>
                     </li>
                 </ul>
             </li>
             <li class="parent">
                 <a href="#fakelink">Manual</a>
-                <ul class="sub-menus">
-                    <li class="sub-list"><a href="about-us.html">About us</a></li>
-                    <li class="sub-list"><a href="full-width.html">Full width</a></li>
-                    <li class="sub-list"><a href="sidebar-left.html">Sidebar left</a></li>
-                    <li class="sub-list"><a href="sidebar-right.html">Sidebar right</a></li>
-                    <li class="sub-list"><a href="service.html">Services</a></li>
-                    <li class="sub-list"><a href="testimonial.html">Testimonial</a></li>
-                    <li class="sub-list"><a href="pricing-table.html">Pricing table</a></li>
-                    <li class="sub-list"><a href="blank.html">Blank page</a></li>
-                </ul>
             </li>
 
             <!-- Begin right icon -->
             <li class="parent right-icon">
-                <i class="fa fa-plus" id="nav-icon-new"></i>
+                <i class="fa fa-plus" id="nav-icon-new"><a href="./tool_pc.jsp"></a></i>
             </li>
             <li class="parent right-icon">
                 <i class="fa fa-search" id="nav-icon-search"></i>
             </li>
             <li class="parent right-icon">
-                <i class="fa fa-user" id="nav-icon-profile"></i>
+                <i class="fa fa-user" id="nav-icon-profile">
+                    <a href="./my_project_list.jsp"></a>
+                </i>
             </li>
             <!-- End right icon -->
         </ul>
@@ -173,15 +138,14 @@ BEGIN PAGE
     <div class="slide-inner more-padding">
         <div class="slide-text-content">
             <div class="container-fluid">
-                <h1>BOOTSTRAP TEMPLATE SPECIALIST</h1>
+                <h1>인터렉티브 컨텐츠 제작 서비스.</h1>
                 <div class="clear"></div>
                 <h3>
-                    Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet<br />
-                    doming id quod mazim placerat facer possim assum.
+                    당신의 아이디어, 스토리, 정보, 앨범등 다양한 종류의 지식들을 PastelBook을 통하여
+                    ​<br />표현하고, 나누고, 그 속에서 또 다른 영감을 얻으세요!
                 </h3>
                 <div class="clear"></div>
-                <button class="btn btn-lg btn-warning btn-learn-more btn-border-only">LEARN MORE</button>
-                <a href="http://goo.gl/V32dLM" target="_blank" class="btn btn-lg btn-success btn-learn-more">PURCHASE NOW</a>
+                <button class="btn btn-lg btn-warning btn-learn-more btn-border-only"><a href="http://www.pastelplus.com/bbs/content.php?co_id=inter">LEARN MORE<a/></button>
             </div><!-- /.container -->
         </div><!-- /.slide-text-content -->
     </div><!-- /.slide-inner -->
@@ -194,9 +158,9 @@ BEGIN PAGE
 <div class="section">
     <div class="container">
         <p class="text-center text-slogan">
-            Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.<br />
-            Typi non habent claritatem insitam est usus legentis in iis qui facit eorum claritatem.<br />
-            Investigationes demonstraverunt lectores legere me lius quod
+            - 어린이, 일반인등 누구나 쉽게 움직이고 살아있는 책을 만들고 온라인상에 공유할 수 있는 새로운 Self-Publishing Service입니다.
+            - 직접 만든 컨텐츠, e-Book을 친구, 가족, SNS, 고객과 공유하세요!
+            - PastelBook의 공유 커뮤니티 뿐만 아니라 사용중인 소셜 네트워크, 홈페이지, 블로그에 삽입하고 감상할 수 있습니다.
         </p>
     </div><!-- /.container -->
 </div><!-- /.section -->
@@ -217,7 +181,8 @@ BEGIN PAGE
             <li class="filter" data-filter="2">시사</li>
             <li class="filter" data-filter="3">사진</li>
             <li class="filter" data-filter="4">창작</li>
-            <!-- 
+
+            <!--
             <li class="filter" data-filter="printing">PRINTING</li>
             <li class="filter" data-filter="other">OTHER</li>
             -->
@@ -225,7 +190,9 @@ BEGIN PAGE
 
         <div id="work-mixitup" class="work-content">
             <div class="row">
-				<% for( TreeNodeViewBean tmp : myProjects ){%>
+				<% for( TreeNodeViewBean tmp : myProjects ){
+				    iter++;
+				%>
                 <!-- Begin work item -->
                 <div class="col-sm-4 col-md-4 col-xs-6 mix <% 
 					if(tmp.getCategory().equals("IT")){
@@ -239,6 +206,11 @@ BEGIN PAGE
 					}
 					%>">
                     <div class="work-item">
+                            <div class="hover-wrap">
+                                <a>
+                                    <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
+                                </a>
+                            </div>
                        <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
 
                        <div class="the-box no-border transparent no-margin">
@@ -274,33 +246,32 @@ BEGIN PAGE
         <div id="owl-testimonial" class="owl-carousel testimonial">
             <div class="item">
                 <p class="text-testi">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Duis autem vel eum iriure
-                    dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et
-                    iusto odio dignissim qui blandit praesent
+                    우리아이, 커플, 여행사진등 소중한 순간을 간직한 그림들을 이쁘게 만들어서 보관하고 싶을때~~
+                    직접 꾸미고 편집해서 예쁜 앨범을 만들고, 간직하고, 주변 사람들과 나누세요~
                 </p>
                 <img src="assets/img/avatar/small/avatar.jpg" class="avatar img-circle" alt="Avatar">
                 <p class="client-name">Karen Wallace</p>
+                <p class="client-home text-danger">CEO - PastelPlus</p>
+            </div><!-- /.item -->
+            <div class="item">
+                <p class="text-testi">
+                    가게홍보, 제품 전시를 위한 홍보물을 제작해서 홈페이지, 블로그에 올리고 싶으신가요?
+                    잠깐의 시간이면 충분합니다! 비싸게 만들지 마세요! 사진과 동영상, 그리고 넣고 싶은내용만 있으면
+                    톡톡튀는 홍보 슬라이드, 책자를 만들 수 있습니다.
+                </p>
+                <img src="assets/img/avatar/small/avatar.jpg" class="avatar img-circle" alt="Avatar">
+                <p class="client-name">Phillip</p>
                 <p class="client-home text-danger">CEO - Yogyakarta, Indonesia</p>
             </div><!-- /.item -->
             <div class="item">
                 <p class="text-testi">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Duis autem vel eum iriure
-                    dolor in hendrerit in vulputate velit esse molestie consequat
+                    당신의 지식이나 생각을 특별한 방법으로 간직하고 싶으신가요?
+                    인터넷만 있으면 언제 어디서나 접속이 가능합니다. 남기고 싶은 기억이나 내용을 Text뿐만 아니라
+                    그림(사진), 비디오, 오디오, 표, 차트등 다양한 방법으로 모두 표현하고 저장하세요!
                 </p>
                 <img src="assets/img/avatar/small/avatar.jpg" class="avatar img-circle" alt="Avatar">
-                <p class="client-name">Phillip Lucas</p>
-                <p class="client-home text-danger">CEO - Yogyakarta, Indonesia</p>
-            </div><!-- /.item -->
-            <div class="item">
-                <p class="text-testi">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.Duis autem vel eum iriure
-                </p>
-                <img src="assets/img/avatar/small/avatar.jpg" class="avatar img-circle" alt="Avatar">
-                <p class="client-name">Sandra Myers</p>
-                <p class="client-home text-danger">CEO - Yogyakarta, Indonesia</p>
+                <p class="client-name">Sandra</p>
+                <p class="client-home text-danger">CEO - New York</p>
             </div><!-- /.item -->
         </div><!-- /#owl-testimonial -->
     </div><!-- /.container -->
@@ -355,85 +326,121 @@ BEGIN PAGE
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4">
-                <h4>íì¤ííë¬ì¤</h4>
+                <h4>ABOUT SENTIR AGENCY</h4>
+
                 <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                    diam nonummy nibh euismod tincidunt ut laoreet dolore
-                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                    quis nostrud exerci tation ullamcorper suscipit lobortis
+                    주소안내 : 전북 전주시 덕진구 백제대로 567 기초교양교육원 111호 파스텔플러스
                 </p>
+
                 <p>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Facebook" class="fa fa-facebook icon-sm icon-rounded icon-social-footer icon-facebook"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Twitter" class="fa fa-twitter icon-sm icon-rounded icon-social-footer icon-twitter"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Google plus" class="fa fa-google-plus icon-sm icon-rounded icon-social-footer icon-google-plus"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Dribbble" class="fa fa-dribbble icon-sm icon-rounded icon-social-footer icon-dribbble"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Pinterest" class="fa fa-pinterest icon-sm icon-rounded icon-social-footer icon-pinterest"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Github" class="fa fa-github icon-sm icon-rounded icon-social-footer icon-github"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Facebook"
+                                           class="fa fa-facebook icon-sm icon-rounded icon-social-footer icon-facebook"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Twitter"
+                                           class="fa fa-twitter icon-sm icon-rounded icon-social-footer icon-twitter"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Google plus"
+                                           class="fa fa-google-plus icon-sm icon-rounded icon-social-footer icon-google-plus"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Dribbble"
+                                           class="fa fa-dribbble icon-sm icon-rounded icon-social-footer icon-dribbble"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Pinterest"
+                                           class="fa fa-pinterest icon-sm icon-rounded icon-social-footer icon-pinterest"></i></a>
+                    <a href="#fakelink"><i data-toggle="tooltip" title="Github"
+                                           class="fa fa-github icon-sm icon-rounded icon-social-footer icon-github"></i></a>
                 </p>
-            </div><!-- /.col-sm-4 -->
+            </div>
+            <!-- /.col-sm-4 -->
             <div class="col-sm-6 col-md-3">
                 <h4>CONTACT</h4>
-                <div class="media media-contact">
-						  <span class="pull-left">
-							<i class="fa fa-user media-object"></i>
-						  </span>
-                    <div class="media-body">
-                        <address>
-                            ëí: <br>
-                            ê¹ ì  í¸
-                        </address>
-                    </div><!-- /.media-body -->
-                </div><!-- /.media -->
+
                 <div class="media media-contact">
 						  <span class="pull-left">
 							<i class="fa fa-map-marker media-object"></i>
 						  </span>
+
                     <div class="media-body">
                         <address>
-                            ì ë¶ ì ì£¼ì ëì§êµ¬ ë§¤ë´ 4ê¸¸6<br>(ê¸ìë, ì ë¤ì´ë¹ë© 203í¸)<br>
+                            PastelPlus, Inc.<br>
+                            전북 전주시 덕진구 백제대로 567<br>
+                            기초교양교육원 111호 파스텔플러스<br>
+                            <abbr title="Phone">Phone:</abbr> (010) 3800 - 2109
                         </address>
-                    </div><!-- /.media-body -->
-                </div><!-- /.media -->
+                    </div>
+                    <!-- /.media-body -->
+                </div>
+                <!-- /.media -->
                 <div class="media media-contact">
-                    <span class="pull-left">
-                        <i class="fa fa-phone media-object"></i>
-                    </span>
+						  <span class="pull-left">
+							<i class="fa fa-envelope media-object"></i>
+						  </span>
+
                     <div class="media-body">
                         <address>
-                            ëíë²í¸:<br>
-                            063-200-0000
+                            Kim Seonho<br>
+                            <a href="mailto:#">pastelbook89@gmail.com</a>
                         </address>
-                    </div><!-- /.media-body -->
-                </div><!-- /.media -->
-            </div><!-- /.col-sm-3 -->
+                    </div>
+                    <!-- /.media-body -->
+                </div>
+                <!-- /.media -->
+            </div>
+            <!-- /.col-sm-3 -->
             <div class="clearfix visible-sm"></div>
             <div class="col-sm-6 col-md-2">
                 <h4>NAVIGATION</h4>
                 <ul class="list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html">About us</a></li>
-                    <li><a href="index.html">Our services</a></li>
-                    <li><a href="index.html">Portfolio</a></li>
-                    <li><a href="index.html">Pricing</a></li>
-                    <li><a href="index.html">Blog</a></li>
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="http://www.pastelplus.com/bbs/content.php?co_id=company">About us</a></li>
+                    <li><a href="http://www.pastelplus.com/bbs/content.php?co_id=biz1">Our services</a></li>
+                    <li><a href="http://www.pastelplus.com/bbs/content.php?co_id=inter">Product</a></li>
+                    <li><a href="ihttp://www.pastelplus.com/bbs/content.php?co_id=blog">Blog</a></li>
                 </ul>
-            </div><!-- /.col-sm-2 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</footer><!-- /.section -->
+            </div>
+            <!-- /.col-sm-2 -->
+            <div class="col-sm-6 col-md-3">
+                <h4>SIGN UP NEWSLETTER</h4>
+
+                <p>
+                    pastelbook89@gmail.com
+                </p>
+
+                <form role="form">
+                    <div class="input-group subscribe">
+                        <input type="text" class="form-control" placeholder="Enter email address">
+							  <span class="input-group-btn">
+								<button class="btn btn-info" type="button"><i class="fa fa-chevron-right"></i></button>
+							  </span>
+                    </div>
+                    <!-- /input-group -->
+                </form>
+            </div>
+            <!-- /.col-sm-3 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</footer>
+<!-- /.section -->
 
 <div class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
-                ì¬ììë±ë¡ë²í¸ :  418-08-80915
+            <div class="col-sm-5">
+                Copyright &copy; 2015 <a href="#fakelink">PastelPlus corp</a>
             </div>
-            <div class="col-sm-6">
-                COPYRIGHTâ PASTELEPUB.COM All Right Reserved.
-            </div><!-- /.col-sm-5 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div><!-- /.footer -->
+            <!-- /.col-sm-5 -->
+            <div class="col-sm-7 text-right">
+                <ul class="list-inline">
+                    <li><a href="#fakelink">Terms and condition</a></li>
+                    <li><a href="#fakelink">Privacy policy</a></li>
+                    <li><a href="#fakelink">FAQ</a></li>
+                </ul>
+            </div>
+            <!-- /.col-sm-7 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.footer -->
 <!-- END FOOTER -->
 
 
@@ -443,6 +450,37 @@ BEGIN PAGE
     <i class="fa fa-chevron-up"></i>
 </div>
 <!-- END BACK TO TOP -->
+
+
+<!-- BEGIN PROJECT SHOW MODAL TEMPLATE -->
+<!-- 해당 id를 인식하여 model popup이 작동함-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:auto;height:auto">
+        <div class="modal-content" style="width:auto;height:auto">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="false">close</button>
+                <div style="float:right; margin-right:1.0em;">view수</div>
+                <div><h4 class="modal-title">Modal title</h4></div>
+            </div>
+            <div class="modal-body" data-dismiss="modal">
+                <div style="background-color:black; margin:auto">
+                    <iframe src="./viewer_common.jsp?id=25" width="960px" height="540px" frameborder="0" marginwidth="0" marginheight="0"
+                    scrolling="no" max-width="100%" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div style="float:left">ID</div>
+                <div>날짜</div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- END PROJECT PROJECT SHOW MODAL TEMPLATE -->
+
 
 <!--
 ===========================================================

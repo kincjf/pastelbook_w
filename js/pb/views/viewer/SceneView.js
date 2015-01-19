@@ -10,13 +10,13 @@ define([
 	'marionette',
 	'radio',
 	'pb_templates',
-	'pb/views/object/ImageView',
-	'pb/views/object/TextBoxView',
-	'pb/views/object/ShapeView',
-	'pb/views/object/VideoView',
-	'pb/views/object/AudioView',
-	'pb/views/object/TableView',
-	'pb/views/object/ChartView',
+	'pb/views/viewer/base_object/ImageView',
+	'pb/views/viewer/base_object/TextBoxView',
+	'pb/views/viewer/base_object/ShapeView',
+	'pb/views/viewer/base_object/VideoView',
+	'pb/views/viewer/base_object/AudioView',
+	'pb/views/viewer/base_object/TableView',
+	'pb/views/viewer/base_object/ChartView',
 	'pb/controllers/CustomError'
 ], function (Marionette, Radio, templates,
              ImageView, TextBoxView, ShapeView, VideoView, AudioView, TableView, ChartView,
@@ -24,17 +24,17 @@ define([
 	'use strict';
 
 	return Marionette.CompositeView.extend({
-		tagName: 'div',   // default div
-		className: 'scene',
-		template: false,
+		tagName: "section",
+
+		template: templates.SceneView,
 
 		ui: {
 			scene: '.scene'
 		},
 
-		events: {
+		events: {},
 
-		},
+		className: 'fit',
 
 		/** 기존 legacy API method : itemViewContainer*/
 		/** http://marionettejs.com/docs/marionette.compositeview.html#modelevents-and-collectionevents 참조*/
@@ -59,36 +59,7 @@ define([
 				this.model = options.model;
 			}
 
-			/** SceneView, SceneViewSetList에서 index로 접근하여 instance를 할당할 수 있도록
-			 * 빈 Model을 생성함.
-			 * 호출 순서는 SceneCompositeView/SceneView -> ScenePreviewCompositeView/ScenePreviewView
-			 * 이기 때문에 현재 위치에 ViewSet을 Push함.
-			 * 이 순서는 reset때도 마찬가지임. 무슨뜻이냐면...
-			 *   [매우 중요함!]
-			 * reset event일 때도 만약 모델이 3개일 경우 3개에 해당하는 SceneView가 모두 생성 된 다음
-			 * ScenePreviewView가 생성됨.]
-			 */
-			//pb.type.view.sceneViewSetList.push({
-			//	parent: pb.type.view.sceneViewSetList
-			//});
-
-			/** SceneView와 ScenePreviewView를 묶어놓은 Model
-			 * this.options.index : CompositeView 내에서 몇번째 View인지 알려줌
-			 */
-			//this.sceneViewSet = pb.type.view.sceneViewSetList.at(
-			//	this.options.index
-			//);
-
-			//if (this.sceneViewSet) {
-			//	/** ViewSet이 등록되었다는 알림을 받으면 event binding을 함 */
-			//	this.listenTo(this.sceneViewSet, "register:sceneViewSet", this.bindEvents);
-			//
-			//	/** sceneView를 등록하고 viewSet에 알림. */
-			//	this.sceneViewSet.set("sceneView", this);
-			//	this.sceneViewSet.trigger("register:sceneView");
-			//}
-
-
+			this.comply("show:scene", this.selectSceneView, this);
 		},
 
 		getChildView: function (item) {
@@ -132,6 +103,15 @@ define([
 		},
 
 		onRender: function (event, ui) {
+			//  #/search/[pageNumber]
+			var currentIndex = parseInt(Backbone.history.location.hash.substr(8), 10) - 1;
+
+			if(this.options.index != currentIndex) {
+				this.$el.hide();
+			} else {
+				pb.current.scene = this;
+			}
+
 			myLogger.trace("SceneView - onRender");
 		},
 

@@ -19,9 +19,7 @@ define([
 			_id: '',
 			sceneNumber: '',
 			title: 'Scene',
-			baseObjectList: null,
-			previewImage: '',
-			comment: ''
+			baseObjectList: null
 		},
 
 		/** backend(REST DB)와 통신하기 위해서 기본 식별자 지정 */
