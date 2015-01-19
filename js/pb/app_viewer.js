@@ -40,11 +40,10 @@ define([
 
 	var projectData = docData;
 
-	//var url = "http://pastelbook.com:82/pastelbook_w/projectData.jsp";
+	//var url = "http://pastelbook.com:82/pw3/projectData.jsp";
 	//$.ajax(url, {
 	//	type: 'GET',
 	//	data: {id: docId},
-	//	crossDomain: true
 	//})
 	//	.done(function(data) {
 	//		projectData = data;

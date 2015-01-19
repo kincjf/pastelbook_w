@@ -12,7 +12,7 @@
 		}
 
 	ProjectDAO dao = new ProjectDAO();
-	ProjectBean result = dao.findById(4);
+	ProjectBean result = dao.findById(id);
 
 	String data = result.getSceneList();
 %>
