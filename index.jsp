@@ -214,8 +214,9 @@ BEGIN PAGE
             <li class="filter" data-filter="all">ALL</li>
             <!-- loop -->
             <li class="filter" data-filter="1">IT</li>
-            <li class="filter" data-filter="web_design">WEB DESIGN</li>
-            <li class="filter" data-filter="mobile_apps">MOBILE APPS</li>
+            <li class="filter" data-filter="2">시사</li>
+            <li class="filter" data-filter="3">사진</li>
+            <li class="filter" data-filter="4">창작</li>
             <!-- 
             <li class="filter" data-filter="printing">PRINTING</li>
             <li class="filter" data-filter="other">OTHER</li>
@@ -226,7 +227,17 @@ BEGIN PAGE
             <div class="row">
 				<% for( TreeNodeViewBean tmp : myProjects ){%>
                 <!-- Begin work item -->
-                <div class="col-sm-4 col-md-4 col-xs-6 mix 1">
+                <div class="col-sm-4 col-md-4 col-xs-6 mix <% 
+					if(tmp.getCategory().equals("IT")){
+						out.println(1);
+					} else if(tmp.getCategory().equals("시사")){
+						out.println(2);
+					} else if(tmp.getCategory().equals("사진")){
+						out.println(3);
+					} else if(tmp.getCategory().equals("창작")){
+						out.println(4);
+					}
+					%>">
                     <div class="work-item">
                        <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
 
