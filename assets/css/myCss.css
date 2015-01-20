@@ -19,3 +19,36 @@
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
+
+
+
+/* style-responsive.css > .btn-toggle-nav > 우상단 토글 버튼 */
+
+/* style.css > .btn-toggle-nav > 우상단 토글 버튼 */
+.btn-toggle-user{
+	display: none;
+	position: absolute;
+	right: 80px;
+	top: 0;
+	height: 60px;
+	width: 40px;
+	text-align: center;
+	color: #fff;
+	padding: 16px 0;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.btn-toggle-new{
+	display: none;
+	position: absolute;
+	right: 120px;
+	top: 0;
+	height: 60px;
+	width: 40px;
+	text-align: center;
+	color: #fff;
+	padding: 16px 0;
+	font-size: 18px;
+	cursor: pointer;
+}
