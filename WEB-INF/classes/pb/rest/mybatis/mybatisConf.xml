@@ -8,9 +8,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="org.mariadb.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://54.65.51.101:3306/pb" />
+				<property name="url" value="jdbc:mysql://pastelbook.com:3306/pb" />
 				<property name="username" value="pb" />
-				<property name="password" value="hitit113112" />
+				<property name="password" value="wjstks" />
 			</dataSource>
 		</environment>
 	</environments>

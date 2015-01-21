@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+@media (max-width: 1023px){
+	.btn-toggle-user{ display: block;}
+	.btn-toggle-new{ display: block;}
+}

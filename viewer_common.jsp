@@ -11,6 +11,11 @@
 		} else {
 			id = 4;
 		}
+
+	ProjectDAO dao = new ProjectDAO();
+	ProjectBean result = dao.findById(id);
+
+	String data = result.getSceneList();
 %>
 <!DOCTYPE html>
 <html lang="ko">

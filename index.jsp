@@ -14,9 +14,7 @@
 			}
 
 			TreeNodeViewDAO dao = new TreeNodeViewDAO();
-			// to do -> findByAccountId();
 			ArrayList<TreeNodeViewBean> myProjects = dao.findRecents(2);
-
 			int iter = 0;
 %>
 <!DOCTYPE html>
@@ -44,6 +42,11 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">
+    
+    <!-- additional css -->
+    <link href="assets/css/myCss.css" rel="stylesheet">
+    <link href="assets/css/index_add.css" rel="stylesheet">
+    
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -62,73 +65,7 @@ BEGIN PAGE
 
 
 <!-- BEGIN TOP NAVBAR -->
-<div class="top-navbar">
-    <div class="container">
-
-        <!-- Begin logo -->
-        <div class="logo">
-            <a href="index.jsp"><img src="assets/img/logo.png" alt="Logo" height="60px"></a>
-        </div><!-- /.logo -->
-        <!-- End logo -->
-
-        <!-- Begin button toggle nav -->
-        <div class="btn-toggle-nav" id="btn-toggle-nav"><i class="fa fa-bars"></i></div>
-        <div class="btn-toggle-user" id="btn-icon-user"><i class="fa fa-user"></i></div>
-        <div class="btn-toggle-search" id="btn-icon-search"><i class="fa fa-search"></i></div>
-        <div class="btn-toggle-new" id="btn-icon-new"><i class="fa fa-plus"></i></div>
-        <!-- End button toggle nav -->
-
-        <!-- Begin visible phone and search nav -->
-        <div id="phone-sub" class="nav-right-info">
-            <i class="fa fa-times times-icon" id="close-phone-nav"></i>
-            <p class="phone">Call us : <strong>+1 123 4567 7899</strong></p>
-        </div>
-        <div id="search-sub" class="nav-right-info">
-            <i class="fa fa-times times-icon" id="close-search-nav"></i>
-            <form role="form">
-                <input type="text" class="form-control" placeholder="Search something...">
-            </form>
-        </div>
-        <!-- End visible phone and search nav -->
-
-        <!-- Begin nav menu -->
-        <ul class="menus">
-            <li class="parent">
-                <a href="#fakelink">Category</a>
-                <ul class="sub-menus">
-                    <li class="sub-list"><a href="index.jsp">Default</a></li>
-
-                    <li class="sub-list"><a href=""><span class="label label-danger">HOT</span>IT</a></li>
-                    <li class="sub-list"><a href="fakelink">시사</a></li>
-                    <li class="sub-list">
-                        <a href="#fakelink">사진</a>
-                    </li>
-                    <li class="sub-list">
-                        <a href="#fakelink">창작</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="parent">
-                <a href="#fakelink">Manual</a>
-            </li>
-
-            <!-- Begin right icon -->
-            <li class="parent right-icon">
-                <i class="fa fa-plus" id="nav-icon-new"><a href="./tool_pc.jsp"></a></i>
-            </li>
-            <li class="parent right-icon">
-                <i class="fa fa-search" id="nav-icon-search"></i>
-            </li>
-            <li class="parent right-icon">
-                <i class="fa fa-user" id="nav-icon-profile">
-                    <a href="./my_project_list.jsp"></a>
-                </i>
-            </li>
-            <!-- End right icon -->
-        </ul>
-        <!-- End nav menu -->
-    </div><!-- /.container -->
-</div><!-- /.top-navbar -->
+<%@include file="include/top-navbar.jsp" %>
 <!-- END TOP NAVBAR -->
 
 
@@ -145,7 +82,7 @@ BEGIN PAGE
                     ​<br />표현하고, 나누고, 그 속에서 또 다른 영감을 얻으세요!
                 </h3>
                 <div class="clear"></div>
-                <button class="btn btn-lg btn-warning btn-learn-more btn-border-only"><a href="http://www.pastelplus.com/bbs/content.php?co_id=inter">LEARN MORE<a/></button>
+                <button class="btn btn-lg btn-warning btn-learn-more btn-border-only"><a href="http://www.pastelplus.com/bbs/content.php?co_id=inter">LEARN MORE</a></button>
             </div><!-- /.container -->
         </div><!-- /.slide-text-content -->
     </div><!-- /.slide-inner -->
@@ -181,6 +118,7 @@ BEGIN PAGE
             <li class="filter" data-filter="2">시사</li>
             <li class="filter" data-filter="3">사진</li>
             <li class="filter" data-filter="4">창작</li>
+
             <!--
             <li class="filter" data-filter="printing">PRINTING</li>
             <li class="filter" data-filter="other">OTHER</li>
@@ -278,168 +216,8 @@ BEGIN PAGE
 <!-- END HAPPY CLIENT SECTION -->
 
 
-
-<!-- BEGIN CLIENT LOGO SECTION -->
-<div class="section">
-    <div class="container">
-        <div id="owl-client-logo" class="owl-carousel client-logo">
-            <div class="item">
-                <img src="assets/img/client-logo/graphicriver.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/photodune.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/themeforest.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/codecanyon.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/3docean.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/graphicriver.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/photodune.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/themeforest.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/codecanyon.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/3docean.png" alt="Client logo">
-            </div><!-- /.item -->
-        </div><!-- /#owl-client-logo -->
-    </div><!-- /.container -->
-</div><!-- /.section -->
-<!-- END CLIENT LOGO SECTION -->
-
-
-
 <!-- BEGIN FOOTER -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-4">
-                <h4>ABOUT SENTIR AGENCY</h4>
-
-                <p>
-                    주소안내 : 전북 전주시 덕진구 백제대로 567 기초교양교육원 111호 파스텔플러스
-                </p>
-
-                <p>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Facebook"
-                                           class="fa fa-facebook icon-sm icon-rounded icon-social-footer icon-facebook"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Twitter"
-                                           class="fa fa-twitter icon-sm icon-rounded icon-social-footer icon-twitter"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Google plus"
-                                           class="fa fa-google-plus icon-sm icon-rounded icon-social-footer icon-google-plus"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Dribbble"
-                                           class="fa fa-dribbble icon-sm icon-rounded icon-social-footer icon-dribbble"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Pinterest"
-                                           class="fa fa-pinterest icon-sm icon-rounded icon-social-footer icon-pinterest"></i></a>
-                    <a href="#fakelink"><i data-toggle="tooltip" title="Github"
-                                           class="fa fa-github icon-sm icon-rounded icon-social-footer icon-github"></i></a>
-                </p>
-            </div>
-            <!-- /.col-sm-4 -->
-            <div class="col-sm-6 col-md-3">
-                <h4>CONTACT</h4>
-
-                <div class="media media-contact">
-						  <span class="pull-left">
-							<i class="fa fa-map-marker media-object"></i>
-						  </span>
-
-                    <div class="media-body">
-                        <address>
-                            PastelPlus, Inc.<br>
-                            전북 전주시 덕진구 백제대로 567<br>
-                            기초교양교육원 111호 파스텔플러스<br>
-                            <abbr title="Phone">Phone:</abbr> (010) 3800 - 2109
-                        </address>
-                    </div>
-                    <!-- /.media-body -->
-                </div>
-                <!-- /.media -->
-                <div class="media media-contact">
-						  <span class="pull-left">
-							<i class="fa fa-envelope media-object"></i>
-						  </span>
-
-                    <div class="media-body">
-                        <address>
-                            Kim Seonho<br>
-                            <a href="mailto:#">pastelbook89@gmail.com</a>
-                        </address>
-                    </div>
-                    <!-- /.media-body -->
-                </div>
-                <!-- /.media -->
-            </div>
-            <!-- /.col-sm-3 -->
-            <div class="clearfix visible-sm"></div>
-            <div class="col-sm-6 col-md-2">
-                <h4>NAVIGATION</h4>
-                <ul class="list">
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="http://www.pastelplus.com/bbs/content.php?co_id=company">About us</a></li>
-                    <li><a href="http://www.pastelplus.com/bbs/content.php?co_id=biz1">Our services</a></li>
-                    <li><a href="http://www.pastelplus.com/bbs/content.php?co_id=inter">Product</a></li>
-                    <li><a href="ihttp://www.pastelplus.com/bbs/content.php?co_id=blog">Blog</a></li>
-                </ul>
-            </div>
-            <!-- /.col-sm-2 -->
-            <div class="col-sm-6 col-md-3">
-                <h4>SIGN UP NEWSLETTER</h4>
-
-                <p>
-                    pastelbook89@gmail.com
-                </p>
-
-                <form role="form">
-                    <div class="input-group subscribe">
-                        <input type="text" class="form-control" placeholder="Enter email address">
-							  <span class="input-group-btn">
-								<button class="btn btn-info" type="button"><i class="fa fa-chevron-right"></i></button>
-							  </span>
-                    </div>
-                    <!-- /input-group -->
-                </form>
-            </div>
-            <!-- /.col-sm-3 -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</footer>
-<!-- /.section -->
-
-<div class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-5">
-                Copyright &copy; 2015 <a href="#fakelink">PastelPlus corp</a>
-            </div>
-            <!-- /.col-sm-5 -->
-            <div class="col-sm-7 text-right">
-                <ul class="list-inline">
-                    <li><a href="#fakelink">Terms and condition</a></li>
-                    <li><a href="#fakelink">Privacy policy</a></li>
-                    <li><a href="#fakelink">FAQ</a></li>
-                </ul>
-            </div>
-            <!-- /.col-sm-7 -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</div>
-<!-- /.footer -->
+<%@include file="include/footer.jsp" %>
 <!-- END FOOTER -->
 
 

@@ -8,7 +8,7 @@
  */
 define([
 	'pb_templates',
-	'pb/views/BaseObjectView',
+	'pb/views/viewer/base_object/BaseObjectView',
 	'ckeditor-jquery'
 ], function (templates, BaseObjectView) {
 	'use strict';
@@ -47,21 +47,10 @@ define([
 			_.extend(this.events, BaseObjectView.prototype.events);
 			_.extend(this.ui, BaseObjectView.prototype.ui);
 
-			this.textBoxContextMenus = {
-				"changeImage": {
-					name: "텍스트 편집", icon: "icon",
-					callback: this.changeText
-				},
-				"makeLink": {
-					name: "링크 만들기", icon: "edit",
-					callback: this.makeLinkText
-				},
-				"editImage": {
-					name: "텍스트 효과 편집", icon: "edit",
-					callback: this.editTextEffect
-				}
-			};
+<<<<<<< HEAD
+=======
 
+>>>>>>> 42c85ba98d418114b8eb8c8807edfd5675fab6a8
 			//this.listenTo(this.model, 'change', this.render, this);
 			myLogger.trace("TextBoxView - init");
 
@@ -71,25 +60,25 @@ define([
 		onShow: function (v) {
 			BaseObjectView.prototype.onShow.call(this);
 
-			this.$el.contextMenu({
-				selector: ".ui-resizable-handle",
-				items: _.extend(this.objectContextMenus, this.textBoxContextMenus)
-			});
-
 			myLogger.trace("TextBoxView - onShow");
 		},
 
 		// "render" / onRender - after everything has been rendered
 		onRender: function (v) {
 			BaseObjectView.prototype.onRender.call(this);
+			
+			
 
+			var prevFontSize = parseInt(this.ui.content.find("span").css("font-size"), 10);
+
+			this.ui.content.find("span").css({
+				font-size: this.ui.content.find("span").css("")
+			});
 			myLogger.trace("TextBoxView - onRender");
 		},
 
 		onDomRefresh: function() {
-			this.ui.content.ckeditor({
-				disableReadonlyStyling : true
-			});
+
 		},
 
 		changeText: function () {
@@ -106,12 +95,14 @@ define([
 
 		enableEditing: function() {
 			myLogger.trace("TextBoxView - enableEditing");
+<<<<<<< HEAD
 		},
 
 		/** this.model : TextBox (Marionette default member variable) */
 		saveContent: function() {
-			this.model.set('htmlString', this.ui.content.html());
-			myLogger.trace("TextBoxView - saveContent");
+
+=======
+>>>>>>> 42c85ba98d418114b8eb8c8807edfd5675fab6a8
 		}
 	});
 });
