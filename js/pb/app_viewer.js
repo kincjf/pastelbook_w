@@ -38,7 +38,7 @@ define([
 
 	});
 
-	var projectData = data;
+	var projectData = docData;
 
 	//var url = "http://pastelbook.com:82/pw3/projectData.jsp";
 	//$.ajax(url, {

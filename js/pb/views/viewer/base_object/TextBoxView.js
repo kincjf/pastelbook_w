@@ -36,7 +36,7 @@ define([
 			// 이미 들어간거이기 떄문에 넣지 말라는 표시임.
 			// Scene에 삽입된 개체를 드래그시 계속 삽입되는 버그를 방지하기위한 표시.
 			// 삽입되었다는 표시임.
-	      'type': 'textbox'
+			'type': 'textbox'
 		},
 
 		className: BaseObjectView.prototype.className,
@@ -47,10 +47,6 @@ define([
 			_.extend(this.events, BaseObjectView.prototype.events);
 			_.extend(this.ui, BaseObjectView.prototype.ui);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 42c85ba98d418114b8eb8c8807edfd5675fab6a8
 			//this.listenTo(this.model, 'change', this.render, this);
 			myLogger.trace("TextBoxView - init");
 
@@ -66,19 +62,16 @@ define([
 		// "render" / onRender - after everything has been rendered
 		onRender: function (v) {
 			BaseObjectView.prototype.onRender.call(this);
-			
-			
 
-			var prevFontSize = parseInt(this.ui.content.find("span").css("font-size"), 10);
+			// var prevFontSize = parseInt(this.ui.content.find("span").css("font-size"), 10);
 
-			this.ui.content.find("span").css({
-				font-size: this.ui.content.find("span").css("")
-			});
+			// this.ui.content.find("span").css({
+			//	font-size: this.ui.content.find("span").css("")
+			// });
 			myLogger.trace("TextBoxView - onRender");
 		},
 
 		onDomRefresh: function() {
-
 		},
 
 		changeText: function () {
@@ -95,14 +88,11 @@ define([
 
 		enableEditing: function() {
 			myLogger.trace("TextBoxView - enableEditing");
-<<<<<<< HEAD
+
 		},
 
 		/** this.model : TextBox (Marionette default member variable) */
 		saveContent: function() {
-
-=======
->>>>>>> 42c85ba98d418114b8eb8c8807edfd5675fab6a8
 		}
 	});
 });
