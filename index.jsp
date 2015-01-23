@@ -1,3 +1,5 @@
+<%@page import="pb.rest.jaxrs.vo.Account"%>
+<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.pb.techtree.TreeNodeViewDAO"%>
@@ -7,12 +9,42 @@
 <%
 			String docId = request.getParameter("id");
 			int id = 0;
+			
 			if(docId != null){
 				id = Integer.parseInt(docId);
 			} else {
 				id = 1;
 			}
-
+			
+			// BEGIN login.jsp 에서  폼을 통해서 날렸을때
+			String account = request.getParameter("account");
+			String pw = request.getParameter("pw");
+			int accountId = -1;
+			if(account != null){
+				if(pw != null){
+					Account bean = new Account(account, "mail", pw);
+					AccountDAO aDao = new AccountDAO();
+					Account fromDB = aDao.findByName(bean.getNick());
+					if(bean.getPassword().equals(fromDB.getPassword())){
+						// out.println("<script>alert();</script>");
+						// 세션에 id 등록
+						session.setAttribute("account", fromDB);
+					} else {
+						out.println("<script>location.href='login.jsp'</script>");
+					}
+				}
+			}
+			// END login.jsp
+			
+			
+			// 세션체크
+			if(session.getAttribute("account") != null){
+				// 문제는 세션체크는 했으나 Account 에서 id를 가져오지 않음..
+				// bean 부터 새로만들기
+			}
+			
+			
+			
 			TreeNodeViewDAO dao = new TreeNodeViewDAO();
 			ArrayList<TreeNodeViewBean> myProjects = dao.findRecents(2);
 			int iter = 0;
@@ -71,6 +103,7 @@ BEGIN PAGE
 
 
 <!-- BEGIN HEADER FULL IMAGE SLIDE -->
+<%/* 
 <div class="full-slide-image" id="full-img-slide">
     <div class="slide-inner more-padding">
         <div class="slide-text-content">
@@ -87,6 +120,7 @@ BEGIN PAGE
         </div><!-- /.slide-text-content -->
     </div><!-- /.slide-inner -->
 </div><!-- /.full-slide-image -->
+
 <!-- END HEADER FULL IMAGE SLIDE -->
 
 
@@ -102,15 +136,20 @@ BEGIN PAGE
     </div><!-- /.container -->
 </div><!-- /.section -->
 <!-- END TEXT SECTION -->
-
+*/%>
 
 <!-- BEGIN LATEST WORK SECTION -->
 <div class="section work-section">
     <div class="container">
+    	<%/*
         <div class="section-heading">
             <div class="inner-border"></div>
             <h3>프로젝트 소개</h3>
         </div><!-- /.section-heading -->
+        */%>
+        <div class="section-heading">
+        	<div class="inner-border"></div>
+        </div>
         <ul class="work-category-wrap">
             <li class="filter" data-filter="all">ALL</li>
             <!-- loop -->
@@ -147,7 +186,10 @@ BEGIN PAGE
                                 <a>
                                     <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
                                 </a>
+                                <br />
+                                <a href="docDetail.jsp?id=<%= tmp.getId() %>"><%= tmp.getTitle() %></a>
                             </div>
+                            
                        <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
 
                        <div class="the-box no-border transparent no-margin">

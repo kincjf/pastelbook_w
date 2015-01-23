@@ -48,7 +48,14 @@
 					<% } %>
 				</ul></li>
 			<li class="parent"><a href="howto.html">Manual</a></li>
-
+			<%
+			if(session.getAttribute("account") != null){
+			%>
+			<li class="parent"><a href="login.jsp">Login</a></li>
+			<li class="parent"><a href="register.jsp">Register</a></li>
+			<%
+			}
+			%>
 
 			<a href="tool_pc.jsp"><li class="parent right-icon"><i class="fa fa-plus"
 				id="nav-icon-new"></i></li></a>
