@@ -10,7 +10,7 @@
 			if(docId != null){
 				id = Integer.parseInt(docId);		
 			} else {
-				id = 1;
+				id = 25;
 			}
 
 			TreeNodeViewDAO dao = new TreeNodeViewDAO();
@@ -73,7 +73,7 @@ BEGIN PAGE
 <div class="page-title-wrap">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.jsp">Home</a></li>
             <li><a href="#fakelink">Doc</a></li>
             <li class="active">Doc detail</li>
         </ol>
@@ -96,13 +96,17 @@ BEGIN PAGE
             <!-- BLOG DETAIL SECTION -->
             <div class="section blog-detail">
 				<!--  <%//result.getPreviewImage() %>-->
-                <img src="thumb/<%= result.getPreviewImage() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px;">
+                <!-- <img src="thumb/<%= result.getPreviewImage() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px;">  -->
+                
+                <embed src="viewer_common.jsp?id=<%=result.getId() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px; width:800px; height:426px;"></embed>
 
                 <!-- title and viewCount -->
+                <!-- 
                 <div class="tileAndViewCnt" style="overflow: auto; border: 1px solid red; height: 30px; margin-bottom: 20px;">
                     <span style="float: left;font-size: 20px">Tile</span>
                     <span style="float: right;font-size: 20px">13</span>
                 </div>
+                -->
 
                 <!-- sns icon -->
                 <p align="right">

@@ -22,6 +22,7 @@
 <head>
     <script>
         var docId = <%=id%>;
+        var docData = <%=data%>;
     </script>
     <title>Pastelbook Viewer</title>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
