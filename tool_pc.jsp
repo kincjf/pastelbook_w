@@ -1,4 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@page import="com.pb.techtree.Project2Bean"%>
+<%@page import="com.pb.techtree.Project2DAO"%>
+<%@page import="com.pb.techtree.ProjectDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %><%
+	Project2DAO dao = new Project2DAO();
+	String id = request.getParameter("id");
+	int projectId = Integer.parseInt(id);
+	Project2Bean bean = null;
+	if(id != null){
+		bean = dao.findById(projectId);	
+	}
+	
+	String projectData = bean.getSceneList();
+%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -26,6 +39,15 @@
     <!-- css for Custom Optimization -->
     <link href="assets/css/pb_default.css" rel="stylesheet"/>
 
+	<script>
+	<%
+		if(id != null){
+	%>
+		var loadedSceneList = <%=projectData%>;
+	<%
+		}
+	%>
+	</script>
     <!-- configure for use logging library  -->
     <script src="js/lib/log4javascript_uncompressed.js"></script>
     <script src="js/log4javascript-config.js"></script>
