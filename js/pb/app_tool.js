@@ -103,6 +103,9 @@ define([
 	///** for debugging */
 	//window.project = pb.type.Model.Project;
 	//window.sceneList = pb.type.Model.Project.get('sceneList');
+	
+	
+	pb.type.model.project.trigger("loading:project", window.loadedSceneList);
 
 	return window.app_tool = app_tool
 });

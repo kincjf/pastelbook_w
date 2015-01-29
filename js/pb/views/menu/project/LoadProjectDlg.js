@@ -52,7 +52,8 @@ define([
 
 		events: {
 			'click @ui.loadFromLocalStorage': 'loadFromLocalStorage',
-			'click @ui.loadFromText': 'loadFromText'
+			'click @ui.loadFromText': 'loadFromText',
+			'click @ui.loadFromServer': 'loadFromServer'
 		},
 
 		initialize: function (_options) {
@@ -135,6 +136,13 @@ define([
 			});
 
 			this.loadFromTextArea.show(loadFromTextDialog);
+		},
+		
+		
+		/*
+		loadFromServer: function () {
+			this.model.trigger("loading:project", loadedSceneList);
 		}
+		*/
 	});
 });
