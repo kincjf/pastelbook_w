@@ -29,23 +29,23 @@
     <title>SENTIR AGENCY</title>
 
     <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- PLUGINS CSS-->
-    <link href="assets/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
-    <link href="assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
-    <link href="assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <link href="../assets/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="../assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="../assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="../assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
 
 
     <!-- MAIN CSS (REQUIRED ALL PAGE)-->
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
     <link href="assets/css/common.css" rel="stylesheet">
     
-    <link href="assets/css/myCss.css" rel="stylesheet">
-    <link href="assets/css/myCss-responsive.css" rel="stylesheet">
+    <link href="../assets/css/myCss.css" rel="stylesheet">
+    <link href="../assets/css/myCss-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -64,7 +64,7 @@ BEGIN PAGE
 
 
 <!-- BEGIN TOP NAVBAR -->
-<%@include file="include/top-navbar.jsp" %>
+<%@include file="../include/top-navbar.jsp" %>
 <!-- END TOP NAVBAR -->
 
 
@@ -118,13 +118,13 @@ BEGIN PAGE
 
             <div class="col-xs-4 col-md-2">
                 <button type="button" class="btn btn-default" id="public">
-                    <span><img src="assets/img/unlock.png" style="height: 20px"></span> Public
+                    <span><img src="../assets/img/unlock.png" style="height: 20px"></span> Public
                 </button>
             </div>
 
             <div class="col-xs-4 col-md-2">
                 <button type="button" class="btn btn-default" id="private">
-                    <span><img src="assets/img/lock.png" style="height: 20px"></span> Private
+                    <span><img src="../assets/img/lock.png" style="height: 20px"></span> Private
                 </button>
             </div>
 
@@ -152,7 +152,7 @@ BEGIN PAGE
                                 <input type="checkbox" class="blankCheckbox" value="option1" aria-label="...">
                             </div>
                             <div style="float: right">
-                                <img src="assets/img/lock.png" style="width:30px; height: 30px;">
+                                <img src="../assets/img/lock.png" style="width:30px; height: 30px;">
                             </div>
                         </div>
                         <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
@@ -215,7 +215,7 @@ BEGIN PAGE
                 </div><!-- /.wrapper-->
             </div><!-- /.col-sm-9 -->
             <div class="col-md-3 col-sm-4">
-                <a class="btn btn-danger" href="./index.jsp" target="_blank">Join NOW</a>
+                <a class="btn btn-danger" href="../index.jsp" target="_blank">Join NOW</a>
             </div><!-- /.col-sm-3 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
@@ -229,34 +229,34 @@ BEGIN PAGE
     <div class="container">
         <div id="owl-client-logo" class="owl-carousel client-logo">
             <div class="item">
-                <img src="assets/img/client-logo/graphicriver.png" alt="Client logo">
+                <img src="../assets/img/client-logo/graphicriver.png" alt="Client logo">
             </div><!-- /.item -->
             <div class="item">
-                <img src="assets/img/client-logo/photodune.png" alt="Client logo">
+                <img src="../assets/img/client-logo/photodune.png" alt="Client logo">
             </div><!-- /.item -->
             <div class="item">
-                <img src="assets/img/client-logo/themeforest.png" alt="Client logo">
+                <img src="../assets/img/client-logo/themeforest.png" alt="Client logo">
             </div><!-- /.item -->
             <div class="item">
-                <img src="assets/img/client-logo/codecanyon.png" alt="Client logo">
+                <img src="../assets/img/client-logo/codecanyon.png" alt="Client logo">
             </div><!-- /.item -->
             <div class="item">
-                <img src="assets/img/client-logo/3docean.png" alt="Client logo">
+                <img src="../assets/img/client-logo/3docean.png" alt="Client logo">
             </div><!-- /.item -->
             <div class="item">
-                <img src="assets/img/client-logo/graphicriver.png" alt="Client logo">
+                <img src="../assets/img/client-logo/graphicriver.png" alt="Client logo">
             </div><!-- /.item -->
             <div class="item">
-                <img src="assets/img/client-logo/photodune.png" alt="Client logo">
+                <img src="../assets/img/client-logo/photodune.png" alt="Client logo">
             </div><!-- /.item -->
             <div class="item">
-                <img src="assets/img/client-logo/themeforest.png" alt="Client logo">
+                <img src="../assets/img/client-logo/themeforest.png" alt="Client logo">
             </div><!-- /.item -->
             <div class="item">
-                <img src="assets/img/client-logo/codecanyon.png" alt="Client logo">
+                <img src="../assets/img/client-logo/codecanyon.png" alt="Client logo">
             </div><!-- /.item -->
             <div class="item">
-                <img src="assets/img/client-logo/3docean.png" alt="Client logo">
+                <img src="../assets/img/client-logo/3docean.png" alt="Client logo">
             </div><!-- /.item -->
         </div><!-- /#owl-client-logo -->
     </div><!-- /.container -->
@@ -266,7 +266,7 @@ BEGIN PAGE
 
 
 <!-- BEGIN FOOTER -->
-<%@include file="include/footer.jsp" %>
+<%@include file="../include/footer.jsp" %>
 <!-- END FOOTER -->
 
 
@@ -290,7 +290,7 @@ BEGIN PAGE
             </div>
             <div class="modal-body" data-dismiss="modal">
                 <div style="background-color:black; margin:auto">
-                    <iframe src="./viewer_common.jsp?id=1" width="960px" height="540px" frameborder="0" marginwidth="0" marginheight="0"
+                    <iframe src="../viewer_common.jsp?id=1" width="960px" height="540px" frameborder="0" marginwidth="0" marginheight="0"
                     scrolling="no" max-width="100%" allowfullscreen>
                     </iframe>
                 </div>
@@ -322,13 +322,13 @@ Placed at the end of the document so the pages load faster
 ===========================================================
 -->
 <!-- MAIN JAVASRCIPT (REQUIRED ALL PAGE)-->
-<script src="assets/js/jquery.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/plugins/retina/retina.min.js"></script>
-<script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
-<script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
-<script src="assets/plugins/mixitup/jquery.mixitup.js"></script>
+<script src="../assets/js/jquery.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/plugins/retina/retina.min.js"></script>
+<script src="../assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+<script src="../assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="../assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="../assets/plugins/mixitup/jquery.mixitup.js"></script>
 <script>
     $(document).ready(function(){
         $(function(){
@@ -358,6 +358,6 @@ Placed at the end of the document so the pages load faster
 
     });
 </script>
-<script src="assets/js/apps.js"></script>
+<script src="../assets/js/apps.js"></script>
 </body>
 </html>
