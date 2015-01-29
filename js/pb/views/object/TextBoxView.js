@@ -47,20 +47,20 @@ define([
 			_.extend(this.events, BaseObjectView.prototype.events);
 			_.extend(this.ui, BaseObjectView.prototype.ui);
 
-			this.textBoxContextMenus = {
-				"changeImage": {
-					name: "텍스트 편집", icon: "icon",
-					callback: this.changeText
+			this.textBoxContextMenus = [
+				{
+					name: "텍스트 편집",
+					fun: this.changeText
 				},
-				"makeLink": {
-					name: "링크 만들기", icon: "edit",
-					callback: this.makeLinkText
+				{
+					name: "링크 만들기",
+					fun: this.makeLinkText
 				},
-				"editImage": {
-					name: "텍스트 효과 편집", icon: "edit",
-					callback: this.editTextEffect
+				{
+					name: "텍스트 효과 편집",
+					fun: this.editTextEffect
 				}
-			};
+			];
 
 			//this.listenTo(this.model, 'change', this.render, this);
 			myLogger.trace("TextBoxView - init");
@@ -71,10 +71,9 @@ define([
 		onShow: function (v) {
 			BaseObjectView.prototype.onShow.call(this);
 
-			this.$el.contextMenu({
-				selector: ".ui-resizable-handle",
-				items: _.extend(this.objectContextMenus, this.textBoxContextMenus)
-			});
+			this.ui.content.contextMenu(
+				_.union(this.objectContextMenus, this.textBoxContextMenus),
+				this.contextMenuOptions);
 
 			myLogger.trace("TextBoxView - onShow");
 		},

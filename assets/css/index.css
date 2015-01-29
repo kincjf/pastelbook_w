@@ -1,3 +1,5 @@
+@CHARSET "UTF-8";
+
 /* Custom CSS
  * --------------------------------------- */
 body{
@@ -318,4 +320,144 @@ p{
 }
 .white-backcolor {
     background-color: white;
+}
+
+.container-fluid h1{
+    color: lightblue;
+    -webkit-text-fill-color: lightblue;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: darkblue;
+}
+
+.container-fluid h3 {
+    color: gray;
+}
+
+
+/** myCss에 있던 문법(정리후 삭제 예정) */
+.project-category {
+    border-bottom: 1px solid gray;
+    margin-bottom: 10px;
+}
+
+.checkboxRegion {
+    position: absolute;
+    width: 100%
+}
+#blankCheckbox {
+    float: left;
+}
+
+.pagination {
+    align: center;
+}
+
+.row {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* style-responsive.css > .btn-toggle-nav > 우상단 토글 버튼 */
+
+/* style.css > .btn-toggle-nav > 우상단 토글 버튼 */
+.btn-toggle-user{
+    display: none;
+    position: absolute;
+    right: 80px;
+    top: 0;
+    height: 60px;
+    width: 40px;
+    text-align: center;
+    color: #fff;
+    padding: 16px 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.btn-toggle-new{
+    display: none;
+    position: absolute;
+    right: 120px;
+    top: 0;
+    height: 60px;
+    width: 40px;
+    text-align: center;
+    color: #fff;
+    padding: 16px 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.work-content .work-item { /* index.jsp 의 그리드가 깨져서*/
+    min-height: 265px;
+}
+
+/* manageProject */
+
+/** view_category */
+.line-gray {
+    top: 25px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ccd0db;
+    margin: 25px 0 25px 0;
+}
+
+.pic {
+    width: 540px;
+    height: 420px;
+    background-color: black;
+}
+
+.section.work-section.categori_list{
+    padding: 0;
+}
+
+ul.work-category-wrap.categori_list{
+    margin:0;
+}
+
+.section-heading.categori_list{
+    margin:0;
+}
+
+.tab-content>.tab-pane.display_none{
+    display: inline;
+}
+
+.btn.btn-success.btn_size{
+    width: 100%;
+    height: 30px;
+    font-size: 100%;
+    align: center;
+}
+
+.row.edit-wrap.btn_size {
+    width: 100%;
+    height: 100%;
+    align: center;
+    margin-right: 0px;
+    margin-left:  0px;
+}
+
+.col-sm-4.col-md-3.col-xs-6.mix.printing.mix_all.viewer_size{
+    width: 15%;
+    feight: 15%
+}
+
+.input-group-addon,.input-group-btn,.input-group.form-control.serch_btn{
+    display: inline;
+}
+
+.btn.btn-default.serch_btn{
+    display: inline;
+}
+
+.glyphicon.glyphicon-search.serch_btn{
+    display: inline;
+}
+
+.serch_margin{
+    margin-left: 30px;
 }

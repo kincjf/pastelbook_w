@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+.dsn{
+	width:600px;
+	height:600px;
+}
+
+.title1{
+	width:100px; height:200px;
+}
+
+
+.margin-ud10{
+	margin: 10px 0;
+	align:center;
+}
+
+.myMargin2{
+	margin-top: 50%;
+	align:center;
+}
+
+.pic{
+	width:100%;
+	height:auto;
+	max-width:848px;
+	min-height:30px;
+	
+}
+
+.btcolor1{
+	background-color:#8CC152;
+	font-size: 16px;
+	color:#fff;
+	width:100%;
+}
+
+.textarea_size_1{
+	width:100%;
+	height:100%;
+	resize: none;
+}
+.textarea_size_2{
+	width:100%;
+	height:100px;
+	resize: none;
+}
+.textarea_size_3{
+	width:100%;
+	height:200px;
+	resize: none;
+}
+
+.title_font{
+	
+}

@@ -28,8 +28,6 @@
 	MultipartRequest multi = new MultipartRequest(request,
 			realFolder, maxSize, encType,
 			policy);
-	
-	
 
 	try {
 		Enumeration<?> files = multi.getFileNames();

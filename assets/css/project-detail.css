@@ -1,0 +1,26 @@
+h2 {
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.media-body {
+    margin-bottom: 10px;
+}
+
+.titleAndViewCnt{
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.panel-heading {
+    height: 55px;
+}
+
+.panel-heading h3 {
+    display: inline;
+}
+
+.panel-heading .btn {
+    float: right;
+}

@@ -57,7 +57,7 @@
     <meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
     <meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
     <meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-    <title>SENTIR AGENCY</title>
+    <title>PastelBook</title>
 
     <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -71,13 +71,11 @@
 
     <!-- MAIN CSS (REQUIRED ALL PAGE)-->
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">
-    <link href="assets/css/header.css" rel="stylesheet">
-    
+    <link href="assets/css/sentir/style.css" rel="stylesheet">
+    <link href="assets/css/sentir/style-responsive.css" rel="stylesheet">
+
     <!-- additional css -->
-    <link href="assets/css/myCss.css" rel="stylesheet">
-    <link href="assets/css/index_add.css" rel="stylesheet">
+    <link href="assets/css/index.css" rel="stylesheet">
     
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -187,7 +185,7 @@ BEGIN PAGE
                                     <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
                                 </a>
                                 <br />
-                                <a href="docDetail.jsp?id=<%= tmp.getId() %>"><%= tmp.getTitle() %></a>
+                                <a href="deprecated/docDetail.jsp?id=<%= tmp.getId() %>"><%= tmp.getTitle() %></a>
                             </div>
                             
                        <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">

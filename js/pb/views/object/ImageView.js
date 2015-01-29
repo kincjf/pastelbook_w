@@ -42,30 +42,29 @@ define([
 			_.extend(this.events, BaseObjectView.prototype.events);
 			_.extend(this.ui, BaseObjectView.prototype.ui);
 
-			this.imageContextMenus = {
-				"changeImage": {
+			this.imageContextMenus = [
+				{
 					name: "ChangeImage", icon: "icon",
 					callback: this.changeImage
 				},
-				"makeLink": {
+				{
 					name: "MakeLink", icon: "edit",
 					callback: this.makeLinkImage
 				},
-				"editImage": {
+				{
 					name: "editImage", icon: "edit",
 					callback: this.editImage
 				}
-			};
+			];
 		},
 
 		// "show" / onShow - Called on the view instance when the view has been rendered and displayed.
 		onShow: function (v) {
 			BaseObjectView.prototype.onShow.call(this);
 
-			this.$el.contextMenu({
-				selector: "img",
-				items: _.extend(this.objectContextMenus, this.imageContextMenus)
-			});
+			this.$el.contextMenu(
+				_.union(this.objectContextMenus, this.imageContextMenus),
+				this.contextMenuOptions);
 
 			myLogger.trace("ImageView - onShow");
 		},

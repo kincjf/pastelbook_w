@@ -1,0 +1,23 @@
+.button-wrap {
+    margin-bottom: 30px;
+}
+.project-category {
+    border-bottom: 1px solid gray;
+    margin-bottom: 10px;
+}
+
+.checkboxRegion {
+    position: absolute;
+    width: 100%
+}
+
+.checkboxRegion input[type="checkbox"]{
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.edit-wrap {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

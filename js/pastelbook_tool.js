@@ -21,20 +21,16 @@ requirejs.config({
 
 		jquery_ui: 'lib/jquery_ui/jquery-ui',
 		jquery_ui_position: 'lib/jquery_ui/jquery.ui.position',
-		jquery_contextMenu: 'lib/jquery_contextMenu/jquery.contextMenu',
 
 		localStorage: 'lib/backbone.localStorage',
 		marionette: 'lib/backbone.marionette',
-		mutators: 'lib/backbone.mutators',
 		radio: 'lib/backbone.radio',
 
-
-		handlebars: "lib/handlebars-v2.0.0",
-		text: "lib/text",
 		tpl: 'lib/tpl',
 
 		html2canvas: 'lib/html2canvas',
 		moment: 'lib/moment.min',
+		contextMenu: 'lib/contextMenu/contextMenu',
 
 		'ckeditor-core': 'lib/ckeditor/ckeditor',
 		'ckeditor-jquery': 'lib/ckeditor/adapters/jquery',
@@ -91,9 +87,6 @@ requirejs.config({
 		jquery_ui_position: {
 			deps: ["jquery"]
 		},
-		jquery_contextMenu: {
-			deps: ["jquery", "jquery_ui_position"]
-		},
 
 		backbone: {
 			deps: ["jquery", 'underscore'],
@@ -114,6 +107,9 @@ requirejs.config({
 		tpl: {
 			extension: '.tpl'	 // default = '.html'
 		},
+		contextMenu: {
+			deps: ["jquery", "jquery_ui_position"]
+		},
 
 		'ckeditor-core' :{
 			exports: 'CKEDITOR'
@@ -125,6 +121,7 @@ requirejs.config({
 			exports: 'videojs'
 		},
 		// 여기까진 공용 라이브러리
+
 		func_helper: {
 			exports: "funcHelper"
 		},
@@ -138,7 +135,7 @@ requirejs.config({
 			deps: ['pb_io', "pb_namespace"]
 		},
 		pastelbook_ui_dlg_upload_image: {
-			deps: ['pb_io', "pb_namespace", "handlebars"]
+			deps: ['pb_io', "pb_namespace"]
 		}
 	},
 
@@ -149,7 +146,7 @@ requirejs.config({
 	}
 });
 
-require(["pb_app_tool", 'jquery_contextMenu', /*, "pb_debug_hongs_only"*/], function (pb_app_tool) {
+require(["pb_app_tool", 'contextMenu', /*, "pb_debug_hongs_only"*/], function (pb_app_tool) {
 	/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
 	pb_app_tool.start(); // Application start
 	myLogger.trace("pb_app_tool loading Complete");

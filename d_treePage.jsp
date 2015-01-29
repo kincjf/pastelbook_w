@@ -53,8 +53,8 @@
 
     <!-- MAIN CSS (REQUIRED ALL PAGE)-->
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">
+    <link href="assets/css/sentir/style.css" rel="stylesheet">
+    <link href="assets/css/sentir/style-responsive.css" rel="stylesheet">
     <link href="assets/css/myCss.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

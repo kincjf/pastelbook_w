@@ -11,10 +11,10 @@
     <link href="js/lib/jquery_ui/jquery-ui.structure.css" rel="stylesheet"/>
     <link href="js/lib/jquery_ui/jquery-ui.theme.css" rel="stylesheet"/>
 
-    <link href="assets/css/jquery-ui.pb_mainview.css" rel="stylesheet" />
+    <link href="css/tool-pc-jquery-ui.css" rel="stylesheet" />
 
     <!-- css for jquery-contextMenu -->
-    <link href="js/lib/jquery_contextMenu/jquery.contextMenu.css" rel="stylesheet" type="text/css"/>
+    <link href="js/lib/contextMenu/contextMenu.css" rel="stylesheet" type="text/css"/>
 
     <!-- css for videojs -->
     <link href="js/lib/video-js/video-js.min.css" rel="stylesheet" type="text/css"/>
@@ -24,7 +24,7 @@
     <%--<link href="js/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>--%>
 
     <!-- css for Custom Optimization -->
-    <link href="assets/css/pb_default.css" rel="stylesheet"/>
+    <link href="css/tool-pc.css" rel="stylesheet"/>
 
     <!-- configure for use logging library  -->
     <script src="js/lib/log4javascript_uncompressed.js"></script>
@@ -41,7 +41,7 @@
 
 <!-- ui-dialog : 점진적으로 ./js/pb/templates로 옮길 예정임. /-->
 <%@ include file="js/pb/templates/dlg-current-scene.jspf" %>
-<%@ include file="js/pb/deprecated/dlg-scene-preview.jspf" %>
+<%@ include file="js/pb/templates/dlg-scene-preview.jspf" %>
 <%@ include file="js/pb/templates/dlg-add-image.jspf" %>
 
 <%--<%@ include file="./js/pb/templates/dlg-bottom-tab.jspf" %>--%>
