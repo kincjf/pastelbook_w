@@ -43,7 +43,7 @@
 	<%
 		if(id != null){
 	%>
-		var loadedSceneList = <%=projectData%>;
+		var projectData = <%=projectData%>;
 	<%
 		}
 	%>
