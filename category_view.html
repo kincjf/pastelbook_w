@@ -1,729 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description"
-	content="Sentir, Responsive admin and dashboard UI kits template">
-<meta name="keywords"
-	content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
-<meta name="author"
-	content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-<title>PastelBook - Categoty View</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description"
+		  content="Sentir, Responsive admin and dashboard UI kits template">
+	<meta name="keywords"
+		  content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
+	<meta name="author"
+		  content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
+	<title>PastelBook - Category View</title>
 
-<!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-
-
-<!-- PLUGINS CSS-->
-<link href="assets/plugins/magnific-popup/magnific-popup.css"
-	rel="stylesheet">
-<link href="assets/plugins/owl-carousel/owl.carousel.css"
-	rel="stylesheet">
-<link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
-<link href="assets/plugins/owl-carousel/owl.transitions.css"
-	rel="stylesheet">
+	<!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
 
-<!-- MAIN CSS (REQUIRED ALL PAGE)-->
-<link href="assets/plugins/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href="assets/css/sentir/style.css" rel="stylesheet">
-<link href="assets/css/sentir/style-responsive.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="assets/css/category-view.css" />
+	<!-- PLUGINS CSS-->
+	<link href="assets/plugins/magnific-popup/magnific-popup.css"
+		  rel="stylesheet">
+	<link href="assets/plugins/owl-carousel/owl.carousel.css"
+		  rel="stylesheet">
+	<link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+	<link href="assets/plugins/owl-carousel/owl.transitions.css"
+		  rel="stylesheet">
 
 
-<!-- 정렬 이벤트  -->
-<SCRIPT>
-	function close_1_3() {
-		$('#panel-message-1').css('display', 'none');
-		$('#panel-message-3').css('display', 'none');
-		$('#panel-message-2').css('display', 'inline');
-	}
-	function close_1_2() {
-		$('#panel-message-1').css('display', 'none');
-		$('#panel-message-2').css('display', 'none');
-		$('#panel-message-3').css('display', 'inline');
-	}
-	function close_2_3() {
-		$('#panel-message-2').css('display', 'none');
-		$('#panel-message-3').css('display', 'none');
-		$('#panel-message-1').css('display', 'inline');
-	}
-</SCRIPT>
+	<!-- MAIN CSS (REQUIRED ALL PAGE)-->
+	<link href="assets/plugins/font-awesome/css/font-awesome.min.css"
+		  rel="stylesheet">
+	<link href="assets/css/sentir/style.css" rel="stylesheet">
+	<link href="assets/css/sentir/style-responsive.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/category-view.css" />
+
+
+	<!-- 정렬 이벤트  -->
+	<SCRIPT>
+		function close_1_3() {
+			$('#panel-message-1').css('display', 'none');
+			$('#panel-message-3').css('display', 'none');
+			$('#panel-message-2').css('display', 'inline');
+		}
+		function close_1_2() {
+			$('#panel-message-1').css('display', 'none');
+			$('#panel-message-2').css('display', 'none');
+			$('#panel-message-3').css('display', 'inline');
+		}
+		function close_2_3() {
+			$('#panel-message-2').css('display', 'none');
+			$('#panel-message-3').css('display', 'none');
+			$('#panel-message-1').css('display', 'inline');
+		}
+	</SCRIPT>
 
 
 
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
 </head>
 
 <body class="tooltips">
 
-	<!--
-		===========================================================
-		BEGIN PAGE
-		===========================================================
-		-->
+<!--
+    ===========================================================
+    BEGIN PAGE
+    ===========================================================
+    -->
 
 
-	<!-- BEGIN TOP NAVBAR -->
-	<div class="top-navbar dark-color">
+<!-- BEGIN TOP NAVBAR -->
+<%@include file="include/top-navbar.jsp" %>
+<!-- END TOP NAVBAR -->
+
+
+
+<!-- BEGIN BERADCRUMB AND PAGE TITLE -->
+<div class="page-title-wrap">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="#fakelink">Portfolio</a></li>
+			<li class="active">Portfolio 3 columns</li>
+		</ol>
+		<h2 class="page-title">카테고리별 프로젝트보기</h2>
+	</div>
+	<!-- /.container -->
+	<div class="border-bottom">
+
+		<!-- /.collapse in -->
+
 		<div class="container">
-
-			<!-- Begin logo -->
-			<div class="logo">
-				<a href="index.html"><img src="assets/img/logo.png" alt="Logo"></a>
-			</div>
-			<!-- /.logo -->
-			<!-- End logo -->
-
-			<!-- Begin button toggle nav -->
-			<div class="btn-toggle-nav" id="btn-toggle-nav">
-				<i class="fa fa-bars"></i>
-			</div>
-			<div class="btn-toggle-search" id="btn-icon-search">
-				<i class="fa fa-search"></i>
-			</div>
-			<div class="btn-toggle-phone" id="btn-icon-phone">
-				<i class="fa fa-phone"></i>
-			</div>
-			<!-- End button toggle nav -->
-
-			<!-- Begin visible phone and search nav -->
-			<div id="phone-sub" class="nav-right-info">
-				<i class="fa fa-times times-icon" id="close-phone-nav"></i>
-				<p class="phone">
-					Call us : <strong>+1 123 4567 7899</strong>
-				</p>
-			</div>
-			<div id="search-sub" class="nav-right-info">
-				<i class="fa fa-times times-icon" id="close-search-nav"></i>
-				<form role="form">
-					<input type="text" class="form-control"
-						placeholder="Search something...">
-				</form>
-			</div>
-			<!-- End visible phone and search nav -->
-
-			<!-- Begin nav menu -->
-			<ul class="menus">
-				<li class="parent"><a href="#fakelink">Home</a>
-					<ul class="sub-menus">
-						<li class="sub-list"><a href="index.html">Default</a></li>
-
-						<li class="sub-list"><a href="index-fancy-color.html">Fancy
-								color navbar <span class="label label-danger">HOT</span>
-						</a></li>
-						<li class="sub-list"><a href="index-static-nav.html">Static
-								nav position</a></li>
-						<li class="sub-list"><a href="#fakelink">Dark nav color <span
-								class="badge badge-success">3</span></a>
-							<ul class="subsub-menus">
-								<li class="subsub-list"><a
-									href="index-dark-nav-static-image.html">Static image header</a></li>
-								<li class="subsub-list"><a
-									href="index-dark-nav-image-slide.html">Image slide</a></li>
-								<li class="subsub-list"><a
-									href="index-dark-nav-content-slide.html">Content slide</a></li>
-							</ul></li>
-						<li class="sub-list"><a href="#fakelink">Light nav color
-								<span class="badge badge-warning">3</span>
-						</a>
-							<ul class="subsub-menus">
-								<li class="subsub-list"><a
-									href="index-light-nav-static-image.html">Static image
-										header</a></li>
-								<li class="subsub-list"><a
-									href="index-light-nav-image-slide.html">Image slide</a></li>
-								<li class="subsub-list"><a
-									href="index-light-nav-content-slide.html">Content slide</a></li>
-							</ul></li>
-						<li class="sub-list"><a href="#fakelink">Transparent nav
-								<span class="badge badge-info">3</span>
-						</a>
-							<ul class="subsub-menus">
-								<li class="subsub-list"><a
-									href="index-trans-nav-static-image.html">Static image
-										header</a></li>
-								<li class="subsub-list"><a href="index.html">Image
-										slide <span class="label label-primary">DEFAULT</span>
-								</a></li>
-								<li class="subsub-list"><a
-									href="index-trans-nav-content-slide.html">Content slide</a></li>
-							</ul></li>
-
-						<li class="sub-list"><a href="index-background-color.html">Background
-								color</a></li>
-						<li class="sub-list"><a href="#fakelink">Templates <span
-								class="label label-primary">PACKAGE</span></a>
-							<ul class="subsub-menus">
-								<li class="subsub-list"><a href="../../index.html"
-									target="_blank">Sentir - Admin template</a></li>
-								<li class="subsub-list"><a href="index-onepage.html">Sentir
-										- One page</a></li>
-								<li class="subsub-list"><a href="../comingsoon/index.html">Sentir
-										- Coming soon</a></li>
-							</ul></li>
-					</ul></li>
-				<li class="parent"><a href="#fakelink">Pages</a>
-					<ul class="sub-menus">
-						<li class="sub-list"><a href="about-us.html">About us</a></li>
-						<li class="sub-list"><a href="full-width.html">Full width</a></li>
-						<li class="sub-list"><a href="sidebar-left.html">Sidebar
-								left</a></li>
-						<li class="sub-list"><a href="sidebar-right.html">Sidebar
-								right</a></li>
-						<li class="sub-list"><a href="service.html">Services</a></li>
-						<li class="sub-list"><a href="testimonial.html">Testimonial</a></li>
-						<li class="sub-list"><a href="pricing-table.html">Pricing
-								table</a></li>
-						<li class="sub-list"><a href="blank.html">Blank page</a></li>
-					</ul></li>
-				<li class="parent"><a href="shortcodes.html">Shortcodes</a></li>
-				<li class="parent"><a href="#fakelink">Portfolio</a>
-					<ul class="sub-menus">
-						<li class="sub-list"><a href="portfolio-4-column.html">4
-								columns</a></li>
-						<li class="sub-list"><a href="portfolio-3-column.html">3
-								columns</a></li>
-						<li class="sub-list"><a href="portfolio-single.html">Portfolio
-								single</a></li>
-					</ul></li>
-				<li class="parent"><a href="#fakelink">Blog</a>
-					<ul class="sub-menus">
-						<li class="sub-list"><a href="blog-list.html">Blog list</a></li>
-						<li class="sub-list"><a href="blog-detail.html">Blog
-								detail</a></li>
-					</ul></li>
-				<li class="parent"><a href="contact.html">Contact</a></li>
-
-				<!-- Begin right icon -->
-				<li class="parent right-icon"><i class="fa fa-search"
-					id="nav-icon-search"></i></li>
-				<li class="parent right-icon"><i class="fa fa-phone"
-					id="nav-icon-phone"></i></li>
-				<!-- End right icon -->
-			</ul>
-			<!-- End nav menu -->
+			<div class="border-bottom-color bg-info"></div>
 		</div>
 		<!-- /.container -->
 	</div>
-	<!-- /.top-navbar -->
-	<!-- END TOP NAVBAR -->
+	<!-- /.border-bottom -->
 
+</div>
+<!-- /.page-title-wrap -->
+<!-- END BERADCRUMB AND PAGE TITLE -->
 
-
-	<!-- BEGIN BERADCRUMB AND PAGE TITLE -->
-	<div class="page-title-wrap">
-		<div class="container">
-			<ol class="breadcrumb">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="#fakelink">Portfolio</a></li>
-				<li class="active">Portfolio 3 columns</li>
-			</ol>
-			<h2 class="page-title">카테고리별 프로젝트보기</h2>
-		</div>
-		<!-- /.container -->
-		<div class="border-bottom">
-
-			<!-- /.collapse in -->
-
+<!-- ------------------------------카테고리 텝---------------------------------------- -->
+<div>
+	<div class="tab-pane fade in active" id="panel-home-1">
+		<div class="section work-section category-list">
 			<div class="container">
-				<div class="border-bottom-color bg-info"></div>
+				<ul class="work-category-wrap category-list">
+					<li class="filter" data-filter="all">IT</li>
+					<li class="filter" data-filter="template">시사</li>
+					<li class="filter" data-filter="web_design">사진</li>
+					<li class="filter" data-filter="printing">창작</li>
+					<li class="filter" data-filter="other">Other</li>
+				</ul>
 			</div>
 			<!-- /.container -->
 		</div>
-		<!-- /.border-bottom -->
-
-	</div>
-	<!-- /.page-title-wrap -->
-	<!-- END BERADCRUMB AND PAGE TITLE -->
-
-	<!-- ------------------------------카테고리 텝---------------------------------------- -->
-	<div>
-		<div class="tab-pane fade in active" id="panel-home-1">
-			<div class="section work-section category-list">
-				<div class="container">
-					<ul class="work-category-wrap category-list">
-						<li class="filter" data-filter="all">IT</li>
-						<li class="filter" data-filter="template">시사</li>
-						<li class="filter" data-filter="web_design">사진</li>
-						<li class="filter" data-filter="printing">창작</li>
-						<li class="filter" data-filter="other">Other</li>
-					</ul>
-				</div>
-				<!-- /.container -->
-			</div>
-			<!-- /.section -->
-		</div>
-
-		<!-- ----------------------카테고리 탭 끝----------------------------------------------->
-
-		<div>
-			<div class="section-heading category-list">
-				<div class="inner-border"></div>
-				<h3>오늘의 추천</h3>
-			</div>
-			<div class="container">
-				<image src="assets/img/sun.jpg" alt="샘플이미지">
-			</div>
-			<div class="line-gray"></div>
-		</div>
+		<!-- /.section -->
 	</div>
 
-	<div>
-		<ul class="nav nav-tabs">
-			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#fakelink"> 정렬 <span class="caret"></span>
-			</a>
-				<ul class="dropdown-menu success" role="menu">
+	<!-- ----------------------카테고리 탭 끝----------------------------------------------->
 
-					<li><a href="#panel-message-1" data-toggle="tab"
-						onclick='close_2_3();'>좋아요</a></li>
-					<li><a href="#panel-message-2" data-toggle="tab"
-						onclick='close_1_3();'>조회수</a></li>
-					<li><a href="#panel-message-3" data-toggle="tab"
-						onclick='close_1_2();'>최신순</a></li>
-				</ul>
-			<li class="search_margin"><span class="input-group-btn search-btn">
+	<div>
+		<div class="section-heading category-list">
+			<div class="inner-border"></div>
+			<h3>오늘의 추천</h3>
+		</div>
+		<div class="container">
+			<image src="img/sun.jpg" alt="샘플이미지">
+		</div>
+		<div class="line-gray"></div>
+	</div>
+</div>
+
+<div>
+	<ul class="nav nav-tabs noline container">
+		<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#fakelink"> 정렬 <span class="caret"></span>
+		</a>
+			<ul class="dropdown-menu success" role="menu">
+
+				<li><a href="#panel-message-1" data-toggle="tab"
+					   onclick='close_2_3();'>좋아요</a></li>
+				<li><a href="#panel-message-2" data-toggle="tab"
+					   onclick='close_1_3();'>조회수</a></li>
+				<li><a href="#panel-message-3" data-toggle="tab"
+					   onclick='close_1_2();'>최신순</a></li>
+			</ul>
+		<li class="search-margin"><span class="input-group-btn search-btn">
 					<input type="text" class="form-control" placeholder="Search for...">
 			</span></li>
-			<li><button class="btn btn-default search-btn" type="button">
+		<li><button class="btn btn-default search-btn" type="button">
 					<span class="glyphicon glyphicon-search search-btn"
-						aria-hidden="true"></span>
-				</button></li>
+						  aria-hidden="true"></span>
+		</button></li>
 
-		</ul>
-	</div>
+	</ul>
+</div>
 
-	<div id="panel-collapse-1" class="collapse in">
-		<div class="panel-body">
-			<div class="tab-content">
-				<!-- ----------------------------------------------좋아요 시작----------------------------------------- -->
-				<div class="tab-pane fade display_none" id="panel-message-1">
-					<h4>좋아요 순</h4>
-					<p>
-					<div id="work-mixitup" class="work-content">
-						<div class="row">
 
-							<!-- Begin work item -->
-							<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
-								style="display: inline-block; opacity: 1;">
-								<div class="work-item">
-									<img src="assets/img/work/work.jpg" alt="Img work">
-									<div class="the-box no-border transparent no-margin">
-										<p class="project-name">Awesome project name</p>
-										<p class="project-category">PRINTING</p>
-										<p class="project-category">
-											<button class="btn btn-success btn-learn-more">즐겨찾기</button>
-											<button class="btn btn-success btn-learn-more">공유하기</button>
-										</p>
-									</div>
-									<!-- /.the-box no-border transparent -->
+<div id="panel-collapse-1" class="collapse in container">
+	<div class="panel-body">
+		<div class="tab-content">
+			<!-- ----------------------------------------------좋아요 시작----------------------------------------- -->
+			<div class="tab-pane fade display-inline" id="panel-message-1">
+				<h4>좋아요 순</h4>
+				<p>
+				<div id="work-mixitup" class="work-content">
+					<div class="row">
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
 								</div>
-								<!-- /.work-item -->
+								<!-- /.the-box no-border transparent -->
 							</div>
-							<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
-							<!-- End work item -->
-
-							<!-- Begin work item -->
-							<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
-								style="display: inline-block; opacity: 1;">
-								<div class="work-item">
-									<img src="assets/img/work/work.jpg" alt="Img work">
-									<div class="the-box no-border transparent no-margin">
-										<p class="project-name">Awesome project name</p>
-										<p class="project-category">PRINTING</p>
-										<p class="project-category">
-											<button class="btn btn-success btn-learn-more">즐겨찾기</button>
-											<button class="btn btn-success btn-learn-more">공유하기</button>
-										</p>
-									</div>
-									<!-- /.the-box no-border transparent -->
-								</div>
-								<!-- /.work-item -->
-							</div>
-							<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
-							<!-- End work item -->
-
-							<!-- Begin work item -->
-							<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
-								style="display: inline-block; opacity: 1;">
-								<div class="work-item">
-									<img src="assets/img/work/work.jpg" alt="Img work">
-									<div class="the-box no-border transparent no-margin">
-										<p class="project-name">Awesome project name</p>
-										<p class="project-category">PRINTING</p>
-										<p class="project-category">
-											<button class="btn btn-success btn-learn-more">즐겨찾기</button>
-											<button class="btn btn-success btn-learn-more">공유하기</button>
-										</p>
-									</div>
-									<!-- /.the-box no-border transparent -->
-								</div>
-								<!-- /.work-item -->
-							</div>
-							<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
-							<!-- End work item -->
-
-							<!-- Begin work item -->
-							<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
-								style="display: inline-block; opacity: 1;">
-								<div class="work-item">
-									<img src="assets/img/work/work.jpg" alt="Img work">
-									<div class="the-box no-border transparent no-margin">
-										<p class="project-name">Awesome project name</p>
-										<p class="project-category">PRINTING</p>
-										<p class="project-category">
-											<button class="btn btn-success btn-learn-more">즐겨찾기</button>
-											<button class="btn btn-success btn-learn-more">공유하기</button>
-										</p>
-									</div>
-									<!-- /.the-box no-border transparent -->
-								</div>
-								<!-- /.work-item -->
-							</div>
-							<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
-							<!-- End work item -->
-
-							<!-- /.row -->
+							<!-- /.work-item -->
 						</div>
-					</div>
-					</p>
-				</div>
-				<!-- ----------------------------------------------좋아요 끝----------------------------------------- -->
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
 
-				<div class="tab-pane fade" id="panel-message-2">
-					<h4>조회수 순</h4>
-					<p>
-					<div id="work-mixitup" class="work-content">
-						<div class="row">
-
-							<!-- Begin work item -->
-							<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
-								style="display: inline-block; opacity: 1;">
-								<div class="work-item">
-									<img src="assets/img/work/work.jpg" alt="Img work">
-									<div class="the-box no-border transparent no-margin">
-										<p class="project-name">Awesome project name</p>
-										<p class="project-category">PRINTING</p>
-										<p class="project-category">
-											<button class="btn btn-success btn-learn-more">즐겨찾기</button>
-											<button class="btn btn-success btn-learn-more">공유하기</button>
-										</p>
-									</div>
-									<!-- /.the-box no-border transparent -->
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
 								</div>
-								<!-- /.work-item -->
+								<!-- /.the-box no-border transparent -->
 							</div>
-							<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
-							<!-- End work item -->
-
-							<!-- Begin work item -->
-							<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
-								style="display: inline-block; opacity: 1;">
-								<div class="work-item">
-									<img src="assets/img/work/work.jpg" alt="Img work">
-									<div class="the-box no-border transparent no-margin">
-										<p class="project-name">Awesome project name</p>
-										<p class="project-category">PRINTING</p>
-										<p class="project-category">
-											<button class="btn btn-success btn-learn-more">즐겨찾기</button>
-											<button class="btn btn-success btn-learn-more">공유하기</button>
-										</p>
-									</div>
-									<!-- /.the-box no-border transparent -->
-								</div>
-								<!-- /.work-item -->
-							</div>
-							<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
-							<!-- End work item -->
-
-							<!-- Begin work item -->
-							<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
-								style="display: inline-block; opacity: 1;">
-								<div class="work-item">
-									<img src="assets/img/work/work.jpg" alt="Img work">
-									<div class="the-box no-border transparent no-margin">
-										<p class="project-name">Awesome project name</p>
-										<p class="project-category">PRINTING</p>
-										<p class="project-category">
-											<button class="btn btn-success btn-learn-more">즐겨찾기</button>
-											<button class="btn btn-success btn-learn-more">공유하기</button>
-										</p>
-									</div>
-									<!-- /.the-box no-border transparent -->
-								</div>
-								<!-- /.work-item -->
-							</div>
-							<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
-							<!-- End work item -->
-
-							<!-- Begin work item -->
-							<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
-								style="display: inline-block; opacity: 1;">
-								<div class="work-item">
-									<img src="assets/img/work/work.jpg" alt="Img work">
-									<div class="the-box no-border transparent no-margin">
-										<p class="project-name">Awesome project name</p>
-										<p class="project-category">PRINTING</p>
-										<p class="project-category">
-											<button class="btn btn-success btn-learn-more">즐겨찾기</button>
-											<button class="btn btn-success btn-learn-more">공유하기</button>
-										</p>
-									</div>
-									<!-- /.the-box no-border transparent -->
-								</div>
-								<!-- /.work-item -->
-							</div>
-							<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
-							<!-- End work item -->
-
-							<!-- /.row -->
+							<!-- /.work-item -->
 						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
 
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- /.row -->
 					</div>
-					</p>
 				</div>
-
-				<div class="tab-pane fade" id="panel-message-3">
-					<h4>최신순</h4>
-					<p>최근순서 정렬 내용</p>
-					<!-- /.tab-pane fade -->
-				</div>
-				<!-- /.tab-content -->
+				</p>
 			</div>
-			<!-- /.panel-body -->
-		</div>
-	</div>
+			<!-- ----------------------------------------------좋아요 끝----------------------------------------- -->
 
-	<!-- BEGIN FOOTER -->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-md-4">
-					<h4>ABOUT SENTIR AGENCY</h4>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-						sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-						aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-						exerci tation ullamcorper suscipit lobortis</p>
-					<p>
-						<a href="#fakelink"><i data-toggle="tooltip" title="Facebook"
-							class="fa fa-facebook icon-sm icon-rounded icon-social-footer icon-facebook"></i></a>
-						<a href="#fakelink"><i data-toggle="tooltip" title="Twitter"
-							class="fa fa-twitter icon-sm icon-rounded icon-social-footer icon-twitter"></i></a>
-						<a href="#fakelink"><i data-toggle="tooltip"
-							title="Google plus"
-							class="fa fa-google-plus icon-sm icon-rounded icon-social-footer icon-google-plus"></i></a>
-						<a href="#fakelink"><i data-toggle="tooltip" title="Dribbble"
-							class="fa fa-dribbble icon-sm icon-rounded icon-social-footer icon-dribbble"></i></a>
-						<a href="#fakelink"><i data-toggle="tooltip" title="Pinterest"
-							class="fa fa-pinterest icon-sm icon-rounded icon-social-footer icon-pinterest"></i></a>
-						<a href="#fakelink"><i data-toggle="tooltip" title="Github"
-							class="fa fa-github icon-sm icon-rounded icon-social-footer icon-github"></i></a>
-					</p>
-				</div>
-				<!-- /.col-sm-4 -->
-				<div class="col-sm-6 col-md-3">
-					<h4>CONTACT</h4>
-					<div class="media media-contact">
-						<span class="pull-left"> <i
-							class="fa fa-map-marker media-object"></i>
-						</span>
-						<div class="media-body">
-							<address>
-								Twitter, Inc.<br> 795 Folsom Ave, Suite 600<br> San
-								Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123)
-								456-7890
-							</address>
+			<div class="tab-pane fade" id="panel-message-2">
+				<h4>조회수 순</h4>
+				<p>
+				<div id="work-mixitup" class="work-content">
+					<div class="row">
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
 						</div>
-						<!-- /.media-body -->
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- /.row -->
 					</div>
-					<!-- /.media -->
-					<div class="media media-contact">
-						<span class="pull-left"> <i
-							class="fa fa-envelope media-object"></i>
-						</span>
-						<div class="media-body">
-							<address>
-								Full Name<br> <a href="mailto:#">first.last@example.com</a>
-							</address>
-						</div>
-						<!-- /.media-body -->
-					</div>
-					<!-- /.media -->
+
 				</div>
-				<!-- /.col-sm-3 -->
-				<div class="clearfix visible-sm"></div>
-				<div class="col-sm-6 col-md-2">
-					<h4>NAVIGATION</h4>
-					<ul class="list">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="index.html">About us</a></li>
-						<li><a href="index.html">Our services</a></li>
-						<li><a href="index.html">Portfolio</a></li>
-						<li><a href="index.html">Pricing</a></li>
-						<li><a href="index.html">Blog</a></li>
-					</ul>
-				</div>
-				<!-- /.col-sm-2 -->
-				<div class="col-sm-6 col-md-3">
-					<h4>SIGN UP NEWSLETTER</h4>
-					<p>Laritas est etiam processus dynamicus, qui sequitur
-						mutationem consuetudium lectorum. Mirum est notare quam littera.</p>
-					<form role="form">
-						<div class="input-group subscribe">
-							<input type="text" class="form-control"
-								placeholder="Enter email address"> <span
-								class="input-group-btn">
-								<button class="btn btn-info" type="button">
-									<i class="fa fa-chevron-right"></i>
-								</button>
-							</span>
-						</div>
-						<!-- /input-group -->
-					</form>
-				</div>
-				<!-- /.col-sm-3 -->
+				</p>
 			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</footer>
-	<!-- /.section -->
 
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-5">
-					Copyright &copy; 2014 <a href="#fakelink">Your company</a>
-				</div>
-				<!-- /.col-sm-5 -->
-				<div class="col-sm-7 text-right">
-					<ul class="list-inline">
-						<li><a href="#fakelink">Terms and condition</a></li>
-						<li><a href="#fakelink">Privacy policy</a></li>
-						<li><a href="#fakelink">FAQ</a></li>
-					</ul>
-				</div>
-				<!-- /.col-sm-7 -->
+			<div class="tab-pane fade" id="panel-message-3">
+				<h4>최신순</h4>
+				<p>최근순서 정렬 내용</p>
+				<!-- /.tab-pane fade -->
 			</div>
-			<!-- /.row -->
+			<!-- /.tab-content -->
 		</div>
-		<!-- /.container -->
+		<!-- /.panel-body -->
 	</div>
-	<!-- /.footer -->
-	<!-- END FOOTER -->
+</div>
+
+<!-- BEGIN TOP NAVBAR -->
+<%@include file="include/footer.jsp" %>
+<!-- END TOP NAVBAR -->
 
 
 
-	<!-- BEGIN BACK TO TOP BUTTON -->
-	<div id="back-top">
-		<i class="fa fa-chevron-up"></i>
-	</div>
-	<!-- END BACK TO TOP -->
+<!-- BEGIN BACK TO TOP BUTTON -->
+<div id="back-top">
+	<i class="fa fa-chevron-up"></i>
+</div>
+<!-- END BACK TO TOP -->
 
-	<!--
-		===========================================================
-		END PAGE
-		===========================================================
-		-->
-
-
-	<!--
-		===========================================================
-		Placed at the end of the document so the pages load faster
-		===========================================================
-		-->
-	<!-- MAIN JAVASRCIPT (REQUIRED ALL PAGE)-->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/plugins/retina/retina.min.js"></script>
-	<script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
-	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
-	<script src="assets/plugins/mixitup/jquery.mixitup.js"></script>
-
-	<!-- PLUGINS -->
-	<script src="assets/plugins/skycons/skycons.js"></script>
-	<script src="assets/plugins/prettify/prettify.js"></script>
-	<script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-	<script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
-	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
-	<script src="assets/plugins/icheck/icheck.min.js"></script>
-	<script src="assets/plugins/datepicker/bootstrap-datepicker.js"></script>
-	<script src="assets/plugins/timepicker/bootstrap-timepicker.js"></script>
-	<script src="assets/plugins/mask/jquery.mask.min.js"></script>
-	<script src="assets/plugins/validator/bootstrapValidator.min.js"></script>
-	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-	<script src="assets/plugins/datatable/js/bootstrap.datatable.js"></script>
-	<script src="assets/plugins/summernote/summernote.min.js"></script>
-	<script src="assets/plugins/markdown/markdown.js"></script>
-	<script src="assets/plugins/markdown/to-markdown.js"></script>
-	<script src="assets/plugins/markdown/bootstrap-markdown.js"></script>
-	<script src="assets/plugins/slider/bootstrap-slider.js"></script>
-
-	<script src="assets/plugins/toastr/toastr.js"></script>
-
-	<!-- FULL CALENDAR JS -->
-	<script src="assets/plugins/fullcalendar/lib/jquery-ui.custom.min.js"></script>
-	<script src="assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js"></script>
-	<script src="assets/js/full-calendar.js"></script>
-
-	<!-- EASY PIE CHART JS -->
-	<script src="assets/plugins/easypie-chart/easypiechart.min.js"></script>
-	<script src="assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
-
-	<!-- KNOB JS -->
-	<!--[if IE]>
-	<script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
-	<![endif]-->
-	<script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
-	<script src="assets/plugins/jquery-knob/knob.js"></script>
-
-	<!-- FLOT CHART JS -->
-	<script src="assets/plugins/flot-chart/jquery.flot.js"></script>
-	<script src="assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
-	<script src="assets/plugins/flot-chart/jquery.flot.resize.js"></script>
-	<script src="assets/plugins/flot-chart/jquery.flot.selection.js"></script>
-	<script src="assets/plugins/flot-chart/jquery.flot.stack.js"></script>
-	<script src="assets/plugins/flot-chart/jquery.flot.time.js"></script>
-
-	<!-- MORRIS JS -->
-	<script src="assets/plugins/morris-chart/raphael.min.js"></script>
-	<script src="assets/plugins/morris-chart/morris.min.js"></script>
-
-	<!-- C3 JS -->
-	<script src="assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
-	<script src="assets/plugins/c3-chart/c3.min.js"></script>
-
-	<!-- MAIN APPS JS -->
-	<script src="assets/js/apps.js"></script>
+<!--
+    ===========================================================
+    END PAGE
+    ===========================================================
+    -->
 
 
-	<script>
-		$(document).ready(
-				function() {
-					$(function() {
-						var shrinkHeader = 250;
-						$(window).scroll(function() {
-							var scroll = getCurrentScroll();
-							if (scroll >= shrinkHeader) {
-								$('.top-navbar').addClass('shrink-nav');
-							} else {
-								$('.top-navbar').removeClass('shrink-nav');
-							}
-						});
-						function getCurrentScroll() {
-							return window.pageYOffset
-									|| document.documentElement.scrollTop;
+
+<!--
+    ===========================================================
+    Placed at the end of the document so the pages load faster
+    ===========================================================
+    -->
+<!-- MAIN JAVASRCIPT (REQUIRED ALL PAGE)-->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/plugins/retina/retina.min.js"></script>
+<script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+<script
+		src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="assets/plugins/mixitup/jquery.mixitup.js"></script>
+<script>
+	$(document).ready(
+			function() {
+				$(function() {
+					var shrinkHeader = 250;
+					$(window).scroll(function() {
+						var scroll = getCurrentScroll();
+						if (scroll >= shrinkHeader) {
+							$('.top-navbar').addClass('shrink-nav');
+						} else {
+							$('.top-navbar').removeClass('shrink-nav');
 						}
 					});
-				})
-	</script>
+					function getCurrentScroll() {
+						return window.pageYOffset
+								|| document.documentElement.scrollTop;
+					}
+				});
+			})
+</script>
+<script src="assets/js/category-view.js"></script>
 </body>
 </html>

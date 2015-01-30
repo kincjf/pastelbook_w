@@ -73,8 +73,7 @@
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/sentir/style.css" rel="stylesheet">
     <link href="assets/css/sentir/style-responsive.css" rel="stylesheet">
-    <link href="assets/css/header.css" rel="stylesheet">
-    
+
     <!-- additional css -->
     <link href="assets/css/index.css" rel="stylesheet">
     
