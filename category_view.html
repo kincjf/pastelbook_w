@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description"
+		  content="Sentir, Responsive admin and dashboard UI kits template">
+	<meta name="keywords"
+		  content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
+	<meta name="author"
+		  content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
+	<title>PastelBook - Category View</title>
+
+	<!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+
+	<!-- PLUGINS CSS-->
+	<link href="assets/plugins/magnific-popup/magnific-popup.css"
+		  rel="stylesheet">
+	<link href="assets/plugins/owl-carousel/owl.carousel.css"
+		  rel="stylesheet">
+	<link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+	<link href="assets/plugins/owl-carousel/owl.transitions.css"
+		  rel="stylesheet">
+
+
+	<!-- MAIN CSS (REQUIRED ALL PAGE)-->
+	<link href="assets/plugins/font-awesome/css/font-awesome.min.css"
+		  rel="stylesheet">
+	<link href="assets/css/sentir/style.css" rel="stylesheet">
+	<link href="assets/css/sentir/style-responsive.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/category-view.css" />
+
+
+	<!-- 정렬 이벤트  -->
+	<SCRIPT>
+		function close_1_3() {
+			$('#panel-message-1').css('display', 'none');
+			$('#panel-message-3').css('display', 'none');
+			$('#panel-message-2').css('display', 'inline');
+		}
+		function close_1_2() {
+			$('#panel-message-1').css('display', 'none');
+			$('#panel-message-2').css('display', 'none');
+			$('#panel-message-3').css('display', 'inline');
+		}
+		function close_2_3() {
+			$('#panel-message-2').css('display', 'none');
+			$('#panel-message-3').css('display', 'none');
+			$('#panel-message-1').css('display', 'inline');
+		}
+	</SCRIPT>
+
+
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body class="tooltips">
+
+<!--
+    ===========================================================
+    BEGIN PAGE
+    ===========================================================
+    -->
+
+
+<!-- BEGIN TOP NAVBAR -->
+<%@include file="include/top-navbar.jsp" %>
+<!-- END TOP NAVBAR -->
+
+
+
+<!-- BEGIN BERADCRUMB AND PAGE TITLE -->
+<div class="page-title-wrap">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="#fakelink">Portfolio</a></li>
+			<li class="active">Portfolio 3 columns</li>
+		</ol>
+		<h2 class="page-title">카테고리별 프로젝트보기</h2>
+	</div>
+	<!-- /.container -->
+	<div class="border-bottom">
+
+		<!-- /.collapse in -->
+
+		<div class="container">
+			<div class="border-bottom-color bg-info"></div>
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.border-bottom -->
+
+</div>
+<!-- /.page-title-wrap -->
+<!-- END BERADCRUMB AND PAGE TITLE -->
+
+<!-- ------------------------------카테고리 텝---------------------------------------- -->
+<div>
+	<div class="tab-pane fade in active" id="panel-home-1">
+		<div class="section work-section category-list">
+			<div class="container">
+				<ul class="work-category-wrap category-list">
+					<li class="filter" data-filter="all">IT</li>
+					<li class="filter" data-filter="template">시사</li>
+					<li class="filter" data-filter="web_design">사진</li>
+					<li class="filter" data-filter="printing">창작</li>
+					<li class="filter" data-filter="other">Other</li>
+				</ul>
+			</div>
+			<!-- /.container -->
+		</div>
+		<!-- /.section -->
+	</div>
+
+	<!-- ----------------------카테고리 탭 끝----------------------------------------------->
+
+	<div>
+		<div class="section-heading category-list">
+			<div class="inner-border"></div>
+			<h3>오늘의 추천</h3>
+		</div>
+		<div class="container">
+			<image src="img/sun.jpg" alt="샘플이미지">
+		</div>
+		<div class="line-gray"></div>
+	</div>
+</div>
+
+<div>
+	<ul class="nav nav-tabs noline container">
+		<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#fakelink"> 정렬 <span class="caret"></span>
+		</a>
+			<ul class="dropdown-menu success" role="menu">
+
+				<li><a href="#panel-message-1" data-toggle="tab"
+					   onclick='close_2_3();'>좋아요</a></li>
+				<li><a href="#panel-message-2" data-toggle="tab"
+					   onclick='close_1_3();'>조회수</a></li>
+				<li><a href="#panel-message-3" data-toggle="tab"
+					   onclick='close_1_2();'>최신순</a></li>
+			</ul>
+		<li class="search-margin"><span class="input-group-btn search-btn">
+					<input type="text" class="form-control" placeholder="Search for...">
+			</span></li>
+		<li><button class="btn btn-default search-btn" type="button">
+					<span class="glyphicon glyphicon-search search-btn"
+						  aria-hidden="true"></span>
+		</button></li>
+
+	</ul>
+</div>
+
+
+<div id="panel-collapse-1" class="collapse in container">
+	<div class="panel-body">
+		<div class="tab-content">
+			<!-- ----------------------------------------------좋아요 시작----------------------------------------- -->
+			<div class="tab-pane fade display-inline" id="panel-message-1">
+				<h4>좋아요 순</h4>
+				<p>
+				<div id="work-mixitup" class="work-content">
+					<div class="row">
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									날짜  슬라이드 수
+
+									카테고리  조회수
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- /.row -->
+					</div>
+				</div>
+				</p>
+			</div>
+			<!-- ----------------------------------------------좋아요 끝----------------------------------------- -->
+
+			<div class="tab-pane fade" id="panel-message-2">
+				<h4>조회수 순</h4>
+				<p>
+				<div id="work-mixitup" class="work-content">
+					<div class="row">
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- Begin work item -->
+						<div class="col-sm-4 col-md-3 col-xs-6 mix printing mix-all"
+							 style="display: inline-block; opacity: 1;">
+							<div class="work-item">
+								<img src="assets/img/work/work.jpg" alt="Img work">
+								<div class="the-box no-border transparent no-margin">
+									<p class="project-name">Awesome project name</p>
+									<p class="project-category">PRINTING</p>
+									<p class="project-category">
+										<button class="btn btn-success btn-learn-more">즐겨찾기</button>
+										<button class="btn btn-success btn-learn-more">공유하기</button>
+									</p>
+								</div>
+								<!-- /.the-box no-border transparent -->
+							</div>
+							<!-- /.work-item -->
+						</div>
+						<!-- /.col-sm-4 col-md-3 col-xs-6 mix -->
+						<!-- End work item -->
+
+						<!-- /.row -->
+					</div>
+
+				</div>
+				</p>
+			</div>
+
+			<div class="tab-pane fade" id="panel-message-3">
+				<h4>최신순</h4>
+				<p>최근순서 정렬 내용</p>
+				<!-- /.tab-pane fade -->
+			</div>
+			<!-- /.tab-content -->
+		</div>
+		<!-- /.panel-body -->
+	</div>
+</div>
+
+<!-- BEGIN TOP NAVBAR -->
+<%@include file="include/footer.jsp" %>
+<!-- END TOP NAVBAR -->
+
+
+
+<!-- BEGIN BACK TO TOP BUTTON -->
+<div id="back-top">
+	<i class="fa fa-chevron-up"></i>
+</div>
+<!-- END BACK TO TOP -->
+
+<!--
+    ===========================================================
+    END PAGE
+    ===========================================================
+    -->
+
+
+
+<!--
+    ===========================================================
+    Placed at the end of the document so the pages load faster
+    ===========================================================
+    -->
+<!-- MAIN JAVASRCIPT (REQUIRED ALL PAGE)-->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/plugins/retina/retina.min.js"></script>
+<script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+<script
+		src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="assets/plugins/mixitup/jquery.mixitup.js"></script>
+<script>
+	$(document).ready(
+			function() {
+				$(function() {
+					var shrinkHeader = 250;
+					$(window).scroll(function() {
+						var scroll = getCurrentScroll();
+						if (scroll >= shrinkHeader) {
+							$('.top-navbar').addClass('shrink-nav');
+						} else {
+							$('.top-navbar').removeClass('shrink-nav');
+						}
+					});
+					function getCurrentScroll() {
+						return window.pageYOffset
+								|| document.documentElement.scrollTop;
+					}
+				});
+			})
+</script>
+<script src="assets/js/category-view.js"></script>
+</body>
+</html>

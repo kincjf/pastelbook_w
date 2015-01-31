@@ -4,13 +4,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %><%
 	Project2DAO dao = new Project2DAO();
 	String id = request.getParameter("id");
-	int projectId = Integer.parseInt(id);
+	String projectData  = "{}";
+	
 	Project2Bean bean = null;
 	if(id != null){
-		bean = dao.findById(projectId);	
+		int projectId = Integer.parseInt(id);
+		bean = dao.findById(projectId);
+		projectData = bean.getSceneList();
 	}
 	
-	String projectData = bean.getSceneList();
+	
 %>
 <!doctype html>
 <html lang="ko">
@@ -24,10 +27,10 @@
     <link href="js/lib/jquery_ui/jquery-ui.structure.css" rel="stylesheet"/>
     <link href="js/lib/jquery_ui/jquery-ui.theme.css" rel="stylesheet"/>
 
-    <link href="assets/css/jquery-ui.pb_mainview.css" rel="stylesheet" />
+    <link href="css/tool-pc-jquery-ui.css" rel="stylesheet" />
 
     <!-- css for jquery-contextMenu -->
-    <link href="js/lib/jquery_contextMenu/jquery.contextMenu.css" rel="stylesheet" type="text/css"/>
+    <link href="js/lib/contextMenu/contextMenu.css" rel="stylesheet" type="text/css"/>
 
     <!-- css for videojs -->
     <link href="js/lib/video-js/video-js.min.css" rel="stylesheet" type="text/css"/>
@@ -37,13 +40,13 @@
     <%--<link href="js/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>--%>
 
     <!-- css for Custom Optimization -->
-    <link href="assets/css/pb_default.css" rel="stylesheet"/>
+    <link href="css/tool-pc.css" rel="stylesheet"/>
 
 	<script>
 	<%
 		if(id != null){
 	%>
-		var loadedSceneList = <%=projectData%>;
+		var projectData = <%=projectData%>;
 	<%
 		}
 	%>
@@ -63,7 +66,7 @@
 
 <!-- ui-dialog : 점진적으로 ./js/pb/templates로 옮길 예정임. /-->
 <%@ include file="js/pb/templates/dlg-current-scene.jspf" %>
-<%@ include file="js/pb/deprecated/dlg-scene-preview.jspf" %>
+<%@ include file="js/pb/templates/dlg-scene-preview.jspf" %>
 <%@ include file="js/pb/templates/dlg-add-image.jspf" %>
 
 <%--<%@ include file="./js/pb/templates/dlg-bottom-tab.jspf" %>--%>

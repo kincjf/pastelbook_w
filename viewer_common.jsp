@@ -31,7 +31,7 @@
     <link href="assets/css/reset.css" rel="stylesheet" />
 
     <!-- common style sheet -->
-    <link rel="stylesheet" type="text/css" href="assets/css/viewer_common.css" />
+    <link rel="stylesheet" type="text/css" href="css/viewer-common.css" />
 </head>
 <body>
 <div class="viewer-wrap fit">

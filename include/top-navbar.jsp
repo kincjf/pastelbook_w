@@ -6,6 +6,8 @@
 	CategoryDAO cDao = new CategoryDAO();
 	ArrayList<CategoryBean> clist = cDao.findAll();
 %>
+	<link href="assets/css/header.css" rel="stylesheet" />
+
 <div class="top-navbar dark-color">
 	<div class="container">
 

@@ -12,12 +12,14 @@ requirejs.config({
 
 		jquery_ui: 'lib/jquery_ui/jquery-ui',
 		jquery_ui_position: 'lib/jquery_ui/jquery.ui.position',
-		jquery_contextMenu: 'lib/jquery_contextMenu/jquery.contextMenu',
+
 
 		localStorage: 'lib/backbone.localStorage',
 		marionette: 'lib/backbone.marionette',
 		mutators: 'lib/backbone.mutators',
 		radio: 'lib/backbone.radio',
+
+		contextMenu: 'lib/contextMenu/contextMenu',
 
 
 		handlebars: "lib/handlebars-v2.0.0",
@@ -125,7 +127,7 @@ requirejs.config({
 			deps: ['pb_io', "pb_namespace"]
 		},
 		pastelbook_ui_dlg_upload_image: {
-			deps: ['pb_io', "pb_namespace", "handlebars"]
+			deps: ['pb_io', "pb_namespace"]
 		}
 	},
 

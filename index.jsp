@@ -57,7 +57,7 @@
     <meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
     <meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
     <meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-    <title>SENTIR AGENCY</title>
+    <title>PastelBook</title>
 
     <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -355,6 +355,6 @@ Placed at the end of the document so the pages load faster
         });
     })
 </script>
-<script src="assets/js/apps.js"></script>
+<script src="assets/js/index.js"></script>
 </body>
 </html>

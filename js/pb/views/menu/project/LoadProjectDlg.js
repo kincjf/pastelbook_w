@@ -136,12 +136,12 @@ define([
 			});
 
 			this.loadFromTextArea.show(loadFromTextDialog);
-		},
+		}
 		
 		
 		/*
 		loadFromServer: function () {
-			this.model.trigger("loading:project", loadedSceneList);
+			this.model.trigger("loading:project", projectData);
 		}
 		*/
 	});

@@ -27,12 +27,22 @@ define([
 
 	var app_tool = new Marionette.Application();
 
-	/** Data type은 namespace를 써야될 것 같음.*/
+	if(window.projectData) {
+		pb.type.model.project = new Project({
+			sceneList: window.projectData
+		}, {
+			parse: false
+		});
+	} else {
 	pb.type.model.project = new Project({
 		sceneList: new SceneList()
 	}, {
 		parse: false
 	});
+	}
+
+	/** Data type은 namespace를 써야될 것 같음.*/
+
 
 	pb.type.view.sceneViewSetList = new SceneViewSetList();
 	/** 나중에 Project Save를 위해서 기능을 이렇게 하면 될 듯 */
@@ -103,9 +113,6 @@ define([
 	///** for debugging */
 	//window.project = pb.type.Model.Project;
 	//window.sceneList = pb.type.Model.Project.get('sceneList');
-	
-	
-	pb.type.model.project.trigger("loading:project", window.loadedSceneList);
 
 	return window.app_tool = app_tool
 });

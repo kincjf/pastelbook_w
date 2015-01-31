@@ -17,7 +17,6 @@ define([
 		events: {
 			'dragstop': 'changeDirection',
 			'resizestop': 'changeSize',
-			'click .destroyBtn': 'destroyObject',
 			'click .rotateBtn': 'rotateObject'
 		},
 
@@ -25,58 +24,68 @@ define([
 
 		initialize: function () {
 			myLogger.trace("BaseObjectView - init");
+			/**
+			 * @link http://ignitersworld.com/lab/contextMenu.html#intro
+			 * */
+			this.objectContextMenus =[
+				{
+					name: "내 컨텐츠 추가",/* img: "delete",*/
+					title: "create my contents",
+					fun: _.bind(this.addMyContents, this)
+				},
+				{
+					name: "삭제",
+					fun: _.bind(this.deleteObject, this)
+				},
+				{
+					name: "잘라내기",
+					func: this.cutObject
+				},
+				{
+					name: "복사",
+					func: this.copyObject
+				},
+				{
+					name: "붙여넣기",
+					func: this.pasteObject
+				},
+				{
+					name: "맨 앞으로",
+					func: this.moveForegroundObject
+				},
+				{
+					name: "앞으로",
+					func: this.moveForwardObject
+				},
+				{
+					name: "맨 뒤로",
+					func: this.moveBackgroundObject
+				},
+				{
+					name: "뒤로",
+					func: this.moveBackwardObject
+				},
+				{
+					name: "크기, 위치 수정",
+					func: this.editSizePositionObject
+				},
+				{
+					name: "도형 서식",
+					func: this.editShapeObject
+				}
+			];
 
-			this.objectContextMenus = {
-				"myCollection": {
-					name: "나의 컨텐츠", icon: "delete",
-					callback: _.bind(this.addMyContents, this)
-				},
-				"separator0": "--------",
-				"delete": {
-					name: "삭제", icon: "delete",
-					callback: _.bind(this.deleteObject, this)
-				},
-				"separator1": "--------",
-				"cut": {
-					name: "잘라내기", icon: "cut",
-					callback: this.cutObject
-				},
-				"copy": {
-					name: "복사", icon: "copy",
-					callback: this.copyObject
-				},
-				"paste": {
-					name: "붙여넣기", icon: "paste",
-					callback: this.pasteObject
-				},
-				"separator2": "---------",
-				"foreground": {
-					name: "맨 앞으로", icon: "edit",
-					callback: this.moveForegroundObject
-				},
-				"toForward": {
-					name: "앞으로", icon: "edit",
-					callback: this.moveForwardObject
-				},
-				"separator3": "--------",
-				"background": {
-					name: "맨 뒤로", icon: "edit",
-					callback: this.moveBackgroundObject
-				},
-				"toBackward": {
-					name: "뒤로", icon: "edit",
-					callback: this.moveBackwardObject
-				},
-				"separator4": "--------",
-				"editSizeDirection": {
-					name: "크기, 위치 수정", icon: "edit",
-					callback: this.editSizePositionObject
-				},
-				"editShape": {
-					name: "도형 서식", icon: "edit",
-					callback: this.editShapeObject
-				},
-				"separator5": "--------"
+			this.contextMenuOptions = {
+				containment: ".scene",     // context menu가 보여지는 범위가 어디까지인가?
+				displayAround: "cursor",
+				horAdjust: 0,
+				left: "auto",
+				mouseClick: "right",
+				position: "auto",
+				sizeStyle: "auto",
+				top: "auto",
+				triggerOn: "click",
+				verAdjust: 0
 			}
 		},
 
@@ -106,7 +115,6 @@ define([
 		},
 
 		onBeforeDestroy: function() {
-			$.contextMenu( 'destroy', this.$el );
 		},
 
 		onDestroy: function() {
@@ -149,8 +157,9 @@ define([
 			myLogger.trace("BaseObjectView - addMyContents");
 		},
 
+		/** 바인딩된 모든 이벤트를 해제하고 난 후에 데이터를 삭제함. */
 		deleteObject: function (key, opt) {
-			$.contextMenu( 'destroy', this.$el );
+			this.$el.contextMenu( 'destroy' );
 			this.$el.resizable( "destroy").draggable( "destroy");
 
 			/** this.model - Image, this.model.collection - BaseObjectList */

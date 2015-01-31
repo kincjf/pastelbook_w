@@ -40,26 +40,25 @@ define([
          _.extend(this.events, BaseObjectView.prototype.events);
          _.extend(this.ui, BaseObjectView.prototype.ui);
 
-         this.videoContextMenus = {
-            "changeVideo": {
-               name: "ChangeVideo", icon: "icon",
-               callback: this.changeVideo
+         this.videoContextMenus = [
+            {
+               name: "ChangeVideo",
+               fun: this.changeVideo
             },
-            "editImage": {
-               name: "editVideo", icon: "edit",
-               callback: this.editVideo
+            {
+               name: "editVideo",
+               fun: this.editVideo
             }
-         };
+         ];
       },
 
       // "show" / onShow - Called on the view instance when the view has been rendered and displayed.
       onShow: function (v) {
          BaseObjectView.prototype.onShow.call(this);
 
-         this.$el.contextMenu({
-            selector: ".ui-resizable-handle",
-            items: _.extend(this.objectContextMenus, this.videoContextMenus)
-         });
+         this.$el.contextMenu(
+            _.union(this.objectContextMenus, this.videoContextMenus),
+            this.contextMenuOptions);
 
          myLogger.trace("VideoView - onShow");
       },

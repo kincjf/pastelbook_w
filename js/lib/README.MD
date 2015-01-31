@@ -11,18 +11,14 @@
 * backbone : 1.1.0
 * backbone.localStorage : 1.1.13
 * backbone.marionette : 2.2.0
-* backbone.mutators : 0.4.3
 * backbone.radio : 0.7.0
 
 
 * html2canvas : 0.4.1
 * moment : 2.8.3
-* jquery_contextMenu :
+* contextMenu : 1.2.0
 * ckeditor(source) : 4.4.5
 * video-js : 4.10.2
-
-* text : 2.0.12
-* handlebars : 2.0.0
 
 
 * bootstrap(dist) : 3.3.1
