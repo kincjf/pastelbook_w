@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ResImageMapper">
+ <!-- findById -->
+ <select id="findAll" resultType="pb.rest.jaxrs.vo.ResImage">
+  select *
+  from pb_res_image 
+ </select>
+ <select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
+  select *
+  from pb_res_image where _id= #{ _id }
+ </select>
+ <insert id="create" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">
+  INSERT INTO pb_res_image
+  ( accountId, path, thumbPath, name, size, width, height, type )
+  VALUES (
+  	1, #{path}, #{thumbPath}, #{name}, #{size}, #{width}, #{height}, #{type}
+  )
+ </insert>
+ <update id="update" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">
+  UPDATE pb_res_image 
+  SET 
+    accountId = 1
+    , path =#{path}
+    , thumbPath =#{thumbPath}
+    , name =#{name}
+    , size =#{size}
+    , width =#{width}
+    , height =#{height}
+	, type =#{type}
+  where _id= #{ _id } 
+ </update>
+ <delete id="remove" parameterType="int">
+  delete 
+  from pb_res_image
+  where _id= #{ _id }
+ </delete>
+ <select id="findAllByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
+  select *
+  from pb_res_image where _id= #{ _id }
+ </select>
+ <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
+  select *
+  from pb_res_image where _id= #{ _id }
+ </select>
+</mapper>
