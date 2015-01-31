@@ -4,13 +4,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %><%
 	Project2DAO dao = new Project2DAO();
 	String id = request.getParameter("id");
-	int projectId = Integer.parseInt(id);
+	String projectData  = "{}";
+	
 	Project2Bean bean = null;
 	if(id != null){
-		bean = dao.findById(projectId);	
+		int projectId = Integer.parseInt(id);
+		bean = dao.findById(projectId);
+		projectData = bean.getSceneList();
 	}
 	
-	String projectData = bean.getSceneList();
+	
 %>
 <!doctype html>
 <html lang="ko">

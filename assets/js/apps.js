@@ -1,16 +1,16 @@
-$(document).ready(function () {
+$(document).ready(function(){
 
 	/** BEGIN TOOLTIP FUNCTION **/
 	$('.tooltips').tooltip({
-		selector: "[data-toggle=tooltip]",
-		container: "body"
+	  selector: "[data-toggle=tooltip]",
+	  container: "body"
 	})
 	/** END TOOLTIP FUNCTION **/
 
 
 
 	/** BEGIN TOGGLE NAV ( < 1024px ) **/
-	$("#btn-toggle-nav").click(function () {
+	$("#btn-toggle-nav").click(function(){
 		"use strict";
 		$(".menus").toggleClass("toggle-nav");
 	});
@@ -19,11 +19,11 @@ $(document).ready(function () {
 
 
 	/** BEGIN NAV RIGHT ICON CLICK FUNCTION **/
-	$("#nav-icon-search").click(function () {
+	$("#nav-icon-search").click(function(){
 		"use strict";
 		$("#search-sub").toggleClass("visible");
 	});
-	$("#nav-icon-phone").click(function () {
+	$("#nav-icon-phone").click(function(){
 		"use strict";
 		$("#phone-sub").toggleClass("visible");
 	});
@@ -32,11 +32,11 @@ $(document).ready(function () {
 
 
 	/** BEGIN BUTTON ICON CLICK FUNCTION ( < 1024px ) **/
-	$("#btn-icon-search").click(function () {
+	$("#btn-icon-search").click(function(){
 		"use strict";
 		$("#search-sub").toggleClass("visible");
 	});
-	$("#btn-icon-phone").click(function () {
+	$("#btn-icon-phone").click(function(){
 		"use strict";
 		$("#phone-sub").toggleClass("visible");
 	});
@@ -45,12 +45,12 @@ $(document).ready(function () {
 
 
 	/** BEGIN BUTTON ICON CLICK CLOSE FUNCTION **/
-	$("#close-phone-nav").click(function () {
+	$("#close-phone-nav").click(function(){
 		"use strict";
 		$("#search-sub").removeClass("visible");
 		$("#phone-sub").removeClass("visible");
 	});
-	$("#close-search-nav").click(function () {
+	$("#close-search-nav").click(function(){
 		"use strict";
 		$("#phone-sub").removeClass("visible");
 		$("#search-sub").removeClass("visible");
@@ -73,7 +73,7 @@ $(document).ready(function () {
 		});
 		
 		$('#back-top').click(function () {
-			"use strict";
+		"use strict";
 			$('body,html').animate({
 				scrollTop: 0
 			}, 800);
@@ -85,9 +85,9 @@ $(document).ready(function () {
 
 
 	/** BEGIN WORK FILTER **/
-	if ($('#work-mixitup').length > 0) {
+	if ($('#work-mixitup').length > 0){
 		$('#work-mixitup').mixitup({
-			effects: ['fade', 'scale', 'grayscale']
+			effects: ['fade','scale','grayscale']
 		});
 	}
 	/** END WORK FILTER **/
@@ -95,12 +95,12 @@ $(document).ready(function () {
 
 
 	/** BEGIN OWL CAROUSEL CONTENT HEADER **/
-	if ($('#content-header-slide').length > 0) {
+	if ($('#content-header-slide').length > 0){
 		$("#content-header-slide").owlCarousel({
 			autoPlay: 4000,
-			singleItem: true,
-			lazyLoad: true,
-			autoHeight: false,
+			singleItem:true,
+			lazyLoad : true,
+			autoHeight : false,
 			transitionStyle: "fade",
 			pagination: false
 		});
@@ -110,12 +110,12 @@ $(document).ready(function () {
 
 
 	/** BEGIN OWL CAROUSEL CLIENT LOGO **/
-	if ($('#owl-client-logo').length > 0) {
+	if ($('#owl-client-logo').length > 0){
 		$("#owl-client-logo").owlCarousel({
 			autoPlay: 6000,
-			items: 5,
-			lazyLoad: true,
-			autoHeight: true
+			items : 5,
+			lazyLoad : true,
+			autoHeight : true
 		});
 	}
 	/** END OWL CAROUSEL CLIENT LOGO **/
@@ -123,20 +123,20 @@ $(document).ready(function () {
 
 
 	/** BEGIN OWL CAROUSEL CLIENT TESTIMONIAL **/
-	if ($('#owl-testimonial').length > 0) {
+	if ($('#owl-testimonial').length > 0){
 		$("#owl-testimonial").owlCarousel({
 			autoPlay: false,
-			singleItem: true,
-			lazyLoad: true,
-			autoHeight: true
+			singleItem:true,
+			lazyLoad : true,
+			autoHeight : true
 		});
 	}
-	if ($('#owl-testimonial-2').length > 0) {
+	if ($('#owl-testimonial-2').length > 0){
 		$("#owl-testimonial-2").owlCarousel({
 			autoPlay: false,
-			items: 2,
-			lazyLoad: true,
-			autoHeight: true
+			items : 2,
+			lazyLoad : true,
+			autoHeight : true
 		});
 	}
 	/** END OWL CAROUSEL CLIENT TESTIMONIAL **/
@@ -144,17 +144,17 @@ $(document).ready(function () {
 
 
 	/** BEGIN OWL CAROUSEL WORK DETAIL **/
-	if ($('#owl-work-detail').length > 0) {
+	if ($('#owl-work-detail').length > 0){
 		$("#owl-work-detail").owlCarousel({
 			autoPlay: 3000,
-			singleItem: true,
-			lazyLoad: true,
-			autoHeight: true
+			singleItem:true,
+			lazyLoad : true,
+			autoHeight : true
 		});
 	}
 	/** END OWL CAROUSEL WORK DETAIL **/
 
-
+	
 
 	/** SIDEBAR FUNCTION **/
 	$('.sidebar-left ul.sidebar-menu li a').click(function () {

@@ -34,11 +34,11 @@ define([
 			parse: false
 		});
 	} else {
-		pb.type.model.project = new Project({
-			sceneList: new SceneList()
-		}, {
-			parse: false
-		});
+	pb.type.model.project = new Project({
+		sceneList: new SceneList()
+	}, {
+		parse: false
+	});
 	}
 
 	/** Data type은 namespace를 써야될 것 같음.*/

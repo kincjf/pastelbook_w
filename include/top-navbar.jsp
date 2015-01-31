@@ -8,7 +8,7 @@
 %>
 	<link href="assets/css/header.css" rel="stylesheet" />
 
-	<div class="top-navbar dark-color">
+<div class="top-navbar dark-color">
 	<div class="container">
 
 		<!-- Begin logo -->

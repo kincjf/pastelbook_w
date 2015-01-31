@@ -71,11 +71,13 @@
 
     <!-- MAIN CSS (REQUIRED ALL PAGE)-->
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/sentir/style.css" rel="stylesheet">
-    <link href="assets/css/sentir/style-responsive.css" rel="stylesheet">
-
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+    <link href="assets/css/header.css" rel="stylesheet">
+    
     <!-- additional css -->
-    <link href="assets/css/index.css" rel="stylesheet">
+    <link href="assets/css/myCss.css" rel="stylesheet">
+    <link href="assets/css/index_add.css" rel="stylesheet">
     
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -185,7 +187,7 @@ BEGIN PAGE
                                     <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
                                 </a>
                                 <br />
-                                <a href="deprecated/docDetail.jsp?id=<%= tmp.getId() %>"><%= tmp.getTitle() %></a>
+                                <a href="docDetail.jsp?id=<%= tmp.getId() %>"><%= tmp.getTitle() %></a>
                             </div>
                             
                        <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
@@ -353,6 +355,6 @@ Placed at the end of the document so the pages load faster
         });
     })
 </script>
-<script src="assets/js/apps.js"></script>
+<script src="assets/js/index.js"></script>
 </body>
 </html>
