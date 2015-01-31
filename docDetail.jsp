@@ -523,6 +523,6 @@ Placed at the end of the document so the pages load faster
         });
     })
 </script>
-<script src="assets/js/apps.js"></script>
+<script src="assets/js/index.js"></script>
 </body>
 </html>
