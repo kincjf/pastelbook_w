@@ -35,10 +35,6 @@
     <!-- css for videojs -->
     <link href="js/lib/video-js/video-js.min.css" rel="stylesheet" type="text/css"/>
 
-    <%--<!-- css for bootstrap -->--%>
-    <%--<link href="js/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>--%>
-    <%--<link href="js/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>--%>
-
     <!-- css for Custom Optimization -->
     <link href="css/tool-pc.css" rel="stylesheet"/>
 
