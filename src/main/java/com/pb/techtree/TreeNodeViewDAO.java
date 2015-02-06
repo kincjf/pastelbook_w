@@ -7,7 +7,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-
+/**
+ * Comment	C : 
+ * 			R : 
+ * 			U : findFamillyById, findById, findRecents
+ * 			D : 
+ * @category DAO
+ * @since 15.02.06
+ * @author Hong won gi
+ * 
+ * {@link http://}
+ *
+ */
 public class TreeNodeViewDAO {
 	
 	// for tree
@@ -17,7 +28,8 @@ public class TreeNodeViewDAO {
 		
 		
 		PreparedStatement ptmt = conn.prepareStatement("select d.title, d.content, d.id, t.docType, p.previewImage "
-				+ " from pb_docs d, pb_project p, (  select parent 'docId', 'p' as 'docType'  from pb_tree where doc = ?   union   select doc 'docId', 'c' as 'docType'  from pb_tree where parent = ?  union  select ? as 'docId', 't' as  'docType' from dual  ) t "
+				+ " from pb_docs d, pb_project p, "
+					+ "(  select parent 'docId', 'p' as 'docType'  from pb_tree where doc = ?   union   select doc 'docId', 'c' as 'docType'  from pb_tree where parent = ?  union  select ? as 'docId', 't' as  'docType' from dual  ) t "
 				+ " where d.projectId=p._id and docId = d.id order by t.docType desc");
 		
 		ptmt.setInt(1, parseInt);

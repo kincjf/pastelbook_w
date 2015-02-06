@@ -1,3 +1,4 @@
+<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@page import="pb.rest.jaxrs.vo.Account"%>
 <%@page import="com.pb.techtree.Project2DAO"%>
 <%@page import="com.pb.techtree.Project2Bean"%>
@@ -5,17 +6,21 @@
 <%@ page import="com.pb.techtree.TechTreeDAO, java.util.*, java.sql.*"%>
 <%
 	Account account = null;
+
+	// test
+	AccountDAO adao = new AccountDAO();
 	
+	session.setAttribute("account",adao.findById(1));
 
 	if(session.getAttribute("account") != null){
 		account = (Account)session.getAttribute("account");
 	}
+	// end test
 
-	System.out.println("   "+account);
+	//System.out.println("   "+account);
 	
 	Project2DAO dao = new Project2DAO();
 	ArrayList<Project2Bean> list = dao.findAllByAccountId(account.getId());
-
 
 %>
 <!DOCTYPE html>
