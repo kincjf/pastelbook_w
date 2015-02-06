@@ -1,8 +1,6 @@
 target
 etc
 webapps/.git
-/.classpath/
-/.project/
 /.idea/
 /.metadata/
 /RemoteSystemsTempFiles/
