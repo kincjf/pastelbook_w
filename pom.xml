@@ -7,6 +7,7 @@
 	<version>0.0.1</version>
 	<name>techtree Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<description>pastelbook</description>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -72,6 +73,7 @@
   		<version>1.1.7</version>
   	</dependency>
 	</dependencies>
+
 	<build>
 		<finalName>techtree</finalName>
 		<plugins>
@@ -90,6 +92,7 @@
 				<version>2.4</version>
 				<configuration>
 					<warSourceDirectory>webapp</warSourceDirectory>
+					<failOnMissingWebXml>true</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 		</plugins>
