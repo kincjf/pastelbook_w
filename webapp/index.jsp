@@ -1,7 +1,7 @@
-<%@page import="pb.rest.jaxrs.vo.Account"%>
-<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="pb.rest.jaxrs.vo.Account"%>
+<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@page import="com.pb.techtree.TreeNodeViewDAO"%>
 <%@page import="com.pb.techtree.TreeNodeViewBean"%>
 <%@page import="com.pb.techtree.TechTreeDAO"%>
