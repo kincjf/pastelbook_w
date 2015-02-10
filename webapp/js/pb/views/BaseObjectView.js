@@ -76,8 +76,8 @@ define([
 			];
 
 			this.contextMenuOptions = {
-				containment: ".scene",     // context menu가 보여지는 범위가 어디까지인가?
-				displayAround: "trigger",
+ 				//containment: "document",     // context menu가 보여지는 범위가 어디까지인가?
+				displayAround: "cursor",
 				horAdjust: 0,
 				left: "auto",
 				mouseClick: "right",

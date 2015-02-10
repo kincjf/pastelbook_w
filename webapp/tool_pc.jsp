@@ -13,8 +13,6 @@
 		bean = dao.findById(projectId);
 		projectData = bean.getSceneList();
 	}
-	
-	
 %>
 <!doctype html>
 <html lang="ko">
