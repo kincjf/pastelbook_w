@@ -1,8 +1,8 @@
 package pb.rest.jaxrs.db;
 
-import pb.rest.jaxrs.vo.Account;
+import pb.rest.jaxrs.vo.ResVideo;
 
-public class ResVideoDAO extends PastelbookDAO<Account> {
+public class ResVideoDAO extends PastelbookDAO<ResVideo> {
 
 	@Override
 	protected void setObjectName() {

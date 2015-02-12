@@ -2,8 +2,32 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	Author	: hong won gi
+	CRUD  	:
+		C	: create
+		R	: update
+		U	: findAll, findById, findByName
+		D	: remove
+	조사완료
+ -->
 <mapper namespace="ProjectMapper">
- <!-- findById -->
+ <insert id="create" parameterType="pb.rest.jaxrs.vo.Project" useGeneratedKeys="true" keyProperty="_id">
+  INSERT INTO pb_project
+  ( accountId, title, comment, createDate, modifyDate, sceneList, previewImage, width, height )
+  VALUES (
+  	#{accountId}, #{title}, #{comment}, #{createDate}, #{modifyDate}
+  	, #{sceneList}, #{previewImage}, #{width}, #{height}
+  )
+ </insert>
+ <update id="update" parameterType="pb.rest.jaxrs.vo.Project" useGeneratedKeys="true" keyProperty="_id">
+  UPDATE pb_project 
+  SET 
+    accountId =#{accountId} , title =#{title}, comment =#{comment}, 
+    createDate =#{createDate}, modifyDate =#{modifyDate}, sceneList =#{sceneList},
+    previewImage =#{previewImage}, width =#{width}, height =#{height}
+  where _id= #{ _id } 
+ </update>
  <select id="findAll" resultType="pb.rest.jaxrs.vo.Project">
   select *
   from pb_project 
@@ -12,27 +36,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   select *
   from pb_project where _id= #{ _id }
  </select>
- <insert id="create" parameterType="pb.rest.jaxrs.vo.Project" useGeneratedKeys="true" keyProperty="_id">
-  INSERT INTO pb_project
-  VALUES (
-  	#{type}, #{iconSrc}, #{imgSrc}, #{name}, #{showName}
-  	, #{theme}, #{owner}, #{rsc_type}, #{emotion}, #{rsc_style}
-  )
- </insert>
- <update id="update" parameterType="pb.rest.jaxrs.vo.Project" useGeneratedKeys="true" keyProperty="_id">
-  UPDATE pb_project 
-  SET 
-    type =#{type} , iconSrc =#{iconSrc}, imgSrc =#{imgSrc}, name =#{name}, showName =#{showName}
- 	, theme =#{theme}, owner =#{owner}, rsc_type =#{rsc_type}, emotion =#{emotion}, rsc_style =#{rsc_style}
-  where _id= #{ _id } 
- </update>
+ <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.Project">
+  select *
+  from pb_project where title= #{ title }
+ </select>
  <delete id="remove" parameterType="int">
   delete 
   from pb_project
   where _id= #{ _id }
  </delete>
- <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.Project">
-  select *
-  from pb_project where _id= #{ _id }
- </select>
 </mapper>

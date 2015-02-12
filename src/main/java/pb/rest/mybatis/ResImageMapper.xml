@@ -2,8 +2,31 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	Author	: hong won gi
+	CRUD  	:
+		C	: create
+		R	: update
+		U	: findAll, findById, findByName
+		D	: remove
+	조사완료
+ -->
 <mapper namespace="ResImageMapper">
- <!-- findById -->
+ <insert id="create" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">
+  INSERT INTO pb_res_image
+  ( accountId, path, thumbPath, name, size, width, height, type )
+  VALUES (
+  	#{accountId}, #{path}, #{thumbPath}, #{name}, #{size}, #{width}, #{height}, #{type}
+  )
+ </insert>
+ <update id="update" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">
+  UPDATE pb_res_image 
+  SET 
+  	accountId = #{accountId}, path =#{path}, thumbPath =#{thumbPath},
+  	name =#{name}, size =#{size}, width =#{width},
+  	height =#{height}, type =#{type}
+  where _id= #{ _id } 
+ </update>
  <select id="findAll" resultType="pb.rest.jaxrs.vo.ResImage">
   select *
   from pb_res_image 
@@ -12,37 +35,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   select *
   from pb_res_image where _id= #{ _id }
  </select>
- <insert id="create" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">
-  INSERT INTO pb_res_image
-  ( accountId, path, thumbPath, name, size, width, height, type )
-  VALUES (
-  	1, #{path}, #{thumbPath}, #{name}, #{size}, #{width}, #{height}, #{type}
-  )
- </insert>
- <update id="update" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">
-  UPDATE pb_res_image 
-  SET 
-    accountId = 1
-    , path =#{path}
-    , thumbPath =#{thumbPath}
-    , name =#{name}
-    , size =#{size}
-    , width =#{width}
-    , height =#{height}
-	, type =#{type}
-  where _id= #{ _id } 
- </update>
+ <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
+  select *
+  from pb_res_image where name =#{ name }
+ </select>
+ <select id="findAllByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
+  select *
+  from pb_res_image where name =#{ name }
+ </select>
  <delete id="remove" parameterType="int">
   delete 
   from pb_res_image
   where _id= #{ _id }
  </delete>
- <select id="findAllByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
-  select *
-  from pb_res_image where _id= #{ _id }
- </select>
- <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
-  select *
-  from pb_res_image where _id= #{ _id }
- </select>
 </mapper>

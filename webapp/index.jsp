@@ -1,7 +1,7 @@
-<%@page import="pb.rest.jaxrs.vo.Account"%>
-<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="pb.rest.jaxrs.vo.Account"%>
+<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@page import="com.pb.techtree.TreeNodeViewDAO"%>
 <%@page import="com.pb.techtree.TreeNodeViewBean"%>
 <%@page import="com.pb.techtree.TechTreeDAO"%>
@@ -57,7 +57,7 @@
     <meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
     <meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
     <meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-    <title>PastelBook</title>
+    <title>PastelBook - Index</title>
 
     <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -67,6 +67,24 @@
     <link href="assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
     <link href="assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <link href="assets/plugins/weather-icon/css/weather-icons.min.css" rel="stylesheet">
+    <link href="assets/plugins/prettify/prettify.min.css" rel="stylesheet">
+
+    <link href="assets/plugins/chosen/chosen.min.css" rel="stylesheet">
+    <link href="assets/plugins/icheck/skins/all.css" rel="stylesheet">
+    <link href="assets/plugins/datepicker/datepicker.min.css" rel="stylesheet">
+    <link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="assets/plugins/validator/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="assets/plugins/summernote/summernote.min.css" rel="stylesheet">
+    <link href="assets/plugins/markdown/bootstrap-markdown.min.css" rel="stylesheet">
+    <link href="assets/plugins/datatable/css/bootstrap.datatable.min.css" rel="stylesheet">
+    <link href="assets/plugins/morris-chart/morris.min.css" rel="stylesheet">
+    <link href="assets/plugins/c3-chart/c3.min.css" rel="stylesheet">
+    <link href="assets/plugins/slider/slider.min.css" rel="stylesheet">
+    <link href="assets/plugins/salvattore/salvattore.css" rel="stylesheet">
+    <link href="assets/plugins/toastr/toastr.css" rel="stylesheet">
+    <link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print">
 
 
     <!-- MAIN CSS (REQUIRED ALL PAGE)-->
@@ -100,43 +118,6 @@ BEGIN PAGE
 <%@include file="include/top-navbar.jsp" %>
 <!-- END TOP NAVBAR -->
 
-
-
-<!-- BEGIN HEADER FULL IMAGE SLIDE -->
-<%/* 
-<div class="full-slide-image" id="full-img-slide">
-    <div class="slide-inner more-padding">
-        <div class="slide-text-content">
-            <div class="container-fluid">
-                <h1>인터렉티브 컨텐츠 제작 서비스.</h1>
-                <div class="clear"></div>
-                <h3>
-                    당신의 아이디어, 스토리, 정보, 앨범등 다양한 종류의 지식들을 PastelBook을 통하여
-                    ​<br />표현하고, 나누고, 그 속에서 또 다른 영감을 얻으세요!
-                </h3>
-                <div class="clear"></div>
-                <button class="btn btn-lg btn-warning btn-learn-more btn-border-only"><a href="http://www.pastelplus.com/bbs/content.php?co_id=inter">LEARN MORE</a></button>
-            </div><!-- /.container -->
-        </div><!-- /.slide-text-content -->
-    </div><!-- /.slide-inner -->
-</div><!-- /.full-slide-image -->
-
-<!-- END HEADER FULL IMAGE SLIDE -->
-
-
-
-<!-- BEGIN TEXT SECTION -->
-<div class="section">
-    <div class="container">
-        <p class="text-center text-slogan">
-            - 어린이, 일반인등 누구나 쉽게 움직이고 살아있는 책을 만들고 온라인상에 공유할 수 있는 새로운 Self-Publishing Service입니다.
-            - 직접 만든 컨텐츠, e-Book을 친구, 가족, SNS, 고객과 공유하세요!
-            - PastelBook의 공유 커뮤니티 뿐만 아니라 사용중인 소셜 네트워크, 홈페이지, 블로그에 삽입하고 감상할 수 있습니다.
-        </p>
-    </div><!-- /.container -->
-</div><!-- /.section -->
-<!-- END TEXT SECTION -->
-*/%>
 
 <!-- BEGIN LATEST WORK SECTION -->
 <div class="section work-section">
@@ -182,16 +163,9 @@ BEGIN PAGE
 					}
 					%>">
                     <div class="work-item">
-                            <div class="hover-wrap">
-                                <a>
-                                    <i data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus icon-plus btn btn-primary btn-lg"></i>
-                                </a>
-                                <br />
-                                <a href="docDetail.jsp?id=<%= tmp.getId() %>"><%= tmp.getTitle() %></a>
-                            </div>
-                            
-                       <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
+											<img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
 
+                            
                        <div class="the-box no-border transparent no-margin">
                            <p class="project-name"><%= tmp.getTitle() %></p>
                            <p class="dateAndSlideCnt">
@@ -322,6 +296,62 @@ Placed at the end of the document so the pages load faster
 <script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 <script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
 <script src="assets/plugins/mixitup/jquery.mixitup.js"></script>
+<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
+
+<!-- PLUGINS -->
+<script src="assets/plugins/skycons/skycons.js"></script>
+<script src="assets/plugins/prettify/prettify.js"></script>
+<script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
+<script src="assets/plugins/icheck/icheck.min.js"></script>
+<script src="assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="assets/plugins/timepicker/bootstrap-timepicker.js"></script>
+<script src="assets/plugins/mask/jquery.mask.min.js"></script>
+<script src="assets/plugins/validator/bootstrapValidator.min.js"></script>
+<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/datatable/js/bootstrap.datatable.js"></script>
+<script src="assets/plugins/summernote/summernote.min.js"></script>
+<script src="assets/plugins/markdown/markdown.js"></script>
+<script src="assets/plugins/markdown/to-markdown.js"></script>
+<script src="assets/plugins/markdown/bootstrap-markdown.js"></script>
+<script src="assets/plugins/slider/bootstrap-slider.js"></script>
+
+<script src="assets/plugins/toastr/toastr.js"></script>
+
+<!-- FULL CALENDAR JS -->
+<script src="assets/plugins/fullcalendar/lib/jquery-ui.custom.min.js"></script>
+<script src="assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js"></script>
+<script src="assets/js/full-calendar.js"></script>
+
+<!-- EASY PIE CHART JS -->
+<script src="assets/plugins/easypie-chart/easypiechart.min.js"></script>
+<script src="assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
+
+<!-- KNOB JS -->
+<!--[if IE]>
+<script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
+<![endif]-->
+<script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+<script src="assets/plugins/jquery-knob/knob.js"></script>
+
+<!-- FLOT CHART JS -->
+<script src="assets/plugins/flot-chart/jquery.flot.js"></script>
+<script src="assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="assets/plugins/flot-chart/jquery.flot.resize.js"></script>
+<script src="assets/plugins/flot-chart/jquery.flot.selection.js"></script>
+<script src="assets/plugins/flot-chart/jquery.flot.stack.js"></script>
+<script src="assets/plugins/flot-chart/jquery.flot.time.js"></script>
+
+<!-- MORRIS JS -->
+<script src="assets/plugins/morris-chart/raphael.min.js"></script>
+<script src="assets/plugins/morris-chart/morris.min.js"></script>
+
+<!-- C3 JS -->
+<script src="assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
+<script src="assets/plugins/c3-chart/c3.min.js"></script>
+
 <script>
     $(".slide-text-content").backstretch([
             "assets/img/main_slide1.jpg",

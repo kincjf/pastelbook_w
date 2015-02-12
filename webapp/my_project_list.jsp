@@ -1,4 +1,4 @@
-<%@page import="com.pb.techtree.DocumentDAO"%>
+<%@ page import="com.pb.techtree.DocumentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.pb.techtree.TreeNodeViewDAO"%>
 <%@ page import="com.pb.techtree.TreeNodeViewBean"%>
@@ -28,7 +28,7 @@
     <meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
     <meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
     <meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-    <title>SENTIR AGENCY</title>
+    <title>PastelBook - Manage My Project List</title>
 
     <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -95,7 +95,7 @@ BEGIN PAGE
 <div class="section work-section">
     <div class="container">
 
-        <div class="row">
+        <div class="row button-wrap">
             <div class="col-xs-6 col-md-2">
                 <select class="form-control">
                     <option selected>정렬</option>
@@ -169,7 +169,7 @@ BEGIN PAGE
                                 <span><%= tmp.getCategory() %></span>&nbsp;
                                 <span>조회수</span>
                             </p>
-                            <div class="row">
+                            <div class="row edit-wrap">
                                 <div class="col-xs-12 col-md-6">
                                 	<form id="form<%=tmp.getId()%>"><input type="hidden" name="id" value="<%=tmp.getId()%>" /></form>
                                     <button class="btn btn-default editInfo" type="submit" form="form<%=tmp.getId()%>" formaction="docModify.jsp">정보수정</button>

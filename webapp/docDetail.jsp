@@ -27,7 +27,7 @@
     <meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
     <meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
     <meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-    <title>PASTEL PLUS</title>
+    <title>PastelBook - Watch Project Detail</title>
 
     <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -101,12 +101,19 @@ BEGIN PAGE
                 <embed src="viewer_common.jsp?id=<%=result.getId() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px; width:800px; height:426px;"></embed>
 
                 <!-- title and viewCount -->
-                <!-- 
-                <div class="tileAndViewCnt" style="overflow: auto; border: 1px solid red; height: 30px; margin-bottom: 20px;">
-                    <span style="float: left;font-size: 20px">Tile</span>
-                    <span style="float: right;font-size: 20px">13</span>
+                <div class="titleAndViewCnt">
+                    <span style="float: left;"><h2>아기돼지 삼형제</h2></span>
+                    <span style="float: right;"><h2>13</h2></span>
                 </div>
-                -->
+
+                <!-- author comment -->
+                <div class="media-body">
+                    <h4 class="media-heading">작가 한마디</h4>
+                    <p class="text-info">June 05, 2014   05:45 pm</p>
+                    <p>
+                        작가한 마디가 들어갈 공간입니다.
+                    </p>
+                </div>
 
                 <!-- sns icon -->
                 <p align="right">
@@ -124,37 +131,18 @@ BEGIN PAGE
 
                     <form role="form">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-1">
+                                <h5>ID: </h5>
+                            </div>
+                            <div class="col-sm-1">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter your name">
-                                    <p class="help-block">Better useyour real name</p>
-                                </div><!--/.form-group -->
-                            </div><!-- /.col-sm-4 -->
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Enter your email">
-                                    <p class="help-block">Will not published</p>
-                                </div><!--/.form-group -->
-                            </div><!-- /.col-sm-4 -->
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your web or blog url">
-                                    <p class="help-block">Optional</p>
+                                   <h5>kins37</h5>
                                 </div><!--/.form-group -->
                             </div><!-- /.col-sm-4 -->
                         </div><!--/.row -->
                         <div class="form-group">
+                            <p>comment</p>
                             <textarea style="height: 150px" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-3 col-md-2">
-                                    <label class="captcha-number">20 + 17 =</label>
-                                </div><!-- /.col-xs-6 col-sm-4 col-md-3 -->
-                                <div class="col-xs-6 col-sm-4 col-md-3">
-                                    <input type="text" class="form-control">
-                                </div><!-- /.col-xs-6 col-sm-4 col-md-3 -->
-                            </div><!-- /.row -->
                         </div>
                         <button class="btn btn-success">POST COMMENT</button>
                     </form>
@@ -317,8 +305,12 @@ BEGIN PAGE
 
                 <!-- Begin blog detail -->
                 <div class="panel panel-square panel-success panel-no-border">
-                    <div class="panel-heading lg">
-                        <h3 class="panel-title"><strong>Doc detail</strong></h3>
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Project Name</strong></h3>
+                        <button class="btn btn-warning btn-perspective" id="subscribe">
+                            <span id="subscribe-text">구독하기</span>
+                            <span class="fa fa-check" id="subscribeIcon"></span>
+                        </button>
                     </div>
                     <!-- List group -->
                     <ul class="list-group success blog-detail-list square">
@@ -361,39 +353,14 @@ BEGIN PAGE
                         <% } // %>
                         <!-- 
                         <li class="media">
-                            <a class="pull-left" href="#fakelink">
+                            <a class="pull-left" href="project_detailhtml?id=26">
                                 <img class="media-object img-post" src="assets/img/photo/small/img.jpg" alt="Image">
                             </a>
                             <div class="media-body">
-                                <p><a href="#fakelink">
-                                    Duis autem vel eum iriure
-                                    dolor in hendrerit in...
+                                <p><a href="project_detailhtml?id=26">
+                                    Project Title
                                 </a></p>
-                                <p class="small text-info">June 05, 2014</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a class="pull-left" href="#fakelink">
-                                <img class="media-object img-post" src="assets/img/photo/small/img.jpg" alt="Image">
-                            </a>
-                            <div class="media-body">
-                                <p><a href="#fakelink">
-                                    Duis autem vel eum iriure
-                                    dolor in hendrerit in...
-                                </a></p>
-                                <p class="small text-info">June 05, 2014</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a class="pull-left" href="#fakelink">
-                                <img class="media-object img-post" src="assets/img/photo/small/img.jpg" alt="Image">
-                            </a>
-                            <div class="media-body">
-                                <p><a href="#fakelink">
-                                    Duis autem vel eum iriure
-                                    dolor in hendrerit in...
-                                </a></p>
-                                <p class="small text-info">June 05, 2014</p>
+                                <p class="small text-info">2015-01-30</p>
                             </div>
                         </li>
                         -->
@@ -470,11 +437,9 @@ BEGIN PAGE
 <!-- END CLIENT LOGO SECTION -->
 
 
-
 <!-- BEGIN FOOTER -->
 <%@include file="include/footer.jsp" %>
 <!-- END FOOTER -->
-
 
 
 <!-- BEGIN BACK TO TOP BUTTON -->
@@ -521,7 +486,22 @@ Placed at the end of the document so the pages load faster
                 return window.pageYOffset || document.documentElement.scrollTop;
             }
         });
-    })
+
+        $('#subscribe').click(function(){
+            var className = $('.panel-heading #subscribeIcon').attr('class');
+            if(className == "fa fa-check") {
+                /*alert(className);*/
+                $('.panel-heading  #subscribe-text').text("구독중");
+                $('.panel-heading #subscribeIcon').attr('class', 'fa fa-chevron-circle-down');
+            }
+            else {
+                /*alert(className);*/
+                $('.panel-heading #subscribe-text').text("구독하기");
+                $('.panel-heading #subscribeIcon').attr('class', 'fa fa-check');
+            }
+
+        });
+    });
 </script>
 <script src="assets/js/index.js"></script>
 </body>

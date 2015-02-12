@@ -2,8 +2,29 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	Author	: hong won gi
+	CRUD  	:
+		C	: create
+		R	: update
+		U	: findAll, findById, findByName
+		D	: remove
+	조사완료
+ -->
 <mapper namespace="AccountMapper">
-	<!-- findById -->
+	<insert id="create" parameterType="pb.rest.jaxrs.vo.Account"
+		useGeneratedKeys="true" keyProperty="_id">
+		INSERT INTO pb_account 
+		( nick, email, password, name)
+		VALUES 
+		( #{nick}, #{email}, #{password}, #{name})
+	</insert>
+	<update id="update" parameterType="pb.rest.jaxrs.vo.Account"
+		useGeneratedKeys="true" keyProperty="_id">
+		UPDATE pb_account
+		SET nick = #{ nick } , email = #{ email }, password = #{ password }, name = #{ name }
+		where _id= #{ _id }
+	</update>
 	<select id="findAll" resultType="pb.rest.jaxrs.vo.Account">
 		select *
 		from pb_account
@@ -12,31 +33,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from pb_account where _id= #{ _id }
 	</select>
-	<insert id="create" parameterType="pb.rest.jaxrs.vo.Account"
-		useGeneratedKeys="true" keyProperty="_id">
-		INSERT INTO pb_account
-		VALUES (
-		#{type}, #{iconSrc}, #{imgSrc}, #{name}, #{showName}
-		, #{theme}, #{owner}, #{rsc_type}, #{emotion}, #{rsc_style}
-		)
-	</insert>
-	<update id="update" parameterType="pb.rest.jaxrs.vo.Account"
-		useGeneratedKeys="true" keyProperty="_id">
-		UPDATE pb_account
-		SET
-		type =#{type} , iconSrc =#{iconSrc}, imgSrc =#{imgSrc}, name =#{name},
-		showName =#{showName}
-		, theme =#{theme}, owner =#{owner}, rsc_type =#{rsc_type}, emotion
-		=#{emotion}, rsc_style =#{rsc_style}
-		where _id= #{ _id }
-	</update>
+	<select id="findByName" parameterType="String" resultType="pb.rest.jaxrs.vo.Account">
+		select *
+		from pb_account 
+		where name= #{ name }
+	</select>
 	<delete id="remove" parameterType="int">
 		delete
 		from pb_account
 		where _id= #{ _id }
 	</delete>
-	<select id="findByName" parameterType="String" resultType="pb.rest.jaxrs.vo.Account">
-		select *
-		from pb_account where nick= #{ nick }
-	</select>
 </mapper>
