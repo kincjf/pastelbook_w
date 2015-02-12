@@ -86,9 +86,7 @@ define([
 		},
 
 		onDomRefresh: function() {
-			this.ui.content.ckeditor({
-				disableReadonlyStyling : true
-			});
+			this.ui.content.ckeditor();
 		},
 
 		changeText: function () {

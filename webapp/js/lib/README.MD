@@ -17,7 +17,7 @@
 * html2canvas : 0.4.1
 * moment : 2.8.3
 * contextMenu : 1.2.0
-* ckeditor(source) : 4.4.5
+* ckeditor : 4.4.7
 * video-js : 4.10.2
 
 

@@ -23,12 +23,8 @@ define([
 //		localStorage: new Backbone.LocalStorage('pb-object'),
 
 		defaults: {
-			_id: '',
 			type: 'shape',
-			imgSrc: '',
-			title: 'BaseObject',
-			completed: false,
-			created: 0
+			title: 'BaseShape'
 		},
 
 		/** backend(REST DB)와 통신하기 위해서 기본 식별자 지정 */

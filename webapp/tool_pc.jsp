@@ -1,7 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@page import="com.pb.techtree.Project2Bean"%>
 <%@page import="com.pb.techtree.Project2DAO"%>
 <%@page import="com.pb.techtree.ProjectDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" %><%
+<%
 	Project2DAO dao = new Project2DAO();
 	String id = request.getParameter("id");
 	String projectData  = "{}";
