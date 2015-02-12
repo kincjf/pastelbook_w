@@ -6,8 +6,6 @@ public class ResAudioDAO extends PastelbookDAO<ResAudio> {
 
 	@Override
 	protected void setObjectName() {
-		if(objectName == null){
-			objectName = "ResAudio";
-		}
+		objectName = "ResAudio";
 	}
 }

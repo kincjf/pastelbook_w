@@ -6,9 +6,7 @@ public class ProjectDAO extends PastelbookDAO<Project> {
 
 	@Override
 	protected void setObjectName() {
-		if(objectName == null){
-			objectName = "Project";
-		}
+		objectName = "Project";
 	}
 
 }

@@ -6,9 +6,7 @@ public class ResImageDAO extends PastelbookDAO<ResImage> {
 
 	@Override
 	protected void setObjectName() {
-		if(objectName == null){
-			objectName = "ResImage";
-		}
+		objectName = "ResImage";
 	}
 	
 }

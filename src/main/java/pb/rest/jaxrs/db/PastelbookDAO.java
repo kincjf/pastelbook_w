@@ -11,8 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class PastelbookDAO<T> implements SimpleDAO<T> {
 	public final static String DB_PREFIX = "pb";
-	static String objectName = null;
-	static SqlSessionFactory sqlMapper = null;
+	String objectName = null;
+	SqlSessionFactory sqlMapper = null;
 	SqlSession session = null;
 
 	protected void init() {
@@ -55,9 +55,12 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		T result;
 		
 		init();
+		System.out.println(objectName);
 		session = sqlMapper.openSession();
 		result = (T) session.selectOne(objectName+"Mapper.findById", parseInt);
 		session.close();
+		
+		System.out.println(result.getClass().getName());
 		
 		return result;
 	}

@@ -6,8 +6,7 @@ public class ResVideoDAO extends PastelbookDAO<ResVideo> {
 
 	@Override
 	protected void setObjectName() {
-		if(objectName == null){
-			objectName = "ResVideo";
-		}
+		objectName = "ResVideo";
 	}
+	
 }

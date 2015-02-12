@@ -28,7 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	height = #{height}, playTime = #{playTime}
   where _id= #{ _id } 
  </update>
- <!-- findById -->
  <select id="findAll" resultType="pb.rest.jaxrs.vo.ResVideo">
   select *
   from pb_res_video 
