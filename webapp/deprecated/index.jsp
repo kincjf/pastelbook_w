@@ -22,7 +22,7 @@
 			int accountId = -1;
 			if(account != null){
 				if(pw != null){
-					Account bean = new Account(account, "mail", pw);
+					Account bean = new Account(account, "mail", pw, "이름");
 					AccountDAO aDao = new AccountDAO();
 					Account fromDB = aDao.findByName(bean.getNick());
 					if(bean.getPassword().equals(fromDB.getPassword())){

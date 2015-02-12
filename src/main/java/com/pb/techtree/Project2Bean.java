@@ -12,6 +12,8 @@ public class Project2Bean {
 	String previewImage;
 	int width;
 	int height;
+	int category;
+	
 	
 	public int getId() {
 		return id;
@@ -67,9 +69,16 @@ public class Project2Bean {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
 	public Project2Bean(int id, String title, String comment, Date createDate,
 			Date modifyDate, String sceneList, String previewImage, int width,
-			int height) {
+			int height, int category) {
 		this.id = id;
 		this.title = title;
 		this.comment = comment;
@@ -79,5 +88,6 @@ public class Project2Bean {
 		this.previewImage = previewImage;
 		this.width = width;
 		this.height = height;
+		this.category = category;
 	}
 }

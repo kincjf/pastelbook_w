@@ -51,7 +51,7 @@
 				</ul></li>
 			<li class="parent"><a href="howto.html">Manual</a></li>
 			<%
-			if(session.getAttribute("account") != null){
+			if(session.getAttribute("account") == null){
 			%>
 			<li class="parent"><a href="login.jsp">Login</a></li>
 			<li class="parent"><a href="register.jsp">Register</a></li>

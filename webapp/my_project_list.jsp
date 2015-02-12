@@ -75,11 +75,11 @@ BEGIN PAGE
 <div class="page-title-wrap">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#fakelink">Portfolio</a></li>
-            <li class="active">My Portfolio</li>
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="my.jsp">My</a></li>
+            <li><a href="my_project2_list">Projects</a></li>
         </ol>
-        <h2 class="page-title">My Portfolio </h2>
+        <h2 class="page-title">My Project List</h2>
     </div><!-- /.container -->
 
     <div class="border-bottom">

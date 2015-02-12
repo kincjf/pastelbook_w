@@ -38,6 +38,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from pb_account 
 		where name= #{ name }
 	</select>
+	<select id="findByNick" parameterType="String" resultType="pb.rest.jaxrs.vo.Account">
+		select *
+		from pb_account 
+		where nick= #{ nick }
+	</select>
 	<delete id="remove" parameterType="int">
 		delete
 		from pb_account

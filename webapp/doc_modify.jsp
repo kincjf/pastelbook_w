@@ -172,6 +172,7 @@ BEGIN PAGE
 
 
                 <!-- BEGIN COMMENT LIST -->
+                <!-- 
                 <div class="comment-wrap">
                     <h3 class="sub-heading-section">3 comments</h3>
                     <ul class="media-list">
@@ -229,9 +230,12 @@ BEGIN PAGE
 
                         
                     </ul>
-                </div><!-- /.comment-wrap -->
+               
+                </div>
+                -->
+                <!-- /.comment-wrap -->
                 <!-- END COMMENT LIST -->
-
+ 				
             </div><!-- /.section -->
             <!-- END BLOG DETAIL SECTION -->
 

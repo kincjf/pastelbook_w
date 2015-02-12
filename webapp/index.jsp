@@ -7,32 +7,44 @@
 <%@page import="com.pb.techtree.TechTreeDAO"%>
 <%@page import="com.pb.techtree.TechTreeDAO, java.util.*, java.sql.*"%>
 <%
-			String docId = request.getParameter("id");
-			int id = 0;
-			
-			if(docId != null){
-				id = Integer.parseInt(docId);
-			} else {
-				id = 1;
-			}
-			
-			// BEGIN login.jsp 에서  폼을 통해서 날렸을때
-			String account = request.getParameter("account");
-			String pw = request.getParameter("pw");
-			int accountId = -1;
-			if(account != null){
-				if(pw != null){
-					Account bean = new Account(account, "mail", pw);
-					AccountDAO aDao = new AccountDAO();
-					Account fromDB = aDao.findByName(bean.getNick());
-					if(bean.getPassword().equals(fromDB.getPassword())){
-						// out.println("<script>alert();</script>");
-						// 세션에 id 등록
-						session.setAttribute("account", fromDB);
-					} else {
-						out.println("<script>location.href='login.jsp'</script>");
-					}
+	String docId = request.getParameter("id");
+	int id = 0;
+	
+	if(docId != null){
+		id = Integer.parseInt(docId);
+	} else {
+		id = 1;
+	}
+	
+	// BEGIN login.jsp 에서  폼을 통해서 날렸을때
+	String account = request.getParameter("account");
+	String pw = request.getParameter("pw");
+	int accountId = -1;
+	if(account != null){
+		if(pw != null){
+			Account bean = new Account(account, "email", pw, "aaa");
+			AccountDAO aDao = new AccountDAO();
+			System.out.println("" + bean);
+			Account fromDB = aDao.findByName(bean.getNick());
+			System.out.println("" + fromDB);
+			if (fromDB != null) { // 아이디는 있는 경우
+				if (bean.getPassword().equals(fromDB.getPassword())) {
+					// out.println("<script>alert();</script>");
+					// 세션에 id 등록
+					session.setAttribute("account", fromDB);
+				} else {
+					out.println("<script>location.href='login.jsp'</script>");
+					//아이디가 없거나 패스워드가 틀림 보내야됨
 				}
+			} else { // 아이디도 없는 경우
+				out.println("<script>location.href='login.jsp#idnull'</script>");
+				// 아이디가 없거나 패스워드가 틀림
+			}
+		}
+	} else {
+%><script>location.href="login.jsp"</script><%
+			
+			
 			}
 			// END login.jsp
 			

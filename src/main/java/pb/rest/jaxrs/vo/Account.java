@@ -8,22 +8,23 @@ public class Account extends VO {
 	String nick;
 	String email;
 	String password;
-	
-	
+	String name;
 
 	public Account(){}
 	
-	public Account(String nick, String email, String password) {
+	public Account(String nick, String email, String password, String name) {
 		this.nick = nick;
 		this.email = email;
 		this.password = password;
+		this.name = name;
 	}
 	
-	public Account(int id, String nick, String email, String password) {
+	public Account(int id, String nick, String email, String password, String name) {
 		this._id = id;
 		this.nick = nick;
 		this.email = email;
 		this.password = password;
+		this.name = name;
 	}
 	
 	
@@ -54,4 +55,11 @@ public class Account extends VO {
 		this.password = password;
 	}
 
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }

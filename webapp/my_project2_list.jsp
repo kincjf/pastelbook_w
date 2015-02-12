@@ -16,8 +16,6 @@
 		account = (Account)session.getAttribute("account");
 	}
 	// end test
-
-	//System.out.println("   "+account);
 	
 	Project2DAO dao = new Project2DAO();
 	ArrayList<Project2Bean> list = dao.findAllByAccountId(account.getId());
@@ -31,7 +29,7 @@
     <meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
     <meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
     <meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-    <title>SENTIR AGENCY</title>
+    <title>PastelBook - Manage My Project List</title>
 
     <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -78,11 +76,11 @@ BEGIN PAGE
 <div class="page-title-wrap">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#fakelink">Portfolio</a></li>
-            <li class="active">My Portfolio</li>
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="my.jsp">My</a></li>
+            <li><a href="my_project2_list">Projects</a></li>
         </ol>
-        <h2 class="page-title">My Portfolio </h2>
+        <h2 class="page-title">My Project List</h2>
     </div><!-- /.container -->
 
     <div class="border-bottom">
@@ -175,7 +173,7 @@ BEGIN PAGE
                             <div class="row">
                                 <div class="col-xs-12 col-md-6">
                                 	<form id="form<%=tmp.getId()%>"><input type="hidden" name="id" value="<%=tmp.getId()%>" /></form>
-                                    <button class="btn btn-default editInfo" type="submit" form="form<%=tmp.getId()%>" formaction="docModify.jsp">정보수정</button>
+                                    <button class="btn btn-default editInfo" type="submit" form="form<%=tmp.getId()%>" formaction="project_modify.jsp">정보수정</button>
                                 </div>
                                 <div class="col-xs-12 col-md-6">
 									<form id="form_editContent<%=tmp.getId()%>"><input type="hidden" name="id" value="<%=tmp.getId()%>" /></form>
