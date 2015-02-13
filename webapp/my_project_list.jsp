@@ -1,24 +1,25 @@
-<%@ page import="com.pb.techtree.DocumentDAO"%>
+<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
+<%@page import="pb.rest.jaxrs.vo.Account"%>
+<%@page import="com.pb.techtree.Project2DAO"%>
+<%@page import="com.pb.techtree.Project2Bean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.pb.techtree.TreeNodeViewDAO"%>
-<%@ page import="com.pb.techtree.TreeNodeViewBean"%>
-<%@ page import="com.pb.techtree.TechTreeDAO"%>
 <%@ page import="com.pb.techtree.TechTreeDAO, java.util.*, java.sql.*"%>
 <%
-			String docId = request.getParameter("id");
-			int id = 0;
-			
-			if(docId != null){
-				id = Integer.parseInt(docId);		
-			} else {
-				id = 1;
-			}
-			
-			//DocumentDAO ddao = new DocumentDAO();
-			
-			TreeNodeViewDAO dao = new TreeNodeViewDAO();
-			// to do -> findByAccountId();
-			ArrayList<TreeNodeViewBean> myProjects = dao.findRecents(2);
+	Account account = null;
+
+	// test
+	AccountDAO adao = new AccountDAO();
+	
+	session.setAttribute("account",adao.findById(1));
+
+	if(session.getAttribute("account") != null){
+		account = (Account)session.getAttribute("account");
+	}
+	// end test
+	
+	Project2DAO dao = new Project2DAO();
+	ArrayList<Project2Bean> list = dao.findAllByAccountId(account.getId());
+
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -95,7 +96,7 @@ BEGIN PAGE
 <div class="section work-section">
     <div class="container">
 
-        <div class="row button-wrap">
+        <div class="row">
             <div class="col-xs-6 col-md-2">
                 <select class="form-control">
                     <option selected>정렬</option>
@@ -145,7 +146,7 @@ BEGIN PAGE
 
         <div id="work-mixitup" class="work-content">
             <div class="row">
-            	<% for( TreeNodeViewBean tmp : myProjects ){%>
+            	<% for( Project2Bean tmp : list ){%>
                 <!-- Begin work item -->
                 <div class="col-sm-4 col-md-4 col-xs-6 mix printing">
                     <div class="work-item">
@@ -162,20 +163,21 @@ BEGIN PAGE
                         <div class="the-box no-border transparent no-margin">
                             <p class="project-name"><%= tmp.getTitle() %></p>
                             <p class="dateAndSlideCnt">
-                                <span><%= tmp.getPostedDate() %></span>&nbsp;
+                                <span><%= tmp.getCreateDate() %></span>&nbsp;
                                 <span>슬라이드 수</span>
                             </p>
                             <p class="project-category">
-                                <span><%= tmp.getCategory() %></span>&nbsp;
+                                <span><%= tmp.getModifyDate() %></span>&nbsp;
                                 <span>조회수</span>
                             </p>
-                            <div class="row edit-wrap">
+                            <div class="row">
                                 <div class="col-xs-12 col-md-6">
                                 	<form id="form<%=tmp.getId()%>"><input type="hidden" name="id" value="<%=tmp.getId()%>" /></form>
-                                    <button class="btn btn-default editInfo" type="submit" form="form<%=tmp.getId()%>" formaction="docModify.jsp">정보수정</button>
+                                    <button class="btn btn-default editInfo" type="submit" form="form<%=tmp.getId()%>" formaction="project_modify.jsp">정보수정</button>
                                 </div>
                                 <div class="col-xs-12 col-md-6">
-                                    <button class="btn btn-default editContent" type="submit">내용수정</button>
+									<form id="form_editContent<%=tmp.getId()%>"><input type="hidden" name="id" value="<%=tmp.getId()%>" /></form>
+                                    <button class="btn btn-default editContent" type="submit" form="form_editContent<%=tmp.getId()%>" formaction="tool_pc.jsp">정보수정</button>
                                 </div>
                             </div>
                         </div><!-- /.the-box no-border transparent -->
