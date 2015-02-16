@@ -2,52 +2,67 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 
-	Author	: hong won gi
-	CRUD  	:
-		C	: create
-		R	: update
-		U	: findAll, findById, findByName
-		D	: remove
-	조사완료
- -->
+<!--	Author : hong won gi 
+		CRUD : 
+			C : create 
+			R : update 
+			U : findAll, findById, findByName 
+			D : remove 조사완료 
+-->
 <mapper namespace="ProjectMapper">
- <insert id="create" parameterType="pb.rest.jaxrs.vo.Project" useGeneratedKeys="true" keyProperty="_id">
-  INSERT INTO pb_project
-  ( accountId, title, comment, createDate, modifyDate, sceneList, previewImage, width, height )
-  VALUES (
-  	#{accountId}, #{title}, #{comment}, #{createDate}, #{modifyDate}
-  	, #{sceneList}, #{previewImage}, #{width}, #{height}
-  )
- </insert>
- <update id="update" parameterType="pb.rest.jaxrs.vo.Project" useGeneratedKeys="true" keyProperty="_id">
-  UPDATE pb_project 
-  SET 
-    accountId =#{accountId} , title =#{title}, comment =#{comment}, 
-    createDate =#{createDate}, modifyDate =#{modifyDate}, sceneList =#{sceneList},
-    previewImage =#{previewImage}, width =#{width}, height =#{height}
-  where _id= #{ _id } 
- </update>
- <select id="findAll" resultType="pb.rest.jaxrs.vo.Project">
-  select *
-  from pb_project 
- </select>
- <select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.Project">
-  select *
-  from pb_project where _id= #{ _id }
- </select>
- <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.Project">
-  select *
-  from pb_project where title= #{ title }
- </select>
- <delete id="remove" parameterType="int">
-  delete 
-  from pb_project
-  where _id= #{ _id }
- </delete>
- <select id="findAllByAccountId" parameterType="int" resultType="pb.rest.jaxrs.vo.Project">
-  select * 
-  from pb.pb_project
-  where accountId = #{ accountId }
- </select>
+	<insert id="create" parameterType="pb.rest.jaxrs.vo.Project"
+		useGeneratedKeys="true" keyProperty="_id">
+		INSERT INTO pb_project
+		( accountId, title, comment, createDate, modifyDate, sceneList,
+		previewImage, width, height )
+		VALUES (
+		#{accountId}, #{title}, #{comment}, #{createDate}, #{modifyDate}
+		, #{sceneList}, #{previewImage}, #{width}, #{height}
+		)
+	</insert>
+	<update id="update" parameterType="pb.rest.jaxrs.vo.Project"
+		useGeneratedKeys="true" keyProperty="_id">
+		UPDATE pb_project
+		SET
+		accountId =#{accountId} , title =#{title}, comment =#{comment},
+		createDate =#{createDate}, modifyDate =#{modifyDate}, sceneList =#{sceneList},
+		previewImage =#{previewImage}, width =#{width}, height =#{height}
+		where _id= #{ _id }
+	</update>
+	<select id="findAll" resultType="pb.rest.jaxrs.vo.Project">
+		select *
+		from pb_project
+	</select>
+	<select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.Project">
+		select *
+		from pb_project where _id= #{ _id }
+	</select>
+	<select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.Project">
+		select *
+		from pb_project where title= #{ title }
+	</select>
+	<select id="findByTitleContainsAndAccountId" parameterType="map"
+		resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb_project
+		where accountId = #{ accountId } and title like CONCAT('%', #{ query }
+		,'%')
+	</select>
+	<select id="findByDescriptionContainsAndAccountId"
+		parameterType="map" resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb_project
+		where accountId = #{ accountId } and description like CONCAT('%', #{ query } ,'%')
+	</select>
+	<delete id="remove" parameterType="int">
+		delete
+		from pb_project
+		where _id= #{ _id }
+	</delete>
+	<select id="findAllByAccountId" parameterType="int"
+		resultType="pb.rest.jaxrs.vo.Project">
+		select *
+		from pb_project
+		where accountId = #{ accountId }
+	</select>
 </mapper>

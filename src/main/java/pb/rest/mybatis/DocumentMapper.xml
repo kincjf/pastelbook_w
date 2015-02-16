@@ -56,7 +56,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from pb_docs 
 		where accountId = #{ accountId } and description like CONCAT('%', #{ query } ,'%')
+	</select>
+	<select id="findByTitleContainsNotMine" parameterType="map" resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb_docs 
+		where accountId != #{ accountId } and description like CONCAT('%', #{ query } ,'%')
 	</select>	
+		<select id="findByDescriptionContainsNotMine" parameterType="map" resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb_docs 
+		where accountId != #{ accountId } and description like CONCAT('%', #{ query } ,'%')
+	</select>	
+	
 	<delete id="remove" parameterType="int">
 		delete
 		from pb_docs

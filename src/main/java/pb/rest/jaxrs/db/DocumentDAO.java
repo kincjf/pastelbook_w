@@ -49,4 +49,38 @@ public class DocumentDAO extends PastelbookDAO<Document> {
 		
 		return result;
 	}
+	
+	public List<Document> findByTitleContainsNotMine(@Param("query") String query,@Param("accountId") int accountId) {
+		List<Document> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("query", query);
+        map.put("accountId", accountId);
+        
+		result = session.selectList(objectName+"Mapper.findByTitleContainsNotMine", map);
+		session.close();
+		
+		return result;
+	}
+	
+	public List<Document> findByDescriptionContainsNotMine(@Param("query") String query,@Param("accountId") int accountId) {
+		List<Document> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("query", query);
+        map.put("accountId", accountId);
+        
+		result = session.selectList(objectName+"Mapper.findByDescriptionContainsNotMine", map);
+		session.close();
+		
+		return result;
+	}
+	
+	
 }

@@ -1,5 +1,10 @@
 package pb.rest.jaxrs.db;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,5 +16,36 @@ public class ProjectDAO extends PastelbookDAO<Project> {
 	@Override
 	protected void setObjectName() {
 		objectName = "Project";
+	}
+	
+	public List<Project> findByTitleContainsAndAccountId(@Param("query") String query,@Param("accountId") int accountId) {
+		List<Project> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		
+		
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("query", query);
+        map.put("accountId", accountId);
+		result = session.selectList(objectName+"Mapper.findByTitleContainsAndAccountId", map);
+		session.close();
+		
+		return result;
+	}
+	public List<Project> findByDescriptionContainsAndAccountId(@Param("query") String query,@Param("accountId") int accountId) {
+		List<Project> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("query", query);
+        map.put("accountId", accountId);
+        
+		result = session.selectList(objectName+"Mapper.findByDescriptionContainsAndAccountId", map);
+		session.close();
+		
+		return result;
 	}
 }

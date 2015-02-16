@@ -10,26 +10,39 @@
 	String query = request.getParameter("query");
 	List<Document> myDocListTitleQuery = null;
 	List<Document> myDocListDescQuery = null;
-	TreeSet<Document> results = null;
+	List<Document> otherDocListTitleQuery = null;
+	List<Document> otherDocListDescQuery = null;
+	
+	TreeSet<Document> myResults = null;
+	TreeSet<Document> notMyResults = null;
+	
 	if(query == null){
 		String referer = request.getHeader("referer");
 		if( referer == null ){
-	System.out.println("<script>no referer, 잘못된 접근임</script>");
+			System.out.println("<script>no referer, 잘못된 접근임</script>");
 		}
 	} else {
 		DocumentDAO dDao = new DocumentDAO();
 		myDocListTitleQuery = dDao.findByTitleContainsAndAccountId(query, accountId);
 		myDocListDescQuery = dDao.findByDescriptionContainsAndAccountId(query, accountId);
+		otherDocListTitleQuery = dDao.findByTitleContainsNotMine(query, accountId);
+		otherDocListDescQuery = dDao.findByDescriptionContainsNotMine(query, accountId);
 		
-		results = new TreeSet<Document>(new Comparator<Document>(){
-	public int compare(Document o1, Document o2){
-		return o1.getId() - o2.getId();
-	}
+		myResults = new TreeSet<Document>(new Comparator<Document>(){
+			public int compare(Document o1, Document o2){
+				return o1.getId() - o2.getId();
+			}
+		});
+		notMyResults = new TreeSet<Document>(new Comparator<Document>(){
+			public int compare(Document o1, Document o2){
+				return o1.getId() - o2.getId();
+			}
 		});
 		
-		results.addAll(myDocListDescQuery);
-		results.addAll(myDocListTitleQuery);
-
+		myResults.addAll(myDocListDescQuery);
+		myResults.addAll(myDocListTitleQuery);
+		notMyResults.addAll(otherDocListTitleQuery);
+		notMyResults.addAll(otherDocListDescQuery);
 	}
 	
 	SimpleDateFormat sdfPrint = new SimpleDateFormat("yyyy년 MM월 DD일");
@@ -95,13 +108,13 @@ BEGIN PAGE
     	%>
         <div class="section-heading">
         	<div class="inner-border"></div>
-        	<h3>내 문서 중 [ <%= query %> ] 에 대한 검색결과</h3>
+        	<h3>내 문서 중 [ <%= query %> ] 에 대한 <%= myResults.size() %>개의 검색결과</h3>
         </div>
 
         <div id="work-mixitup" class="work-content">
             <div class="row">
 				<%
-					for( Document tmp : results ){
+					for( Document tmp : myResults ){
 				%>
                 <!-- Begin work item -->
                 <div class="col-sm-6 col-md-3 col-xs-12 mix <%= tmp.getCategory() %>">
@@ -128,13 +141,13 @@ BEGIN PAGE
         
         <div class="section-heading">
         	<div class="inner-border"></div>
-        	<h3>전체 문서 중 <%= query %>에 대한 검색결과</h3>
+        	<h3>전체 문서 중 [ <%= query %> ]에 대한 <%= notMyResults.size() %> 개의 검색결과</h3>
         </div>
 
         <div id="work-mixitup" class="work-content">
             <div class="row">
 				<%
-					for( Document tmp : results ){
+					for( Document tmp : notMyResults ){
 				%>
                 <!-- Begin work item -->
                 <div class="col-sm-6 col-md-3 col-xs-12 mix <%= tmp.getCategory() %>">

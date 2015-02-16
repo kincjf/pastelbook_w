@@ -48,7 +48,7 @@
     
     <link href="assets/css/myCss.css" rel="stylesheet">
     <link href="assets/css/myCss-responsive.css" rel="stylesheet">
-
+	<link href="assets/css/manage-my-project-list.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -95,53 +95,73 @@ BEGIN PAGE
 <div class="section work-section">
     <div class="container">
 
-        <div class="row">
-            <div class="col-xs-6 col-md-2">
-                <select class="form-control">
-                    <option selected>정렬</option>
-                    <option>오른쪽 정렬</option>
-                    <option>왼쪽 정렬</option>
-                    <option>가운데 정렬</option>
-                </select>
+        <div class="row button-wrap">
+        	<!-- 상단 버튼 1 -->
+            <div class="col-sm-4 col-md-4 col-xs-12">
+                <div class="col-xs-4 col-md-4 nopadding">
+                    <select class="form-control">
+                        <option selected>카테고리</option>
+                        <option>IT</option>
+                        <option>시사</option>
+                        <option>사진</option>
+                        <option>창작</option>
+                    </select>
+                </div>
+
+                <div class="col-xs-4 col-md-4 nopadding">
+                    <select class="form-control">
+                        <option selected>정렬</option>
+                        <option>오른쪽 정렬</option>
+                        <option>왼쪽 정렬</option>
+                        <option>가운데 정렬</option>
+                    </select>
+                </div>
+
+                <div class="col-xs-4 col-md-4 dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#fakelink">
+                        선택 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu primary" role="menu">
+                        <li><a href="#fakelink">전체선택</a></li>
+                        <li><a href="#fakelink">선택해제</a></li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="col-xs-6 col-md-2">
-                <select class="form-control">
-                    <option>Select All</option>
-                    <option>Deselect All</option>
-                </select>
+			<!-- 상단 버튼 2 -->
+            <div class="col-sm-4 col-md-4 col-xs-12">
+                <div class="buttons">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group col-xs-4 col-md-4 nopadding" role="group">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+                            </button>
+                        </div>
+                        <div class="btn-group col-xs-4 col-md-4 nopadding" role="group">
+                            <button type="button" class="btn btn-default" id="public">
+                                <span><img src="assets/img/unlock.png" style="height: 20px"></span> Public
+                            </button>
+                        </div>
+                        <div class="btn-group col-xs-4 col-md-4 nopadding" role="group" >
+                            <button type="button" class="btn btn-default" id="private">
+                                <span><img src="assets/img/lock.png" style="height: 20px"></span> Private
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-xs-4 col-md-2">
-                <button type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
-                </button>
-            </div>
-
-            <div class="col-xs-4 col-md-2">
-                <button type="button" class="btn btn-default" id="public">
-                    <span><img src="assets/img/unlock.png" style="height: 20px"></span> Public
-                </button>
-            </div>
-
-            <div class="col-xs-4 col-md-2">
-                <button type="button" class="btn btn-default" id="private">
-                    <span><img src="assets/img/lock.png" style="height: 20px"></span> Private
-                </button>
-            </div>
-
-            <div class="col-xs-6 col-md-2">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        </button>
-                    </span>
-                </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
-
-        </div><!-- /.work-category-wrap -->
+            
+            <!-- 상단 버튼 3 -->
+            <div class="col-sm-4 col-md-4 col-xs-12">
+            	<div class="col-xs-10 col-md-10 nopadding">
+            		<input type="text" class="form-control" placeholder="Search for...">
+            	</div>
+            	<div class="col-xs-2 col-md-2 nopadding">
+                    <button class="btn btn-default form-control" type="button">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div><!-- /.input-group -->
+        </div><!-- /.button wrap-->
 
         <div id="work-mixitup" class="work-content">
             <div class="row">
