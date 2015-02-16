@@ -4,4 +4,6 @@ import java.sql.Time;
 
 public class ResAudio extends Resource {
 	Time playTime;
+	
+	public ResAudio(){}
 }

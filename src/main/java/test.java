@@ -5,9 +5,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Stack;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import pb.rest.jaxrs.vo.ResImage;
 
 public class test {
+	public final static Logger logger = LoggerFactory.getLogger(test.class);
+	
 	public static void main(String[] args) throws NoSuchFieldException,
 			SecurityException, IllegalArgumentException, IllegalAccessException {
 		ResImage img = new ResImage();
@@ -15,8 +20,8 @@ public class test {
 		// printViewStack(img);
 		ViewStack vs = getViewStack(img);
 		printViewStack(img);
-		System.out.println(vs.type);
-		System.out.println(vs.members.pop().data);
+		logger.error(vs.type);
+		logger.error(vs.members.pop().data);
 		DefaultWebPrinter.printViewStackForWeb(vs);
 
 	}
@@ -28,11 +33,11 @@ public class test {
 		for (Field one : fields) {
 			if (one.getModifiers() == Modifier.PUBLIC) {
 
-				// System.out.println(one.getDeclaringClass().getSimpleName());
-				System.out.println(one.getType().getSimpleName());
-				System.out.println(one.getName());
-				System.out.println(one.get(o));
-				System.out.println("");
+				// logger.error(one.getDeclaringClass().getSimpleName());
+				logger.error(one.getType().getSimpleName());
+				logger.error(one.getName());
+				logger.error(one.get(o)+"");
+				logger.error("");
 			}
 
 		}
@@ -80,6 +85,8 @@ class ViewEntry {
 }
 
 class DefaultWebPrinter{
+	public final static Logger logger = LoggerFactory.getLogger(test.class);
+	
 	public static String printViewStackForWeb(ViewStack stack){
 		//ArrayList<String> resultMembers = new ArrayList<String>();
 		HashMap<String,String> defaultMap = new HashMap<String, String>();
@@ -98,23 +105,19 @@ class DefaultWebPrinter{
 				tmp = tmp.replaceAll("\\^n", e.name);
 				tmp = tmp.replaceAll("\\^d", e.data);
 				
-				System.out.println(tmp);
+				logger.error(tmp);
 				/*
-				System.out.println(
+				logger.error.println(
 					String.format(defaultMap.get(e.type), e.name)
 				);
 				*/
 			} else {
-				System.err.println(
+				logger.error(
 					String.format("%s에 대한 변경룰이 없습니다. ( %s, %s )", e.type, e.name, e.data)
 				);
 			}
 		}
-			
-		
-		
-		
-		//System.out.println()
+
 		
 		return "";
 	}	

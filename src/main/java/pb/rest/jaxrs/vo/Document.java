@@ -5,34 +5,31 @@ import java.util.Date;
 import org.pojomatic.annotations.AutoProperty;
 
 @AutoProperty
-public class Project extends VO {
+public class Document extends VO {
 	int _id;
 	int accountId;
+
 	String title;
 	String description;
-	Date createDate;
-	Date modifyDate;
+
+	int projectId;
+	Date postedDate;
 	String sceneList;
 	String previewImage;
-	int width;
-	int height;
 	int category;
 
-	public Project(){}
-	
-	public Project(int _id, int accountId, String title, String description,
-			Date createDate, Date modifyDate, String sceneList,
-			String previewImage, int width, int height, int category) {
+	public Document() {
+	}
+
+	public Document(int _id, String title, String description, int projectId,
+			Date postedDate, String sceneList, String previewImage, int category) {
 		this._id = _id;
-		this.accountId = accountId;
 		this.title = title;
 		this.description = description;
-		this.createDate = createDate;
-		this.modifyDate = modifyDate;
+		this.projectId = projectId;
+		this.postedDate = postedDate;
 		this.sceneList = sceneList;
 		this.previewImage = previewImage;
-		this.width = width;
-		this.height = height;
 		this.category = category;
 	}
 
@@ -40,8 +37,8 @@ public class Project extends VO {
 		return _id;
 	}
 
-	public void setId(int _id) {
-		this._id = _id;
+	public void setId(int id) {
+		this._id = id;
 	}
 
 	public int getAccountId() {
@@ -68,20 +65,20 @@ public class Project extends VO {
 		this.description = description;
 	}
 
-	public Date getCreateDate() {
-		return createDate;
+	public int getProjectId() {
+		return projectId;
 	}
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
 	}
 
-	public Date getModifyDate() {
-		return modifyDate;
+	public Date getPostedDate() {
+		return postedDate;
 	}
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
+	public void setPostedDate(Date postedDate) {
+		this.postedDate = postedDate;
 	}
 
 	public String getSceneList() {
@@ -100,22 +97,6 @@ public class Project extends VO {
 		this.previewImage = previewImage;
 	}
 
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
 	public int getCategory() {
 		return category;
 	}
@@ -123,4 +104,5 @@ public class Project extends VO {
 	public void setCategory(int category) {
 		this.category = category;
 	}
+
 }

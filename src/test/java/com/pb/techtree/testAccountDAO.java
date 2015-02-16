@@ -5,7 +5,6 @@ import junit.framework.TestCase;
 
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
-import org.pojomatic.Pojomatic;
 
 import pb.rest.jaxrs.db.AccountDAO;
 import pb.rest.jaxrs.vo.Account;
@@ -19,7 +18,8 @@ public class testAccountDAO extends TestCase {
 	
 	protected void setUp() throws Exception {
 		super.setUp();
-		bean = new Account ("pb", "", "hitit113112");
+
+		bean = new Account("파스텔북", "mail", "hitit113112", "pb");
 	}
 
 	public void test_1_login_check() {

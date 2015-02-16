@@ -18,7 +18,6 @@
 	ServletContext scontext = getServletContext();
 	realFolder = scontext.getRealPath(saveDir);
 	
-	System.out.println(realFolder);
 	
 	// 없으면 폴더 만들기
 	new File(realFolder).mkdirs();

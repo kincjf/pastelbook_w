@@ -4,7 +4,7 @@
 	<groupId>pb</groupId>
 	<artifactId>techtree</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>techtree Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<description>pastelbook</description>
@@ -47,31 +47,47 @@
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-  	<dependency>
-  		<groupId>com.sun.jersey</groupId>
-  		<artifactId>jersey-core</artifactId>
-  		<version>1.18.2</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.sun.jersey</groupId>
-  		<artifactId>jersey-json</artifactId>
-  		<version>1.18.2</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.sun.jersey</groupId>
-  		<artifactId>jersey-server</artifactId>
-  		<version>1.18.2</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.sun.jersey</groupId>
-  		<artifactId>jersey-servlet</artifactId>
-  		<version>1.18.2</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.mariadb.jdbc</groupId>
-  		<artifactId>mariadb-java-client</artifactId>
-  		<version>1.1.7</version>
-  	</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-core</artifactId>
+			<version>1.18.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.18.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>1.18.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-servlet</artifactId>
+			<version>1.18.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>1.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.10</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>

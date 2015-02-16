@@ -9,4 +9,6 @@ public class ResVideo extends Resource {
 	int width;
 	int height;
 	Date playTime;
+	
+	public ResVideo(){}
 }

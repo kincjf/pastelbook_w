@@ -19,4 +19,5 @@ public class AccountDAO extends PastelbookDAO<Account> {
 		
 		return result;
 	}
+
 }

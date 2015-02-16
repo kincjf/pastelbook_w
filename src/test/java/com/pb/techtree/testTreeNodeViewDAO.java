@@ -6,13 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.pb.db.PbDAO;
+
 
 
 public class testTreeNodeViewDAO {
 	
 	// for tree
 	public ArrayList<TreeNodeViewBean> findFamillyById(int parseInt) throws SQLException {
-		TechTreeDAO dao = new TechTreeDAO();
+		PbDAO dao = new PbDAO();
 		Connection conn = dao.getConnection();
 		
 		
@@ -44,7 +46,7 @@ public class testTreeNodeViewDAO {
 	}
 	
 	public TreeNodeViewBean findById(int parseInt) throws SQLException {
-		TechTreeDAO dao = new TechTreeDAO();
+		PbDAO dao = new PbDAO();
 		Connection conn = dao.getConnection();
 		
 		
@@ -78,7 +80,7 @@ public class testTreeNodeViewDAO {
 	
 	// to do -> use category
 	public ArrayList<TreeNodeViewBean> findRecents(int category) throws SQLException {
-		TechTreeDAO dao = new TechTreeDAO();
+		PbDAO dao = new PbDAO();
 		Connection conn = dao.getConnection();
 		
 		

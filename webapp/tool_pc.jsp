@@ -1,13 +1,13 @@
+<%@page import="pb.rest.jaxrs.vo.Project"%>
+<%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@page import="com.pb.techtree.Project2Bean"%>
-<%@page import="com.pb.techtree.Project2DAO"%>
-<%@page import="com.pb.techtree.ProjectDAO"%>
+
 <%
-	Project2DAO dao = new Project2DAO();
+	ProjectDAO dao = new ProjectDAO();
 	String id = request.getParameter("id");
 	String projectData  = "{}";
 	
-	Project2Bean bean = null;
+	Project bean = null;
 	if(id != null){
 		int projectId = Integer.parseInt(id);
 		bean = dao.findById(projectId);

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	Author	: hong won gi
+	CRUD  	:
+		C	: create
+		R	: update
+		U	: findAll, findById
+		D	: remove
+	조사완료
+ -->
+<mapper namespace="CategoryMapper">
+	<insert id="create" parameterType="pb.rest.jaxrs.vo.Category"
+		useGeneratedKeys="true" keyProperty="_id">
+		INSERT INTO pb_category 
+		(  name  )
+		VALUES 
+		( #{name} )
+	</insert>
+	<update id="update" parameterType="pb.rest.jaxrs.vo.Category"
+		useGeneratedKeys="true" keyProperty="_id">
+		UPDATE pb_category
+		SET name = #{ name }
+		where _id= #{ _id }
+	</update>
+	<select id="findAll" resultType="pb.rest.jaxrs.vo.Category">
+		select *
+		from pb.pb_category
+	</select>
+	<select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.Category">
+		select *
+		from pb_category where _id= #{ _id }
+	</select>
+	<select id="findByName" parameterType="String" resultType="pb.rest.jaxrs.vo.Category">
+		select *
+		from pb_category 
+		where name= #{ name }
+	</select>
+	<delete id="remove" parameterType="int">
+		delete
+		from pb_category
+		where _id= #{ _id }
+	</delete>
+</mapper>

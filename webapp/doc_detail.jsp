@@ -1,9 +1,10 @@
+<%@page import="pb.rest.jaxrs.vo.Account"%>
+<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
+<%@page import="pb.rest.jaxrs.vo.Document"%>
+<%@page import="pb.rest.jaxrs.db.DocumentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.pb.techtree.TreeNodeViewDAO"%>
-<%@page import="com.pb.techtree.TreeNodeViewBean"%>
-<%@page import="com.pb.techtree.TechTreeDAO"%>
-<%@page import="com.pb.techtree.TechTreeDAO, java.util.*, java.sql.*"%>
+<%@page import="java.util.*, java.sql.*"%>
 <%
 			String docId = request.getParameter("id");
 			int id = 0;
@@ -13,11 +14,14 @@
 				id = 25;
 			}
 
-			TreeNodeViewDAO dao = new TreeNodeViewDAO();
-			TreeNodeViewBean result = dao.findById(id);
+			DocumentDAO dao = new DocumentDAO();
+			Document result = dao.findById(id);
 			
 			// to do -> use category;
-			ArrayList<TreeNodeViewBean> recents = dao.findRecents(2);
+			List<Document> recents = dao.findAll(); // to do fine recents
+			
+			AccountDAO aDao = new AccountDAO();
+			
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -102,16 +106,16 @@ BEGIN PAGE
 
                 <!-- title and viewCount -->
                 <div class="titleAndViewCnt">
-                    <span style="float: left;"><h2>¾Æ±âµÅÁö »ïÇüÁ¦</h2></span>
+                    <span style="float: left;"><h2>ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h2></span>
                     <span style="float: right;"><h2>13</h2></span>
                 </div>
 
                 <!-- author comment -->
                 <div class="media-body">
-                    <h4 class="media-heading">ÀÛ°¡ ÇÑ¸¶µð</h4>
+                    <h4 class="media-heading">ï¿½Û°ï¿½ ï¿½Ñ¸ï¿½ï¿½ï¿½</h4>
                     <p class="text-info">June 05, 2014   05:45 pm</p>
                     <p>
-                        ÀÛ°¡ÇÑ ¸¶µð°¡ µé¾î°¥ °ø°£ÀÔ´Ï´Ù.
+                        ï¿½Û°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
                     </p>
                 </div>
 
@@ -136,7 +140,7 @@ BEGIN PAGE
                             </div>
                             <div class="col-sm-1">
                                 <div class="form-group">
-                                   <h5>kins37</h5>
+                                   <h5><%//= ((Account)session.getAttribute("account")).getNick() %></h5>
                                 </div><!--/.form-group -->
                             </div><!-- /.col-sm-4 -->
                         </div><!--/.row -->
@@ -306,9 +310,9 @@ BEGIN PAGE
                 <!-- Begin blog detail -->
                 <div class="panel panel-square panel-success panel-no-border">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Project Name</strong></h3>
+                        <h3 class="panel-title"><strong>Document Name</strong></h3>
                         <button class="btn btn-warning btn-perspective" id="subscribe">
-                            <span id="subscribe-text">±¸µ¶ÇÏ±â</span>
+                            <span id="subscribe-text"><%= result.getTitle() %></span>
                             <span class="fa fa-check" id="subscribeIcon"></span>
                         </button>
                     </div>
@@ -320,11 +324,11 @@ BEGIN PAGE
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-folder-o icons"></i>
-                            Category : <a href="#fakelink"><%= result.getCategory() %></a>
+                            Category : <a href="#fakelink"><%=cDao.findById(result.getCategory()).getName()%></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-flask icons"></i>
-                            Author: <a href="#fakelink">John Doe</a>
+                            Author: <a href="#fakelink"><%= aDao.findById(result.getAccountId()).getNick() %></a>
                         </li>
                     </ul>
                 </div><!-- /.panel panel-default -->
@@ -336,7 +340,7 @@ BEGIN PAGE
                         <h3 class="panel-title">Recent post</h3>
                     </div>
                     <ul class="media-list">
-                    	<% for( TreeNodeViewBean tmp : recents ){%>
+                    	<% for( Document tmp : recents ){%>
                         <li class="media">
                             <a class="pull-left" href="projectDetailPage.jsp?id=<%= tmp.getId() %>">
                                 <!-- <img class="media-object img-post" src="assets/img/photo/small/img.jpg" alt="Image"> -->
@@ -491,12 +495,12 @@ Placed at the end of the document so the pages load faster
             var className = $('.panel-heading #subscribeIcon').attr('class');
             if(className == "fa fa-check") {
                 /*alert(className);*/
-                $('.panel-heading  #subscribe-text').text("±¸µ¶Áß");
+                $('.panel-heading  #subscribe-text').text("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 $('.panel-heading #subscribeIcon').attr('class', 'fa fa-chevron-circle-down');
             }
             else {
                 /*alert(className);*/
-                $('.panel-heading #subscribe-text').text("±¸µ¶ÇÏ±â");
+                $('.panel-heading #subscribe-text').text("ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½");
                 $('.panel-heading #subscribeIcon').attr('class', 'fa fa-check');
             }
 

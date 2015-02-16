@@ -1,15 +1,14 @@
+<%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
+<%@page import="pb.rest.jaxrs.vo.Project"%>
 <%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@page import="pb.rest.jaxrs.vo.Account"%>
-<%@page import="com.pb.techtree.Project2DAO"%>
-<%@page import="com.pb.techtree.Project2Bean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.pb.techtree.TechTreeDAO, java.util.*, java.sql.*"%>
+<%@ page import="java.util.*, java.sql.*"%>
 <%
 	Account account = null;
 
 	// test
 	AccountDAO adao = new AccountDAO();
-	
 	session.setAttribute("account",adao.findById(1));
 
 	if(session.getAttribute("account") != null){
@@ -17,8 +16,8 @@
 	}
 	// end test
 	
-	Project2DAO dao = new Project2DAO();
-	ArrayList<Project2Bean> list = dao.findAllByAccountId(account.getId());
+	ProjectDAO dao = new ProjectDAO();
+	List<Project> list = dao.findAllByAccountId(account.getId());
 
 %>
 <!DOCTYPE html>
@@ -78,7 +77,7 @@ BEGIN PAGE
         <ol class="breadcrumb">
             <li><a href="index.jsp">Home</a></li>
             <li><a href="my.jsp">My</a></li>
-            <li><a href="my_project2_list">Projects</a></li>
+            <li><a href="my_project2_list">Project List</a></li>
         </ol>
         <h2 class="page-title">My Project List</h2>
     </div><!-- /.container -->
@@ -146,7 +145,7 @@ BEGIN PAGE
 
         <div id="work-mixitup" class="work-content">
             <div class="row">
-            	<% for( Project2Bean tmp : list ){%>
+            	<% for( Project tmp : list ){%>
                 <!-- Begin work item -->
                 <div class="col-sm-4 col-md-4 col-xs-6 mix printing">
                     <div class="work-item">
@@ -177,7 +176,7 @@ BEGIN PAGE
                                 </div>
                                 <div class="col-xs-12 col-md-6">
 									<form id="form_editContent<%=tmp.getId()%>"><input type="hidden" name="id" value="<%=tmp.getId()%>" /></form>
-                                    <button class="btn btn-default editContent" type="submit" form="form_editContent<%=tmp.getId()%>" formaction="tool_pc.jsp">정보수정</button>
+                                    <button class="btn btn-default editContent" type="submit" form="form_editContent<%=tmp.getId()%>" formaction="tool_pc.jsp">내용수정</button>
                                 </div>
                             </div>
                         </div><!-- /.the-box no-border transparent -->

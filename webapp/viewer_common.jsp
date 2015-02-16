@@ -1,19 +1,19 @@
+<%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
+<%@page import="pb.rest.jaxrs.vo.Project"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
              pageEncoding="UTF-8"%>
-<%@page import="com.pb.techtree.ProjectBean"%>
-<%@page import="com.pb.techtree.ProjectDAO"%>
-<%@page import="java.util.*, java.sql.*"%>
+<%@page import="java.util.*,java.sql.*"%>
 <%
 	String docId = request.getParameter("id");
 	int id = 0;
 		if(docId != null){
-			id = Integer.parseInt(docId);
+	id = Integer.parseInt(docId);
 		} else {
-			id = 4;
+	id = 4;
 		}
 
 	ProjectDAO dao = new ProjectDAO();
-	ProjectBean result = dao.findById(id);
+	Project result = dao.findById(id);
 
 	String data = result.getSceneList();
 %>

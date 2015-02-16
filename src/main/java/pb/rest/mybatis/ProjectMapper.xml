@@ -45,4 +45,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   from pb_project
   where _id= #{ _id }
  </delete>
+ <select id="findAllByAccountId" parameterType="int" resultType="pb.rest.jaxrs.vo.Project">
+  select * 
+  from pb.pb_project
+  where accountId = #{ accountId }
+ </select>
 </mapper>

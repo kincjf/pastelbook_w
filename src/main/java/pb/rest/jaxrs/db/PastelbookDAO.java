@@ -55,12 +55,9 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		T result;
 		
 		init();
-		System.out.println(objectName);
 		session = sqlMapper.openSession();
 		result = (T) session.selectOne(objectName+"Mapper.findById", parseInt);
 		session.close();
-		
-		System.out.println(result.getClass().getName());
 		
 		return result;
 	}
@@ -113,6 +110,17 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		init();
 		session = sqlMapper.openSession();
 		result = session.selectOne(objectName+"Mapper.findByName", query);
+		session.close();
+		
+		return result;
+	}
+
+	public List<T> findAllByAccountId(int query){
+		List<T> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		result = session.selectList(objectName+"Mapper.findAllByAccountId", query);
 		session.close();
 		
 		return result;

@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.pb.techtree.TreeNodeViewDAO"%>
 <%@page import="com.pb.techtree.TreeNodeViewBean"%>
-<%@page import="com.pb.techtree.TechTreeDAO"%>
-<%@page import="com.pb.techtree.TechTreeDAO, java.util.*, java.sql.*"%>
+<%@page import="java.util.*, java.sql.*"%>
 <%
 			TreeNodeViewDAO dao = new TreeNodeViewDAO();
 			ArrayList<TreeNodeViewBean> result = dao.findFamillyById(2);

@@ -1,23 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="com.pb.techtree.TreeNodeViewDAO"%>
-<%@page import="com.pb.techtree.TreeNodeViewBean"%>
-<%@page import="com.pb.techtree.TechTreeDAO"%>
-<%@page import="com.pb.techtree.TechTreeDAO, java.util.*, java.sql.*"%>
+<%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
+<%@page import="pb.rest.jaxrs.vo.Project"%>
+<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
+<%@page import="pb.rest.jaxrs.vo.Account"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="java.util.*, java.sql.*"%>
 <%
-	String docId = request.getParameter("id");
-	int id = 0;
-	if(docId != null){
-		id = Integer.parseInt(docId);
-	} else {
-		id = 25;
-	}
+			String projectId = request.getParameter("id");
+			int id = 0;
+			if(projectId != null){
+				id = Integer.parseInt(projectId);		
+			} else {
+				id = 25;
+			}
 
-	TreeNodeViewDAO dao = new TreeNodeViewDAO();
-	TreeNodeViewBean result = dao.findById(id);
-
-	// to do -> use category;
-	ArrayList<TreeNodeViewBean> recents = dao.findRecents(2);
-%>
+			ProjectDAO dao = new ProjectDAO();
+			Project result = dao.findById(id);
+			int accountId = 0;
+			
+			// to do -> use category;
+			List<Project> recents = dao.findAllByAccountId(accountId);
+			
+			Account account = (Account)session.getAttribute("account");
+			AccountDAO aDao = new AccountDAO();
+%>			
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,9 +46,12 @@
 
     <!-- MAIN CSS (REQUIRED ALL PAGE)-->
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/sentir/style.css" rel="stylesheet">
-    <link href="assets/css/sentir/style-responsive.css" rel="stylesheet">
-    <link href="assets/css/project-detail.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+
+    <link href="assets/css/myCss.css" rel="stylesheet">
+    <link href="assets/css/myCss-responsive.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -69,11 +78,11 @@ BEGIN PAGE
 <div class="page-title-wrap">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#fakelink">Blog</a></li>
-            <li class="active">Blog detail</li>
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="#fakelink">Project</a></li>
+            <li class="active">Detail</li>
         </ol>
-        <h2 class="page-title">Duis autem vel eum iriure dolor in hendrerit in vulputate velit</h2>
+        <h2 class="page-title"><%= result.getTitle() %></h2>
     </div><!-- /.container -->
 
     <div class="border-bottom">
@@ -91,21 +100,22 @@ BEGIN PAGE
 
             <!-- BLOG DETAIL SECTION -->
             <div class="section blog-detail">
-                <!-- viewer -->
+				<!--  <%//result.getPreviewImage() %>-->
+                <!-- <img src="thumb/<%= result.getPreviewImage() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px;">  -->
+                
                 <embed src="viewer_common.jsp?id=<%=result.getId() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px; width:800px; height:426px;"></embed>
 
                 <!-- title and viewCount -->
                 <div class="titleAndViewCnt">
-                    <span style="float: left;"><h2>아기돼지 삼형제</h2></span>
+                    <span style="float: left;"><h2>조회수</h2></span>
                     <span style="float: right;"><h2>13</h2></span>
                 </div>
 
                 <!-- author comment -->
                 <div class="media-body">
-                    <h4 class="media-heading">작가 한마디</h4>
-                    <p class="text-info">June 05, 2014   05:45 pm</p>
+                    <h4 class="media-heading">작성일</h4>
+                    <p class="text-info"><%= result.getCreateDate() %></p>
                     <p>
-                        작가한 마디가 들어갈 공간입니다.
                     </p>
                 </div>
 
@@ -130,7 +140,7 @@ BEGIN PAGE
                             </div>
                             <div class="col-sm-1">
                                 <div class="form-group">
-                                   <h5>kins37</h5>
+                                   <h5></h5>
                                 </div><!--/.form-group -->
                             </div><!-- /.col-sm-4 -->
                         </div><!--/.row -->
@@ -155,74 +165,6 @@ BEGIN PAGE
                             <div class="media-body">
                                 <a class="reply-link" href="#fakelink">Reply</a>
                                 <h4 class="media-heading"><a href="#fakelink">Paris Hawker</a></h4>
-                                <p class="text-info">June 05, 2014   05:45 pm</p>
-                                <p>
-                                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                                    consequat, vel illum dolore eu feugiat nulla facilisis at vero eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                    sed diam nonumm consequat, vel illum dolore eu feugiat nulla facilisis at vero eros. Lorem ipsum dolor sit amet,
-                                    consectetuer adipiscing elit, sed diam nonummy
-                                </p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a class="pull-left" href="#fakelink">
-                                <img class="media-object img-circle" src="assets/img/avatar/small/avatar.jpg" alt="Avatar">
-                            </a>
-                            <div class="media-body">
-                                <a class="reply-link" href="#fakelink">Reply</a>
-                                <h4 class="media-heading"><a href="#fakelink">Thomas White</a></h4>
-                                <p class="text-info">June 05, 2014   05:45 pm</p>
-                                <p>
-                                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                                    consequat, vel illum dolore eu feugiat nulla facilisis at vero eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                    sed diam nonumm consequat, vel illum dolore eu feugiat nulla facilisis at vero eros. Lorem ipsum dolor sit amet,
-                                    consectetuer adipiscing elit, sed diam nonummy
-                                </p>
-
-                                <ul class="media-list">
-                                    <li class="media">
-                                        <a class="pull-left" href="#fakelink">
-                                            <img class="media-object img-circle" src="assets/img/avatar/small/avatar.jpg" alt="Avatar">
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="reply-link" href="#fakelink">Reply</a>
-                                            <h4 class="media-heading"><a href="#fakelink">Doina Slaivici</a></h4>
-                                            <p class="text-info">June 05, 2014   05:45 pm</p>
-                                            <p>
-                                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                                                consequat, vel illum dolore eu feugiat nulla facilisis at vero eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                                sed diam nonumm consequat, vel illum dolore eu feugiat nulla facilisis at vero eros. Lorem ipsum dolor sit amet,
-                                                consectetuer adipiscing elit, sed diam nonummy
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <a class="pull-left" href="#fakelink">
-                                            <img class="media-object img-circle" src="assets/img/avatar/small/avatar.jpg" alt="Avatar">
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="reply-link" href="#fakelink">Reply</a>
-                                            <h4 class="media-heading"><a href="#fakelink">Harry Nichols</a></h4>
-                                            <p class="text-info">June 05, 2014   05:45 pm</p>
-                                            <p>
-                                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                                                consequat, vel illum dolore eu feugiat nulla facilisis at vero eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                                sed diam nonumm consequat, vel illum dolore eu feugiat nulla facilisis at vero eros. Lorem ipsum dolor sit amet,
-                                                consectetuer adipiscing elit, sed diam nonummy
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="media">
-                            <a class="pull-left" href="#fakelink">
-                                <img class="media-object img-circle" src="assets/img/avatar/small/avatar.jpg" alt="Avatar">
-                            </a>
-                            <div class="media-body">
-                                <a class="reply-link" href="#fakelink">Reply</a>
-                                <h4 class="media-heading"><a href="#fakelink">Mihaela Cihac</a></h4>
                                 <p class="text-info">June 05, 2014   05:45 pm</p>
                                 <p>
                                     Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
@@ -267,19 +209,6 @@ BEGIN PAGE
                                 </ul>
                             </div>
                         </li>
-                        <li class="media">
-                            <a class="pull-left" href="#fakelink">
-                                <img class="media-object img-circle" src="assets/img/avatar/small/avatar.jpg" alt="Avatar">
-                            </a>
-                            <div class="media-body">
-                                <a class="reply-link" href="#fakelink">Reply</a>
-                                <h4 class="media-heading"><a href="#fakelink">Frank Oliver</a></h4>
-                                <p class="text-info">June 05, 2014   05:45 pm</p>
-                                <p>
-                                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-                                </p>
-                            </div>
-                        </li>
                     </ul>
                 </div><!-- /.comment-wrap -->
                 <!-- END COMMENT LIST -->
@@ -302,7 +231,7 @@ BEGIN PAGE
                     <div class="panel-heading">
                         <h3 class="panel-title"><strong>Project Name</strong></h3>
                         <button class="btn btn-warning btn-perspective" id="subscribe">
-                            <span id="subscribe-text">구독하기</span>
+                            <span id="subscribe-text"><%=result.getTitle() %></span>
                             <span class="fa fa-check" id="subscribeIcon"></span>
                         </button>
                     </div>
@@ -310,15 +239,15 @@ BEGIN PAGE
                     <ul class="list-group success blog-detail-list square">
                         <li class="list-group-item">
                             <i class="fa fa-calendar icons"></i>
-                            Posted : <a href="#fakelink"><%= result.getPostedDate() %></a>
+                            Posted : <a href="#fakelink"><%= result.getCreateDate() %></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-folder-o icons"></i>
-                            Category : <a href="#fakelink"><%= result.getCategory() %></a>
+                            Category : <a href="#fakelink"><%= cDao.findById(result.getCategory()).getName() %></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-flask icons"></i>
-                            Author: <a href="#fakelink">John Doe</a>
+                            Author: <a href="#fakelink"><%= aDao.findById(result.getAccountId()).getNick() %></a>
                         </li>
                     </ul>
                 </div><!-- /.panel panel-default -->
@@ -330,19 +259,34 @@ BEGIN PAGE
                         <h3 class="panel-title">Recent post</h3>
                     </div>
                     <ul class="media-list">
-                        <% for( TreeNodeViewBean tmp : recents ){%>
+                    	<% for( Project tmp : recents ){%>
                         <li class="media">
-                            <a class="pull-left" href="project_detail.jsp?id=<%= tmp.getId() %>">
+                            <a class="pull-left" href="projectDetailPage.jsp?id=<%= tmp.getId() %>">
+                                <!-- <img class="media-object img-post" src="assets/img/photo/small/img.jpg" alt="Image"> -->
                                 <img class="media-object img-post" src="thumb/<%= tmp.getPreviewImage() %>" alt="Image">
                             </a>
                             <div class="media-body">
-                                <p><a href="project_detail.jsp?id=<%= tmp.getId() %>">
+                                <p><a href="projectDetailPage.jsp?id=<%= tmp.getId() %>">
                                     <%= tmp.getTitle() %>
                                 </a></p>
-                                <p class="small text-info"><%= tmp.getPostedDate() %></p>
+                                <p class="small text-info"><%= tmp.getModifyDate() %></p>
+                                <!-- <p class="small text-info">June 05, 2014</p> -->
                             </div>
                         </li>
                         <% } // %>
+                        <!-- 
+                        <li class="media">
+                            <a class="pull-left" href="project_detailhtml?id=26">
+                                <img class="media-object img-post" src="assets/img/photo/small/img.jpg" alt="Image">
+                            </a>
+                            <div class="media-body">
+                                <p><a href="project_detailhtml?id=26">
+                                    Project Title
+                                </a></p>
+                                <p class="small text-info">2015-01-30</p>
+                            </div>
+                        </li>
+                        -->
                     </ul>
                 </div><!-- /.panel panel-no-border panel-sidebar -->
                 <!-- End Recent post -->
@@ -470,19 +414,18 @@ Placed at the end of the document so the pages load faster
             var className = $('.panel-heading #subscribeIcon').attr('class');
             if(className == "fa fa-check") {
                 /*alert(className);*/
-                $('.panel-heading  #subscribe-text').text("구독중");
+                $('.panel-heading  #subscribe-text').text("������");
                 $('.panel-heading #subscribeIcon').attr('class', 'fa fa-chevron-circle-down');
             }
             else {
                 /*alert(className);*/
-                $('.panel-heading #subscribe-text').text("구독하기");
+                $('.panel-heading #subscribe-text').text("�����ϱ�");
                 $('.panel-heading #subscribeIcon').attr('class', 'fa fa-check');
             }
 
         });
     });
 </script>
-
-<script src="assets/js/apps.js"></script>
+<script src="assets/js/index.js"></script>
 </body>
 </html>

@@ -1,11 +1,13 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="pb.rest.jaxrs.vo.Document"%>
+<%@page import="pb.rest.jaxrs.db.DocumentDAO"%>
+<%@page import="pb.log.PBLog"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="pb.rest.jaxrs.vo.Account"%>
 <%@page import="pb.rest.jaxrs.db.AccountDAO"%>
-<%@page import="com.pb.techtree.TreeNodeViewDAO"%>
-<%@page import="com.pb.techtree.TreeNodeViewBean"%>
-<%@page import="com.pb.techtree.TechTreeDAO"%>
-<%@page import="com.pb.techtree.TechTreeDAO, java.util.*, java.sql.*"%>
+<%@page import="java.util.*, java.sql.*"%>
+<%@include file="include/login_check.jsp" %>
 <%
 	String docId = request.getParameter("id");
 	int id = 0;
@@ -17,49 +19,40 @@
 	}
 	
 	// BEGIN login.jsp 에서  폼을 통해서 날렸을때
-	String account = request.getParameter("account");
-	String pw = request.getParameter("pw");
-	int accountId = -1;
-	if(account != null){
-		if(pw != null){
-			Account bean = new Account(account, "email", pw, "aaa");
-			AccountDAO aDao = new AccountDAO();
-			System.out.println("" + bean);
-			Account fromDB = aDao.findByName(bean.getNick());
-			System.out.println("" + fromDB);
-			if (fromDB != null) { // 아이디는 있는 경우
-				if (bean.getPassword().equals(fromDB.getPassword())) {
-					// out.println("<script>alert();</script>");
-					// 세션에 id 등록
-					session.setAttribute("account", fromDB);
-				} else {
-					out.println("<script>location.href='login.jsp'</script>");
-					//아이디가 없거나 패스워드가 틀림 보내야됨
+	if(isLogined == false){
+		String account = request.getParameter("account");
+		String pw = request.getParameter("pw");
+		int accountId = -1;
+		if(account != null){
+			if(pw != null){
+				Account bean = new Account("nick", "email", pw, account);
+				//PBLog.logger.error("" + bean);
+				Account fromDB = aDao.findByName(bean.getName());
+				//PBLog.logger.error("" + fromDB);
+				if (fromDB != null) { // 아이디는 있는 경우
+					if (bean.getPassword().equals(fromDB.getPassword())) {
+						// out.println("<script>alert();</script>");
+						// 세션에 id 등록
+						session.setAttribute("account", fromDB);
+					} else {
+						out.println("<script>location.href='login.jsp'</script>");
+						//아이디가 없거나 패스워드가 틀림 보내야됨
+					}
+				} else { // 아이디도 없는 경우
+					out.println("<script>location.href='login.jsp#idnull'</script>");
+					// 아이디가 없거나 패스워드가 틀림
 				}
-			} else { // 아이디도 없는 경우
-				out.println("<script>location.href='login.jsp#idnull'</script>");
-				// 아이디가 없거나 패스워드가 틀림
 			}
+		} else {
+			out.println("<script>location.href='login.jsp'</script>");
 		}
-	} else {
-%><script>location.href="login.jsp"</script><%
-			
-			
-			}
-			// END login.jsp
-			
-			
-			// 세션체크
-			if(session.getAttribute("account") != null){
-				// 문제는 세션체크는 했으나 Account 에서 id를 가져오지 않음..
-				// bean 부터 새로만들기
-			}
-			
-			
-			
-			TreeNodeViewDAO dao = new TreeNodeViewDAO();
-			ArrayList<TreeNodeViewBean> myProjects = dao.findRecents(2);
-			int iter = 0;
+	}
+	// END login.jsp
+	
+	DocumentDAO dao = new DocumentDAO();
+	List<Document> allDocument= dao.findAll();
+	int iter = 0;
+	SimpleDateFormat sdfPrint = new SimpleDateFormat("yyyy년 MM월 DD일");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -134,45 +127,34 @@ BEGIN PAGE
 <!-- BEGIN LATEST WORK SECTION -->
 <div class="section work-section">
     <div class="container">
-    	<%/*
-        <div class="section-heading">
-            <div class="inner-border"></div>
-            <h3>프로젝트 소개</h3>
-        </div><!-- /.section-heading -->
-        */%>
+    	<%
+    		/*
+    	        <div class="section-heading">
+    	            <div class="inner-border"></div>
+    	            <h3>프로젝트 소개</h3>
+    	        </div><!-- /.section-heading -->
+    	        */
+    	%>
         <div class="section-heading">
         	<div class="inner-border"></div>
         </div>
         <ul class="work-category-wrap">
             <li class="filter" data-filter="all">ALL</li>
             <!-- loop -->
-            <li class="filter" data-filter="1">IT</li>
-            <li class="filter" data-filter="2">시사</li>
-            <li class="filter" data-filter="3">사진</li>
-            <li class="filter" data-filter="4">창작</li>
-
-            <!--
-            <li class="filter" data-filter="printing">PRINTING</li>
-            <li class="filter" data-filter="other">OTHER</li>
-            -->
+            
+            <% for ( Category ctmp : clist) {%>
+            <li class="filter" data-filter="<%=ctmp.getId()%>"><%=ctmp.getName()%></li>
+            <% } %>
         </ul>
 
         <div id="work-mixitup" class="work-content">
             <div class="row">
-				<% for( TreeNodeViewBean tmp : myProjects ){
-				    iter++;
+				<%
+					for( Document tmp : allDocument ){
+						    iter++;
 				%>
                 <!-- Begin work item -->
-                <div class="col-sm-4 col-md-4 col-xs-6 mix <% 
-					if(tmp.getCategory().equals("IT")){
-						out.println(1);
-					} else if(tmp.getCategory().equals("시사")){
-						out.println(2);
-					} else if(tmp.getCategory().equals("사진")){
-						out.println(3);
-					} else if(tmp.getCategory().equals("창작")){
-						out.println(4);
-					}
+                <div class="col-sm-4 col-md-4 col-xs-6 mix <%= tmp.getCategory() %>}
 					%>">
                     <div class="work-item">
 											<img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
@@ -181,10 +163,10 @@ BEGIN PAGE
                        <div class="the-box no-border transparent no-margin">
                            <p class="project-name"><%= tmp.getTitle() %></p>
                            <p class="dateAndSlideCnt">
-                               <span><%= tmp.getPostedDate() %></span>&nbsp;
+                               <span><%= sdfPrint.format(tmp.getPostedDate()) %></span>&nbsp;
                                <span>슬라이드 수</span>
                            </p>
-                           <p class="project-category"><%= tmp.getCategory() %></p>
+                           <p class="project-category"><%= cDao.findById(tmp.getCategory()).getName() %></p>
                            <!-- <span>조회수</span> -->
                         </div><!-- /.the-box no-border transparent -->
                     </div><!-- /.work-item -->

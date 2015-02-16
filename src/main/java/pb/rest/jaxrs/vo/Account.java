@@ -10,7 +10,8 @@ public class Account extends VO {
 	String password;
 	String name;
 
-	public Account(){}
+	public Account(){
+	}
 	
 	public Account(String nick, String email, String password, String name) {
 		this.nick = nick;
@@ -19,8 +20,8 @@ public class Account extends VO {
 		this.name = name;
 	}
 	
-	public Account(int id, String nick, String email, String password, String name) {
-		this._id = id;
+	public Account(int _id, String nick, String email, String password, String name) {
+		this._id = _id;
 		this.nick = nick;
 		this.email = email;
 		this.password = password;

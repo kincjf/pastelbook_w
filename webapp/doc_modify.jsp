@@ -1,17 +1,16 @@
+<%@page import="pb.rest.jaxrs.db.DocumentDAO"%>
+<%@page import="pb.rest.jaxrs.vo.Document"%>
 <%@page import="java.util.Date"%>
-<%@page import="com.pb.techtree.DocumentBean"%>
-<%@page import="com.pb.techtree.DocumentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.pb.techtree.TreeNodeViewDAO"%>
-<%@page import="com.pb.techtree.TreeNodeViewBean"%>
-<%@page import="com.pb.techtree.TechTreeDAO"%>
-<%@page import="com.pb.techtree.TechTreeDAO, java.util.*, java.sql.*"%>
+<%@page import="java.util.*, java.sql.*"%>
 <%
 	// 변경문서 내용 적용
 	String modifyId = request.getParameter("modifyId");
 	String title = request.getParameter("title");
 	String contents = request.getParameter("contents");
+	String sceneList = request.getParameter("sceneList");
+	String previewImage = request.getParameter("previewImage");
 	int category = 0;
 	
 	
@@ -19,9 +18,9 @@
 		int mid = Integer.parseInt(modifyId);
 		category = Integer.parseInt(request.getParameter("category"));
 		
-		DocumentBean docBean = new DocumentBean(mid, title, contents, -1, new Date(), category);
+		Document docBean = new Document(mid, title, contents, -1, new Date(),sceneList, previewImage, category);
 		DocumentDAO docDao = new DocumentDAO();
-		docDao.modify(docBean);
+		docDao.update(docBean);
 	}
 
 
@@ -34,16 +33,14 @@
 		id = 1;
 	}
 
-	TreeNodeViewDAO dao = new TreeNodeViewDAO();
-	TreeNodeViewBean result = dao.findById(id);
+	DocumentDAO dao = new DocumentDAO();
+	Document result = dao.findById(id);
 	
 	DocumentDAO ddao = new DocumentDAO();
-	DocumentBean doc = ddao.findById(id);
+	Document doc = ddao.findById(id);
 	
 	// to do -> use category;
-	ArrayList<TreeNodeViewBean> recents = dao.findRecents(2);
-	
-			
+	List<Document> recents = dao.findAll(); //  find recent...
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -103,7 +100,7 @@ BEGIN PAGE
             <li><a href="#fakelink">내 문서</a></li>
             <li class="active">문서 수정</li>
         </ol>
-        <h2 class="page-title"><%= result.getTitle() %></h2>
+        <h2 class="page-title"><%=result.getTitle()%></h2>
     </div><!-- /.container -->
 
     <div class="border-bottom">
@@ -121,8 +118,8 @@ BEGIN PAGE
 
             <!-- BLOG DETAIL SECTION -->
             <div class="section blog-detail">
-				<!--  <%//result.getPreviewImage() %>-->
-                <img src="thumb/<%= result.getPreviewImage() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px;">
+				<!--  <%//result.getPreviewImage()%>-->
+                <img src="thumb/<%=result.getPreviewImage()%>" alt="Image detail" class="img-detail" style="margin-bottom: 20px;">
 
                 <!-- BEGIN FORM COMMENT -->
                 <div class="form-comment">
@@ -131,37 +128,43 @@ BEGIN PAGE
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                	<input type="hidden" name="modifyId" value="<%= doc.getId() %>">
-                                    <input type="text" name="title" class="form-control" value="<%= doc.getTitle() %>">
+                                	<input type="hidden" name="modifyId" value="<%=doc.getId()%>">
+                                    <input type="text" name="title" class="form-control" value="<%=doc.getTitle()%>">
                                     <p class="help-block">변경할 문서 제목을 입력하세요.</p>
                                 </div><!--/.form-group -->
                             </div><!-- /.col-sm-4 -->
                             <div class="col-sm-6">
                                 <div class="form-group">
 									<select name="category" data-placeholder="Select people..." class="form-control">
-										<% 
+										<%
 											boolean isSelected = false;
-											for (CategoryBean ctmp : clist ) { // from top-navbar.jsp 
-												isSelected = (result.getCategory().equals(ctmp.getName())); 
+																			for (Category ctmp : clist ) { // from top-navbar.jsp 
+																				isSelected = (ctmp.getId() == result.getCategory());
 										%>
-										<option value="<%=ctmp.getId()%>" <%= isSelected ? "selected" : "" %>><%= ctmp.getName() %></option>
-										<% } %>
+										<option value="<%=ctmp.getId()%>" <%=isSelected ? "selected" : ""%>><%=ctmp.getName()%></option>
+										<%
+											}
+										%>
 									</select>
                                     <p class="help-block">변경할 카테고리를 선택하세요.</p>
                                 </div><!--/.form-group -->
                             </div><!-- /.col-sm-4 -->
-                            <% /* 
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your web or blog url">
-                                    <p class="help-block">Optional</p>
-                                </div><!--/.form-group -->
-                            </div><!-- /.col-sm-4 -->
-                            */ %>
+                            <%
+                            	/* 
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" placeholder="Your web or blog url">
+                                                                <p class="help-block">Optional</p>
+                                                            </div><!--/.form-group -->
+                                                        </div><!-- /.col-sm-4 -->
+                                                        */
+                            %>
+                            <input type="hidden" id="previewImage" value="<%=result.getPreviewImage()%>" />
+                            <input type="hidden" id="sceneList" value="<%=result.getSceneList()%>" />
                         </div><!--/.row -->
                         
                         <div class="form-group">
-                            <textarea name="contents" style="height: 50px" class="form-control"><%= doc.getContents() %></textarea>
+                            <textarea name="contents" style="height: 50px" class="form-control"><%=doc.getDescription()%></textarea>
                         	<p class="help-block">변경할 설명 텍스트를 입력하세요. [설명 컬럼 없음]</p>
                         </div>
 
@@ -258,11 +261,11 @@ BEGIN PAGE
                     <ul class="list-group success blog-detail-list square">
                         <li class="list-group-item">
                             <i class="fa fa-calendar icons"></i>
-                            Posted : <a href="#fakelink"><%= doc.getPostedDate() %></a>
+                            Posted : <a href="#fakelink"><%=doc.getPostedDate()%></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-folder-o icons"></i>
-                            Category : <a href="#fakelink"><%= result.getCategory() %></a>
+                            Category : <a href="#fakelink"><%=result.getCategory()%></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-flask icons"></i>
@@ -278,7 +281,9 @@ BEGIN PAGE
                         <h3 class="panel-title">Recent post</h3>
                     </div>
                     <ul class="media-list">
-                    	<% for( TreeNodeViewBean tmp : recents ){%>
+                    	<%
+                    		for( Document tmp : recents ){
+                    	%>
                         <li class="media">
                             <a class="pull-left" href="projectDetailPage.jsp?id=<%= tmp.getId() %>">
                                 <!-- <img class="media-object img-post" src="assets/img/photo/small/img.jpg" alt="Image"> -->

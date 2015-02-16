@@ -15,10 +15,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="pb/rest/mybatis/ResVideoMapper.xml" />
+		<mapper resource="pb/rest/mybatis/AccountMapper.xml" />
+		<mapper resource="pb/rest/mybatis/CategoryMapper.xml" />
+		<mapper resource="pb/rest/mybatis/DocumentMapper.xml" />
+		<mapper resource="pb/rest/mybatis/ProjectMapper.xml" />
 		<mapper resource="pb/rest/mybatis/ResAudioMapper.xml" />
 		<mapper resource="pb/rest/mybatis/ResImageMapper.xml" />
+		<mapper resource="pb/rest/mybatis/ResVideoMapper.xml" />
 		<mapper resource="pb/rest/mybatis/ProjectMapper.xml" />
-		<mapper resource="pb/rest/mybatis/AccountMapper.xml" />
 	</mappers>
 </configuration>

@@ -1,7 +1,9 @@
-<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
-<%@page import="com.pb.techtree.Project2Bean"%>
-<%@page import="com.pb.techtree.Project2DAO"%>
 <%@page import="java.util.Date"%>
+<%@page import="pb.rest.jaxrs.vo.Project"%>
+<%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="pb.rest.jaxrs.vo.Account"%>
+<%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -11,16 +13,21 @@
 	String contents = request.getParameter("contents");
 	int category = 0;
 	
+	Account account = null;
+	AccountDAO adao = new AccountDAO();
+	session.setAttribute("account",adao.findById(1)); // 임시로
+	account = (Account)session.getAttribute("account");
 	
 	if(modifyId != null){
 		int mid = Integer.parseInt(modifyId);
 		category = Integer.parseInt(request.getParameter("category"));
 		
-		Project2Bean projBean = new Project2Bean(mid, title, contents, new Date(), new Date(), "sceneList", "previewImage", -1, -1, category);
-		Project2DAO projDao = new Project2DAO();
+		
+		Project projBean = new Project(mid, account.getId(), title, contents, new Date(), new Date(), "sceneList", "previewImage", -1, -1, category);
+		ProjectDAO projDao = new ProjectDAO();
 
 		
-		projDao.modify(projBean);
+		projDao.update(projBean);
 	}
 
 
@@ -33,14 +40,14 @@
 		id = 1;
 	}
 
-	Project2DAO dao = new Project2DAO();
-	Project2Bean result = dao.findById(id);
+	ProjectDAO dao = new ProjectDAO();
+	Project result = dao.findById(id);
 	
 	
 	int accountId = 1;
 	
 	// to do -> use category;
-	ArrayList<Project2Bean> recents = dao.findAllByAccountId(accountId); // TO DO
+	List<Project> recents = dao.findAllByAccountId(accountId); // TO DO
 	
 	AccountDAO adaoJx = new AccountDAO();
 	
@@ -142,7 +149,7 @@ BEGIN PAGE
 									<select name="category" data-placeholder="Select people..." class="form-control">
 										<% 
 											boolean isSelected = false;
-											for (CategoryBean ctmp : clist ) { // from top-navbar.jsp
+											for (Category ctmp : clist ) { // from top-navbar.jsp
 												isSelected = (result.getCategory() == ctmp.getId()); 
 										%>
 										<option value="<%=ctmp.getId()%>" <%= isSelected ? "selected" : "" %>><%= ctmp.getName() %></option>
@@ -162,7 +169,7 @@ BEGIN PAGE
                         </div><!--/.row -->
                         
                         <div class="form-group">
-                            <textarea name="contents" style="height: 50px" class="form-control"><%= result.getComment() %></textarea>
+                            <textarea name="contents" style="height: 50px" class="form-control"><%= result.getDescription() %></textarea>
                         	<p class="help-block">변경할 설명 텍스트를 입력하세요. </p>
                         </div>
 
@@ -279,7 +286,7 @@ BEGIN PAGE
                         <h3 class="panel-title">Recent post</h3>
                     </div>
                     <ul class="media-list">
-                    	<% for( Project2Bean tmp : recents ){%>
+                    	<% for( Project tmp : recents ){%>
                         <li class="media">
                             <a class="pull-left" href="projectDetailPage.jsp?id=<%= tmp.getId() %>">
                                 <!-- <img class="media-object img-post" src="assets/img/photo/small/img.jpg" alt="Image"> -->

@@ -1,10 +1,10 @@
-<%@ page import="com.pb.techtree.CategoryBean"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="com.pb.techtree.CategoryDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="pb.rest.jaxrs.vo.Category"%>
+<%@page import="pb.rest.jaxrs.db.CategoryDAO"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%
 	CategoryDAO cDao = new CategoryDAO();
-	ArrayList<CategoryBean> clist = cDao.findAll();
+	List<Category> clist = cDao.findAll();
 %>
 	<link href="assets/css/header.css" rel="stylesheet" />
 
@@ -33,9 +33,9 @@
 		</div>
 		<div id="search-sub" class="nav-right-info">
 			<i class="fa fa-times times-icon" id="close-search-nav"></i>
-			<form role="form">
-				<input type="text" class="form-control"
-					placeholder="Search something...">
+			<form role="form" action="search.jsp" method="POST">
+				<input name="query" type="text" class="form-control"
+					placeholder="문서 제목 혹은 내용을 검색하세요" value="">
 			</form>
 		</div>
 		<!-- End visible phone and search nav -->
@@ -45,7 +45,7 @@
 			<li class="parent"><a href="#fakelink">Category</a>
 				<ul class="sub-menus">
 					<!-- <li class="sub-list"><a href=""><span class="label label-danger">HOT</span>IT</a></li>  -->
-					<% for (CategoryBean ctmp : clist ) { %>
+					<% for (Category ctmp : clist ) { %>
 					<li class="sub-list"><a href="index.jsp"><%= ctmp.getName() %></a></li>
 					<% } %>
 				</ul></li>

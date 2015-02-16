@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	Author	: hong won gi
+	CRUD  	:
+		C	: create
+		R	: update
+		U	: findAll, findById, findByName
+		D	: remove
+	조사완료
+ -->
+<mapper namespace="DocumentMapper">
+	<insert id="create" parameterType="pb.rest.jaxrs.vo.Document"
+		useGeneratedKeys="true" keyProperty="_id">
+		INSERT INTO pb_docs 
+		( title, description, projectId, postedDate, sceneList, previewImage, category )
+		VALUES 
+		( #{title}, #{description}, #{projectId}, #{postedDate}, #{sceneList}, #{previewImage}, #{category} )
+	</insert>
+	<update id="update" parameterType="pb.rest.jaxrs.vo.Document"
+		useGeneratedKeys="true" keyProperty="_id">
+		UPDATE pb_docs
+		SET title = #{ title } , description = #{ description }, projectId = #{ projectId }, postedDate = #{ postedDate }, 
+			sceneList = #{ sceneList }, previewImage = #{ previewImage }, category = #{ category }
+		where _id= #{ _id }
+	</update>
+	<!--  find level 0 -->
+	<select id="findAll" resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb.pb_docs
+	</select>
+	<!--  find level 1 -->
+	<select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb_docs where _id= #{ _id }
+	</select>
+	<select id="findByName" parameterType="String" resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb_docs 
+		where title= #{ title }
+	</select>
+	<select id="findByNick" parameterType="String" resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb_docs 
+		where description= #{ description }
+	</select>
+	<!--  find level 2 -->
+	<select id="findByTitleContainsAndAccountId" parameterType="map" resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb_docs 
+		where accountId = #{ accountId } and title like CONCAT('%', #{ query } ,'%')
+	</select>
+	<select id="findByDescriptionContainsAndAccountId" parameterType="map" resultType="pb.rest.jaxrs.vo.Document">
+		select *
+		from pb_docs 
+		where accountId = #{ accountId } and description like CONCAT('%', #{ query } ,'%')
+	</select>	
+	<delete id="remove" parameterType="int">
+		delete
+		from pb_docs
+		where _id= #{ _id }
+	</delete>
+</mapper>

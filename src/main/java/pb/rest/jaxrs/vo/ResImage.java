@@ -10,4 +10,6 @@ public class ResImage extends Resource {
 	public int width;
 	public int height;
 	public String type;
+	
+	public ResImage(){}
 }
