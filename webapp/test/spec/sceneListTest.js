@@ -10,7 +10,7 @@ define(['jquery', 'underscore', 'pubsub',
 		teardown: function () {
 			// 테스트 실행 뒤 수행됨
 			console.log("SceneList Test - teardown");
-		},
+		}
 		/** Lifecycle properties are shared on respective test context
 		 * [@link http://api.qunitjs.com/QUnit.module/]
 		 */

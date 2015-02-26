@@ -168,7 +168,7 @@ div.change {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 /**

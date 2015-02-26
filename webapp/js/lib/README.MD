@@ -1,9 +1,10 @@
 - lib version
 * jQuery : 1.10.2
 * jquery UI : 1.11.1
+* interact : 1.2.3
 
 
-* underscore : 1.7.0
+* underscore : 1.8.2
 * require : 2.1.15
 * tpl : 0.2
 

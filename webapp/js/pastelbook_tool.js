@@ -21,6 +21,7 @@ requirejs.config({
 
 		jquery_ui: 'lib/jquery_ui/jquery-ui',
 		jquery_ui_position: 'lib/jquery_ui/jquery.ui.position',
+		interact: 'lib/interact-1.2.3',
 
 		localStorage: 'lib/backbone.localStorage',
 		marionette: 'lib/backbone.marionette',
@@ -146,7 +147,7 @@ requirejs.config({
 	}
 });
 
-require(["pb_app_tool", 'contextMenu', /*, "pb_debug_hongs_only"*/], function (pb_app_tool) {
+require(["pb_app_tool", 'contextMenu' /*, "pb_debug_hongs_only"*/], function (pb_app_tool) {
 	/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
 	pb_app_tool.start(); // Application start
 	myLogger.trace("pb_app_tool loading Complete");

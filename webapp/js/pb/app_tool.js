@@ -16,7 +16,6 @@ define([
 	'pb/collections/SceneViewSetList',
 	'pb/views/SceneCompositeView',
 	'pb/views/ScenePreviewCompositeView',
-
 	'pb/views/menu/MenuDialog'
 ], function (Marionette,
              Project,
@@ -28,9 +27,8 @@ define([
 	var app_tool = new Marionette.Application();
 
 	if(window.projectData) {
-		pb.type.model.project = new Project({
-			sceneList: window.projectData
-		}, {
+		pb.type.model.project = new Project(
+			window.projectData, {
 			parse: false
 		});
 	} else {

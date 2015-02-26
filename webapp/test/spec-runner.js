@@ -25,8 +25,6 @@
 
 			pb_templates: 'pb/templates',
 
-			pb_app: 'pb/app',		//main start point
-			//
 			//qunit: 'lib/qunit/qunit-1.15.0',
 			pubsub: testPath + 'lib/pubsub-1.5.0'
 			//
@@ -80,15 +78,20 @@
 	});
 
 	var testSuite = {
-		specs: ['spec/exampleTest'],
-		fetchTest: ['spec/fetchTest']
+		//specs: ['spec/exampleTest'],
+		//fetchTest: ['spec/fetchTest']
+		ViewContainerTest: ['spec/viewContainerTest']
 	};
 
-	require(['jquery', 'backbone', 'underscore'], function (_) {
+	require(['underscore', 'jquery', 'backbone'], function (_) {
 		/* require test suite */
-		require(_.map(testSuite.fetchTest, function (testCase) {
-				return testPath + testCase;
-			}), function () {
+		var path = _.mapObject(testSuite, function (testCase) {
+			return testPath + testCase;
+		});
+
+		var testCase = _.values(path);
+
+		require(testCase, function () {
 				QUnit.start();
 			}
 		);

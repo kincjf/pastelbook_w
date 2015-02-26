@@ -46,6 +46,8 @@
 		}
 	%>
 	</script>
+    <!-- implementation of prototype functions -->
+    <script src="js/prototype_global.js"></script>
     <!-- configure for use logging library  -->
     <script src="js/lib/log4javascript_uncompressed.js"></script>
     <script src="js/log4javascript-config.js"></script>
