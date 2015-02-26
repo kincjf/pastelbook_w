@@ -12,6 +12,7 @@
 		int projectId = Integer.parseInt(id);
 		bean = dao.findById(projectId);
 		projectData = bean.getSceneList();
+		
 	}
 %>
 <!doctype html>
@@ -42,6 +43,7 @@
 		if(id != null){
 	%>
 		var projectData = <%=projectData%>;
+		console.log(projectData);
 	<%
 		}
 	%>

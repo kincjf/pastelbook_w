@@ -29,14 +29,14 @@ define([
 	if(window.projectData) {
 		pb.type.model.project = new Project(
 			window.projectData, {
+				parse: false
+			});
+	} else {
+		pb.type.model.project = new Project({
+			sceneList: new SceneList()
+		}, {
 			parse: false
 		});
-	} else {
-	pb.type.model.project = new Project({
-		sceneList: new SceneList()
-	}, {
-		parse: false
-	});
 	}
 
 	/** Data type은 namespace를 써야될 것 같음.*/
@@ -96,16 +96,16 @@ define([
 	/** 각 Menu들에 대한  jqueryUI.dialog */
 	app_tool.addInitializer(function (options) {
 		app_tool.menuDialog.$el.dialog({
-				modal: true,
-				//autoOpen: true,
-				width: pb.ui.menuDlg.w,
-				height: pb.ui.menuDlg.h,
-				closeOnEscape: false,
-				minHeight: 50
-			}).parent().css({
-				top: pb.ui.menuDlg.y,
-				left: pb.ui.menuDlg.x
-			});
+			modal: true,
+			//autoOpen: true,
+			width: pb.ui.menuDlg.w,
+			height: pb.ui.menuDlg.h,
+			closeOnEscape: false,
+			minHeight: 50
+		}).parent().css({
+			top: pb.ui.menuDlg.y,
+			left: pb.ui.menuDlg.x
+		});
 	});
 
 	///** for debugging */

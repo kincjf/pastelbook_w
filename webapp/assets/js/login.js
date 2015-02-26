@@ -58,6 +58,7 @@ window.fbAsyncInit = function () {
 }(document, 'script', 'facebook-jssdk'));
 
 
+
 function facebookLogin() {
 	//페이스북 로그인 버튼을 눌렀을 때의 루틴.
 	FB.login(function (response) {
@@ -67,15 +68,14 @@ function facebookLogin() {
 			fbname = user.name;
 			userId = user.id;
 
-			$.post("./test.html", { "userid": user.id, "username": fbname, "fbaccesstoken":accessToken},
+			$.post("./data/fb_login.jsp", { "userid": user.id, "username": fbname, "fbaccesstoken":accessToken, "email": user.email},
 				function (response) {
+					location.href = "./fb_register.jsp";
 					//댓글을 처리한 다음 해당 웹페이지를 갱신 시키기 위해 호출.
 					//console.log(response);
 				});
-
-			console.log(user);
 		});
-	}, {scope: 'publish_stream, user_likes'});
+	}, {scope: 'email, user_likes, publish_stream'});
 }
 
 //------------------------------페이스북 연동 end-----------------------------------------
@@ -138,7 +138,6 @@ $('#revokeButton').click(disconnectUser);
 
 
 function getEmail() {
-
 	// userinfo 메소드를 사용할 수 있도록 oauth2 라이브러리를 로드합니다.
 
 	gapi.client.load('oauth2', 'v2', function() {
@@ -148,8 +147,6 @@ function getEmail() {
 		request.execute(getEmailCallback);
 
 	});
-
-
 }
 
 //사용자 정보를 가져오기 위한 코드

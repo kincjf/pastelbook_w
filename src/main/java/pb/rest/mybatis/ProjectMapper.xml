@@ -13,10 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="create" parameterType="pb.rest.jaxrs.vo.Project"
 		useGeneratedKeys="true" keyProperty="_id">
 		INSERT INTO pb_project
-		( accountId, title, comment, createDate, modifyDate, sceneList,
+		( accountId, title, description, createDate, modifyDate, sceneList,
 		previewImage, width, height )
 		VALUES (
-		#{accountId}, #{title}, #{comment}, #{createDate}, #{modifyDate}
+		#{accountId}, #{title}, #{description}, #{createDate}, #{modifyDate}
 		, #{sceneList}, #{previewImage}, #{width}, #{height}
 		)
 	</insert>
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		useGeneratedKeys="true" keyProperty="_id">
 		UPDATE pb_project
 		SET
-		accountId =#{accountId} , title =#{title}, comment =#{comment},
+		accountId =#{accountId} , title =#{title}, description =#{description},
 		createDate =#{createDate}, modifyDate =#{modifyDate}, sceneList =#{sceneList},
 		previewImage =#{previewImage}, width =#{width}, height =#{height}
 		where _id= #{ _id }
@@ -65,4 +65,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from pb_project
 		where accountId = #{ accountId }
 	</select>
+	<select id="findAllByAccountIdAndCategoryandQueryAndDateOrder" parameterType="map"
+		resultType="pb.rest.jaxrs.vo.Project">
+		select *
+		from pb_project
+		where accountId = #{ accountId }
+		<if test="category != null and category != ''">
+			and category = #{ category }
+		</if>
+		<if test="query != null and query != ''">
+			and (title like CONCAT('%', #{ query } ,'%') or description like CONCAT('%', #{ query } ,'%')) 
+		</if>
+		<if test="dateOrder != null and dateOrder != ''">
+			<if test="dateOrder == 'asc'">
+				order by modifyDate asc
+			</if>
+			<if test="dateOrder == 'desc'">
+				order by modifyDate desc
+			</if>			
+		</if>
+	</select>	
+	
 </mapper>

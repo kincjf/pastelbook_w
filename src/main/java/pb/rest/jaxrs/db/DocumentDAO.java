@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sun.xml.bind.v2.TODO;
+
 import pb.rest.jaxrs.vo.Document;
 
 public class DocumentDAO extends PastelbookDAO<Document> {
@@ -83,4 +85,43 @@ public class DocumentDAO extends PastelbookDAO<Document> {
 	}
 	
 	
+	/**
+	 * TODO xml에 아직 추가 안됨
+	 * @param docId
+	 * @return
+	 */
+	public List<Document> findAllParentByDocID(@Param("docId") int docId) {
+		List<Document> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("docId", docId);
+        
+		result = session.selectList(objectName+"Mapper.findAllParentByDocID", map);
+		session.close();
+		
+		return result;
+	}
+	
+	/**
+	 * TODO xml에 아직 추가 안됨, 추가하고 d_techtree.jsp에서 동작하게 + 부트스트랩,grid시스템
+	 * @param docId
+	 * @return
+	 */
+	public List<Document> findAllChildByDocID(@Param("docId") int docId) {
+		List<Document> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("docId", docId);
+        
+		result = session.selectList(objectName+"Mapper.findAllChildByDocID", map);
+		session.close();
+		
+		return result;
+	}
 }

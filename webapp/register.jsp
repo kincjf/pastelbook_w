@@ -1,11 +1,3 @@
-<%@page import="pb.rest.jaxrs.vo.Account"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><%
-	Account account = (Account)session.getAttribute("account");
-    
-    String referer = request.getHeader("referer");
-    referer = (referer == null ? "index.jsp" : referer);
-%>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -14,7 +6,7 @@
 		<meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
 		<meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
 		<meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-		<title>Login</title>
+		<title>Register</title>
  
 		<!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -44,8 +36,8 @@
 		
 		<!-- MAIN CSS (REQUIRED ALL PAGE)-->
 		<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="assets/css/style.css" rel="stylesheet">
-		<link href="assets/css/style-responsive.css" rel="stylesheet">
+		<link href="assets/css/sentir/style.css" rel="stylesheet">
+		<link href="assets/css/sentir/style-responsive.css" rel="stylesheet">
  
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -55,7 +47,7 @@
 	</head>
  
 	<body class="login tooltips">
-		<div id="fb-root"></div>
+		
 		
 		
 		<!--
@@ -63,60 +55,73 @@
 		BEGIN PAGE
 		===========================================================
 		-->
-		<% if (account == null) {%>
 		<div class="login-header text-center">
 			<img src="assets/img/logo-login.png" class="logo" alt="Logo">
 		</div>
 		<div class="login-wrapper">
-			<div class="alert alert-warning alert-bold-border fade in alert-dismissable">
-			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  <strong></strong> 로그인되지 않았습니다. <a href="#fakelink" class="alert-link">지금 로그인 하세요</a>.
-			</div>
-			<form role="form" method="POST" action="index.jsp">
+			<form role="form" method="POST" action="register.jsp">
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="text" name="account" class="form-control no-border input-lg rounded" placeholder="아이디를 입력하세요" autofocus>
+				  <input type="text" name="nick" class="form-control no-border input-lg rounded" placeholder="" autofocus>
+				  <span class="fa fa-male form-control-feedback"></span>
+				</div>
+				<!-- 
+				<div class="form-group has-feedback lg left-feedback no-label">
+				  <input type="text" name="email" class="form-control no-border input-lg rounded" placeholder="">
+				  <span class="fa fa-male form-control-feedback"></span>
+				</div>
+				-->
+				<div class="form-group has-feedback lg left-feedback no-label">
+				  <input type="text" name="name" class="form-control no-border input-lg rounded" placeholder="ID()">
 				  <span class="fa fa-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="password" name="pw" class="form-control no-border input-lg rounded" placeholder="비밀번호를 입력하세요">
-				  <span class="fa fa-unlock-alt form-control-feedback"></span>
+				  <input type="password" id="pass1" class="form-control no-border input-lg rounded" placeholder="">
+				  <span class="fa fa-lock form-control-feedback"></span>
+				</div>
+				<div class="form-group has-feedback lg left-feedback no-label">
+				  <input type="password" id="pass2" class="form-control no-border input-lg rounded" placeholder="" onkeyup="checkPass(checkPassí¨ì-í¤ìë ¥ìì²´í¬)); return false;">
+				  <span class="fa fa-unlock form-control-feedback"></span>
+				  <!-- <span id="confirmMessage" class="confirmMessage"></span>  -->
+				</div>
+				<div class="form-group has-feedback lg left-feedback no-label">
+				  <input type="email" class="form-control no-border input-lg rounded" placeholder="">
+				  <span class="fa fa-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group">
 				  <div class="checkbox">
-					<label>
-					  <input type="checkbox" class="i-yellow-flat"> 아이디 기억하기 ( 아직 미동작 )
+					<label class="inline-popups">
+					  <input type="checkbox" class="i-yellow-flat"> I accept <a href="#text-popup" data-effect="mfp-zoom-in">Terms and conditions</a>
 					</label>
 				  </div>
 				</div>
 				<div class="form-group">
-					<button type="submit" class="btn btn-warning btn-lg btn-perspective btn-block">로그인</button>
+					<button type="submit" class="btn btn-warning btn-lg btn-perspective btn-block">REGISTER</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-info btn-lg btn-perspective btn-block">CANCEL</button>
 				</div>
 			</form>
-			<p class="text-center"><strong><a href="forgot-password.html">패스워드 찾기 ( 아직 미동작 )</a></strong></p>
-			<p class="text-center"><strong><a href="register.jsp">새로 계정 만들기 ( 아직 미동작 )</a></strong></p>
-			<div onclick="facebookLogin()" style="cursor: pointer;">
-				<p class="text-center"><span class="fa fa-facebook-square"></span><strong><a>페이스북아이디로 만들기( 미동작 )</a></strong></p>
-			</div>
-			<div style="cursor: pointer;"  class="g-signin"
-				 data-callback="signinCallback"
-    			 data-clientid="962234642378-03dcinreblell8vmnodcg3fbpsqhulhs.apps.googleusercontent.com"
-    			 data-cookiepolicy="single_host_origin"
-    			 data-requestvisibleactions="http://schemas.google.com/AddActivity"
-    			 data-scope="https://www.googleapis.com/auth/plus.login">
-				<p class="text-center"><span class="fa fa-google-plus"></span><strong><a>구글아이디로 만들기( 미동작 )</a></strong></p>
-			</div>
 		</div><!-- /.login-wrapper -->
-		<% } else { %>
-		<div class="login-header text-center">
-			<img src="assets/img/logo-login.png" class="logo" alt="Logo">
+		
+		
+		<!-- Text popup -->
+		<div id="text-popup" class="white-popup wide mfp-with-anim mfp-hide">
+			<h4>TERMS</h4>
+			<p>
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+			</p>
+			<p>
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+			</p>
+			<hr />
+			<h4>CONDITIONS</h4>
+			<p>
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+			</p>
+			<p>
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+			</p>
 		</div>
-		<div class="login-wrapper">
-			<div class="alert alert-warning alert-bold-border fade in alert-dismissable">
-			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  <strong><%= account.getName() %>님 환영합니다. 이미 로그인 되셨습니다.</strong><a href="<%=referer%>" class="alert-link">이전페이지로 돌아가기</a>.
-			</div>
-		</div><!-- /.login-wrapper -->
-		<% } %>
 		<!--
 		===========================================================
 		END PAGE
@@ -191,8 +196,6 @@
 		
 		<!-- MAIN APPS JS -->
 		<script src="assets/js/apps.js"></script>
-
-		<script src="assets/js/login.js"></script>
 		
 	</body>
 </html>

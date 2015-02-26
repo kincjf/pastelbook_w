@@ -28,20 +28,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   where _id= #{ _id } 
  </update>
  <select id="findAll" resultType="pb.rest.jaxrs.vo.ResImage">
-  select *
-  from pb_res_image 
+  select _id, accountId,
+   if(locate('http',path)=1, concat('/proxy?url=',path),path) as path, 
+   if(locate('http',thumbPath)=1, concat('/proxy?url=',thumbPath),thumbPath) as thumbPath, 
+   name, size, width, height, type
+  from pb_res_image_proxy 
  </select>
  <select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
   select *
-  from pb_res_image where _id= #{ _id }
+  from pb_res_image_proxy where _id= #{ _id }
  </select>
  <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
   select *
-  from pb_res_image where name =#{ name }
+  from pb_res_image_proxy where name =#{ name }
  </select>
  <select id="findAllByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
   select *
-  from pb_res_image where name =#{ name }
+  from pb_res_image_proxy where name =#{ name }
  </select>
  <delete id="remove" parameterType="int">
   delete 

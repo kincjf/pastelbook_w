@@ -8,4 +8,5 @@ public class VO {
 	@Override public String toString(){
 		return Pojomatic.toString(this);
 	}
+	
 }

@@ -1,24 +1,39 @@
+<%@page import="org.apache.commons.lang3.StringUtils"%>
+<%@page import="pb.log.PBLog"%>
 <%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
 <%@page import="pb.rest.jaxrs.vo.Project"%>
 <%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@page import="pb.rest.jaxrs.vo.Account"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.sql.*"%>
+<%@include file="include/login_check.jsp" %>
 <%
 	Account account = null;
 
-	// test
 	AccountDAO adao = new AccountDAO();
-	session.setAttribute("account",adao.findById(1));
 
 	if(session.getAttribute("account") != null){
 		account = (Account)session.getAttribute("account");
 	}
-	// end test
+	
+	// 세션 체크
 	
 	ProjectDAO dao = new ProjectDAO();
-	List<Project> list = dao.findAllByAccountId(account.getId());
+	
+	
+	//List<Project> alist = dao.findAllByAccountId(account.getId());
+	
+	// request.getParameter("");
+	
 
+	List<Project> alist = dao.findAllByAccountIdAndCategoryandQueryAndDateOrder(
+			request.getParameter("query"), 
+			account.getId(), 
+			request.getParameter("category"), 
+			request.getParameter("dateOrder")); 	
+
+
+	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,7 +43,7 @@
     <meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
     <meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
     <meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-    <title>PastelBook - Manage My Project List</title>
+    <title>파스텔북 - 내 프로젝트 관리</title>
 
     <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +59,7 @@
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-    <link href="assets/css/common.css" rel="stylesheet">
+    <!-- <link href="assets/css/common.css" rel="stylesheet">  -->
     
     <link href="assets/css/myCss.css" rel="stylesheet">
     <link href="assets/css/myCss-responsive.css" rel="stylesheet">
@@ -75,11 +90,11 @@ BEGIN PAGE
 <div class="page-title-wrap">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.jsp">Home</a></li>
-            <li><a href="my.jsp">My</a></li>
-            <li><a href="my_project2_list">Project List</a></li>
+            <li><a href="index.jsp">홈</a></li>
+            <li><a href="my.jsp">마이 페이지</a></li>
+            <li><a href="my_project2_list">프로젝트 목록</a></li>
         </ol>
-        <h2 class="page-title">My Project List</h2>
+        <h2 class="page-title">내 프로젝트 목록</h2>
     </div><!-- /.container -->
 
     <div class="border-bottom">
@@ -94,78 +109,107 @@ BEGIN PAGE
 
 <div class="section work-section">
     <div class="container">
-
-        <div class="row button-wrap">
+		
+		<!-- BEGIN 신규추가 버튼들 -->
+        <div class="row button-new">
         	<!-- 상단 버튼 1 -->
-            <div class="col-sm-4 col-md-4 col-xs-12">
-                <div class="col-xs-4 col-md-4 nopadding">
-                    <select class="form-control">
-                        <option selected>카테고리</option>
-                        <option>IT</option>
-                        <option>시사</option>
-                        <option>사진</option>
-                        <option>창작</option>
-                    </select>
+            <div class="col-xs-6 col-sm-4 col-md-4">
+                <div class="btn-group col-xs-12 col-sm-12 col-md-12 nopadding" role="group">
+                    <button type="button" class="btn btn-default form-control" id="project-new">
+                        <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 새로 만들기
+                    </button>
                 </div>
 
-                <div class="col-xs-4 col-md-4 nopadding">
-                    <select class="form-control">
-                        <option selected>정렬</option>
-                        <option>오른쪽 정렬</option>
-                        <option>왼쪽 정렬</option>
-                        <option>가운데 정렬</option>
-                    </select>
-                </div>
+                <div class="col-xs-6 col-sm-4 col-md-6 nopadding">
 
-                <div class="col-xs-4 col-md-4 dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#fakelink">
-                        선택 <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu primary" role="menu">
-                        <li><a href="#fakelink">전체선택</a></li>
-                        <li><a href="#fakelink">선택해제</a></li>
-                    </ul>
                 </div>
             </div>
 			<!-- 상단 버튼 2 -->
-            <div class="col-sm-4 col-md-4 col-xs-12">
-                <div class="buttons">
-                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                        <div class="btn-group col-xs-4 col-md-4 nopadding" role="group">
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
-                            </button>
-                        </div>
-                        <div class="btn-group col-xs-4 col-md-4 nopadding" role="group">
-                            <button type="button" class="btn btn-default" id="public">
-                                <span><img src="assets/img/unlock.png" style="height: 20px"></span> Public
-                            </button>
-                        </div>
-                        <div class="btn-group col-xs-4 col-md-4 nopadding" role="group" >
-                            <button type="button" class="btn btn-default" id="private">
-                                <span><img src="assets/img/lock.png" style="height: 20px"></span> Private
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
             </div>
-            
-            <!-- 상단 버튼 3 -->
-            <div class="col-sm-4 col-md-4 col-xs-12">
-            	<div class="col-xs-10 col-md-10 nopadding">
-            		<input type="text" class="form-control" placeholder="Search for...">
-            	</div>
-            	<div class="col-xs-2 col-md-2 nopadding">
-                    <button class="btn btn-default form-control" type="button">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    </button>
-                </div>
-            </div><!-- /.input-group -->
+        </div><!-- /.button wrap-->
+        
+        <div class="row button-wrap">
+        	<form id="form-ordersearch" action="" method="POST">
+	        	<!-- 상단 버튼 1 -->
+	            <div class="col-xs-12 col-sm-4 col-md-4">
+	                <div class="col-xs-6 col-sm-6 col-md-6 nopadding">
+	                    <select class="form-control" name="category">
+	                        <option value="">카테고리로 정렬</option>
+	                        <% 
+	                        boolean cIsSelected = false;
+	                        for ( Category cTmp : clist){
+	                        	String cateogry = request.getParameter("category");
+	                        	if(cateogry != null){
+	                        		cIsSelected = cateogry.equals(cTmp.getId()+"");	
+	                        	}
+	                        	
+	                        %>
+	                        <option value="<%=cTmp.getId()%>" <%=cIsSelected ? "selected": "" %>><%=cTmp.getName() %></option>
+	                        <% } %>
+	                    </select>
+	                </div>
+	
+	                <div class="col-xs-6 col-sm-6 col-md-6 nopadding">
+	                    <select class="form-control" name="dateOrder">
+	                    	<option value="desc">시간순 정렬</option>
+	                        <%
+	                        String dateOrder = request.getParameter("dateOrder");
+	                        boolean doIsSelected = false;
+	                        String[] dArr = new String[] { "desc", "asc" };
+	                        String[] dnArr = new String[] { "최근 순서", "시간 순서" };
+	                        for ( int i = 0 ; i < dArr.length; i++){
+	                        	String dTmp = dArr[i];
+
+	                        	if(dateOrder != null){
+	                        		doIsSelected = dateOrder.equals(dTmp);	
+	                        	}
+	                        %>
+	                        <option value="<%=dTmp%>" <%=doIsSelected ? "selected": "" %>><%= dnArr[i] %></option>
+	                        <% } %>
+	                    </select>
+	                </div>
+	            </div>
+				<!-- 상단 버튼 2 -->
+	            <div class="col-xs-12 col-sm-4 col-md-4">
+	                <div class="buttons">
+	                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+	                        <div class="btn-group col-xs-4 col-sm-4 col-md-4 nopadding" role="group">
+	                            <button type="button" class="btn btn-default">
+	                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 선택된 것 삭제
+	                            </button>
+	                        </div>
+	                        <div class="btn-group col-xs-4 col-sm-4 col-md-4 nopadding" role="group">
+	                            <button type="button" class="btn btn-default" id="public">
+	                                <span><img src="assets/img/unlock.png" style="height: 20px"></span> 프로젝트로
+	                            </button>
+	                        </div>
+	                        <div class="btn-group col-xs-4 col-sm-4 col-md-4 nopadding" role="group" >
+	                            <button type="button" class="btn btn-default" id="private">
+	                                <span><img src="assets/img/lock.png" style="height: 20px"></span> 습작용
+	                            </button>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            
+	            <!-- 상단 버튼 3 -->
+	            <div class="col-xs-12 col-sm-4 col-md-4">
+	            	<div class="col-xs-10 col-md-10 nopadding">
+	            		<input type="text" name="query" class="form-control" placeholder="Search for...">
+	            	</div>
+	            	<div class="col-xs-2 col-md-2 nopadding">
+	                    <button class="btn btn-default form-control" type="button">
+	                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	                    </button>
+	                </div>
+	            </div><!-- /.input-group -->
+            </form>
         </div><!-- /.button wrap-->
 
         <div id="work-mixitup" class="work-content">
             <div class="row">
-            	<% for( Project tmp : list ){%>
+            	<% for( Project tmp : alist ){%>
                 <!-- Begin work item -->
                 <div class="col-sm-4 col-md-4 col-xs-6 mix printing">
                     <div class="work-item">
@@ -177,7 +221,7 @@ BEGIN PAGE
                                 <img src="assets/img/lock.png" style="width:30px; height: 30px;">
                             </div>
                         </div>
-                        <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
+                        <img src="thumb/<%= tmp.getPreviewImage() %>" class="img-responsive" alt="Img work">
 
                         <div class="the-box no-border transparent no-margin">
                             <p class="project-name"><%= tmp.getTitle() %></p>
@@ -189,14 +233,14 @@ BEGIN PAGE
                                 <span><%= tmp.getModifyDate() %></span>&nbsp;
                                 <span>조회수</span>
                             </p>
-                            <div class="row">
-                                <div class="col-xs-12 col-md-6">
+                            <div class="the-box no-border transparent no-margin row">
+                                <div class="col-xs-12 col-md-6 nopadding">
                                 	<form id="form<%=tmp.getId()%>"><input type="hidden" name="id" value="<%=tmp.getId()%>" /></form>
-                                    <button class="btn btn-default editInfo" type="submit" form="form<%=tmp.getId()%>" formaction="project_modify.jsp">정보수정</button>
+                                    <button class="btn btn-default editInfo form-control" type="submit" form="form<%=tmp.getId()%>" formaction="project_modify.jsp">정보수정</button>
                                 </div>
-                                <div class="col-xs-12 col-md-6">
+                                <div class="col-xs-12 col-md-6 nopadding">
 									<form id="form_editContent<%=tmp.getId()%>"><input type="hidden" name="id" value="<%=tmp.getId()%>" /></form>
-                                    <button class="btn btn-default editContent" type="submit" form="form_editContent<%=tmp.getId()%>" formaction="tool_pc.jsp">내용수정</button>
+                                    <button class="btn btn-default editContent form-control" type="submit" form="form_editContent<%=tmp.getId()%>" formaction="tool_pc.jsp">내용수정</button>
                                 </div>
                             </div>
                         </div><!-- /.the-box no-border transparent -->
@@ -300,34 +344,6 @@ BEGIN PAGE
 <!-- END BACK TO TOP -->
 
 
-<!-- BEGIN PROJECT SHOW MODAL TEMPLATE -->
-<!-- 해당 id를 인식하여 model popup이 작동함-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:auto;height:auto">
-        <div class="modal-content" style="width:auto;height:auto">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="false">close</button>
-                <div style="float:right; margin-right:1.0em;">view수</div>
-                <div><h4 class="modal-title">Modal title</h4></div>
-            </div>
-            <div class="modal-body" data-dismiss="modal">
-                <div style="background-color:black; margin:auto">
-                    <iframe src="./viewer_common.jsp?id=1" width="960px" height="540px" frameborder="0" marginwidth="0" marginheight="0"
-                    scrolling="no" max-width="100%" allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div style="float:left">ID</div>
-                <div>날짜</div>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-<!-- END PROJECT PROJECT SHOW MODAL TEMPLATE -->
 
 
 <!--
@@ -351,6 +367,14 @@ Placed at the end of the document so the pages load faster
 <script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 <script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
 <script src="assets/plugins/mixitup/jquery.mixitup.js"></script>
+<script src="assets/plugins/prettify/prettify.js"></script>
+<script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
+<script src="assets/plugins/slimscroll/jquery.slimscroll.js"></script>
+<script src="assets/plugins/chosen/chosen.jquery.js"></script>
+<script src="assets/plugins/mask/jquery.mask.js"></script>
+
+
+
 <script>
     $(document).ready(function(){
         $(function(){
@@ -377,7 +401,14 @@ Placed at the end of the document so the pages load faster
         $('#private').click(function(){
             $('.checkboxRegion img').attr('src', 'assets/img/lock.png');
         });
-
+        
+        $('#project-new').click(function(){
+            location.href="project_new.jsp";
+        });
+        
+        // 20150225 - 홍원기
+        // 정렬 및, 검색 기능 동작
+        $("#form-ordersearch .form-control").off('change').on('change', function(e){ this.form.submit();});
     });
 </script>
 <script src="assets/js/apps.js"></script>

@@ -53,8 +53,8 @@
 			<%
 			if(session.getAttribute("account") == null){
 			%>
-			<li class="parent"><a href="login.jsp">Login</a></li>
-			<li class="parent"><a href="register.jsp">Register</a></li>
+			<li class="parent"><a href="login.jsp">로그인</a></li>
+			<li class="parent"><a href="register.jsp">회원가입</a></li>
 			<%
 			}
 			%>

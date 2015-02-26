@@ -33,6 +33,7 @@ public class ProjectDAO extends PastelbookDAO<Project> {
 		
 		return result;
 	}
+	
 	public List<Project> findByDescriptionContainsAndAccountId(@Param("query") String query,@Param("accountId") int accountId) {
 		List<Project> result;
 		
@@ -48,4 +49,24 @@ public class ProjectDAO extends PastelbookDAO<Project> {
 		
 		return result;
 	}
+	
+	public List<Project> findAllByAccountIdAndCategoryandQueryAndDateOrder(@Param("query") String query,@Param("accountId") int accountId, @Param("category") String category, @Param("dateOrder") String dateOrder) {
+		System.out.println(query);
+		List<Project> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("query", query);
+        map.put("accountId", accountId);
+        map.put("category", category);
+        map.put("dateOrder",dateOrder);
+        
+		result = session.selectList(objectName+"Mapper.findAllByAccountIdAndCategoryandQueryAndDateOrder", map);
+		session.close();
+		
+		return result;
+	}
+	
 }
