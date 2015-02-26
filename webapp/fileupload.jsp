@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 			 pageEncoding="UTF-8"
 			 import="com.oreilly.servlet.MultipartRequest
 		,com.oreilly.servlet.multipart.DefaultFileRenamePolicy
@@ -53,11 +53,10 @@
 			new File(scontext.getRealPath(tmpPath)).delete();
 
 			// 새로 생긴 파일 상대경로로 표시 하기 위해, ln no
-			out.print(("."+newFilename.getCanonicalPath()
+			System.out.print(("."+newFilename.getCanonicalPath()
 				.substring(scontext.getRealPath("").length())
 				.replace("\\", "/")));
 		}
-		
 	} catch (Exception e) {
 		e.printStackTrace();
 	}

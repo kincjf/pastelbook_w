@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
 <%@page import="pb.rest.jaxrs.vo.Project"%>
 <%@page import="pb.rest.jaxrs.db.AccountDAO"%>
@@ -23,6 +24,7 @@
 			
 			Account account = (Account)session.getAttribute("account");
 			AccountDAO aDao = new AccountDAO();
+			SimpleDateFormat sdfPrint = new SimpleDateFormat("yyyy/MM/DD");
 %>			
 <!DOCTYPE html>
 <html lang="ko">
@@ -51,6 +53,7 @@
 
     <link href="assets/css/myCss.css" rel="stylesheet">
     <link href="assets/css/myCss-responsive.css" rel="stylesheet">
+    
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -78,9 +81,9 @@ BEGIN PAGE
 <div class="page-title-wrap">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.jsp">Home</a></li>
-            <li><a href="#fakelink">Project</a></li>
-            <li class="active">Detail</li>
+            <li><a href="index.jsp">홈</a></li>
+            <li><a href="#fakelink">프로젝트</a></li>
+            <li class="active">상세보기</li>
         </ol>
         <h2 class="page-title"><%= result.getTitle() %></h2>
     </div><!-- /.container -->
@@ -114,7 +117,7 @@ BEGIN PAGE
                 <!-- author comment -->
                 <div class="media-body">
                     <h4 class="media-heading">작성일</h4>
-                    <p class="text-info"><%= result.getCreateDate() %></p>
+                    <p class="text-info"><%= sdfPrint.format(result.getCreateDate()) %></p>
                     <p>
                     </p>
                 </div>
@@ -229,7 +232,7 @@ BEGIN PAGE
                 <!-- Begin blog detail -->
                 <div class="panel panel-square panel-success panel-no-border">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Project Name</strong></h3>
+                        <h3 class="panel-title"><strong>프로젝트명</strong></h3>
                         <button class="btn btn-warning btn-perspective" id="subscribe">
                             <span id="subscribe-text"><%=result.getTitle() %></span>
                             <span class="fa fa-check" id="subscribeIcon"></span>
@@ -239,15 +242,15 @@ BEGIN PAGE
                     <ul class="list-group success blog-detail-list square">
                         <li class="list-group-item">
                             <i class="fa fa-calendar icons"></i>
-                            Posted : <a href="#fakelink"><%= result.getCreateDate() %></a>
+                            작성일 : <a href="#fakelink"><%= sdfPrint.format(result.getCreateDate()) %></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-folder-o icons"></i>
-                            Category : <a href="#fakelink"><%= cDao.findById(result.getCategory()).getName() %></a>
+                            카테고리 : <a href="#fakelink"><%= cDao.findById(result.getCategory()).getName() %></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-flask icons"></i>
-                            Author: <a href="#fakelink"><%= aDao.findById(result.getAccountId()).getNick() %></a>
+                            저자: <a href="#fakelink"><%= aDao.findById(result.getAccountId()).getNick() %></a>
                         </li>
                     </ul>
                 </div><!-- /.panel panel-default -->
@@ -256,7 +259,7 @@ BEGIN PAGE
                 <!-- Begin Recent post -->
                 <div class="panel panel-no-border panel-sidebar">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Recent post</h3>
+                        <h3 class="panel-title">최근 업로드</h3>
                     </div>
                     <ul class="media-list">
                     	<% for( Project tmp : recents ){%>

@@ -7,9 +7,11 @@
 		maxActive="500"
 		maxIdle="100"
 		name="jdbc/maria_pb"
-		password="hitit113112"
+		password="wjstks"
 		type="javax.sql.DataSource"
-		url="jdbc:mysql://54.65.24.182:3306/pb"
+		url="jdbc:mysql://pastelbook.com:3306/pb"
 		useUnicode="true"
 		username="pb"/>
+<!--  url="jdbc:mysql://54.65.24.182:3306/pb"  -->
+<!--  hitit113112  -->
 </Context>

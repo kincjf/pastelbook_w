@@ -59,30 +59,32 @@
 			<img src="assets/img/logo-login.png" class="logo" alt="Logo">
 		</div>
 		<div class="login-wrapper">
-			<form role="form">
+			<form role="form" method="POST" action="register.jsp">
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="text" class="form-control no-border input-lg rounded" placeholder="성" autofocus>
+				  <input type="text" name="nick" class="form-control no-border input-lg rounded" placeholder="" autofocus>
 				  <span class="fa fa-male form-control-feedback"></span>
 				</div>
+				<!-- 
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="text" class="form-control no-border input-lg rounded" placeholder="이름">
+				  <input type="text" name="email" class="form-control no-border input-lg rounded" placeholder="">
 				  <span class="fa fa-male form-control-feedback"></span>
 				</div>
+				-->
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="text" class="form-control no-border input-lg rounded" placeholder="ID">
+				  <input type="text" name="name" class="form-control no-border input-lg rounded" placeholder="ID()">
 				  <span class="fa fa-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="password" id="pass1" class="form-control no-border input-lg rounded" placeholder="비밀번호 입력">
+				  <input type="password" id="pass1" class="form-control no-border input-lg rounded" placeholder="">
 				  <span class="fa fa-lock form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="password" id="pass2" class="form-control no-border input-lg rounded" placeholder="비밀번호 확인" onkeyup="checkPass(); return false;">
+				  <input type="password" id="pass2" class="form-control no-border input-lg rounded" placeholder="" onkeyup="checkPass(checkPassí¨ì-í¤ìë ¥ìì²´í¬)); return false;">
 				  <span class="fa fa-unlock form-control-feedback"></span>
-				  <span id="confirmMessage" class="confirmMessage"></span>
+				  <!-- <span id="confirmMessage" class="confirmMessage"></span>  -->
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="email" class="form-control no-border input-lg rounded" placeholder="이메일을 입력해주세요.">
+				  <input type="email" class="form-control no-border input-lg rounded" placeholder="">
 				  <span class="fa fa-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group">

@@ -39,7 +39,7 @@
     <title> TT </title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/assets/js/jquery.js"></script>
 	<style>
 		.section {
 			margin-bottom: 10%;
@@ -93,7 +93,7 @@
 	<div class="section" id="targetDoc">
 		<div class="doc" style="position: relative" id="<%=resultTarget.getId()%>">
 			<a href="#aaa">
-				<img src="img/noimage.png" width="200" height="200" />
+				<img src="<%=request.getContextPath()%>/thumb/.book.png" width="200" height="200" />
 				<span class="doc_title"><%=resultTarget.getTitle() %></span>
 			</a>
 		</div>	

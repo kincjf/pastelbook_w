@@ -15,14 +15,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="create" parameterType="pb.rest.jaxrs.vo.Account"
 		useGeneratedKeys="true" keyProperty="_id">
 		INSERT INTO pb_account 
-		( nick, email, password, name)
+		( nick, email, password, name, type)
 		VALUES 
-		( #{nick}, #{email}, #{password}, #{name})
+		( #{nick}, #{email}, #{password}, #{name}, #{type} )
 	</insert>
 	<update id="update" parameterType="pb.rest.jaxrs.vo.Account"
 		useGeneratedKeys="true" keyProperty="_id">
 		UPDATE pb_account
-		SET nick = #{ nick } , email = #{ email }, password = #{ password }, name = #{ name }
+		SET nick = #{ nick } , email = #{ email }, password = #{ password }, name = #{ name }, type = #{ type }
 		where _id= #{ _id }
 	</update>
 	<select id="findAll" resultType="pb.rest.jaxrs.vo.Account">

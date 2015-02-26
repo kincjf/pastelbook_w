@@ -126,3 +126,7 @@ ul.work-category-wrap.categori_list{
 .serch_margin{
 	margin-left: 30px;
 }
+
+.work-content .work-item a{
+	color: #3eafdb;
+}

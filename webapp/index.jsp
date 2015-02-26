@@ -25,13 +25,10 @@
 		int accountId = -1;
 		if(account != null){
 			if(pw != null){
-				Account bean = new Account("nick", "email", pw, account);
-				//PBLog.logger.error("" + bean);
+				Account bean = new Account("nick", "email", pw, account, "type");
 				Account fromDB = aDao.findByName(bean.getName());
-				//PBLog.logger.error("" + fromDB);
 				if (fromDB != null) { // 아이디는 있는 경우
 					if (bean.getPassword().equals(fromDB.getPassword())) {
-						// out.println("<script>alert();</script>");
 						// 세션에 id 등록
 						session.setAttribute("account", fromDB);
 					} else {
@@ -154,19 +151,18 @@ BEGIN PAGE
 						    iter++;
 				%>
                 <!-- Begin work item -->
-                <div class="col-sm-4 col-md-4 col-xs-6 mix <%= tmp.getCategory() %>}
-					%>">
+                <div class="col-sm-4 col-md-4 col-xs-6 mix <%= tmp.getCategory() %>">
                     <div class="work-item">
 											<img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
 
                             
                        <div class="the-box no-border transparent no-margin">
-                           <p class="project-name"><%= tmp.getTitle() %></p>
+                           <p class="project-name"><a href="doc_detail.jsp?id=<%=tmp.getId()%>"><%= tmp.getTitle() %></a></p>
                            <p class="dateAndSlideCnt">
                                <span><%= sdfPrint.format(tmp.getPostedDate()) %></span>&nbsp;
                                <span>슬라이드 수</span>
                            </p>
-                           <p class="project-category"><%= cDao.findById(tmp.getCategory()).getName() %></p>
+                           <p class="project-category"><a href="category_view.jsp?cid=<%=tmp.getCategory()%>"><%= cDao.findById(tmp.getCategory()).getName() %></a></p>
                            <!-- <span>조회수</span> -->
                         </div><!-- /.the-box no-border transparent -->
                     </div><!-- /.work-item -->

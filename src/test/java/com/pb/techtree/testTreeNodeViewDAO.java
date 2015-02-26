@@ -11,7 +11,7 @@ import com.pb.db.PbDAO;
 
 
 public class testTreeNodeViewDAO {
-	
+	/*
 	// for tree
 	public ArrayList<TreeNodeViewBean> findFamillyById(int parseInt) throws SQLException {
 		PbDAO dao = new PbDAO();
@@ -115,4 +115,5 @@ public class testTreeNodeViewDAO {
 	
 		return recents;
 	}
+	*/
 }
