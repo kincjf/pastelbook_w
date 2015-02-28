@@ -163,7 +163,7 @@ BEGIN PAGE
                                <span>슬라이드 수</span>
                            </p>
                            <p class="project-category"><a href="category_view.jsp?cid=<%=tmp.getCategory()%>"><%= cDao.findById(tmp.getCategory()).getName() %></a></p>
-                           <!-- <span>조회수</span> -->
+                           <span>조회수 : <%=tmp.getViewCount() %>회</span>
                         </div><!-- /.the-box no-border transparent -->
                     </div><!-- /.work-item -->
                 </div><!-- /.col-sm-4 col-md-4 col-xs-6 mix -->

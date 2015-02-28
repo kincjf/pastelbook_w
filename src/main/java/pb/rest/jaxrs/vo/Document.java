@@ -17,12 +17,13 @@ public class Document extends VO {
 	String sceneList;
 	String previewImage;
 	int category;
+	int viewCount;
 
 	public Document() {
 	}
 
 	public Document(int _id, String title, String description, int projectId,
-			Date postedDate, String sceneList, String previewImage, int category) {
+			Date postedDate, String sceneList, String previewImage, int category, int viewCount) {
 		this._id = _id;
 		this.title = title;
 		this.description = description;
@@ -31,6 +32,7 @@ public class Document extends VO {
 		this.sceneList = sceneList;
 		this.previewImage = previewImage;
 		this.category = category;
+		this.viewCount = viewCount;
 	}
 
 	public int getId() {
@@ -105,4 +107,11 @@ public class Document extends VO {
 		this.category = category;
 	}
 
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
 }

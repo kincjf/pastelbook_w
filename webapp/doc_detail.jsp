@@ -16,11 +16,13 @@
 
 			DocumentDAO dao = new DocumentDAO();
 			Document result = dao.findById(id);
-			
+			result.setViewCount(result.getViewCount()+1);
+			//result=dao.update(result);
 			// to do -> use category;
 			List<Document> recents = dao.findAll(); // to do fine recents
 			
 			AccountDAO aDao = new AccountDAO();
+			Account account = (Account)session.getAttribute("account");
 			
 %>
 <!DOCTYPE html>
@@ -77,9 +79,9 @@ BEGIN PAGE
 <div class="page-title-wrap">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.jsp">Home</a></li>
-            <li><a href="#fakelink">Doc</a></li>
-            <li class="active">Doc detail</li>
+            <li><a href="index.jsp">홈</a></li>
+            <li><a href="#fakelink">문서</a></li>
+            <li class="active">문서 세부정보</li>
         </ol>
         <h2 class="page-title"><%= result.getTitle() %></h2>
     </div><!-- /.container -->
@@ -98,24 +100,52 @@ BEGIN PAGE
         <div class="col-sm-8 col-md-9">
 
             <!-- BLOG DETAIL SECTION -->
-            <div class="section blog-detail">
-				<!--  <%//result.getPreviewImage() %>-->
+            <div class="section blog-detail" style="box-sizing:border-box; border:1px solid black">
+				<!--  <%= String.format("%f02",((float)437/(float)800)*100) %>-->
                 <!-- <img src="thumb/<%= result.getPreviewImage() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px;">  -->
                 
-                <embed src="viewer_common.jsp?id=<%=result.getId() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px; width:800px; height:426px;"></embed>
+                <!--   style="margin-bottom: 20px; width:800px; height:426px; -->
+                
+				<style>
+				.video-container { 
+				    margin: 0;
+				    
+				    padding-bottom: 75%; 
+				    max-width: 100%; 
+				    height: 0;  
+				    position: relative;
+				    overflow: hidden;
+				} 
+				.video-container iframe, 
+				.video-container object,
+				.video-container embed {
+				    margin: 0;
+				    padding: 0;  
+				    width: 100%; 
+				    height: 100%;
+				    position: absolute; 
+				    top: 0; 
+				    left: 0; 
+				}
+				</style>
+				<div class="video-container col-sm-12 col-md-12">
+				    <embed src="viewer_common.jsp?id=<%=result.getId() %>" alt="Image detail" class="img-detail"></embed>
+				</div>
+                
 
                 <!-- title and viewCount -->
+                <!-- 
                 <div class="titleAndViewCnt">
-                    <span style="float: left;"><h2>�Ʊ���� ������</h2></span>
-                    <span style="float: right;"><h2>13</h2></span>
+                    <span style="float: left;"><h2><%=result.getTitle() %></h2></span>
+                    <span style="float: right;"><h2><%=result.getViewCount() %></h2></span>
                 </div>
+                 -->
 
                 <!-- author comment -->
                 <div class="media-body">
-                    <h4 class="media-heading">�۰� �Ѹ���</h4>
-                    <p class="text-info">June 05, 2014   05:45 pm</p>
+                    <p class="text-info"><%=result.getPostedDate() %></p>
                     <p>
-                        �۰��� ���� �� �����Դϴ�.
+                        <%=result.getDescription() %>
                     </p>
                 </div>
 
@@ -136,7 +166,7 @@ BEGIN PAGE
                     <form role="form">
                         <div class="row">
                             <div class="col-sm-1">
-                                <h5>ID: </h5>
+                                <h5>ID: <%=account.getName()%></h5>
                             </div>
                             <div class="col-sm-1">
                                 <div class="form-group">
@@ -145,7 +175,7 @@ BEGIN PAGE
                             </div><!-- /.col-sm-4 -->
                         </div><!--/.row -->
                         <div class="form-group">
-                            <p>comment</p>
+                            <p>Comment</p>
                             <textarea style="height: 150px" class="form-control"></textarea>
                         </div>
                         <button class="btn btn-success">POST COMMENT</button>
@@ -310,7 +340,7 @@ BEGIN PAGE
                 <!-- Begin blog detail -->
                 <div class="panel panel-square panel-success panel-no-border">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Document Name</strong></h3>
+                        <h3 class="panel-title"><strong>문서 제목</strong></h3>
                         <button class="btn btn-warning btn-perspective" id="subscribe">
                             <span id="subscribe-text"><%= result.getTitle() %></span>
                             <span class="fa fa-check" id="subscribeIcon"></span>
@@ -320,15 +350,15 @@ BEGIN PAGE
                     <ul class="list-group success blog-detail-list square">
                         <li class="list-group-item">
                             <i class="fa fa-calendar icons"></i>
-                            Posted : <a href="#fakelink"><%= result.getPostedDate() %></a>
+                            작성일 : <a href="#fakelink"><%= result.getPostedDate() %></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-folder-o icons"></i>
-                            Category : <a href="#fakelink"><%=cDao.findById(result.getCategory()).getName()%></a>
+                            카테고리 : <a href="#fakelink"><%=cDao.findById(result.getCategory()).getName()%></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-flask icons"></i>
-                            Author: <a href="#fakelink"><%= aDao.findById(result.getAccountId()).getNick() %></a>
+                            저자: <a href="#fakelink"><%= aDao.findById(result.getAccountId()).getNick() %></a>
                         </li>
                     </ul>
                 </div><!-- /.panel panel-default -->
@@ -337,7 +367,7 @@ BEGIN PAGE
                 <!-- Begin Recent post -->
                 <div class="panel panel-no-border panel-sidebar">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Recent post</h3>
+                        <h3 class="panel-title">최근 문서</h3>
                     </div>
                     <ul class="media-list">
                     	<% for( Document tmp : recents ){%>
