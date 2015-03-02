@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="pb.rest.jaxrs.vo.Account"%>
 <%@page import="pb.rest.jaxrs.db.AccountDAO"%>
 <%@page import="pb.rest.jaxrs.vo.Document"%>
@@ -23,7 +24,7 @@
 			
 			AccountDAO aDao = new AccountDAO();
 			Account account = (Account)session.getAttribute("account");
-			
+			SimpleDateFormat sdfPrint = new SimpleDateFormat("yyyy/MM/DD");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -33,7 +34,7 @@
     <meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
     <meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
     <meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-    <title>PastelBook - Watch Project Detail</title>
+    <title>PastelBook - 문서 상세보기</title>
 
     <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -58,6 +59,23 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+     .viewer-box {
+     	position: relative;
+     	height: 0px;
+    	padding-bottom: 70%;
+    	margin-bottom: 20px;
+    	box-sizing: border-box;
+    	border: 1px solid #ddd;
+     }
+     .viewer-box embed {
+		position: absolute;
+		top:0px;
+		left:0px;
+		width: 100%;
+		height: 100%;
+     }
+    </style>
 </head>
 
 <body class="tooltips">
@@ -81,7 +99,7 @@ BEGIN PAGE
         <ol class="breadcrumb">
             <li><a href="index.jsp">홈</a></li>
             <li><a href="#fakelink">문서</a></li>
-            <li class="active">문서 세부정보</li>
+            <li class="active">문서 상세보기</li>
         </ol>
         <h2 class="page-title"><%= result.getTitle() %></h2>
     </div><!-- /.container -->
@@ -100,38 +118,13 @@ BEGIN PAGE
         <div class="col-sm-8 col-md-9">
 
             <!-- BLOG DETAIL SECTION -->
-            <div class="section blog-detail" style="box-sizing:border-box; border:1px solid black">
-				<!--  <%= String.format("%f02",((float)437/(float)800)*100) %>-->
-                <!-- <img src="thumb/<%= result.getPreviewImage() %>" alt="Image detail" class="img-detail" style="margin-bottom: 20px;">  -->
+            <div class="col-sm-12 col-md-12 section blog-detail">
+				<!--  <%//result.getPreviewImage() %>-->
                 
-                <!--   style="margin-bottom: 20px; width:800px; height:426px; -->
-                
-				<style>
-				.video-container { 
-				    margin: 0;
-				    
-				    padding-bottom: 75%; 
-				    max-width: 100%; 
-				    height: 0;  
-				    position: relative;
-				    overflow: hidden;
-				} 
-				.video-container iframe, 
-				.video-container object,
-				.video-container embed {
-				    margin: 0;
-				    padding: 0;  
-				    width: 100%; 
-				    height: 100%;
-				    position: absolute; 
-				    top: 0; 
-				    left: 0; 
-				}
-				</style>
-				<div class="video-container col-sm-12 col-md-12">
-				    <embed src="viewer_common.jsp?id=<%=result.getId() %>" alt="Image detail" class="img-detail"></embed>
+                <div class="cos-sm-12 col-md-12 viewer-box">
+                	<embed src="viewer_common.jsp?id=<%=result.getId() %>"></embed>
 				</div>
-                
+				
 
                 <!-- title and viewCount -->
                 <!-- 
@@ -142,12 +135,14 @@ BEGIN PAGE
                  -->
 
                 <!-- author comment -->
+                <!-- 
                 <div class="media-body">
                     <p class="text-info"><%=result.getPostedDate() %></p>
                     <p>
-                        <%=result.getDescription() %>
+                        저자의 말
                     </p>
                 </div>
+                 -->
 
                 <!-- sns icon -->
                 <p align="right">
@@ -161,12 +156,12 @@ BEGIN PAGE
 
                 <!-- BEGIN FORM COMMENT -->
                 <div class="form-comment">
-                    <h3 class="sub-heading-section">Leave comment</h3>
+                    <h3 class="sub-heading-section">댓글 달기</h3>
 
                     <form role="form">
                         <div class="row">
-                            <div class="col-sm-1">
-                                <h5>ID: <%=account.getName()%></h5>
+                            <div class="col-sm-3">
+                                <h5>ID: <%=account.getNick()%></h5>
                             </div>
                             <div class="col-sm-1">
                                 <div class="form-group">
@@ -178,7 +173,7 @@ BEGIN PAGE
                             <p>Comment</p>
                             <textarea style="height: 150px" class="form-control"></textarea>
                         </div>
-                        <button class="btn btn-success">POST COMMENT</button>
+                        <button class="btn btn-success">댓글 쓰기</button>
                     </form>
                 </div><!-- /.form-comment -->
                 <!-- END FORM COMMENT -->
@@ -350,7 +345,7 @@ BEGIN PAGE
                     <ul class="list-group success blog-detail-list square">
                         <li class="list-group-item">
                             <i class="fa fa-calendar icons"></i>
-                            작성일 : <a href="#fakelink"><%= result.getPostedDate() %></a>
+                            발행일 : <a href="#fakelink"><%= sdfPrint.format(result.getPostedDate()) %></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-folder-o icons"></i>
@@ -358,7 +353,7 @@ BEGIN PAGE
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-flask icons"></i>
-                            저자: <a href="#fakelink"><%= aDao.findById(result.getAccountId()).getNick() %></a>
+                            저자 : <a href="#fakelink"><%= aDao.findById(result.getAccountId()).getNick() %></a>
                         </li>
                     </ul>
                 </div><!-- /.panel panel-default -->
@@ -367,7 +362,7 @@ BEGIN PAGE
                 <!-- Begin Recent post -->
                 <div class="panel panel-no-border panel-sidebar">
                     <div class="panel-heading">
-                        <h3 class="panel-title">최근 문서</h3>
+                        <h3 class="panel-title">최근발행문서</h3>
                     </div>
                     <ul class="media-list">
                     	<% for( Document tmp : recents ){%>
@@ -380,7 +375,7 @@ BEGIN PAGE
                                 <p><a href="projectDetailPage.jsp?id=<%= tmp.getId() %>">
                                     <%= tmp.getTitle() %>
                                 </a></p>
-                                <p class="small text-info"><%= tmp.getPostedDate() %></p>
+                                <p class="small text-info"><%= sdfPrint.format(tmp.getPostedDate()) %></p>
                                 <!-- <p class="small text-info">June 05, 2014</p> -->
                             </div>
                         </li>
@@ -410,65 +405,6 @@ BEGIN PAGE
 </div><!-- /.container -->
 
 
-
-
-<!-- BEGIN CALL TO ACTION -->
-<div class="section section-call-to-action">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9 col-sm-8">
-                <div class="wrapper">
-                    It's <span class="text-danger">not the best template</span>, but will give you more option to create <span class="text-success">awesome website</span>!
-                </div><!-- /.wrapper-->
-            </div><!-- /.col-sm-9 -->
-            <div class="col-md-3 col-sm-4">
-                <a class="btn btn-danger" href="http://goo.gl/V32dLM" target="_blank">PURCHASE NOW</a>
-            </div><!-- /.col-sm-3 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div><!-- /.section .section-call-to-action -->
-<!-- END CALL TO ACTION -->
-
-
-
-<!-- BEGIN CLIENT LOGO SECTION -->
-<div class="section">
-    <div class="container">
-        <div id="owl-client-logo" class="owl-carousel client-logo">
-            <div class="item">
-                <img src="assets/img/client-logo/graphicriver.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/photodune.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/themeforest.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/codecanyon.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/3docean.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/graphicriver.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/photodune.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/themeforest.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/codecanyon.png" alt="Client logo">
-            </div><!-- /.item -->
-            <div class="item">
-                <img src="assets/img/client-logo/3docean.png" alt="Client logo">
-            </div><!-- /.item -->
-        </div><!-- /#owl-client-logo -->
-    </div><!-- /.container -->
-</div><!-- /.section -->
-<!-- END CLIENT LOGO SECTION -->
 
 
 <!-- BEGIN FOOTER -->
@@ -525,12 +461,12 @@ Placed at the end of the document so the pages load faster
             var className = $('.panel-heading #subscribeIcon').attr('class');
             if(className == "fa fa-check") {
                 /*alert(className);*/
-                $('.panel-heading  #subscribe-text').text("������");
+                $('.panel-heading  #subscribe-text').text("글자 깨짐");
                 $('.panel-heading #subscribeIcon').attr('class', 'fa fa-chevron-circle-down');
             }
             else {
                 /*alert(className);*/
-                $('.panel-heading #subscribe-text').text("�����ϱ�");
+                $('.panel-heading #subscribe-text').text("글자 깨짐2");
                 $('.panel-heading #subscribeIcon').attr('class', 'fa fa-check');
             }
 

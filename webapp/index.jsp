@@ -153,9 +153,7 @@ BEGIN PAGE
                 <!-- Begin work item -->
                 <div class="col-sm-4 col-md-4 col-xs-6 mix <%= tmp.getCategory() %>">
                     <div class="work-item">
-											<img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
-
-                            
+					   <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
                        <div class="the-box no-border transparent no-margin">
                            <p class="project-name"><a href="doc_detail.jsp?id=<%=tmp.getId()%>"><%= tmp.getTitle() %></a></p>
                            <p class="dateAndSlideCnt">

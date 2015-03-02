@@ -98,14 +98,6 @@ BEGIN PAGE
 <!-- BEGIN LATEST WORK SECTION -->
 <div class="section work-section">
     <div class="container">
-    	<%
-    		/*
-    	        <div class="section-heading">
-    	            <div class="inner-border"></div>
-    	            <h3>프로젝트 소개</h3>
-    	        </div><!-- /.section-heading -->
-    	        */
-    	%>
         <div class="section-heading">
         	<div class="inner-border"></div>
         	<h3>내 문서 중 [ <%= query %> ] 에 대한 <%= myResults.size() %>개의 검색결과</h3>
@@ -130,6 +122,10 @@ BEGIN PAGE
                            	   <span><%=tmp.getDescription() %></span>
                            </p>
                            <p class="project-category"><%= cDao.findById(tmp.getCategory()).getName() %></p>
+                           <p class="project-viewtype">
+                            <a href="doc_detail.jsp?id=<%=tmp.getId()%>">문서 보기</a> | 
+                            <a href="techtree.jsp?id=<%=tmp.getId()%>">트리로 보기</a>
+						   </p>
                            <!-- <span>조회수</span> -->
                         </div><!-- /.the-box no-border transparent -->
                     </div><!-- /.work-item -->
@@ -163,6 +159,9 @@ BEGIN PAGE
                            	   <span><%=tmp.getDescription() %></span>
                            </p>
                            <p class="project-category"><%= cDao.findById(tmp.getCategory()).getName() %></p>
+                           <p class="project-viewtype">
+                            <a href="">문서 보기</a> | <a href="">트리로 보기</a>
+						   </p>
                            <!-- <span>조회수</span> -->
                         </div><!-- /.the-box no-border transparent -->
                     </div><!-- /.work-item -->

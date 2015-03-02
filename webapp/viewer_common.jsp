@@ -7,6 +7,7 @@
 <%
 	String docId = request.getParameter("id");
 	int id = 0;
+	
 	if(docId != null){
 		id = Integer.parseInt(docId);
 	} else {
