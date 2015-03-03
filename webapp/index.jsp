@@ -153,9 +153,7 @@ BEGIN PAGE
                 <!-- Begin work item -->
                 <div class="col-sm-4 col-md-4 col-xs-6 mix <%= tmp.getCategory() %>">
                     <div class="work-item">
-											<img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
-
-                            
+					   <img src="thumb/<%= tmp.getPreviewImage() %>" alt="Img work">
                        <div class="the-box no-border transparent no-margin">
                            <p class="project-name"><a href="doc_detail.jsp?id=<%=tmp.getId()%>"><%= tmp.getTitle() %></a></p>
                            <p class="dateAndSlideCnt">
@@ -163,7 +161,7 @@ BEGIN PAGE
                                <span>슬라이드 수</span>
                            </p>
                            <p class="project-category"><a href="category_view.jsp?cid=<%=tmp.getCategory()%>"><%= cDao.findById(tmp.getCategory()).getName() %></a></p>
-                           <!-- <span>조회수</span> -->
+                           <span>조회수 : <%=tmp.getViewCount() %>회</span>
                         </div><!-- /.the-box no-border transparent -->
                     </div><!-- /.work-item -->
                 </div><!-- /.col-sm-4 col-md-4 col-xs-6 mix -->

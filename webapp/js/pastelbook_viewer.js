@@ -13,15 +13,12 @@ requirejs.config({
 		jquery_ui: 'lib/jquery_ui/jquery-ui',
 		jquery_ui_position: 'lib/jquery_ui/jquery.ui.position',
 
-		interact: 'lib/interact-1.2.3',
-
 		localStorage: 'lib/backbone.localStorage',
 		marionette: 'lib/backbone.marionette',
 		mutators: 'lib/backbone.mutators',
 		radio: 'lib/backbone.radio',
 
 		contextMenu: 'lib/contextMenu/contextMenu',
-
 
 		handlebars: "lib/handlebars-v2.0.0",
 		text: "lib/text",

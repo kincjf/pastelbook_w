@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="pb.rest.jaxrs.vo.Project"%>
 <%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
@@ -51,6 +52,7 @@
 	
 	AccountDAO adaoJx = new AccountDAO();
 	
+	SimpleDateFormat sdfPrint = new SimpleDateFormat("yyyy/MM/DD");
 	
 %>
 <!DOCTYPE html>
@@ -107,9 +109,9 @@ BEGIN PAGE
 <div class="page-title-wrap">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#fakelink">Project</a></li>
-            <li class="active">Modify</li>
+            <li><a href="index.html">홈</a></li>
+            <li><a href="#fakelink">프로젝트</a></li>
+            <li class="active">정보수정</li>
         </ol>
         <h2 class="page-title"><%= result.getTitle() %></h2>
     </div><!-- /.container -->
@@ -260,21 +262,21 @@ BEGIN PAGE
                 <!-- Begin blog detail -->
                 <div class="panel panel-square panel-success panel-no-border">
                     <div class="panel-heading lg">
-                        <h3 class="panel-title"><strong>Project Modify</strong></h3>
+                        <h3 class="panel-title"><strong>프로젝트 정보수정</strong></h3>
                     </div>
                     <!-- List group -->
                     <ul class="list-group success blog-detail-list square">
                         <li class="list-group-item">
                             <i class="fa fa-calendar icons"></i>
-                            Posted : <a href="#fakelink"><%= result.getModifyDate() %></a>
+                            최종수정일 : <a href="#fakelink"><%= sdfPrint.format(result.getModifyDate()) %></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-folder-o icons"></i>
-                            Category : <a href="#fakelink"><%= cDao.findById(result.getCategory()).getName() %></a>
+                            카테고리 : <a href="#fakelink"><%= cDao.findById(result.getCategory()).getName() %></a>
                         </li>
                         <li class="list-group-item">
                             <i class="fa fa-flask icons"></i>
-                            Author: <a href="#fakelink"><%= adaoJx.findById(accountId).getName() %> </a>
+                            저자 : <a href="#fakelink"><%= adaoJx.findById(accountId).getName() %> </a>
                         </li>
                     </ul>
                 </div><!-- /.panel panel-default -->
@@ -296,7 +298,7 @@ BEGIN PAGE
                                 <p><a href="projectDetailPage.jsp?id=<%= tmp.getId() %>">
                                     <%= tmp.getTitle() %>
                                 </a></p>
-                                <p class="small text-info"><%= tmp.getModifyDate() %></p>
+                                <p class="small text-info"><%= sdfPrint.format(tmp.getModifyDate()) %></p>
                                 <!-- <p class="small text-info">June 05, 2014</p> -->
                             </div>
                         </li>

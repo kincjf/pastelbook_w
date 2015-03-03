@@ -19,7 +19,7 @@ public class testDocumentDAO extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		bean = new Document(7000000, "t", "c", 7777, new Date(System
-					.currentTimeMillis()-2000000),"", "", 0);
+					.currentTimeMillis()-2000000),"", "", 0, 0);
 	}
 
 	public void test_1_create() {
@@ -40,7 +40,7 @@ public class testDocumentDAO extends TestCase {
 			Document id = dao.create(bean);
 			bean.setId(id.getId());
 			dao.update(new Document(bean.getId(), "t", "a", bean.getProjectId(), new Date(
-					System.currentTimeMillis()), "", "", 1));
+					System.currentTimeMillis()), "", "", 1, 0));
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("test modify fail");

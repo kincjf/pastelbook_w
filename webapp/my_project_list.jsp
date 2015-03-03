@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="pb.log.PBLog"%>
 <%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
@@ -33,7 +34,7 @@
 			request.getParameter("dateOrder")); 	
 
 
-	
+	SimpleDateFormat sdfPrint = new SimpleDateFormat("yyyy/MM/DD");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -226,12 +227,11 @@ BEGIN PAGE
                         <div class="the-box no-border transparent no-margin">
                             <p class="project-name"><%= tmp.getTitle() %></p>
                             <p class="dateAndSlideCnt">
-                                <span><%= tmp.getCreateDate() %></span>&nbsp;
-                                <span>슬라이드 수</span>
+                                <span>생성일 : <%= sdfPrint.format(tmp.getCreateDate()) %></span></br>
+                                <span>20장 (슬라이드수, 아직 체크 못함)</span>
                             </p>
                             <p class="project-category">
-                                <span><%= tmp.getModifyDate() %></span>&nbsp;
-                                <span>조회수</span>
+                                <span>수정일 : <%= sdfPrint.format(tmp.getModifyDate()) %></span>&nbsp;
                             </p>
                             <div class="the-box no-border transparent no-margin row">
                                 <div class="col-xs-12 col-md-6 nopadding">
