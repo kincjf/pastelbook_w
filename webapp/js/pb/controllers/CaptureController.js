@@ -15,7 +15,7 @@ define(['jquery', 'marionette', 'html2canvas'], function ($, Marionette, html2ca
 		},
 
 		/** source - capture을 할 부분(jQuery Selector)
-		 * target - 저장할 대상(attribute)
+		 * target - 저장할 대상(attribute, jQuery Selector)
 		 * model - Project instance
 		 * currentScene - 현재 Focus가 되어있는 Scene인지 비교하기 위함 (jQuery Selector)
 		 * => hide가 되어있는 경우 캡처가 안됨.. 일단 야메로 하기
@@ -46,6 +46,24 @@ define(['jquery', 'marionette', 'html2canvas'], function ($, Marionette, html2ca
 			});
 
 			myLogger.trace("CaptureController - capturePreview");
+		},
+
+		/**
+		 * 첫 슬라이드 페이지를 미리보기 이미지로 가져올 수 있음
+		 * Scene이 하나도 없는 경우를 예외처리로 지정함.
+		 *
+		 * @return exist - img.attr | not find - undefined
+		 * */
+		getProjectPreviewImage: function() {
+			var firstScenePreviewSet = pb.type.view.sceneViewSetList.at(0);
+			var previewImage;
+
+			if(firstScenePreviewSet) {
+				var scenePreviewView = firstScenePreviewSet.get("scenePreviewView");
+				previewImage = scenePreviewView.$el.find("img").attr("src");
+			}
+
+			return previewImage;
 		}
 	});
 });

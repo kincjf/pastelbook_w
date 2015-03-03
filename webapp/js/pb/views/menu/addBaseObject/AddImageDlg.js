@@ -163,6 +163,11 @@ define([
 			return isSubmit;
 		},
 
+		/**
+		 * google Image같은 경우에는 dataURL을 사용하는 경우도 있음
+		 * 그러므로 remote URL과 rawData URL을 동시에 사용할 수 있도록 해야함
+		 * 현재는 remote URL만 사용가능하게 되어있음
+		 * */
 		addImageFromOnline: function (event) {
 			var isSubmit = false;
 
@@ -184,6 +189,5 @@ define([
 			myLogger.trace("AddImageDlg - addImageFromOnline");
 			return isSubmit;
 		}
-
 	});
 });

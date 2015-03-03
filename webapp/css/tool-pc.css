@@ -168,7 +168,7 @@ div.change {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 /**
@@ -192,22 +192,8 @@ div.change {
     list-style-type: none;
 }
 
-/*  jQuery UI Selectable  */
-.scene .ui-selecting {
-    background: #FECA40;
-}
-
-.scene .ui-selected {
-    background: #F39814;
-    color: white;
-}
-
 .underline {
     border-bottom: black 2px solid;
-}
-
-.ui-selected {
-    border: aqua 2px solid;
 }
 
 /**

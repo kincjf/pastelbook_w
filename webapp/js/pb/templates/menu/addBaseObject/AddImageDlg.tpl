@@ -12,7 +12,7 @@
     </form>
     <form id="add_image_online_tab">
         <p><span>삽입할 Image 주소(URL)을 넣어주세요!</span>
-            <input type="url" name="imageURL" placeholder="업로드할 이미지 주소를 입력하세요" pattern="https?://.+" required/>
+            <input type="url" name="imageURL" placeholder="업로드할 이미지 주소를 입력하세요" pattern="data:image/.+|https?://.+" required/>
             <button name="showPreviewImageOnline" type="button">미리보기</button>
         </p>
         <img id="preview_image_online" width="98%" />

@@ -24,10 +24,12 @@ define([
 		 * 2. 향후 model data를 이용한 기능 구현(undo, redo, 자동저장, 공동작업등)시 문제가 생길 우려
 		 *
 		 * 때문에 조작중에는 직접 View에 접근하고 조작이 끝나는 시점에서는 데이터를 변경하게 구현함.
+		 *
+		 *
 	   **/
 		events: {
-			'dragmove': 'changeDirection',
-			'dragend': 'changeDirectionData',
+	//'dragmove': 'changeDirection',
+	//'dragend': 'changeDirectionData',
 			'resize': 'changeSize',
 			'resizestop': 'changeSizeData',
 			'click .rotateBtn': 'rotateObject'
@@ -109,14 +111,14 @@ define([
 
 			interact(this.el).draggable({
 				manualStart: true,
-				// enable inertial throwing
-				inertia: true,
 				// keep the element within the area of it's parent
 				restrict: {
 					restriction: "self",
 					endOnly: true,
 					elementRect: {top: 0, left: 0, bottom: 1, right: 1}
-				}
+				},
+				onmove: _.bind(this.changeDirection, this),
+				onend: _.bind(this.changeDirectionData, this)
 			})
 			/** interactEvent를 사용해야 interaction 객체를 사용할 수 있음 */
 				.on('hold', function (event) {
@@ -124,9 +126,13 @@ define([
 
 					if (!$(interaction._curEventTarget).is(".ui-resizable-handle")) {
 
+
 						interaction.start({name: 'drag'},
 							event.interactable,
 							event.currentTarget);
+
+						// selectable의 mouse event를 정지함.
+						pb.current.scene.ui.scene.data('ui-selectable')._mouseStop(null);
 
 						console.log("on hold");
 					}
@@ -140,19 +146,18 @@ define([
 				}
 			});
 
+			var initCoordinate = 'translate(' + this.model.get("left") + 'px, ' + this.model.get("top") + 'px)';
+
 			/** top: y, left: x - 나중에 x, y로 바꿔야 될 듯*/
 			this.$el.css({
-				transform: 'translate(' + this.model.get("left") + 'px, ' + this.model.get("top") + 'px)',
+				transform: initCoordinate,
 				width: this.model.get("width"),
 				height: this.model.get("height")
-			});
-
-			//this.$el.css({
-			//	top: this.model.get("top"),
-			//	left: this.model.get("left"),
-			//	width: this.model.get("width"),
-			//	height: this.model.get("height")
-			//});
+			})
+				.attr({
+					'data-x': this.model.get("left"),
+					'data-y': this.model.get("top")
+				});
 		},
 
 		/** Marionette Override Methods */
@@ -188,9 +193,10 @@ define([
 				x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
 				y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
+			var coordinate = 'translate(' + x + 'px, ' + y + 'px)';
 			// translate the element
 			this.$el.css({
-				transform: 'translate(' + x + 'px, ' + y + 'px)'
+				transform: coordinate
 			});
 
 			// update the posiion attributes
@@ -213,7 +219,7 @@ define([
 
 		/** 'resize' */
 		changeSize: function (event, ui) {
-			this.model.setTopLeft(ui.position.top, ui.position.left);
+			//this.model.setTopLeft(ui.position.top, ui.position.left);
 
 			myLogger.trace("BaseObjectView - changeDirection");
 		},

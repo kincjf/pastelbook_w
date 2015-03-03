@@ -1,6 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@page import="pb.rest.jaxrs.vo.Project"%>
 <%@page import="pb.rest.jaxrs.db.ProjectDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
 <%
 	ProjectDAO dao = new ProjectDAO();

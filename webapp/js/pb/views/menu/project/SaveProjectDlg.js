@@ -16,8 +16,9 @@
 define([
 	'marionette',
 	'pb_templates',
-	'pb/views/menu/project/SaveProjectToTextDlg'
-], function (Marionette, templates, SaveProjectToTextDlg) {
+	'pb/views/menu/project/SaveProjectToTextDlg',
+	'pb/views/behaviors/menu/SaveProjectBehavior',
+], function (Marionette, templates, SaveProjectToTextDlg, SaveProjectBehavior) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -49,7 +50,15 @@ define([
 
 		events: {
 			'click @ui.saveToLocalStorage': 'saveToLocalStorage',
-			'click @ui.saveToText': 'saveToText'
+			'click @ui.saveToText': 'saveToText',
+			'click @ui.saveToServer': 'saveToServer'
+		},
+
+		behaviors: {
+			SaveProjectBehavior: {
+				behaviorClass: SaveProjectBehavior,
+				type: "project"
+			}
 		},
 
 		initialize: function (_options) {
@@ -106,7 +115,7 @@ define([
 		saveToLocalStorage: function () {
 			myLogger.trace("menu | project | dlg-save - onShow");
 
-			this.model.command("save:project");
+			this.triggerMethod('SaveProject');
 			this.model.localStorage.update(this.model);
 
 			alert("브라우저에 저장이 완료되었습니다.");
@@ -121,16 +130,20 @@ define([
 			/** 모듈과 똑같은 변수로 하면 error가 난다 ㅠㅠ 왜일까
 			 * this.model - pb.type.Model.Project
 			 */
-			var scenePreviewView = pb.type.view.sceneViewSetList.at(0).get("scenePreviewView");
-			var previewImage = scenePreviewView.$el.find("img").attr("src");
+			//var scenePreviewView = pb.type.view.sceneViewSetList.at(0).get("scenePreviewView");
+			this.triggerMethod('SaveProject');
 
-			this.model.command("save:project", previewImage);
 			var saveToTextDlalog = new SaveProjectToTextDlg({
 				model: this.model,
 				parent: this
 			});
 
 			this.saveToTextArea.show(saveToTextDlalog);
+		},
+
+		saveToServer: function() {
+			this.triggerMethod('SaveProject');
+
 		}
 	});
 });

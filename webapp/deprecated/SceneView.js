@@ -237,40 +237,17 @@ define([
 		/** Custom Methods */
 
 		/**
-		 * 각 type별로 Click Event로 삽입할 수 있도록 하였지만
+		 * 각 type별로 Click Event로 삽입할 수 있도록 Event를 지정함
 		 * - selectable event를 일시적으로 disable해도 해결되지 않음
-		 * - 때문에 그냥 스크린 중간에 표시하는걸로 하는것이 모바일 상에서도 좋을 것 같음
-		 * ==> 그래서 그냥 1/3 지점에 바로 들어가게 구현함
- 		 * */
+		 * - 때문에 그냥 스크린 중간에 표시하는걸로 하는것이 좋을 것 같음
+		 * */
 		setupForInsertObjectByClick: function (options) {
-
-			var objectOptions = {
-				imgSrc: options.imgSrc,
-				top: pb.ui.dlg_current_scene.h / 3,
-				left: pb.ui.dlg_current_scene.w / 3,
-				width: "100px",
-				height: "100px"
-			};
-
 			if (options.type == "image") {
-				_.extend(objectOptions, {
-					width: "100px",
-					height: "100px",
-					imgSrc: options.imgSrc
-				});
-				this.triggerMethod("AddImage", objectOptions);
-			}
-			else if (options.type == "textbox") {
-				this.triggerMethod("AddTextBox", objectOptions);
-			}
-			else if (options.type == "video") {
-				_.extend(objectOptions, {
-					videoSrc: options.videoSrc,
-					videoPreviewImage: options.videoPreviewImage,
-					width: "640px",
-					height: "480px"
-				});
-				this.triggerMethod("AddVideo", objectOptions);
+				this.setupForInsertImage(options);
+			}else if (options.type == "textbox") {
+				this.setupForInsertTextBox(options);
+			} else if (options.type == "video") {
+				this.setupForInsertVideo(options);
 			}
 		},
 
@@ -296,6 +273,157 @@ define([
 				 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
 				this.triggerMethod("AddImage", imageOptions);
 			}
+		},
+
+		setupForInsertImage: function(options) {
+			this.$el.tooltip({
+				content: function () {
+					return "Click and Insert Image!"
+				},
+				items: ".scene",
+				track: true
+			});
+
+			/** 삽입을 알리기 위해서 cursor 변경 */
+			this.ui.scene.css({cursor: "crosshair"});
+
+			/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
+			$(document).one("keyup.cancel.image", _.bind(function (event) {
+					if (event.which == 27 || event.namespace == "cancel.image") {
+						this.ui.scene.css({cursor: "default"});
+						this.$el.tooltip("destroy");
+					}
+
+					this.ui.scene.off('click.add.image');
+
+					myLogger.trace("SceneView - 'keyup.cancel.image'");
+				}, this)
+			);
+
+			/** scene에 click을 할 경우 TextBox가 삽입됨.
+			 * 기본크기 : 가로 - 100px, 세로 100px
+			 * ! - 이상하게 click event가 먹지 않는다
+			 * 그래서 [야메]로 하기로 했음
+			 */
+			this.$el.one('click.add.image', this.ui.scene, _.bind(function (event) {
+					var imageOptions = {
+						imgSrc: options.imgSrc,
+						top: event.offsetY,
+						left: event.offsetX,
+						width: "100px",
+						height: "100px"
+					};
+
+					$(document).trigger("keyup.cancel.image");
+
+					/* The on{Name} callback methods will still be called
+					 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
+					this.triggerMethod("AddImage", imageOptions);
+
+					myLogger.trace("SceneView - 'click.add.image'");
+				}, this)
+			);
+		},
+
+		setupForInsertTextBox: function(options) {
+			this.$el.tooltip({
+				content: function () {
+					return "Click and Insert TextBox!"
+				},
+				items: ".scene",
+				track: true
+			});
+
+			/** 삽입을 알리기 위해서 cursor 변경 */
+			this.ui.scene.css({cursor: "crosshair"});
+
+			/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
+			$(document).one("keyup.cancel.textbox", _.bind(function (event) {
+					if (event.which == 27 || event.namespace == "cancel.textbox") {
+						this.ui.scene.css({cursor: "default"});
+						this.$el.tooltip("destroy");
+					}
+
+					this.ui.scene.off('click.add.textbox');
+
+					myLogger.trace("SceneView - 'keyup.cancel.textbox'");
+				}, this)
+			);
+
+			/** scene에 click을 할 경우 TextBox가 삽입됨.
+			 * 기본크기 : 가로 - 100px, 세로 100px
+			 * ! - 이상하게 click event가 먹지 않는다
+			 * 그래서 [야메]로 하기로 했음
+			 */
+			this.$el.one('click.add.textbox', this.ui.scene, _.bind(function (event) {
+					var textBoxOptions = {
+						top: event.offsetY,
+						left: event.offsetX,
+						width: "100px",
+						height: "100px"
+					};
+
+					$(document).trigger("keyup.cancel.textbox");
+
+					/* The on{Name} callback methods will still be called
+					 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
+					this.triggerMethod("AddTextBox", textBoxOptions);
+
+					myLogger.trace("SceneView - 'click.add.textbox'");
+				}, this)
+			);
+		},
+
+
+		setupForInsertVideo: function(options) {
+			this.$el.tooltip({
+				content: function () {
+					return "Click and Insert Video!"
+				},
+				items: ".scene",
+				track: true
+			});
+
+			/** 삽입을 알리기 위해서 cursor 변경 */
+			this.ui.scene.css({cursor: "crosshair"});
+
+			/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
+			$(document).one("keyup.cancel.video", _.bind(function (event) {
+					if (event.which == 27 || event.namespace == "cancel.video") {
+						this.ui.scene.css({cursor: "default"});
+						this.$el.tooltip("destroy");
+					}
+
+					this.ui.scene.off('click.add.video');
+
+					myLogger.trace("SceneView - 'keyup.cancel.video'");
+				}, this)
+			);
+
+			/** scene에 click을 할 경우 Video가 삽입됨.
+			 * 기본크기 : 가로 - 640px, 세로 480px
+			 * ! - 이상하게 click event가 먹지 않는다
+			 * 그래서 [야메]로 하기로 했음
+			 */
+			this.$el.one('click.add.textbox', this.ui.scene, _.bind(function (event) {
+					var videoOptions = {
+						videoSrc: options.videoSrc,
+						videoPreviewImage: options.videoPreviewImage,
+						top: event.offsetY,
+						left: event.offsetX,
+						width: "640px",
+						height: "480px"
+					};
+
+					$(document).trigger("keyup.cancel.video");
+
+					/* The on{Name} callback methods will still be called
+					 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
+					this.triggerMethod("AddVideo", videoOptions);
+
+					myLogger.trace("SceneView - 'click.add.video'");
+				}, this)
+			);
 		}
 	})
 });

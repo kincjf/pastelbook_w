@@ -5,33 +5,51 @@
  */
 
 require(['jquery'], function ($) {
-	pb.io.ajax = {};
-	pb.io.ajax.getProjects = function () { // 유저의 프로젝트 가져오기
-		//console.log('aaaa');
-	}
-	var result = null;
+	pb.io.ajax = pb.ui.ajax || {};
+	/**
+	 * Project Preview Image의 Raw Data를 이미지 파일로 서버에 저장한 후,
+	 * 해당 경로를 반환함.
+	 * @param previewImageData : RawData
+	 * @return
+	 *
+	 * */
+	pb.io.ajax.getPreviewImagePath = function (previewImageData) {
+		var imageData = { "base64" : previewImageData };
+		var option = {
+			url : "fileuploadForbase64.jsp",
+			type: "POST"
+		};
+
+		var pathData = {
+			previewImagePath : undefined
+		};
+
+		$.ajax({
+			url: option.url,
+			type: option.method,
+			dataType: "text",
+			data: imageData,
+			processData: false,
+			contentType: false,
+			success: _.bind(function (data, textStatus, jqXHR) {
+				this.path = data;
+
+				console.log("pb.io.ajax.getPreviewImagePath - success");
+			}, pathData)
+		})
+			.fail(function (resolveArgs) {
+				console.log("pb.io.ajax.getPreviewImagePath - fail");
+			});
+
+		return pathData.previewImagePath;
+	};
+
 	pb.io.ajax.db = function (_section, _params, _handler) {
 		var section = 'resource'; //  pb_resource
 		var url = 'admin/dbupdate.jsp'; // /ajax
 		var params = 'pb'; // pb 소유 ( 제공 )
-		
+
 		// owner 는 pb_resouce.owner = pb
 		var data = 'section=' + section + '&' + 'owner=' + params;
-		
-		/*
-		$.ajax({
-			type: "post"		// 포스트방식
-			, url: url		// url 주소
-			, data: params	//  요청에 전달되는 프로퍼티를 가진 객체
-			, dataType: "json"
-			, success: function (args) {	//응답이 성공 상태 코드를 반환하면 호출되는 함수
-				_handler(args);
-			}
-			, error: function (e) {	// 이곳의 ajax에서 에러가 나면 얼럿창으로 에러 메시지 출력
-				console.log("dbupdate.jsp - pb.io.ajax.db error");
-				//alert(e.responseText);
-			}
-		});
-		*/
 	}
 }); // require

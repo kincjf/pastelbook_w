@@ -82,3 +82,9 @@
 .ui-resizable-nw {
     background-color: #B3B3B3;
 }
+
+.ui-selectable-helper {
+    position: absolute;
+    z-index: 9999;
+    border: 1px dotted black;
+}
