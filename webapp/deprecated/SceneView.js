@@ -4,426 +4,303 @@
  *
  * - 구현내용/순서
  * 1. 추가요소(BaseObject) 삽입 => (구현중)
- *
  */
 define([
 	'marionette',
-	'radio',
-	'pb_templates',
-	'pb/views/object/ImageView',
-	'pb/views/object/TextBoxView',
-	'pb/views/object/ShapeView',
-	'pb/views/object/VideoView',
-	'pb/views/object/AudioView',
-	'pb/views/object/TableView',
-	'pb/views/object/ChartView',
-	'pb/views/behaviors/SceneView/AddImageBehavior',
-	'pb/views/behaviors/SceneView/AddTextBoxBehavior',
-	'pb/views/behaviors/SceneView/AddVideoBehavior',
-	'pb/controllers/CustomError'
-], function (Marionette, Radio, templates,
-             ImageView, TextBoxView, ShapeView, VideoView, AudioView, TableView, ChartView,
-             AddImageBehavior, AddTextBoxBehavior, AddVideoBehavior,
-             CustomError) {
+	'interact'
+], function (Marionette, interact) {
 	'use strict';
 
-	return Marionette.CompositeView.extend({
-		tagName: 'div',   // default div
-		className: 'scene-wrap underline',
-		template: templates.SceneView,
+	return Marionette.ItemView.extend({
+		ui: {},     // 다른 Object들과 extend됨.
 
-		ui: {
-			scene: '.scene'
-		},
-
+		/**
+		 * - 어미에 Data가 붙은 것은 model Data를 직접 변경하는 것이고,
+		 * 붙지 않은 것은 View(DOM)만 변경하는 것임.
+		 *
+		 * - 양방향 바인딩을 이용하여 Model을 변경한 후 바로 View에 적용되게 할 수 있지만,
+		 * 1. 불필요하게 model data 접근하여 많은 연산이 수행되게 할 수 있음.
+		 * 2. 향후 model data를 이용한 기능 구현(undo, redo, 자동저장, 공동작업등)시 문제가 생길 우려
+		 * 때문에 조작중에는 직접 View에 접근하고 조작이 끝나는 시점에서는 데이터를 변경하게 구현함.
+		 *
+		 * - interact 이벤트가 eventhash에 먹히지 않음 그래서 수동으로 설정함
+		 * - [un]selected:baseobject : 선택된 View의 instance를 pb.current.selectedBaseObject에 삽입/삭제한다.
+		 */
 		events: {
-			'drop @ui.scene': 'setupForInsertObjectByDrop'
+			'selected:baseobject': 'selectView',
+			'unseleted:baseobject': 'unselectView',
+			'resize': 'changeSize',
+			'resizestop': 'changeSizeData',
+			'click .rotateBtn': 'rotateObject'
 		},
 
-		/** 기존 legacy API method : itemViewContainer*/
-		/** http://marionettejs.com/docs/marionette.compositeview.html#modelevents-and-collectionevents 참조*/
-		childViewContainer: "@ui.scene",
-		/** trigger와 event가 동시에 작동하지 않는 것 같음.
-		 */
-//	  triggers: {
-//		  'drop @ui.scene': 'add:object'
-//	  },
+		className: "object",
 
-		/** _options는 childViewOptions에서 받아온 데이터 */
-		initialize: function (options) {
-			myLogger.trace("SceneView - init");
-
-			_.extend(this, Radio.Commands);
-
-			if (_.has(options.collection)) {
-				this.collection = options.collection;
-			}
-
-			if (_.has(options.model)) {
-				this.model = options.model;
-			}
-
-			/** SceneView, SceneViewSetList에서 index로 접근하여 instance를 할당할 수 있도록
-			 * 빈 Model을 생성함.
-			 * 호출 순서는 SceneCompositeView/SceneView -> ScenePreviewCompositeView/ScenePreviewView
-			 * 이기 때문에 현재 위치에 ViewSet을 Push함.
-			 * 이 순서는 reset때도 마찬가지임. 무슨뜻이냐면...
-			 *   [매우 중요함!]
-			 * reset event일 때도 만약 모델이 3개일 경우 3개에 해당하는 SceneView가 모두 생성 된 다음
-			 * ScenePreviewView가 생성됨.]
+		initialize: function () {
+			myLogger.trace("BaseObjectView - init");
+			/**
+			 * @link http://ignitersworld.com/lab/contextMenu.html#intro
 			 */
-			pb.type.view.sceneViewSetList.push({
-				parent: pb.type.view.sceneViewSetList
-			});
-
-			/** SceneView와 ScenePreviewView를 묶어놓은 Model
-			 * this.options.index : CompositeView 내에서 몇번째 View인지 알려줌
-			 */
-			this.sceneViewSet = pb.type.view.sceneViewSetList.at(
-				this.options.index
-			);
-
-			if (this.sceneViewSet) {
-				/** ViewSet이 등록되었다는 알림을 받으면 event binding을 함 */
-				this.listenTo(this.sceneViewSet, "register:sceneViewSet", this.bindEvents);
-
-				/** sceneView를 등록하고 viewSet에 알림. */
-				this.sceneViewSet.set("sceneView", this);
-				this.sceneViewSet.trigger("register:sceneView");
-			}
-
-
-		},
-
-		getChildView: function (item) {
-			// Choose which view class to render,
-			// depending on the properties of the item model
-			var modelType = item.get('type');
-
-			if (modelType == 'image') {
-				return ImageView;
-			} else if (modelType == 'textbox') {
-				return TextBoxView;
-			} else if (modelType == 'shape') {
-				return ShapeView;
-			} else if (modelType == 'video') {
-				return VideoView;
-			} else if (modelType == 'audio') {
-				return AudioView;
-			} else if (modelType == 'table') {
-				return TableView;
-			} else if (modelType == 'chart') {
-				return ChartView;
-			} else {
-				try {
-					throw new CustomError({
-						name: 'SceneView - no ChildViewError',
-						message: 'Child(model) isn`t exist type!'
-					});
-				} catch (e) {
-					return null;
-				}
-			}
-		},
-
-		/**
-		 * Object 삭제 후 .command('change:thumbnail')을 수행하기 위해서
-		 * option으로 sceneViewSet을 전달함.
-		 */
-		childViewOptions: function (model, index) {
-			myLogger.trace("SceneView - childViewOptions");
-
-			return {
-				sceneViewSet: this.sceneViewSet
-			}
-		},
-
-		behaviors: {
-			AddImageBehavior: {
-				behaviorClass: AddImageBehavior,
-				type: "image"
-			},
-			AddTextBoxBehavior: {
-				behaviorClass: AddTextBoxBehavior,
-				type: "textbox"
-			},
-			AddVideoBehavior: {
-				behaviorClass: AddVideoBehavior,
-				type: "video"
-			}
-		},
-
-		onRender: function (event, ui) {
-			myLogger.trace("SceneView - onRender");
-
-			this.renderCurrentScene();
-
-			// 삭제할 때 좀비가 되지 않기 위해서는 droppable, selectable event 삭제해야함.
-			// 이미 삽입된 개체는 삽입되면 안되기 때문에 필터링을 함
-			// 필터링 모듈을 따로 만들어서 관리하는 것이 좋을 것 같음.
-			this.ui.scene.droppable({
-				accept: "[insertable]"
-			}).selectable({
-				filter: '.object',
-				tolerance: 'fit',
-				selected: function (event, ui) {
-					$(ui.selected).find(".ui-resizable-handle").removeClass("hide");
-					console.log("selected");
+			this.objectContextMenus = [
+				{
+					name: "내 컨텐츠 추가", /* img: "delete",*/
+					title: "create my contents",
+					fun: _.bind(this.addMyContents, this)
 				},
-				unselected: function (event, ui) {
-					$(ui.unselected).find(".ui-resizable-handle").addClass("hide");
-					console.log("unselected");
+				{
+					name: "삭제",
+					fun: _.bind(this.deleteObject, this)
+				},
+				{
+					name: "잘라내기",
+					func: this.cutObject
+				},
+				{
+					name: "복사",
+					func: this.copyObject
+				},
+				{
+					name: "붙여넣기",
+					func: this.pasteObject
+				},
+				{
+					name: "맨 앞으로",
+					func: this.moveForegroundObject
+				},
+				{
+					name: "앞으로",
+					func: this.moveForwardObject
+				},
+				{
+					name: "맨 뒤로",
+					func: this.moveBackgroundObject
+				},
+				{
+					name: "뒤로",
+					func: this.moveBackwardObject
+				},
+				{
+					name: "크기, 위치 수정",
+					func: this.editSizePositionObject
+				},
+				{
+					name: "도형 서식",
+					func: this.editShapeObject
 				}
-			});
+			];
+
+			this.contextMenuOptions = {
+				//containment: "document",     // context menu가 보여지는 범위가 어디까지인가?
+				displayAround: "cursor",
+				horAdjust: 0,
+				left: "auto",
+				mouseClick: "right",
+				position: "auto",
+				sizeStyle: "auto",
+				top: "auto",
+				triggerOn: "click",
+				verAdjust: 0
+			}
 		},
 
+		// "render" / onRender - after everything has been rendered
+		onRender: function (v) {
+			myLogger.trace("BaseObjectView - onRender");
+
+
+			interact(this.el).draggable({
+				manualStart: true,
+				// keep the element within the area of it's parent
+				restrict: {
+					restriction: "self",
+					endOnly: true,
+					elementRect: {top: 0, left: 0, bottom: 1, right: 1}
+				},
+				onmove: _.bind(this.changeDirection, this),
+				onend: _.bind(this.changeDirectionData, this)
+			})
+			/** interactEvent를 사용해야 interaction 객체를 사용할 수 있음 */
+				.on('hold', function (event) {
+					var interaction = event.interaction;
+
+					if (!$(interaction._curEventTarget).is(".ui-resizable-handle")) {
+
+
+						interaction.start({name: 'drag'},
+							event.interactable,
+							event.currentTarget);
+
+						// selectable의 mouse event를 정지함.
+						pb.current.scene.ui.scene.data('ui-selectable')._mouseStop(null);
+
+						console.log("on hold");
+					}
+				});
+
+			// 좀비뷰가 되지 않기 위해서는 draggable, resizable event를 삭제해야함.
+			this.$el.resizable({
+				handles: "all",
+				create: function () {
+					$(this).find(".ui-resizable-handle").addClass("hide");
+				}
+			});
+
+			var initCoordinate = 'translate(' + this.model.get("left") + 'px, ' + this.model.get("top") + 'px)';
+
+			/** top: y, left: x - 나중에 x, y로 바꿔야 될 듯 */
+			this.$el.css({
+				transform: initCoordinate,
+				width: this.model.get("width"),
+				height: this.model.get("height")
+			})
+				.attr({
+					'data-x': this.model.get("left"),
+					'data-y': this.model.get("top")
+				});
+		},
+
+		/** Marionette Override Methods */
 		onShow: function () {
-			myLogger.trace("SceneView - onShow");
+			myLogger.trace("BaseObjectView - onShow");
 		},
 
-		bindEvents: function () {
-			myLogger.trace("sceneView - bindEvents");
-
-			/** click : selectScenePreview */
-			this.comply("change:currentScene", this.selectSceneView);
-
-			/** 이미지, 가로 텍스트박스, 비디오 추가 */
-			this.comply("add:object:image add:object:textbox:h add:object:video", this.setupForInsertObjectByClick, this);
+		onDomRefresh: function () {
+			myLogger.trace("BaseObjectView - onDomRefresh");
 		},
 
-		renderCurrentScene: function () {
-			myLogger.trace("SceneView - renderCurrentScene");
+		onBeforeDestroy: function () {
+		},
 
-			/** loading후 Preview 선택시 Scene 변경이 안되는 문제발생
-			 * 현재 문제를 정확히 알 수 없음
-			 * 해결이 되는대로 주석을 제거하겠음.
+		onDestroy: function () {
+			/**
+			 * this.options.sceneViewSet : SceneView.sceneViewSet
+			 * 담당 preview에게 thumbnail을 다시 찍으라고 함.
 			 */
-			if (!this.options.isReset) {
-				/** loading(reset)이 아닐경우 */
+			var scenePreviewView = this.options.sceneViewSet.get("scenePreviewView");
+			scenePreviewView.command("change:thumbnail");
 
-				if (pb.current.scene) {
-					/** 기존 Scene이 존재하는 경우 */
-					pb.current.scene.$el.hide();
-					pb.current.scene = this;
-				} else {
-					/** sceneList가 비었을 경우 : 처음 구동시 */
-					pb.current.scene = this;
-				}
-
-				pb.current.scene.$el.show();
-			} else if (pb.current.scene === null) {
-				/** loading(reset)일 경우 제일 처음 Scene에 focus를 맞춤 */
-				pb.current.scene = this;
-				pb.current.scene.$el.  show();
-			}
-
-			/** initialize에 하려고 했으나, 의미상 현재 선택된 Scene이기 때문에
-			 * loading시(reset)과 add시 current.scene 설정을 구분해야함.
-			 * - add시에는 삽입된 scene에 focus를 맞추면 되지만, loading은 처음 슬라이드를 기준으로 함.
-			 */
+			myLogger.trace("BaseObjectView - onDestroy");
 		},
 
-		selectSceneView: function () {
-			myLogger.trace("SceneView - selectSceneView");
 
-			/** 이전 Scene을 감춤*/
-			pb.current.scene.$el.hide();
-
-			/** 새 Scene을 지정하고 보여줌.*/
-			pb.current.scene = this;
-			pb.current.scene.$el.show();
+		// Custom Methods - Event Callback
+		/** selected:baseobject */
+		selectView: function() {
+			pb.current.selectedBaseObject.push(this);
 		},
 
-		/** Custom Methods */
-
-		/**
-		 * 각 type별로 Click Event로 삽입할 수 있도록 Event를 지정함
-		 * - selectable event를 일시적으로 disable해도 해결되지 않음
-		 * - 때문에 그냥 스크린 중간에 표시하는걸로 하는것이 좋을 것 같음
-		 * */
-		setupForInsertObjectByClick: function (options) {
-			if (options.type == "image") {
-				this.setupForInsertImage(options);
-			}else if (options.type == "textbox") {
-				this.setupForInsertTextBox(options);
-			} else if (options.type == "video") {
-				this.setupForInsertVideo(options);
-			}
+		/** unselected:baseobject */
+		unselectView: function() {
+			pb.current.selectedBaseObject.remove(this);
 		},
 
-		setupForInsertObjectByDrop: function (event, ui) {
-			myLogger.trace("SceneView - addObject");
+		/** 'dragmove' */
+		changeDirection: function (event) {
+			var target = event.target,
+			// keep the dragged position in the data-x/data-y attributes
+				x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+				y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-			var $baseObject = $(ui.draggable.context);
-			var type = $baseObject.attr('type');
+			var coordinate = 'translate(' + x + 'px, ' + y + 'px)';
 
-			if (type == "image") {
-				var imageSrc = $baseObject.attr('src');
-				var size = $baseObject.css(["width", "height"]);
 
-				var imageOptions = {
-					top: ui.position.top,
-					left: ui.position.left,
-					imgSrc: imageSrc,
-					width: size.width,
-					height: size.height
-				};
-
-				/* The on{Name} callback methods will still be called
-				 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
-				this.triggerMethod("AddImage", imageOptions);
-			}
-		},
-
-		setupForInsertImage: function(options) {
-			this.$el.tooltip({
-				content: function () {
-					return "Click and Insert Image!"
-				},
-				items: ".scene",
-				track: true
+			// translate the element
+			this.$el.css({
+				transform: coordinate
 			});
 
-			/** 삽입을 알리기 위해서 cursor 변경 */
-			this.ui.scene.css({cursor: "crosshair"});
+			// update the posiion attributes
+			target.setAttribute('data-x', x);
+			target.setAttribute('data-y', y);
 
-			/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
-			$(document).one("keyup.cancel.image", _.bind(function (event) {
-					if (event.which == 27 || event.namespace == "cancel.image") {
-						this.ui.scene.css({cursor: "default"});
-						this.$el.tooltip("destroy");
-					}
-
-					this.ui.scene.off('click.add.image');
-
-					myLogger.trace("SceneView - 'keyup.cancel.image'");
-				}, this)
-			);
-
-			/** scene에 click을 할 경우 TextBox가 삽입됨.
-			 * 기본크기 : 가로 - 100px, 세로 100px
-			 * ! - 이상하게 click event가 먹지 않는다
-			 * 그래서 [야메]로 하기로 했음
-			 */
-			this.$el.one('click.add.image', this.ui.scene, _.bind(function (event) {
-					var imageOptions = {
-						imgSrc: options.imgSrc,
-						top: event.offsetY,
-						left: event.offsetX,
-						width: "100px",
-						height: "100px"
-					};
-
-					$(document).trigger("keyup.cancel.image");
-
-					/* The on{Name} callback methods will still be called
-					 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
-					this.triggerMethod("AddImage", imageOptions);
-
-					myLogger.trace("SceneView - 'click.add.image'");
-				}, this)
-			);
+			myLogger.trace("BaseObjectView - changeDirection");
 		},
 
-		setupForInsertTextBox: function(options) {
-			this.$el.tooltip({
-				content: function () {
-					return "Click and Insert TextBox!"
-				},
-				items: ".scene",
-				track: true
-			});
+		/** 'dragstop' */
+		changeDirectionData: function (event) {
+			var target = event.target;
+			// 차후에 translate에 맞게 x, y로 바꿔야될 것 같음
+			this.model.setTopLeft(
+				target.getAttribute('data-y'),
+				target.getAttribute('data-x'));
 
-			/** 삽입을 알리기 위해서 cursor 변경 */
-			this.ui.scene.css({cursor: "crosshair"});
+			myLogger.trace("BaseObjectView - changeDirectionData");
+		},
 
-			/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
-			$(document).one("keyup.cancel.textbox", _.bind(function (event) {
-					if (event.which == 27 || event.namespace == "cancel.textbox") {
-						this.ui.scene.css({cursor: "default"});
-						this.$el.tooltip("destroy");
-					}
+		/** 'resize' */
+		changeSize: function (event, ui) {
+			//this.model.setTopLeft(ui.position.top, ui.position.left);
 
-					this.ui.scene.off('click.add.textbox');
+			myLogger.trace("BaseObjectView - changeDirection");
+		},
 
-					myLogger.trace("SceneView - 'keyup.cancel.textbox'");
-				}, this)
-			);
+		/** 'resizestop' */
+		changeSizeData: function (event, ui) {
+			this.model.setSize(ui.size.width, ui.size.height);
+			myLogger.trace("BaseObjectView - changeSize");
+		},
 
-			/** scene에 click을 할 경우 TextBox가 삽입됨.
-			 * 기본크기 : 가로 - 100px, 세로 100px
-			 * ! - 이상하게 click event가 먹지 않는다
-			 * 그래서 [야메]로 하기로 했음
-			 */
-			this.$el.one('click.add.textbox', this.ui.scene, _.bind(function (event) {
-					var textBoxOptions = {
-						top: event.offsetY,
-						left: event.offsetX,
-						width: "100px",
-						height: "100px"
-					};
+		/** 'click .destroyBtn' */
+		destroyObject: function (event, ui) {
 
-					$(document).trigger("keyup.cancel.textbox");
+		},
 
-					/* The on{Name} callback methods will still be called
-					 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
-					this.triggerMethod("AddTextBox", textBoxOptions);
+		/** 'click .rotateBtn' */
+		rotateObject: function () {
 
-					myLogger.trace("SceneView - 'click.add.textbox'");
-				}, this)
-			);
 		},
 
 
-		setupForInsertVideo: function(options) {
-			this.$el.tooltip({
-				content: function () {
-					return "Click and Insert Video!"
-				},
-				items: ".scene",
-				track: true
-			});
+		// Custom Methods - contextMenu Callback
+		addMyContents: function () {
+			myLogger.trace("BaseObjectView - addMyContents");
+		},
 
-			/** 삽입을 알리기 위해서 cursor 변경 */
-			this.ui.scene.css({cursor: "crosshair"});
+		/** 바인딩된 모든 이벤트를 해제하고 난 후에 데이터를 삭제함. */
+		deleteObject: function (key, opt) {
+			this.$el.contextMenu('destroy');
+			this.$el.resizable("destroy").draggable("destroy");
 
-			/** 텍스트박스 삽입 취소를 위해서 esc 키를 누를 경우 취소함 */
-			$(document).one("keyup.cancel.video", _.bind(function (event) {
-					if (event.which == 27 || event.namespace == "cancel.video") {
-						this.ui.scene.css({cursor: "default"});
-						this.$el.tooltip("destroy");
-					}
+			/** this.model - Image, this.model.collection - BaseObjectList */
+			this.model.collection.remove(this.model);
 
-					this.ui.scene.off('click.add.video');
+			myLogger.trace("BaseObjectView - deleteObject");
+		},
 
-					myLogger.trace("SceneView - 'keyup.cancel.video'");
-				}, this)
-			);
+		cutObject: function () {
+			myLogger.trace("BaseObjectView - cutObject");
+		},
 
-			/** scene에 click을 할 경우 Video가 삽입됨.
-			 * 기본크기 : 가로 - 640px, 세로 480px
-			 * ! - 이상하게 click event가 먹지 않는다
-			 * 그래서 [야메]로 하기로 했음
-			 */
-			this.$el.one('click.add.textbox', this.ui.scene, _.bind(function (event) {
-					var videoOptions = {
-						videoSrc: options.videoSrc,
-						videoPreviewImage: options.videoPreviewImage,
-						top: event.offsetY,
-						left: event.offsetX,
-						width: "640px",
-						height: "480px"
-					};
+		copyObject: function () {
+			myLogger.trace("BaseObjectView - copyObject");
+		},
 
-					$(document).trigger("keyup.cancel.video");
+		pasteObject: function () {
+			myLogger.trace("BaseObjectView - pasteObject");
+		},
 
-					/* The on{Name} callback methods will still be called
-					 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
-					this.triggerMethod("AddVideo", videoOptions);
+		moveForegroundObject: function () {
+			myLogger.trace("BaseObjectView - moveForegroundObject");
+		},
 
-					myLogger.trace("SceneView - 'click.add.video'");
-				}, this)
-			);
+		moveForwardObject: function () {
+			myLogger.trace("BaseObjectView - moveForwardObject");
+		},
+
+		moveBackgroundObject: function () {
+			myLogger.trace("BaseObjectView - moveBackgroundObject");
+		},
+
+		moveBackwardObject: function () {
+			myLogger.trace("BaseObjectView - moveBackwardObject");
+		},
+
+		editSizePositionObject: function () {
+			myLogger.trace("BaseObjectView - editSizePositionObject");
+		},
+
+		editShapeObject: function () {
+			myLogger.trace("BaseObjectView - editShapeObject");
 		}
-	})
+	});
 });

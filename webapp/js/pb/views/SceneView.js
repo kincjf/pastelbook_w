@@ -153,6 +153,7 @@ define([
 			}
 		},
 
+		/** Marionette Override Methods */
 		onRender: function (event, ui) {
 			myLogger.trace("SceneView - onRender");
 
@@ -165,15 +166,8 @@ define([
 				accept: "[insertable]"
 			}).selectable({
 				filter: '.object',
-				tolerance: 'fit',
-				selected: function (event, ui) {
-					$(ui.selected).find(".ui-resizable-handle").removeClass("hide");
-					console.log("selected");
-				},
-				unselected: function (event, ui) {
-					$(ui.unselected).find(".ui-resizable-handle").addClass("hide");
-					console.log("unselected");
-				}
+				selected: this.setupForSelectBaseObjectView,
+				unselected: this.setupForUnselectBaseObjectView
 			});
 		},
 
@@ -181,14 +175,30 @@ define([
 			myLogger.trace("SceneView - onShow");
 		},
 
-		bindEvents: function () {
-			myLogger.trace("sceneView - bindEvents");
+		/** ui.selected - BaseObject.$el */
+		setupForSelectBaseObjectView: function (event, ui) {
+			$(ui.selected).find(".ui-resizable-handle")
+				.removeClass("hide")
+				.trigger("selected:baseobject");
+			myLogger.trace("sceneView - setupForSelectBaseObjectView");
+		},
 
+		/** ui.unselected - BaseObject.$el */
+		setupForUnselectBaseObjectView: function (event, ui) {
+			$(ui.unselected).find(".ui-resizable-handle")
+				.addClass("hide")
+				.trigger("unselected:baseobject");
+			myLogger.trace("sceneView - setupForUnselectBaseObjectView");
+		},
+
+		bindEvents: function () {
 			/** click : selectScenePreview */
 			this.comply("change:currentScene", this.selectSceneView);
 
 			/** 이미지, 가로 텍스트박스, 비디오 추가 */
 			this.comply("add:object:image add:object:textbox:h add:object:video", this.setupForInsertObjectByClick, this);
+
+			myLogger.trace("sceneView - bindEvents");
 		},
 
 		renderCurrentScene: function () {
@@ -214,7 +224,7 @@ define([
 			} else if (pb.current.scene === null) {
 				/** loading(reset)일 경우 제일 처음 Scene에 focus를 맞춤 */
 				pb.current.scene = this;
-				pb.current.scene.$el.  show();
+				pb.current.scene.$el.show();
 			}
 
 			/** initialize에 하려고 했으나, 의미상 현재 선택된 Scene이기 때문에
@@ -241,7 +251,7 @@ define([
 		 * - selectable event를 일시적으로 disable해도 해결되지 않음
 		 * - 때문에 그냥 스크린 중간에 표시하는걸로 하는것이 모바일 상에서도 좋을 것 같음
 		 * ==> 그래서 그냥 1/3 지점에 바로 들어가게 구현함
- 		 * */
+		 * */
 		setupForInsertObjectByClick: function (options) {
 
 			var objectOptions = {
@@ -297,5 +307,7 @@ define([
 				this.triggerMethod("AddImage", imageOptions);
 			}
 		}
+
+
 	})
 });

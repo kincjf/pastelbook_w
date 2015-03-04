@@ -1426,7 +1426,7 @@
 
             this.holdTimers[pointerIndex] = setTimeout(function () {
                 that.pointerHold(events.useAttachEvent? eventCopy : pointer, eventCopy, eventTarget, curEventTarget);
-            }, 600);
+            }, 200);
 
             this.pointerIsDown = true;
 

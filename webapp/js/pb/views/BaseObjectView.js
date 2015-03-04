@@ -4,7 +4,6 @@
  *
  * - 구현내용/순서
  * 1. 추가요소(BaseObject) 삽입 => (구현중)
- *
  */
 define([
 	'marionette',
@@ -16,20 +15,20 @@ define([
 		ui: {},     // 다른 Object들과 extend됨.
 
 		/**
-		 * 어미에 Data가 붙은 것은 model Data를 직접 변경하는 것이고,
+		 * - 어미에 Data가 붙은 것은 model Data를 직접 변경하는 것이고,
 		 * 붙지 않은 것은 View(DOM)만 변경하는 것임.
 		 *
-		 * 양방향 바인딩을 이용하여 Model을 변경한 후 바로 View에 적용되게 할 수 있지만,
+		 * - 양방향 바인딩을 이용하여 Model을 변경한 후 바로 View에 적용되게 할 수 있지만,
 		 * 1. 불필요하게 model data 접근하여 많은 연산이 수행되게 할 수 있음.
 		 * 2. 향후 model data를 이용한 기능 구현(undo, redo, 자동저장, 공동작업등)시 문제가 생길 우려
-		 *
 		 * 때문에 조작중에는 직접 View에 접근하고 조작이 끝나는 시점에서는 데이터를 변경하게 구현함.
 		 *
-		 *
-	   **/
+		 * - interact 이벤트가 eventhash에 먹히지 않음 그래서 수동으로 설정함
+		 * - [un]selected:baseobject : 선택된 View의 instance를 pb.current.selectedBaseObject에 삽입/삭제한다.
+		 */
 		events: {
-	//'dragmove': 'changeDirection',
-	//'dragend': 'changeDirectionData',
+			'selected:baseobject': 'selectView',
+			'unselected:baseobject': 'unselectView',
 			'resize': 'changeSize',
 			'resizestop': 'changeSizeData',
 			'click .rotateBtn': 'rotateObject'
@@ -41,7 +40,7 @@ define([
 			myLogger.trace("BaseObjectView - init");
 			/**
 			 * @link http://ignitersworld.com/lab/contextMenu.html#intro
-			 * */
+			 */
 			this.objectContextMenus = [
 				{
 					name: "내 컨텐츠 추가", /* img: "delete",*/
@@ -132,6 +131,7 @@ define([
 							event.currentTarget);
 
 						// selectable의 mouse event를 정지함.
+						// !bug point : 이 이벤트때문에 unselected event가 발생함
 						pb.current.scene.ui.scene.data('ui-selectable')._mouseStop(null);
 
 						console.log("on hold");
@@ -148,7 +148,7 @@ define([
 
 			var initCoordinate = 'translate(' + this.model.get("left") + 'px, ' + this.model.get("top") + 'px)';
 
-			/** top: y, left: x - 나중에 x, y로 바꿔야 될 듯*/
+			/** top: y, left: x - 나중에 x, y로 바꿔야 될 듯 */
 			this.$el.css({
 				transform: initCoordinate,
 				width: this.model.get("width"),
@@ -184,35 +184,51 @@ define([
 		},
 
 
-		/** Custom Methods - Event Callback */
+		// Custom Methods - Event Callback
+		/** selected:baseobject */
+		selectView: function() {
+			pb.current.selectedBaseObject.push(this);
+		},
+
+		/** unselected:baseobject */
+		unselectView: function() {
+			pb.current.selectedBaseObject.remove(this);
+		},
 
 		/** 'dragmove' */
 		changeDirection: function (event) {
 			var target = event.target,
+				dx = event.dx,
+				dy = event.dy;
 			// keep the dragged position in the data-x/data-y attributes
-				x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-				y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+			//	x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+			//	y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+			// element - instance of baseObjectView
+			_.each(pb.current.selectedBaseObject.container, function(element, index, list) {
+					var x = (parseFloat(element.el.getAttribute('data-x')) || 0) + event.dx,
+						y = (parseFloat(element.el.getAttribute('data-y')) || 0) + event.dy;
 
-			var coordinate = 'translate(' + x + 'px, ' + y + 'px)';
-			// translate the element
-			this.$el.css({
-				transform: coordinate
+					var coordinate = 'translate(' + x + 'px, ' + y + 'px)';
+
+					element.$el.css({
+						transform: coordinate
+					});
+
+					element.el.setAttribute('data-x', x);
+					element.el.setAttribute('data-y', y);
 			});
-
-			// update the posiion attributes
-			target.setAttribute('data-x', x);
-			target.setAttribute('data-y', y);
 
 			myLogger.trace("BaseObjectView - changeDirection");
 		},
 
 		/** 'dragstop' */
 		changeDirectionData: function (event) {
-			var target = event.target;
 			// 차후에 translate에 맞게 x, y로 바꿔야될 것 같음
-			this.model.setTopLeft(
-				target.getAttribute('data-y'),
-				target.getAttribute('data-x'));
+			_.each(pb.current.selectedBaseObject.container, function(element, index, list) {
+				element.model.setTopLeft(
+					element.el.getAttribute('data-y'), element.el.getAttribute('data-x')
+				);
+			});
 
 			myLogger.trace("BaseObjectView - changeDirectionData");
 		},
@@ -241,7 +257,7 @@ define([
 		},
 
 
-		/** Custom Methods - contextMenu Callback */
+		// Custom Methods - contextMenu Callback
 		addMyContents: function () {
 			myLogger.trace("BaseObjectView - addMyContents");
 		},

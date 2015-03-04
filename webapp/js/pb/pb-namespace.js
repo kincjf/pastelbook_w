@@ -55,7 +55,7 @@ require(['require',
 		/** 현재 선택된 정보 (View instance) */
 		pb.current.scene = pb.current.scene || null;
 		pb.current.scenePreview = pb.current.scenePreview || null;
-		pb.current.selectedObject = pb.current.selectedObject || new ViewContainer();
+		pb.current.selectedBaseObject = pb.current.selectedBaseObject || new ViewContainer();
 		pb.current.selectedScene = pb.current.selectedScene || new ViewContainer();
 
 		pb.ui = pb.ui || {}; // 사용자 개별의 ui 포지션, 혹은 크기 정보
