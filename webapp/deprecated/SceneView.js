@@ -28,7 +28,7 @@ define([
 		 */
 		events: {
 			'selected:baseobject': 'selectView',
-			'unseleted:baseobject': 'unselectView',
+			'unselected:baseobject': 'unselectView',
 			'resize': 'changeSize',
 			'resizestop': 'changeSizeData',
 			'click .rotateBtn': 'rotateObject'
@@ -131,6 +131,7 @@ define([
 							event.currentTarget);
 
 						// selectable의 mouse event를 정지함.
+						// !bug point : 이 이벤트때문에 unselected event가 발생함
 						pb.current.scene.ui.scene.data('ui-selectable')._mouseStop(null);
 
 						console.log("on hold");
@@ -197,32 +198,37 @@ define([
 		/** 'dragmove' */
 		changeDirection: function (event) {
 			var target = event.target,
+				dx = event.dx,
+				dy = event.dy;
 			// keep the dragged position in the data-x/data-y attributes
-				x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-				y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+			//	x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+			//	y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+			// element - instance of baseObjectView
+			_.each(pb.current.selectedBaseObject.container, function(element, index, list) {
+				var x = (parseFloat(element.el.getAttribute('data-x')) || 0) + event.dx,
+					y = (parseFloat(element.el.getAttribute('data-y')) || 0) + event.dy;
 
-			var coordinate = 'translate(' + x + 'px, ' + y + 'px)';
+				var coordinate = 'translate(' + x + 'px, ' + y + 'px)';
 
+				element.$el.css({
+					transform: coordinate
+				});
 
-			// translate the element
-			this.$el.css({
-				transform: coordinate
+				element.el.setAttribute('data-x', x);
+				element.el.setAttribute('data-y', y);
 			});
-
-			// update the posiion attributes
-			target.setAttribute('data-x', x);
-			target.setAttribute('data-y', y);
 
 			myLogger.trace("BaseObjectView - changeDirection");
 		},
 
 		/** 'dragstop' */
 		changeDirectionData: function (event) {
-			var target = event.target;
 			// 차후에 translate에 맞게 x, y로 바꿔야될 것 같음
-			this.model.setTopLeft(
-				target.getAttribute('data-y'),
-				target.getAttribute('data-x'));
+			_.each(pb.current.selectedBaseObject.container, function(element, index, list) {
+				element.model.setTopLeft(
+					element.el.getAttribute('data-y'), element.el.getAttribute('data-x')
+				);
+			});
 
 			myLogger.trace("BaseObjectView - changeDirectionData");
 		},

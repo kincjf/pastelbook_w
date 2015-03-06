@@ -67,6 +67,10 @@ require(['require',
 			screenController: this.screenController || new ScreenController()
 		};
 
+		pb.dummy = pb.dummy || {
+			img: new Image()
+		};
+
 		/** global 변수 설정 */
 		pb.value = pb.value || {
 			VERSION: 0.1,

@@ -165,7 +165,9 @@ define([
 			this.ui.scene.droppable({
 				accept: "[insertable]"
 			}).selectable({
+				autoRefresh: true,
 				filter: '.object',
+				tolerance: 'fit',
 				selected: this.setupForSelectBaseObjectView,
 				unselected: this.setupForUnselectBaseObjectView
 			});
@@ -255,17 +257,17 @@ define([
 		setupForInsertObjectByClick: function (options) {
 
 			var objectOptions = {
-				imgSrc: options.imgSrc,
 				top: pb.ui.dlg_current_scene.h / 3,
-				left: pb.ui.dlg_current_scene.w / 3,
-				width: "100px",
-				height: "100px"
+				left: pb.ui.dlg_current_scene.w / 3
 			};
 
 			if (options.type == "image") {
+				// dummy를 이용한 naturalSize 측정
+				pb.dummy.src = options.imgSrc;
+
 				_.extend(objectOptions, {
-					width: "100px",
-					height: "100px",
+					width: pb.dummy.width,
+					height: pb.dummy.height,
 					imgSrc: options.imgSrc
 				});
 				this.triggerMethod("AddImage", objectOptions);
@@ -277,8 +279,8 @@ define([
 				_.extend(objectOptions, {
 					videoSrc: options.videoSrc,
 					videoPreviewImage: options.videoPreviewImage,
-					width: "640px",
-					height: "480px"
+					width: 640,
+					height: 480
 				});
 				this.triggerMethod("AddVideo", objectOptions);
 			}
@@ -289,25 +291,26 @@ define([
 
 			var $baseObject = $(ui.draggable.context);
 			var type = $baseObject.attr('type');
+			var objectOptions = {
+				top: ui.position.top,
+				left: ui.position.left
+			};
 
 			if (type == "image") {
-				var imageSrc = $baseObject.attr('src');
-				var size = $baseObject.css(["width", "height"]);
+				var imageSrc = $baseObject.attr('src'),
+					naturalWidth = $baseObject[0].naturalWidth,
+					naturalHeight = $baseObject[0].naturalHeight
 
-				var imageOptions = {
-					top: ui.position.top,
-					left: ui.position.left,
-					imgSrc: imageSrc,
-					width: size.width,
-					height: size.height
-				};
+				_.extend(objectOptions, {
+					width: naturalWidth,
+					height: naturalHeight,
+					imgSrc: imageSrc
+				});
 
 				/* The on{Name} callback methods will still be called
 				 * ex) AddImage -> this.triggerMethod("AddImage") -> triggers on{AddImage} */
-				this.triggerMethod("AddImage", imageOptions);
+				this.triggerMethod("AddImage", objectOptions);
 			}
 		}
-
-
 	})
 });

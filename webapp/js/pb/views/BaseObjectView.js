@@ -6,9 +6,8 @@
  * 1. 추가요소(BaseObject) 삽입 => (구현중)
  */
 define([
-	'marionette',
-	'interact'
-], function (Marionette, interact) {
+	'marionette'
+], function (Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -29,6 +28,9 @@ define([
 		events: {
 			'selected:baseobject': 'selectView',
 			'unselected:baseobject': 'unselectView',
+			'mousedown': 'setupForDrag',
+			'drag': 'changeDirection',
+			'dragstop': 'changeDirectionData',
 			'resize': 'changeSize',
 			'resizestop': 'changeSizeData',
 			'click .rotateBtn': 'rotateObject'
@@ -105,59 +107,36 @@ define([
 
 		// "render" / onRender - after everything has been rendered
 		onRender: function (v) {
-			myLogger.trace("BaseObjectView - onRender");
-
-
-			interact(this.el).draggable({
-				manualStart: true,
-				// keep the element within the area of it's parent
-				restrict: {
-					restriction: "self",
-					endOnly: true,
-					elementRect: {top: 0, left: 0, bottom: 1, right: 1}
-				},
-				onmove: _.bind(this.changeDirection, this),
-				onend: _.bind(this.changeDirectionData, this)
-			})
-			/** interactEvent를 사용해야 interaction 객체를 사용할 수 있음 */
-				.on('hold', function (event) {
-					var interaction = event.interaction;
-
-					if (!$(interaction._curEventTarget).is(".ui-resizable-handle")) {
-
-
-						interaction.start({name: 'drag'},
-							event.interactable,
-							event.currentTarget);
-
-						// selectable의 mouse event를 정지함.
-						// !bug point : 이 이벤트때문에 unselected event가 발생함
-						pb.current.scene.ui.scene.data('ui-selectable')._mouseStop(null);
-
-						console.log("on hold");
-					}
-				});
-
 			// 좀비뷰가 되지 않기 위해서는 draggable, resizable event를 삭제해야함.
 			this.$el.resizable({
 				handles: "all",
 				create: function () {
 					$(this).find(".ui-resizable-handle").addClass("hide");
 				}
-			});
-
-			var initCoordinate = 'translate(' + this.model.get("left") + 'px, ' + this.model.get("top") + 'px)';
-
-			/** top: y, left: x - 나중에 x, y로 바꿔야 될 듯 */
-			this.$el.css({
-				transform: initCoordinate,
-				width: this.model.get("width"),
-				height: this.model.get("height")
 			})
-				.attr({
-					'data-x': this.model.get("left"),
-					'data-y': this.model.get("top")
+				// handle을 사용해도 될 것 같음
+				.draggable({
+					opacity: 0.35
 				});
+
+			/** widget에 직접 접근해서 많은 데이터를 가져오는 것 보다는 필요한 데이터를 간단하게
+			 * 명시한 후에 작성하는게 좋을 것 같아서 attr에 표기를 하였음.
+			 */
+			this.$el.attr({
+				'data-x': this.model.get("left"),
+				'data-y': this.model.get("top"),
+				'data-width': this.model.get("width"),
+				'data-height': this.model.get("height")
+			})
+				.css({
+					top: this.model.get("top"),
+					left: this.model.get("left"),
+					width: this.model.get("width"),
+					height: this.model.get("height"),
+					position: "absolute"
+				});
+
+			myLogger.trace("BaseObjectView - onRender");
 		},
 
 		/** Marionette Override Methods */
@@ -166,6 +145,21 @@ define([
 		},
 
 		onDomRefresh: function () {
+			var pos = this.$el.offset();
+			this.$el.data("selectable-item", {
+				element: this.el,
+				$element: this.$el,
+				left: pos.left,
+				top: pos.top,
+				right: pos.left + this.$el.outerWidth(),
+				bottom: pos.top + this.$el.outerHeight(),
+				startselected: false,
+				selected: this.$el.hasClass("ui-selected"),
+				selecting: this.$el.hasClass("ui-selecting"),
+				unselecting: this.$el.hasClass("ui-unselecting")
+			})
+				.addClass("ui-selectee");
+
 			myLogger.trace("BaseObjectView - onDomRefresh");
 		},
 
@@ -186,63 +180,112 @@ define([
 
 		// Custom Methods - Event Callback
 		/** selected:baseobject */
-		selectView: function() {
+		selectView: function () {
 			pb.current.selectedBaseObject.push(this);
 		},
 
 		/** unselected:baseobject */
-		unselectView: function() {
+		unselectView: function () {
 			pb.current.selectedBaseObject.remove(this);
 		},
 
-		/** 'dragmove' */
-		changeDirection: function (event) {
-			var target = event.target,
-				dx = event.dx,
-				dy = event.dy;
-			// keep the dragged position in the data-x/data-y attributes
-			//	x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-			//	y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-			// element - instance of baseObjectView
-			_.each(pb.current.selectedBaseObject.container, function(element, index, list) {
-					var x = (parseFloat(element.el.getAttribute('data-x')) || 0) + event.dx,
-						y = (parseFloat(element.el.getAttribute('data-y')) || 0) + event.dy;
+		setupForDrag: function (event, ui) {
+			var widgetInstance = pb.current.scene.ui.scene.data("ui-selectable");
+				widgetInstance.selectees = pb.current.scene.ui.scene.find(widgetInstance.options.filter);
 
-					var coordinate = 'translate(' + x + 'px, ' + y + 'px)';
+			// 선택이 안되어 있을경우
+			if (!this.$el.hasClass("ui-selected")) {
+				// - ctrlKey가 안 눌린 경우
+				if (!event.metaKey && !event.ctrlKey) {
 
-					element.$el.css({
-						transform: coordinate
+					// 선택된 object만 selectable되고 나머지는 unselectable
+					widgetInstance.selectees.filter(".ui-selected").each(function() {
+						var selectee = $.data(this, "selectable-item");
+						selectee.$element.removeClass("ui-selected");
+						selectee.selected = false;
+						selectee.unselecting = false;
+
+						widgetInstance._trigger("unselected", event, {
+							unselected: this
+						});
 					});
+				}
 
-					element.el.setAttribute('data-x', x);
-					element.el.setAttribute('data-y', y);
+				// selectable object로 추가
+				this.$el.addClass("ui-selected");
+				widgetInstance._trigger("selected", event, {
+					selected: this.el
+				});
+			}
+		},
+
+		/** 'drag' */
+		changeDirection: function (event, ui) {
+			var dx = ui.position.left - this.el.getAttribute('data-x'),
+				dy = ui.position.top - this.el.getAttribute('data-y');
+
+			_.each(pb.current.selectedBaseObject.container, function (element, index, list) {
+				var x = (parseFloat(element.el.getAttribute('data-x')) || 0) + dx,
+					y = (parseFloat(element.el.getAttribute('data-y')) || 0) + dy;
+
+				element.$el.css({
+					left: x,
+					top: y
+				});
+
+				element.el.setAttribute('data-x', x);
+				element.el.setAttribute('data-y', y);
 			});
 
 			myLogger.trace("BaseObjectView - changeDirection");
 		},
 
 		/** 'dragstop' */
-		changeDirectionData: function (event) {
+		changeDirectionData: function (event, ui) {
 			// 차후에 translate에 맞게 x, y로 바꿔야될 것 같음
-			_.each(pb.current.selectedBaseObject.container, function(element, index, list) {
+			_.each(pb.current.selectedBaseObject.container, function (element, index, list) {
 				element.model.setTopLeft(
 					element.el.getAttribute('data-y'), element.el.getAttribute('data-x')
 				);
-			});
+
+				// selectable을 위한 refresh 수행
+				this.triggerMethod("DomRefresh");
+			}, this);
 
 			myLogger.trace("BaseObjectView - changeDirectionData");
 		},
 
 		/** 'resize' */
 		changeSize: function (event, ui) {
-			//this.model.setTopLeft(ui.position.top, ui.position.left);
+			var dwidth = ui.size.width - this.el.getAttribute('data-width'),
+				dheight = ui.size.height - this.el.getAttribute('data-height');
 
+			_.each(pb.current.selectedBaseObject.container, function (element, index, list) {
+				var width = (parseFloat(element.el.getAttribute('data-width')) || 0) + dwidth,
+					height = (parseFloat(element.el.getAttribute('data-height')) || 0) + dheight;
+
+				element.$el.css({
+					width: width,
+					height: height
+				});
+
+				element.el.setAttribute('data-width', width);
+				element.el.setAttribute('data-height', height);
+			});
 			myLogger.trace("BaseObjectView - changeDirection");
 		},
 
 		/** 'resizestop' */
 		changeSizeData: function (event, ui) {
-			this.model.setSize(ui.size.width, ui.size.height);
+			_.each(pb.current.selectedBaseObject.container, function (element, index, list) {
+				element.model.setSize(
+					element.el.getAttribute('data-width'), element.el.getAttribute('data-height')
+				);
+
+				// selectable을 위한 refresh 수행
+				this.triggerMethod("DomRefresh");
+			}, this);
+
 			myLogger.trace("BaseObjectView - changeSize");
 		},
 
@@ -255,7 +298,6 @@ define([
 		rotateObject: function () {
 
 		},
-
 
 		// Custom Methods - contextMenu Callback
 		addMyContents: function () {
