@@ -55,15 +55,8 @@ define([
 
 			_.extend(this, Radio.Commands);
 
-			if (_.has(options.collection)) {
-				this.collection = options.collection;
-			}
-
-			if (_.has(options.model)) {
-				this.model = options.model;
-			}
-
-			/** SceneView, SceneViewSetList에서 index로 접근하여 instance를 할당할 수 있도록
+			/** < 필독 - 매우 중요함!!!>
+			 * SceneView, SceneViewSetList에서 index로 접근하여 instance를 할당할 수 있도록
 			 * 빈 Model을 생성함.
 			 * 호출 순서는 SceneCompositeView/SceneView -> ScenePreviewCompositeView/ScenePreviewView
 			 * 이기 때문에 현재 위치에 ViewSet을 Push함.
@@ -72,29 +65,30 @@ define([
 			 * reset event일 때도 만약 모델이 3개일 경우 3개에 해당하는 SceneView가 모두 생성 된 다음
 			 * ScenePreviewView가 생성됨.]
 			 */
-			pb.type.view.sceneViewSetList.push({
-				parent: pb.type.view.sceneViewSetList
-			});
 
 			/** SceneView와 ScenePreviewView를 묶어놓은 Model
 			 * this.options.index : CompositeView 내에서 몇번째 View인지 알려줌
 			 */
-			this.sceneViewSet = pb.type.view.sceneViewSetList.at(
-				this.options.index
-			);
+			this.sceneViewSet = pb.type.view.sceneViewSetList.push({
+				parent: pb.type.view.sceneViewSetList
+			}, {
+				at: options.index
+			});
 
-			if (this.sceneViewSet) {
-				/** ViewSet이 등록되었다는 알림을 받으면 event binding을 함 */
-				this.listenTo(this.sceneViewSet, "register:sceneViewSet", this.bindEvents);
+			/** click : selectScenePreview */
+			this.comply("change:currentScene", this.renderCurrentScene);
 
-				/** sceneView를 등록하고 viewSet에 알림. */
-				this.sceneViewSet.set("sceneView", this);
-				this.sceneViewSet.trigger("register:sceneView");
-			}
+			/** 이미지, 가로 텍스트박스, 비디오 추가 */
+			this.comply("add:object:image add:object:textbox:h add:object:video", this.setupForInsertObjectByClick, this);
 
-
+			/** sceneView를 등록하고 viewSet에 알림. */
+			this.sceneViewSet.set("sceneView", this, {
+				action: pb.value.FLAG.ADD
+			});
+			this.sceneViewSet.trigger("register:sceneView");
 		},
 
+		/** item - BaseObject */
 		getChildView: function (item) {
 			// Choose which view class to render,
 			// depending on the properties of the item model
@@ -127,7 +121,7 @@ define([
 		},
 
 		/**
-		 * Object 삭제 후 .command('change:thumbnail')을 수행하기 위해서
+		 * Object 수정,삭제 후 .command('change:thumbnail')을 수행하기 위해서
 		 * option으로 sceneViewSet을 전달함.
 		 */
 		childViewOptions: function (model, index) {
@@ -153,11 +147,15 @@ define([
 			}
 		},
 
-		/** Marionette Override Methods */
+		// Marionette Override Methods
+
+		onBeforeRender: function(){
+
+		},
+
 		onRender: function (event, ui) {
 			myLogger.trace("SceneView - onRender");
-
-			this.renderCurrentScene();
+			//this.renderCurrentScene();
 
 			// 삭제할 때 좀비가 되지 않기 위해서는 droppable, selectable event 삭제해야함.
 			// 이미 삽입된 개체는 삽입되면 안되기 때문에 필터링을 함
@@ -177,6 +175,17 @@ define([
 			myLogger.trace("SceneView - onShow");
 		},
 
+		/**
+		 * 1. droppable, selectable event 삭제
+		 * 2. sceneView의 reference 삭제 */
+		onDestroy: function() {
+			myLogger.trace("SceneCompositeView - onBeforeDestroy");
+			this.ui.scene.droppable("destroy").selectable("destroy");
+			this.sceneViewSet.set("sceneView", null, {
+				action: pb.value.FLAG.REMOVE
+			});
+		},
+
 		/** ui.selected - BaseObject.$el */
 		setupForSelectBaseObjectView: function (event, ui) {
 			$(ui.selected).find(".ui-resizable-handle")
@@ -193,60 +202,33 @@ define([
 			myLogger.trace("sceneView - setupForUnselectBaseObjectView");
 		},
 
-		bindEvents: function () {
-			/** click : selectScenePreview */
-			this.comply("change:currentScene", this.selectSceneView);
 
-			/** 이미지, 가로 텍스트박스, 비디오 추가 */
-			this.comply("add:object:image add:object:textbox:h add:object:video", this.setupForInsertObjectByClick, this);
-
-			myLogger.trace("sceneView - bindEvents");
-		},
-
-		renderCurrentScene: function () {
+		/////////////////////////////
+		renderCurrentScene: function (isReset) {
 			myLogger.trace("SceneView - renderCurrentScene");
 
-			/** loading후 Preview 선택시 Scene 변경이 안되는 문제발생
-			 * 현재 문제를 정확히 알 수 없음
-			 * 해결이 되는대로 주석을 제거하겠음.
-			 */
-			if (!this.options.isReset) {
-				/** loading(reset)이 아닐경우 */
-
-				if (pb.current.scene) {
-					/** 기존 Scene이 존재하는 경우 */
+			if(this.isReset) {      // 초기 로딩중인가?
+				if(this.model.get("previewScene")) {
+					pb.current.scene = this;
+				} 	// no-if : 대표로 지정된 Scene이 아님
+			} else {
+				if (pb.current.scene) {    // 기존 Scene이 존재하는가?
 					pb.current.scene.$el.hide();
-					pb.current.scene = this;
-				} else {
-					/** sceneList가 비었을 경우 : 처음 구동시 */
-					pb.current.scene = this;
-				}
+				} 	// no-if : loading(reset)일 경우 제일 처음 Scene에 focus를 맞춤
 
-				pb.current.scene.$el.show();
-			} else if (pb.current.scene === null) {
-				/** loading(reset)일 경우 제일 처음 Scene에 focus를 맞춤 */
 				pb.current.scene = this;
 				pb.current.scene.$el.show();
 			}
 
+			// selectedBaseObject 초기화
+			pb.current.selectedBaseObjectView.command("clear:container");
 			/** initialize에 하려고 했으나, 의미상 현재 선택된 Scene이기 때문에
 			 * loading시(reset)과 add시 current.scene 설정을 구분해야함.
 			 * - add시에는 삽입된 scene에 focus를 맞추면 되지만, loading은 처음 슬라이드를 기준으로 함.
 			 */
 		},
 
-		selectSceneView: function () {
-			myLogger.trace("SceneView - selectSceneView");
-
-			/** 이전 Scene을 감춤*/
-			pb.current.scene.$el.hide();
-
-			/** 새 Scene을 지정하고 보여줌.*/
-			pb.current.scene = this;
-			pb.current.scene.$el.show();
-		},
-
-		/** Custom Methods */
+		// Custom Methods
 
 		/**
 		 * 각 type별로 Click Event로 삽입할 수 있도록 하였지만
@@ -255,7 +237,6 @@ define([
 		 * ==> 그래서 그냥 1/3 지점에 바로 들어가게 구현함
 		 * */
 		setupForInsertObjectByClick: function (options) {
-
 			var objectOptions = {
 				top: pb.ui.dlg_current_scene.h / 3,
 				left: pb.ui.dlg_current_scene.w / 3

@@ -17,7 +17,7 @@ define([
 
 		defaults: {
 			_id: '',
-			sceneNumber: '',
+			previewScene: false,
 			title: 'Scene',
 			baseObjectList: null
 		},
@@ -46,13 +46,9 @@ define([
 			* this.collection - SceneList : collection property를 지정하지 않을경우
 			* 자동으로 생성됨
 			*/
-			/** ! Scene 초기화가 모두 완료된 뒤에 collection에 삽입됨.*/
-			if (!_.has(modelData, 'sceneNumber')) {
-				this.set('sceneNumber', this.collection.length + 1);
-			}
 
 			if(!_.has(modelData, 'title')) {
-				this.set('title', 'Scene No.' + this.get('sceneNumber'));
+				this.set('title', 'Scene No.' + this.get('_id'));
 			}
 
 			if (!_.has(modelData, 'baseObjectList')) {
@@ -69,6 +65,15 @@ define([
 				}
 			}
 
+		},
+
+		/** 기존에 지정된 previewScene을 해제하고 현재 Scene을 대표 미리보기로 설정함 */
+		setAsPreviewScene: function() {
+			this.collection.findWhere({
+				previewScene: true
+			}).set("previewScene", false);
+
+			this.set("previewScene", true);
 		}
 	});
 });

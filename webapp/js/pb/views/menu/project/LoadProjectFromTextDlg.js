@@ -80,8 +80,8 @@ define([
 			var rawData = this.ui.projectRawData.val();
 			var rawBaseObject = JSON.parse(rawData);
 
-			/** model(Project)에 걸려있는 event를 호출함 */
-			this.model.trigger("loading:project", rawBaseObject);
+			/** app의 전역 이벤트[loading:project]를 호출함 */
+			pb.app_tool.execute("loading:project", rawBaseObject);
 
 			this.parent.$el.dialog("close");
 

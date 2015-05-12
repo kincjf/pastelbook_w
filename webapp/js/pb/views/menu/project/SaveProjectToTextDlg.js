@@ -48,10 +48,9 @@ define([
 		 * 하지만 this.options 보다는 명시적으로 선언을 해서 의미있는 멤버변수로 사용하는 것을 권장함.
 		 * ex) collection, parent
 		 */
-		initialize: function (_options) {
+		initialize: function (options) {
+			this.parent = options.parent;
 			myLogger.trace("menu | project | dlg-save | saveToText - init");
-			this.collection = _options.collection;
-			this.parent = _options.parent;
 		},
 
 		/** set up final bits just before rendering the view's `el` */
@@ -64,28 +63,20 @@ define([
 		 * HTML, ready to go.
 		 */
 		onRender: function () {
-			myLogger.trace("menu | project | dlg-save | saveToText - onRender");
-
 			this.ui.projectData.html(this.showProjectData());
-
-			// do css(dlsplay : none)
-
+			myLogger.trace("menu | project | dlg-save | saveToText - onRender");
 		},
 
 		onShow: function () {
 			myLogger.trace("menu | project | dlg-save | saveToText - onShow");
-
 		},
 
 		/** this.model - Project : model data Serialization
 		 * 로딩시 Backbone Custom Object들로 바꿔줘야 함.
 		 */
 		showProjectData: function () {
-			myLogger.trace("menu | project | dlg-save | saveToText - showProjectData");
-
 			var projectData = JSON.stringify(this.model.toJSON());
-			myLogger.debug(projectData);
-
+			myLogger.trace("menu | project | dlg-save | saveToText - showProjectData");
 			return projectData;
 		},
 

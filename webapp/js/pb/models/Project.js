@@ -86,9 +86,8 @@ define([
 			/** 무한루프에 걸릴 수 있기 때문에 event binding을 아래쪽에 배치해야함
 			 * 아니면 reset event를 만들고 로딩을 할 때 trigger를 하는 방법이 있음.
 			 */
-				this.on("loading:project", this.loadProject, this);
 				this.comply("save:project", this.saveProject, this);
-		},   // end initialize
+		}   // end initialize
 
 		/** .set('attrName', data, options)
 		 * 정보가 바뀌면 change event 발생
@@ -111,25 +110,6 @@ define([
 		 * 사용자가 임의의 데이터를 넣을 수도 있기 때문에 지원 데이터 structure가 아니면
 		 * error/throw를 발생시키고 사용자에게 알릴 수 있도록 해야함.
 		 */
-		loadProject: function (data) {
-			myLogger.trace("Project - loadProject");
-
-			var projectInfo = _.omit(data, 'sceneList');
-			var projectData = data.sceneList;
-
-			this.set(projectInfo);
-			this.get('sceneList').reset(projectData);
-		},
-
-		saveProject: function(previewImage) {
-			/** 최근 수정일 변경 */
-			this.set('modifyDate', Date.now());
-			this.set({
-				width: pb.ui.dlg_current_scene.w,
-				height: pb.ui.dlg_current_scene.h,
-				previewImage: previewImage
-			});
-		}
 	});   // end Backbone.Model.extend
 });
 

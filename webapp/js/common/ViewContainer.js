@@ -3,15 +3,23 @@
  *
  * View들을 관리하고 컨트롤 하기 위한 Array + underscore를 이용한 간단한 기능을 추가
  */
-define(function () {
+define(['radio'], function (Radio) {
 	'use strict';
 
 	var ViewContainer = function () {
 		this.container = [];
+
+		_.extend(ViewContainer.prototype, {
+			comply: Radio.Commands.comply,
+			command: Radio.Commands.command
+		});
+
+		this.comply("clear:container", function() {
+			this.container.clear();
+		}, this);
 	};
 
 	ViewContainer.prototype = {
-
 		/**
 		 * 중복성 검사를 하는 push
 		 * @param view : Backbone.Marionette View Instance

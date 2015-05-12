@@ -17,7 +17,7 @@ define([
 	'marionette',
 	'pb_templates',
 	'pb/views/menu/project/SaveProjectToTextDlg',
-	'pb/views/behaviors/menu/SaveProjectBehavior',
+	'../../../../../deprecated/SaveProjectBehavior',
 ], function (Marionette, templates, SaveProjectToTextDlg, SaveProjectBehavior) {
 	'use strict';
 
@@ -115,7 +115,7 @@ define([
 		saveToLocalStorage: function () {
 			myLogger.trace("menu | project | dlg-save - onShow");
 
-			this.triggerMethod('SaveProject');
+			pb.app_tool.execute("save:project");
 			this.model.localStorage.update(this.model);
 
 			alert("브라우저에 저장이 완료되었습니다.");
@@ -131,7 +131,7 @@ define([
 			 * this.model - pb.type.Model.Project
 			 */
 			//var scenePreviewView = pb.type.view.sceneViewSetList.at(0).get("scenePreviewView");
-			this.triggerMethod('SaveProject');
+			pb.app_tool.execute("save:project");
 
 			var saveToTextDlalog = new SaveProjectToTextDlg({
 				model: this.model,
@@ -142,8 +142,7 @@ define([
 		},
 
 		saveToServer: function() {
-			this.triggerMethod('SaveProject');
-
+			pb.app_tool.execute("save:project");
 		}
 	});
 });

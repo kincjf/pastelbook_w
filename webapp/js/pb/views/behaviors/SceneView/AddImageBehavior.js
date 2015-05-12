@@ -18,6 +18,7 @@ define([
      },
 
      onAddImage: function (imageOptions) {
+        myLogger.trace("AddImageBehavior - addImage");
 
         /** this.collection : BaseObjectList
          * change .create() to .add()
@@ -31,11 +32,7 @@ define([
            height: imageOptions.height
         });
 
-        var scenePreviewView = this.view.sceneViewSet.get("scenePreviewView");
-        /** 의미상 명확하게 하기 위하여 trigger보다는 command를 사용함 */
-        scenePreviewView.command('change:thumbnail');
-
-        myLogger.trace("AddImageBehavior - addImage");
+        pb.app_tool.vent.trigger("save:thumbnail", this.view.sceneViewSet);
      }
   });
 });

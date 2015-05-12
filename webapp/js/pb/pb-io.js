@@ -5,7 +5,7 @@
  */
 
 require(['jquery'], function ($) {
-	pb.io.ajax = pb.ui.ajax || {};
+	pb.io.ajax = pb.io.ajax || {};
 	/**
 	 * Project Preview Image의 Raw Data를 이미지 파일로 서버에 저장한 후,
 	 * 해당 경로를 반환함.

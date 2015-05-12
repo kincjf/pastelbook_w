@@ -21,18 +21,45 @@ define([
 			 * model data가 들어가긴 하지만, add event가 일어나지 않고,
 			 * 한번에 벌크로 들어간다.
 			 */
-      this.on("reset", this.resetSceneList, this);
 		},
 
-		resetSceneList: function() {
-			myLogger.trace("SceneList - resetSceneList");
-			myLogger.trace("SceneList.size = " + this.size());
+		/**
+		 * 해당되는 model들의 baseObjectList를 reset한 후에 삭제를 실시함.
+		 * @param models - model or an array of models(list of Scene)
+		 * @param options - object
+		 */
+		remove: function(models, options) {
+			myLogger.trace("SceneList - remove");
 
-			/** reset(불러오기)시 ViewSet을 초기화함 */
-			pb.type.view.sceneViewSetList.reset();
-			pb.current.scene = null;
-			pb.current.scenePreview = null;
+			var target = this.filter(function(model) {
+				for(var m in models) {
+					if(_.isEqual(m, model)) {
+						return true;
+					}
+				}
+
+				return false;
+			}, this);
+
+			_.each(target, function(element, index, list) {
+				element.get("baseObjectList").reset();
+			});
+
+			return Backbone.Collection.prototype.remove.call(this, models, options);
+		},
+
+		/** baseObjectList를 삭제한 후 초기화를 실행해야함
+		 * @param models - model or an array of models(list of Scene)
+		 * @param options - object
+		 */
+		reset: function(models, options) {
+			myLogger.trace("SceneList - reset");
+
+			this.forEach(function(model) {
+				model.get("baseObjectList").reset();
+			});
+
+			return Backbone.Collection.prototype.reset.call(this, models, options);
 		}
-//		localStorage: new Backbone.LocalStorage('pb-scene')
 	});
 });

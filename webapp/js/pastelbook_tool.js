@@ -149,7 +149,8 @@ requirejs.config({
 
 require(["pb_app_tool", 'contextMenu' /*, "pb_debug_hongs_only"*/], function (pb_app_tool) {
 	/** 초기 데이터 구조 형성과 초기화에 필요한 로딩을 담당함.*/
-	pb_app_tool.start(); // Application start
+	pb.app_tool = pb_app_tool;
+	pb.app_tool.start(); // Application start
 	myLogger.trace("pb_app_tool loading Complete");
 
 	/** 요놈이 이상하게 덮어씌워짐.. 이상하게 */

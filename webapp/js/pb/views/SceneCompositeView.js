@@ -26,7 +26,7 @@ define([
 
 		/** CompositeView에서는 무조건 template을 써야되는 듯함. */
 		/** itemView에서는 잘 모르겠음. */
-    template: templates.SceneCompositeView,
+      template: templates.SceneCompositeView,
 
 		/** 기존 legacy API method : itemView, itemViewContainer */
 		childView: SceneView,
@@ -45,21 +45,16 @@ define([
 		/** options : instance 초기화시 받은 parameter object*/
 		initialize: function (options) {
 			myLogger.trace("SceneCompositeView - init");
-
-			if ( _.has(options.collection) ) {
-				this.collection = options.collection;
-
-				this.isReset = false;
-				this.listenTo(this.collection, "reset", function() {
-					this.isReset = true;
-				});
-			}
-    },
+			this.isReset = false;
+			this.listenTo(this.collection, "reset", function () {
+				this.isReset = true;
+			}, this);
+      },
 
 		/** it does passing parameter, childView initialize(_options)
 		 * ex) _options : {collection, index}
 		 */
-		/** model - Scene Data in SceneList */
+		/** model - Scene, collection - baseObjectList */
 		childViewOptions: function(model, index) {
 			myLogger.trace("SceneCompositeView - childViewOptions");
 
@@ -82,15 +77,21 @@ define([
 			}
 		},
 
-		/** 기존의 dlg_current_scene.js를 사용하기 위함.
-		 * 대신 pb_ui_0.0.1에서는 로딩을 하지 않음(삭제됨)
-		 */
 		onRender: function () {
 			myLogger.trace("SceneCompositeView - onRender");
 		},
 
 		onShow: function() {
 			myLogger.trace("SceneCompositeView - onShow");
+		},
+
+		/** 삭제한 후, 표시될 Scene에 대한 설정을 한다
+		 * 1. Scene이 1개일때 - 지정안함
+		 * 2. 맨 처음 Scene일때 - 다음
+		 * 3. Scene이 중간지점일때
+		 * 4. 마지막 Scene일때 */
+		onBeforeRemoveChild: function(childView){
+			// work with the childView instance, here
 		},
 
 		createScene: function () {

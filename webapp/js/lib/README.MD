@@ -11,7 +11,7 @@
 
 * backbone : 1.1.0
 * backbone.localStorage : 1.1.13
-* backbone.marionette : 2.2.0
+* backbone.marionette : 2.4.1
 * backbone.radio : 0.7.0
 
 

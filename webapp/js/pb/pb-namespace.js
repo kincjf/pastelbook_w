@@ -8,10 +8,10 @@ var pb = pb || {};
 
 require(['require',
 		'pb/controllers/CaptureController', 'pb/controllers/FileController',
-	'pb/controllers/ScreenController', 'common/ViewContainer'],
+		'pb/controllers/ScreenController', 'common/ViewContainer'],
 	function (require,
 	          CaptureController, FileController, ScreenController,
-	ViewContainer) {
+	          ViewContainer) {
 		/** 다이얼로그, current 정보등 단순 data instance는 낙타체로 하고,
 		 * Model, Collection, View, Channel, Scene등 Backbone instance는
 		 * 클래스 타입으로 명시할 것
@@ -20,6 +20,7 @@ require(['require',
 		 */
 
 		/** component instance 저장 */
+		pb.app_tool = pb.app_tool || null;
 		pb.type = pb.type || {};
 
 		/** Views */
@@ -55,7 +56,7 @@ require(['require',
 		/** 현재 선택된 정보 (View instance) */
 		pb.current.scene = pb.current.scene || null;
 		pb.current.scenePreview = pb.current.scenePreview || null;
-		pb.current.selectedBaseObject = pb.current.selectedBaseObject || new ViewContainer();
+		pb.current.selectedBaseObjectView = pb.current.selectedBaseObjectView || new ViewContainer();
 		pb.current.selectedScene = pb.current.selectedScene || new ViewContainer();
 
 		pb.ui = pb.ui || {}; // 사용자 개별의 ui 포지션, 혹은 크기 정보
@@ -71,9 +72,12 @@ require(['require',
 			img: new Image()
 		};
 
-		/** global 변수 설정 */
+		/** global 변수 설정
+		 * value 내의 하위 변수들은 모두 대문자를 사용함
+		 */
 		pb.value = pb.value || {
 			VERSION: 0.1,
+			PREVIEW_IDX: 0,
 			PROJECT_WIDTH: this.PROJECT_WIDTH || 0,
 			PROJECT_HEIGHT: this.PROJECT_HEIGHT || 0,
 			RESOLUTION: this.RESOLUTION || {
@@ -85,7 +89,19 @@ require(['require',
 			SCREEN_TYPE: {
 				PORTRAIT: 0,      // 세로모드
 				LANDSCAPE: 1      // 가로모드
+			},
+			DEFAULTS: {
+				PREVIEW_IMAGE_PATH: "./img/dummy/dummy.png"
+			},
+			FLAG: {
+				ADD: "add",
+				REMOVE: "remove"
 			}
 		};
-		// 총 12개
+
+		//pb.event = pb.event || {
+		//	clear: {
+		//		container
+		//	}
+		//}
 	}); // require

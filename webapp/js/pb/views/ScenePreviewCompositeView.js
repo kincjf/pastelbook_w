@@ -40,17 +40,10 @@ define([
 
 		/** options - instance 선언시 초기화 데이터가 들어가있음. */
 		initialize: function (options) {
-			myLogger.trace("ScenePreviewCompositeView - init");
-
-			if (_.has(options.collection)) {
-				this.collection = options.collection;
-
-				this.isReset = false;
-				this.listenTo(this.collection, "reset", function () {
-					this.isReset = true;
-				}, this);
-			}
-//			this.listenTo(this.collection, 'add', this.render, this);
+			this.isReset = false;
+			this.listenTo(this.collection, "reset", function () {
+				this.isReset = true;
+			}, this);
 		},
 
 		/** model : Scene */
@@ -94,20 +87,36 @@ define([
 //		});
 //		$( "ul, li" ).disableSelection();
 		},
+		onAddChild: function(childView){
+			myLogger.trace("ScenePreviewCompositeView - onAddChild");
 
+			// reset일 경우에는 previewScene으로 지정된 부분만 보여주고,
+			// 아닐 경우에는 그냥 보여줌
+			var sceneView = childView.sceneViewSet.get("sceneView");
+
+			if(this.isReset) {
+				if(childView.model.get("previewScene")) {
+					sceneView.command('change:currentScene');
+				}
+			} else {
+				sceneView.command('change:currentScene');
+			}
+		},
+
+		/** this.collection : SceneList */
+		/** 약간 코드가 꼬여있는 것 같다.
+		 * controller이나 mediator를 이용하여 이런 부분을 풀어줘야 될 것 같다.
+		 *
+		 * baseObjectList를 만들어서 넣으려고 했지만 이상하게 []로 들어가서
+		 * Scene.initialize에서 자동생성함.
+		 *
+		 * change .create() to .add()
+		 */
 		createScene: function () {
+			this.collection.push({
+				previewScene: false
+			});
 			myLogger.trace("ScenePreviewCompositeView - createScene");
-
-			/** this.collection : SceneList */
-			/** 약간 코드가 꼬여있는 것 같다.
-			 * controller이나 mediator를 이용하여 이런 부분을 풀어줘야 될 것 같다.
-			 *
-			 * baseObjectList를 만들어서 넣으려고 했지만 이상하게 []로 들어가서
-			 * Scene.initialize에서 자동생성함.
-			 *
-			 * change .create() to .add()
-			 */
-			this.collection.push({});
 		}
 	});
 });

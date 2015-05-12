@@ -17,6 +17,7 @@ define([
      },
 
      onAddTextBox: function (textBoxOptions) {
+        myLogger.trace("AddTextBoxBehavior - addTextBox");
 
         /** this.collection : BaseObjectList
          * change .create() to .add()
@@ -30,10 +31,7 @@ define([
            htmlString: textBoxOptions.htmlString || this.options.htmlString
         });
 
-        var scenePreviewView = this.view.sceneViewSet.get("scenePreviewView");
-        scenePreviewView.command('change:thumbnail');
-
-        myLogger.trace("AddTextBoxBehavior - addTextBox");
+        pb.app_tool.vent.trigger("save:thumbnail", this.view.sceneViewSet);
      }
   });
 });

@@ -190,6 +190,7 @@ div.change {
 .scene {
     height: 100%;
     list-style-type: none;
+    position: relative;
 }
 
 .underline {

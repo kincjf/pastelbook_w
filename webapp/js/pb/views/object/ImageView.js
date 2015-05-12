@@ -63,7 +63,7 @@ define([
 			BaseObjectView.prototype.onShow.call(this);
 
 			this.$el.contextMenu(
-				_.union(this.objectContextMenus, this.imageContextMenus),
+				_.union(this.imageContextMenus, this.objectContextMenus),
 				this.contextMenuOptions);
 
 			myLogger.trace("ImageView - onShow");

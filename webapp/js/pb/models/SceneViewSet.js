@@ -24,10 +24,10 @@ define([
 		/** backend(REST DB)와 통신하기 위해서 기본 식별자 지정 */
 		idAttribute: "_id",
 
-		initialize: function (_modelData, _options) {
+		initialize: function (modelData, options) {
 			myLogger.trace('SceneViewSet - init');
 
-			if (!_.has(_modelData, "_id")) {
+			if (!_.has(modelData, "_id")) {
 				this.set('_id', this.cid);
 			}
 

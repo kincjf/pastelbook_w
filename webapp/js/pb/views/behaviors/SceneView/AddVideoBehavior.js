@@ -19,6 +19,7 @@ define([
      },
 
      onAddVideo: function (videoOptions) {
+        myLogger.trace("AddVideoBehavior - addVideo");
 
         /** this.collection : BaseObjectList
          * change .create() to .add()
@@ -33,11 +34,7 @@ define([
            height: videoOptions.height
         });
 
-        var scenePreviewView = this.view.sceneViewSet.get("scenePreviewView");
-        /** 의미상 명확하게 하기 위하여 trigger보다는 command를 사용함 */
-        scenePreviewView.command('change:thumbnail');
-
-        myLogger.trace("AddVideoBehavior - addVideo");
+        pb.app_tool.vent.trigger("save:thumbnail", this.view.sceneViewSet);
      }
   });
 });

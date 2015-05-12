@@ -26,32 +26,33 @@ define([
 
 	var app_tool = new Marionette.Application();
 
+	pb.type.view.sceneViewSetList = new SceneViewSetList();
+	/** 나중에 Project Save를 위해서 기능을 이렇게 하면 될 듯 */
+//	pb.type.Model.Project.save();
+
+	/** 테스트용으로 일단 바깥으로 꺼냈음 */
+	var sceneList = null;
+
 	if(window.projectData) {
 		pb.type.model.project = new Project(
 			window.projectData, {
 				parse: false
 			});
+		sceneList = pb.type.model.project.get("sceneList");
 	} else {
 		pb.type.model.project = new Project({
 			sceneList: new SceneList()
 		}, {
 			parse: false
 		});
+		sceneList = pb.type.model.project.get("sceneList");
+		/** Scene이 처음에 하나는 있어야 되기 때문에 */
+		sceneList.push({
+			previewScene: true
+		});
 	}
 
-	/** Data type은 namespace를 써야될 것 같음.*/
-
-
-	pb.type.view.sceneViewSetList = new SceneViewSetList();
-	/** 나중에 Project Save를 위해서 기능을 이렇게 하면 될 듯 */
-//	pb.type.Model.Project.save();
-
-	/** 테스트용으로 일단 바깥으로 꺼냈음 */
-	var sceneList = pb.type.model.project.get("sceneList");
 	pb.type.collection.sceneList = sceneList;
-
-	/** Scene이 처음에 하나는 있어야 되기 때문에 */
-	sceneList.push({});
 
 	/** 실행순서 - SceneCompositeview/SceneView -> ScenePreviewCompositeView/ScenePreviewView
 	 * 아래의 코드와 같이 먼저 선언된 순서대로 event가 등록되는 것 같음.
@@ -108,9 +109,49 @@ define([
 		});
 	});
 
-	///** for debugging */
-	//window.project = pb.type.Model.Project;
-	//window.sceneList = pb.type.Model.Project.get('sceneList');
+	/** 주의사항
+	 * 1. 전역변수 초기화는 함수 실행 이전에 수행해야 한다.
+	 *  - event driven 방식에서는 data 변동에 대한 다수의 callback이 수행되는 것을
+	 *  고려해야 한다.
+	 */
+	app_tool.commands.setHandler("loading:project", function (data) {
+		myLogger.trace("Application - loadProject");
 
-	return window.app_tool = app_tool
+		var projectInfo = _.omit(data, 'sceneList');
+		var projectData = data.sceneList;
+
+		pb.current.scene = null;
+		pb.current.scenePreview = null;
+
+		pb.type.model.project.set(projectInfo);
+		pb.type.model.project.get('sceneList').reset(projectData);
+	});
+
+	app_tool.commands.setHandler("save:project", function() {
+		myLogger.trace("Application - saveProject");
+
+		var imageData = pb.util.captureController.getProjectPreviewImage();
+		var previewImagePath = pb.io.ajax.getPreviewImagePath(imageData);
+
+		if(previewImagePath === undefined) {
+			previewImagePath = pb.value.DEFAULTS.PREVIEW_IMAGE_PATH;
+		}
+
+		/** 최근 수정일 변경 */
+		pb.type.model.project.set('modifyDate', Date.now());
+		pb.type.model.project.set({
+			width: pb.ui.dlg_current_scene.w,
+			height: pb.ui.dlg_current_scene.h,
+			previewImage: previewImagePath
+		});
+	});
+
+	app_tool.vent.on("save:thumbnail", function(sceneViewSet) {
+		myLogger.trace("Application - changeThumbnail");
+
+		var sceneView = sceneViewSet.get('sceneView');
+		pb.util.captureController.capturePreview(sceneView.$el, sceneViewSet);
+	});
+
+	return app_tool;
 });

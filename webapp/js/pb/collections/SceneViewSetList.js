@@ -15,8 +15,31 @@ define([
 	'use strict';
 
 	return Backbone.Collection.extend({
-		model: SceneViewSet
+		model: SceneViewSet,
 
+		initialize: function(options) {
+			myLogger.trace("SceneViewSetList - intialize");
+
+			this.on("change:sceneView change:scenePreviewView", this.checkForRemove, this);
+		},
+
+		/** sceneView와 scenePreviewView가 모두 삭제되었을 경우에 해당 model을 삭제함.
+		 * @return true : removed model / false - not removed */
+		checkForRemove: function(model, value, options) {
+			myLogger.trace("SceneViewSetList - intialize");
+
+			var removed;
+			if(options.action === pb.value.FLAG.REMOVE) {
+				if(_.isNull(model.get("sceneView")) && _.isNull(model.get("scenePreviewView"))) {
+					this.remove(model);
+					removed = true;
+				} else {
+					removed = false;
+				}
+			}  // no-if : not operated remove
+
+			return removed;
+		}
 //		localStorage: new Backbone.LocalStorage('pb-scene')
 	});
 });

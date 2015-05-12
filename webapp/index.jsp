@@ -371,7 +371,7 @@ Placed at the end of the document so the pages load faster
                 return window.pageYOffset || document.documentElement.scrollTop;
             }
         });
-    })
+    });
 </script>
 <script src="assets/js/index.js"></script>
 </body>

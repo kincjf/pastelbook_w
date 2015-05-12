@@ -10,7 +10,7 @@ define([
 ], function (Marionette) {
 	'use strict';
 
-	return Marionette.ItemView.extend({
+	var BaseObjectView = Marionette.ItemView.extend({
 		ui: {},     // 다른 Object들과 extend됨.
 
 		/**
@@ -139,11 +139,13 @@ define([
 			myLogger.trace("BaseObjectView - onRender");
 		},
 
-		/** Marionette Override Methods */
+		// Marionette Override Methods
+
 		onShow: function () {
 			myLogger.trace("BaseObjectView - onShow");
 		},
 
+		/** modify selectable variable, preview image */
 		onDomRefresh: function () {
 			var pos = this.$el.offset();
 			this.$el.data("selectable-item", {
@@ -164,16 +166,13 @@ define([
 		},
 
 		onBeforeDestroy: function () {
+			this.$el.contextMenu('destroy');
+			this.$el.resizable("destroy").draggable("destroy");
+
+			myLogger.trace("BaseObjectView - onBeforeDestroy");
 		},
 
 		onDestroy: function () {
-			/**
-			 * this.options.sceneViewSet : SceneView.sceneViewSet
-			 * 담당 preview에게 thumbnail을 다시 찍으라고 함.
-			 */
-			var scenePreviewView = this.options.sceneViewSet.get("scenePreviewView");
-			scenePreviewView.command("change:thumbnail");
-
 			myLogger.trace("BaseObjectView - onDestroy");
 		},
 
@@ -181,17 +180,17 @@ define([
 		// Custom Methods - Event Callback
 		/** selected:baseobject */
 		selectView: function () {
-			pb.current.selectedBaseObject.push(this);
+			pb.current.selectedBaseObjectView.push(this);
 		},
 
 		/** unselected:baseobject */
 		unselectView: function () {
-			pb.current.selectedBaseObject.remove(this);
+			pb.current.selectedBaseObjectView.remove(this);
 		},
 
 		setupForDrag: function (event, ui) {
 			var widgetInstance = pb.current.scene.ui.scene.data("ui-selectable");
-				widgetInstance.selectees = pb.current.scene.ui.scene.find(widgetInstance.options.filter);
+			widgetInstance.selectees = pb.current.scene.ui.scene.find(widgetInstance.options.filter);
 
 			// 선택이 안되어 있을경우
 			if (!this.$el.hasClass("ui-selected")) {
@@ -224,7 +223,7 @@ define([
 			var dx = ui.position.left - this.el.getAttribute('data-x'),
 				dy = ui.position.top - this.el.getAttribute('data-y');
 
-			_.each(pb.current.selectedBaseObject.container, function (element, index, list) {
+			_.each(pb.current.selectedBaseObjectView.container, function (element, index, list) {
 				var x = (parseFloat(element.el.getAttribute('data-x')) || 0) + dx,
 					y = (parseFloat(element.el.getAttribute('data-y')) || 0) + dy;
 
@@ -243,14 +242,15 @@ define([
 		/** 'dragstop' */
 		changeDirectionData: function (event, ui) {
 			// 차후에 translate에 맞게 x, y로 바꿔야될 것 같음
-			_.each(pb.current.selectedBaseObject.container, function (element, index, list) {
+			_.each(pb.current.selectedBaseObjectView.container, function (element, index, list) {
 				element.model.setTopLeft(
-					element.el.getAttribute('data-y'), element.el.getAttribute('data-x')
+					parseFloat(element.el.getAttribute('data-y')), parseFloat(element.el.getAttribute('data-x'))
 				);
-
-				// selectable을 위한 refresh 수행
-				this.triggerMethod("DomRefresh");
 			}, this);
+
+			// selectable을 위한 refresh 수행
+			this.triggerMethod("DomRefresh");
+			this.changePreview();
 
 			myLogger.trace("BaseObjectView - changeDirectionData");
 		},
@@ -260,7 +260,7 @@ define([
 			var dwidth = ui.size.width - this.el.getAttribute('data-width'),
 				dheight = ui.size.height - this.el.getAttribute('data-height');
 
-			_.each(pb.current.selectedBaseObject.container, function (element, index, list) {
+			_.each(pb.current.selectedBaseObjectView.container, function (element, index, list) {
 				var width = (parseFloat(element.el.getAttribute('data-width')) || 0) + dwidth,
 					height = (parseFloat(element.el.getAttribute('data-height')) || 0) + dheight;
 
@@ -277,16 +277,30 @@ define([
 
 		/** 'resizestop' */
 		changeSizeData: function (event, ui) {
-			_.each(pb.current.selectedBaseObject.container, function (element, index, list) {
+			_.each(pb.current.selectedBaseObjectView.container, function (element, index, list) {
 				element.model.setSize(
-					element.el.getAttribute('data-width'), element.el.getAttribute('data-height')
+					parseFloat(element.el.getAttribute('data-width')), parseFloat(element.el.getAttribute('data-height'))
 				);
-
-				// selectable을 위한 refresh 수행
-				this.triggerMethod("DomRefresh");
 			}, this);
 
+			// selectable을 위한 refresh 수행
+			this.triggerMethod("DomRefresh");
+			this.changePreview();
+
 			myLogger.trace("BaseObjectView - changeSize");
+		},
+
+		/** 썸네일 구동 시기
+		 * 1. Scene 추가시, Project 로딩시
+		 * - onRender에서 해결
+		 * 2. BaseObject 추가/삭제
+		 * - messaging OR listenTo(add|remove)로 해결
+		 * 3. BaseObject 수정
+		 * - messaging call로 해야될 것 같음.
+		 */
+		changePreview: function() {
+			myLogger.trace("BaseObjectView - changePreview");
+			pb.app_tool.vent.trigger("save:thumbnail", this.options.sceneViewSet);
 		},
 
 		/** 'click .destroyBtn' */
@@ -306,12 +320,11 @@ define([
 
 		/** 바인딩된 모든 이벤트를 해제하고 난 후에 데이터를 삭제함. */
 		deleteObject: function (key, opt) {
-			this.$el.contextMenu('destroy');
-			this.$el.resizable("destroy").draggable("destroy");
-
-			/** this.model - Image, this.model.collection - BaseObjectList */
+			/** this.model - BaseObject, this.model.collection - BaseObjectList */
 			this.model.collection.remove(this.model);
 
+			/** reset시 계속 repaint를 하기 때문에 onDestroy에 선언하지 않음 */
+			this.changePreview();
 			myLogger.trace("BaseObjectView - deleteObject");
 		},
 
@@ -351,4 +364,6 @@ define([
 			myLogger.trace("BaseObjectView - editShapeObject");
 		}
 	});
+
+	return BaseObjectView
 });
