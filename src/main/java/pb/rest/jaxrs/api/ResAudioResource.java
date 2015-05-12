@@ -33,8 +33,8 @@ public class ResAudioResource implements Serializable {
 
 	@GET @Path("search/{query}")
 	@Produces({ MediaType.APPLICATION_JSON }) // MediaType.APPLICATION_XML,
-	public List<ResAudio> findByName(@PathParam("query") String query){
-		return dao.findAllByName(query);
+	public ResAudio findByName(@PathParam("query") String query){
+		return dao.findByName(query);
 	}
 
 	@GET @Path("{id}")
@@ -59,7 +59,7 @@ public class ResAudioResource implements Serializable {
 
 	@DELETE @Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON }) // MediaType.APPLICATION_XML,
-	public void remove(@PathParam("id") int id){
-		dao.remove(id);
+	public void delete(@PathParam("id") int id){
+		dao.delete(id);
 	}
 }

@@ -8,5 +8,4 @@ public class ResVideoDAO extends PastelbookDAO<ResVideo> {
 	protected void setObjectName() {
 		objectName = "ResVideo";
 	}
-	
 }

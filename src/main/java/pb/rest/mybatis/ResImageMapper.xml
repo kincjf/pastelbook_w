@@ -12,6 +12,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	조사완료
  -->
 <mapper namespace="ResImageMapper">
+ <select id="findAll" resultType="pb.rest.jaxrs.vo.ResImage">
+  select _id, accountId,
+   if(locate('http',path)=1, concat('/proxy?url=',path),path) as path, 
+   if(locate('http',thumbPath)=1, concat('/proxy?url=',thumbPath),thumbPath) as thumbPath, 
+   name, size, width, height, type
+  from pb_res_image_proxy 
+ </select>
+ 
+ <select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
+  select *
+  from pb_res_image_proxy where _id= #{ _id }
+ </select>
+ 
+ <select id="findByAccountId" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
+  select *
+  from pb_res_image_proxy where accountId= #{ accountId }
+ </select>
+ 
+ <!-- login id에 해당하는 정보를 조회함 -->
+ <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
+  select *
+  from pb_res_image_proxy where name= #{ name }
+ </select>
+ 
  <insert id="create" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">
   INSERT INTO pb_res_image
   ( accountId, path, thumbPath, name, size, width, height, type )
@@ -19,6 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	#{accountId}, #{path}, #{thumbPath}, #{name}, #{size}, #{width}, #{height}, #{type}
   )
  </insert>
+ 
  <update id="update" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">
   UPDATE pb_res_image 
   SET 
@@ -27,25 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	height =#{height}, type =#{type}
   where _id= #{ _id } 
  </update>
- <select id="findAll" resultType="pb.rest.jaxrs.vo.ResImage">
-  select _id, accountId,
-   if(locate('http',path)=1, concat('/proxy?url=',path),path) as path, 
-   if(locate('http',thumbPath)=1, concat('/proxy?url=',thumbPath),thumbPath) as thumbPath, 
-   name, size, width, height, type
-  from pb_res_image_proxy 
- </select>
- <select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
-  select *
-  from pb_res_image_proxy where _id= #{ _id }
- </select>
- <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
-  select *
-  from pb_res_image_proxy where name =#{ name }
- </select>
- <select id="findAllByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
-  select *
-  from pb_res_image_proxy where name =#{ name }
- </select>
+ 
  <delete id="remove" parameterType="int">
   delete 
   from pb_res_image

@@ -5,3 +5,5 @@ webapps/.git
 /.metadata/
 /RemoteSystemsTempFiles/
 /webapp/WEB-INF/classes/
+*.war
+*.class

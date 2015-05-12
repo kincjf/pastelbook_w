@@ -39,6 +39,7 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		}
 	}
 
+	@Override
 	public List<T> findAll() {
 		List<T> result;
 		
@@ -50,6 +51,7 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		return result;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public T findById(int parseInt) {
 		T result;
@@ -62,6 +64,23 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		return result;
 	}
 
+	/** 
+	 * Login Id를 조회함
+	 * */
+	@SuppressWarnings("unchecked")
+	@Override
+	public T findByName(String name) {
+		T result;
+		
+		init();
+		session = sqlMapper.openSession();
+		result = (T) session.selectOne(objectName+"Mapper.findByName", name);
+		session.close();
+		
+		return result;
+	}
+	
+	@Override
 	public T create(T picture) {
 		//Image result;
 		
@@ -73,7 +92,8 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		
 		return picture;
 	}
-
+	
+	@Override
 	public T update(T picture) {
 		//Image result;
 		
@@ -85,44 +105,12 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		
 		return picture;
 	}
-
-	public void remove(int id) {
-		init();
-		session = sqlMapper.openSession();
-		session.insert(objectName+"Mapper.remove", id);
-		session.close();
-	}
-
-	public List<T> findAllByName(String query) {
-		List<T> result;
-		
-		init();
-		session = sqlMapper.openSession();
-		result = session.selectList(objectName+"Mapper.findAllByName", query);
-		session.close();
-		
-		return result;
-	}
 	
-	public T findByName(String query){
-		T result;
-		
+	@Override
+	public void delete(int id) {
 		init();
 		session = sqlMapper.openSession();
-		result = session.selectOne(objectName+"Mapper.findByName", query);
+		session.insert(objectName+"Mapper.delete", id);
 		session.close();
-		
-		return result;
-	}
-
-	public List<T> findAllByAccountId(int query){
-		List<T> result;
-		
-		init();
-		session = sqlMapper.openSession();
-		result = session.selectList(objectName+"Mapper.findAllByAccountId", query);
-		session.close();
-		
-		return result;
 	}
 }

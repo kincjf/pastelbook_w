@@ -8,13 +8,11 @@ public interface SimpleDAO<T> {
 
 	public T findById(int parseInt);
 
+	public T findByName(String name);
+	
 	public T create(T picture);
 
 	public T update(T picture);
 
-	public void remove(int id);
-
-	public List<T> findAllByName(String query);
-	
-	public T findByName(String query);
+	public void delete(int id);
 }

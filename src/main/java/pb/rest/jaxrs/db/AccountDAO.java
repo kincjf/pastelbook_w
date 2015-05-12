@@ -9,15 +9,14 @@ public class AccountDAO extends PastelbookDAO<Account> {
 		objectName = "Account";
 	}
 	
-	public Account findByNick(String query){
+	protected Account findByNick(String nickName){
 		Account result;
 		
 		init();
 		session = sqlMapper.openSession();
-		result = session.selectOne(objectName+"Mapper.findByNick", query);
+		result = session.selectOne(objectName+"Mapper.findByNick", nickName);
 		session.close();
 		
 		return result;
 	}
-
 }

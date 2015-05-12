@@ -4,11 +4,25 @@ import org.pojomatic.annotations.AutoProperty;
 
 @AutoProperty
 public class Account extends VO {
+	/** 상태정보를 나타냄 */
+	int status;
+	
+	/** DB Index 순서 (Auto Increment) */
 	int _id;
+	
+	/** Servlet의 Session id */
+	String sessionId;
+	
+	/** User의 별칭 */
 	String nick;
+	
 	String email;
 	String password;
+	
+	/** 로그인시 ID */
 	String name;
+	
+	/** 계정 권한 정보 */
 	String type;
 
 	public Account() {
@@ -33,12 +47,28 @@ public class Account extends VO {
 		this.type = type;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
 	public int getId() {
 		return _id;
 	}
 
 	public void setId(int id) {
 		this._id = id;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 	public String getNick() {
