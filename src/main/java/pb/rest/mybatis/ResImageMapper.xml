@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   from pb_res_image_proxy where _id= #{ _id }
  </select>
  
- <select id="findByAccountId" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
+ <select id="findAllByAccountId" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
   select *
   from pb_res_image_proxy where accountId= #{ accountId }
  </select>
@@ -47,15 +47,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <update id="update" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">
   UPDATE pb_res_image 
   SET 
-  	accountId = #{accountId}, path =#{path}, thumbPath =#{thumbPath},
-  	name =#{name}, size =#{size}, width =#{width},
-  	height =#{height}, type =#{type}
+  	path= #{path}, thumbPath= #{thumbPath},
+  	name= #{name}, size= #{size}, width= #{width},
+  	height= #{height}, type= #{type}
   where _id= #{ _id } 
  </update>
  
- <delete id="remove" parameterType="int">
+ <delete id="delete" parameterType="map">
   delete 
   from pb_res_image
-  where _id= #{ _id }
+  where _id= #{ _id } and accountId= #{ accountId }
  </delete>
 </mapper>

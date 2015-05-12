@@ -54,7 +54,7 @@ public class ResVideoResource implements Serializable {
 	@PUT @Path("{id}")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON }) // MediaType.APPLICATION_XML,
-	public ResVideo update(ResVideo picture) {
+	public int update(ResVideo picture) {
 		return dao.update(picture);
 	}
 

@@ -12,7 +12,7 @@ public interface SimpleDAO<T> {
 	
 	public T create(T picture);
 
-	public T update(T picture);
+	public int update(T picture);
 
-	public void delete(int id);
+	public int delete(int id);
 }

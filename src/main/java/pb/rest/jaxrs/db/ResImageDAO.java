@@ -16,7 +16,7 @@ public class ResImageDAO extends PastelbookDAO<ResImage> {
 		
 		init();
 		session = sqlMapper.openSession();
-		result = session.selectList(objectName+"Mapper.findByAccountId", accountId);
+		result = session.selectList(objectName+"Mapper.findAllByAccountId", accountId);
 		session.close();
 		
 		return result;

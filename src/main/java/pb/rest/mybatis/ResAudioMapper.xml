@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   select *
   from pb_res_audio where name= #{ name }
  </select>
- <delete id="remove" parameterType="int">
+ <delete id="delete" parameterType="int">
   delete 
   from pb_res_audio
   where _id= #{ _id }

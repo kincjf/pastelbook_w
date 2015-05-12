@@ -38,8 +38,8 @@ public class ResImage extends Resource {
 		this.type = type;
 	}
 
-	public ResImage(int _id, int accountId, String path, String thumbPath, String name, long size, int width, int height, String type) {
-		super(_id, accountId, path, thumbPath, name, size);
+	public ResImage(int accountId, String path, String thumbPath, String name, long size, int width, int height, String type) {
+		super(accountId, path, thumbPath, name, size);
 		this.width = width;
 		this.height = height;
 		this.type = type;

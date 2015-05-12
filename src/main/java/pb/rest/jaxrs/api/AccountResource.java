@@ -3,6 +3,7 @@ package pb.rest.jaxrs.api;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -68,31 +69,42 @@ public class AccountResource implements Serializable {
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON })
 	// MediaType.APPLICATION_XML,
-	public Account update(Account picture) {
+	public int update(Account picture) {
 		return accountDao.update(picture);
 	}
 
+	/**
+	 * 해당 primary key의 계정 삭제
+	 * @param id - unique account id
+	 * @return 삭제한 계정 수 - 1 / 0
+	 */
 	@DELETE
 	@Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	// MediaType.APPLICATION_XML,
-	public void delete(@PathParam("id") int id) {
-		accountDao.delete(id);
+	public int delete(@PathParam("id") int id) {
+		return accountDao.delete(id);
 	}
 
 	/**
 	 * 해당 session의 logout 수행
 	 * @param sessionId - unique session id
+	 * @return 1(로그아웃 성공) / -1(로그아웃 실패)
 	 */
 	@POST
 	@Path("logout")
-	public void logout(@FormParam("sessionId") String sessionId,
+	@Produces({ MediaType.APPLICATION_JSON })
+	public int logout(@FormParam("sessionId") String sessionId,
 			@Context HttpServletRequest request) {
 		HttpSession session = HttpSessionCollector.find(sessionId);
-
+		int status = -1;
+		
 		if (session != null) { // 세션 삭제
 			session.invalidate();
+			status = 1;
 		}
+		
+		return status;
 	}
 	
 	/**
@@ -143,7 +155,7 @@ public class AccountResource implements Serializable {
 		 *       /http/HttpServletRequest.html#getSession(boolean)
 		 */
 		HttpSession session = null;
-
+		
 		Account accountBean = new Account();
 		Account accountBeanFromDB = null;
 

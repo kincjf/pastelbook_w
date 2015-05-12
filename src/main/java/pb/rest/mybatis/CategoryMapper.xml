@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from pb_category 
 		where name= #{ name }
 	</select>
-	<delete id="remove" parameterType="int">
+	<delete id="delete" parameterType="int">
 		delete
 		from pb_category
 		where _id= #{ _id }

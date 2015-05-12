@@ -2,7 +2,9 @@ package pb.rest.jaxrs.db;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -85,32 +87,61 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		//Image result;
 		
 		init();
-		session = sqlMapper.openSession(true);
+		session = sqlMapper.openSession(true);		// auto commit
 		session.insert(objectName+"Mapper.create", picture);
 		//result = (Image)session.selectOne("ImageMapper.findByNotId", picture);
 		session.close();
 		
 		return picture;
 	}
-	
+
+	/** 
+	 * - account 정보와 연계된 resource 정보를 갱신함
+	 * @param picture(T) resource 정보
+	 * @return 삭제 수 / 0
+	 * */
 	@Override
-	public T update(T picture) {
-		//Image result;
+	public int update(T picture) {
+		int status = 0;
 		
 		init();
-		session = sqlMapper.openSession();
-		session.update(objectName+"Mapper.update", picture);
+		session = sqlMapper.openSession(true);		// auto commit
+		status = session.update(objectName+"Mapper.update", picture);
 		//result = (Image)session.selectOne("ImageMapper.findByNotId", picture);
 		session.close();
 		
-		return picture;
+		return status;
 	}
 	
 	@Override
-	public void delete(int id) {
+	public int delete(int id) {
+		int status = 0;
+		
 		init();
-		session = sqlMapper.openSession();
-		session.insert(objectName+"Mapper.delete", id);
+		session = sqlMapper.openSession(true);		// auto commit
+		status = session.delete(objectName+"Mapper.delete", id);
 		session.close();
+		
+		return status;
+	}
+
+	/** 
+	 * - account 정보와 연계된 resource 정보를 삭제함
+	 * @param id(int) resource의 primary key
+	 * @param accountId account key
+	 * @return 삭제 수 / 0
+	 * */
+	public int delete(int _id, int accountId) {
+		int status = 0;
+		Map<String, Integer> params = new HashMap<String, Integer>();
+		params.put("_id", _id);
+		params.put("accountId", accountId);
+		
+		init();
+		session = sqlMapper.openSession(true);		// auto commit
+		status = session.delete(objectName+"Mapper.delete", params);
+		session.close();
+		
+		return status;
 	}
 }

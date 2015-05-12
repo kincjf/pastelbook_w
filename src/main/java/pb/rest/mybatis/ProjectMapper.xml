@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from pb_project
 		where accountId = #{ accountId } and description like CONCAT('%', #{ query } ,'%')
 	</select>
-	<delete id="remove" parameterType="int">
+	<delete id="delete" parameterType="int">
 		delete
 		from pb_project
 		where _id= #{ _id }

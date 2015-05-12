@@ -65,4 +65,9 @@
 	<listener>
     	<listener-class>pb.listener.HttpSessionCollector</listener-class>
     </listener>
+    
+    <!-- session time out limit : 60 minutes-->
+    <session-config>
+    	<session-timeout>60</session-timeout>
+	</session-config>
 </web-app>

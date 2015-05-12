@@ -84,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</select>
 	
-	<delete id="remove" parameterType="int">
+	<delete id="delete" parameterType="int">
 		delete
 		from pb_docs
 		where _id= #{ _id }

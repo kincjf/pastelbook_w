@@ -53,7 +53,7 @@ public class ResAudioResource implements Serializable {
 	@PUT @Path("{id}")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON }) // MediaType.APPLICATION_XML,
-	public ResAudio update(ResAudio picture) {
+	public int update(ResAudio picture) {
 		return dao.update(picture);
 	}
 

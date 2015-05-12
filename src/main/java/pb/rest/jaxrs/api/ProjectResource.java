@@ -53,7 +53,7 @@ public class ProjectResource implements Serializable {
 	@PUT @Path("{id}")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON }) // MediaType.APPLICATION_XML,
-	public Project update(Project picture) {
+	public int update(Project picture) {
 		return dao.update(picture);
 	}
 

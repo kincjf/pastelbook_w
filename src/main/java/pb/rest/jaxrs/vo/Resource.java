@@ -4,7 +4,6 @@ import org.pojomatic.annotations.AutoProperty;
 
 @AutoProperty
 public class Resource extends VO {
-	private int status;
 	private int _id;
 	private int accountId;
 	private String path;
@@ -15,23 +14,13 @@ public class Resource extends VO {
 	Resource() {
 	}
 	
-	public Resource(int _id, int accountId, String path, String thumbPath, String name, long size) {
+	public Resource(int accountId, String path, String thumbPath, String name, long size) {
 		super();
-		this.status = -1;
-		this._id = _id;
-		this.setAccountId(accountId);
+		this.accountId = accountId;
 		this.path = path;
 		this.thumbPath = thumbPath;
 		this.name = name;
 		this.size = size;
-	}
-	
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
 	}
 
 	public int get_id() {
