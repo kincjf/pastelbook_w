@@ -17,5 +17,5 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class PBLog {
-	public final static Logger logger= LoggerFactory.getLogger("PBLog");
+	public final static Logger logger = LoggerFactory.getLogger("PBLog");
 }

@@ -19,4 +19,15 @@ public class AccountDAO extends PastelbookDAO<Account> {
 		
 		return result;
 	}
+	
+	public Account findByEmail(String email){
+		Account result;
+		
+		init();
+		session = sqlMapper.openSession();
+		result = session.selectOne(objectName+"Mapper.findByEmail", email);
+		session.close();
+		
+		return result;
+	}
 }

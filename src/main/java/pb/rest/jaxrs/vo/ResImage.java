@@ -9,7 +9,9 @@ import org.pojomatic.annotations.AutoProperty;
 public class ResImage extends Resource {
 	public int width;
 	public int height;
-	public String type;
+	
+	/** 일반 : 100 */
+	public int type;
 	
 	public ResImage(){}
 
@@ -30,15 +32,15 @@ public class ResImage extends Resource {
 		this.height = height;
 	}
 
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 
-	public ResImage(int accountId, String path, String thumbPath, String name, long size, int width, int height, String type) {
+	public ResImage(int accountId, String path, String thumbPath, String name, long size, int width, int height, int type) {
 		super(accountId, path, thumbPath, name, size);
 		this.width = width;
 		this.height = height;

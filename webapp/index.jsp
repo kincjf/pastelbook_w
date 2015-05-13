@@ -25,8 +25,8 @@
 		int accountId = -1;
 		if(account != null){
 			if(pw != null){
-				Account bean = new Account("nick", "email", pw, account, "type");
-				Account fromDB = aDao.findByName(bean.getName());
+				Account bean = new Account("nick", account, pw, account, "type");
+				Account fromDB = aDao.findByEmail(bean.getEmail());
 				if (fromDB != null) { // 아이디는 있는 경우
 					if (bean.getPassword().equals(fromDB.getPassword())) {
 						// 세션에 id 등록

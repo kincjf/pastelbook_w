@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -53,14 +54,14 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		return result;
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
-	public T findById(int parseInt) {
-		T result;
+	@Override
+	public T findById(int id) {
+		T result = null;
 		
 		init();
 		session = sqlMapper.openSession();
-		result = (T) session.selectOne(objectName+"Mapper.findById", parseInt);
+		result = (T) session.selectOne(objectName+"Mapper.findById", id);
 		session.close();
 		
 		return result;
@@ -72,7 +73,7 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T findByName(String name) {
-		T result;
+		T result = null;
 		
 		init();
 		session = sqlMapper.openSession();
@@ -83,16 +84,21 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 	}
 	
 	@Override
-	public T create(T picture) {
-		//Image result;
-		
+	public T create(T data) {		
 		init();
 		session = sqlMapper.openSession(true);		// auto commit
-		session.insert(objectName+"Mapper.create", picture);
-		//result = (Image)session.selectOne("ImageMapper.findByNotId", picture);
-		session.close();
+			try {
+				session.insert(objectName+"Mapper.create", data);		// return primary key
+				// 성공할 경우 data에 저장된 값이 할당된다.
+			} catch (PersistenceException e) {
+				System.out.println(e);
+			} finally {
+				// primary key 중복 - org.apache.ibatis.exceptions.PersistenceException:
+				session.close();
+
+			}
 		
-		return picture;
+		return data;
 	}
 
 	/** 
@@ -107,19 +113,19 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 		init();
 		session = sqlMapper.openSession(true);		// auto commit
 		status = session.update(objectName+"Mapper.update", picture);
-		//result = (Image)session.selectOne("ImageMapper.findByNotId", picture);
+		// picture._id에 0이 들어간다 왜 그런지는 모르겠지만, _id는 변동하지 않았기 때문에 변동된 값에 대해서만 값이 들어가는 것 같다.
 		session.close();
 		
 		return status;
 	}
 	
 	@Override
-	public int delete(int id) {
+	public int delete(int _id) {
 		int status = 0;
 		
 		init();
 		session = sqlMapper.openSession(true);		// auto commit
-		status = session.delete(objectName+"Mapper.delete", id);
+		status = session.delete(objectName+"Mapper.delete", _id);
 		session.close();
 		
 		return status;

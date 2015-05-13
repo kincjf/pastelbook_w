@@ -12,28 +12,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	조사완료
  -->
 <mapper namespace="ResImageMapper">
+ <!--
  <select id="findAll" resultType="pb.rest.jaxrs.vo.ResImage">
-  select _id, accountId,
-   if(locate('http',path)=1, concat('/proxy?url=',path),path) as path, 
-   if(locate('http',thumbPath)=1, concat('/proxy?url=',thumbPath),thumbPath) as thumbPath, 
+   select _id, accountId,
+    if(locate('http',path)=1, concat('/proxy?url=',path),path) as path, 
+    if(locate('http',thumbPath)=1, concat('/proxy?url=',thumbPath),thumbPath) as thumbPath, 
+    name, size, width, height, type
+   from pb_res_image_proxy 
+  </select>
+  -->
+  <!-- proxy를 쓰지 않으므로 View가 아닌 본 Table에서 조회함 -->
+ <select id="findAll" resultType="pb.rest.jaxrs.vo.ResImage">
+  select _id, accountId, path, thumbPath, 
    name, size, width, height, type
-  from pb_res_image_proxy 
+  from pb_res_image
  </select>
  
  <select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
   select *
-  from pb_res_image_proxy where _id= #{ _id }
+  from pb_res_image where _id= #{ _id }
  </select>
  
  <select id="findAllByAccountId" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
   select *
-  from pb_res_image_proxy where accountId= #{ accountId }
+  from pb_res_image where accountId= #{ accountId }
  </select>
  
  <!-- login id에 해당하는 정보를 조회함 -->
  <select id="findByName" parameterType="int" resultType="pb.rest.jaxrs.vo.ResImage">
   select *
-  from pb_res_image_proxy where name= #{ name }
+  from pb_res_image where name= #{ name }
  </select>
  
  <insert id="create" parameterType="pb.rest.jaxrs.vo.ResImage" useGeneratedKeys="true" keyProperty="_id">

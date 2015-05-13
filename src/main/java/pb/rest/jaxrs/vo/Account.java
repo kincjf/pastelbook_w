@@ -19,17 +19,20 @@ public class Account extends VO {
 	String email;
 	String password;
 	
+	/** 성별 - 남자 : 1 / 여자 : 2 */
+	int sex;
+	
 	/** 로그인시 ID */
 	String name;
 	
-	/** 계정 권한 정보 */
-	String type;
+	/** 계정 권한 정보 - 관리자 : 100 / 일반유저 : 200  */
+	int type;
 
 	public Account() {
 	}
 
 	public Account(String nick, String email, String password, String name,
-			String type) {
+			int type) {
 		this.nick = nick;
 		this.email = email;
 		this.password = password;
@@ -38,7 +41,7 @@ public class Account extends VO {
 	}
 
 	public Account(int _id, String nick, String email, String password,
-			String name, String type) {
+			String name, int type) {
 		this._id = _id;
 		this.nick = nick;
 		this.email = email;
@@ -95,6 +98,14 @@ public class Account extends VO {
 		this.password = password;
 	}
 
+	public int getSex() {
+		return sex;
+	}
+
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -103,11 +114,11 @@ public class Account extends VO {
 		this.name = name;
 	}
 
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 

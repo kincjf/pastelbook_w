@@ -56,34 +56,79 @@ public class AccountResource implements Serializable {
 		return accountDao.findById(Integer.parseInt(id));
 	}
 
+	/**
+	 * 해당 정보의 계정 생성
+	 * @param Account 계정 정보
+	 * @return Account - status = 1(성공) / status = -1(실패)
+	 */
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON })
 	// MediaType.APPLICATION_XML,
-	public Account create(Account picture) {
-		return accountDao.create(picture);
-	}
+	public Account create(Account account) {
+		Account accountData = null;
+		
+		if(account != null) {
+			accountData = accountDao.create(account);
 
-	@PUT
-	@Path("{id}")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Produces({ MediaType.APPLICATION_JSON })
-	// MediaType.APPLICATION_XML,
-	public int update(Account picture) {
-		return accountDao.update(picture);
+			if(accountData.getId() > 0) {		// 계정 생성 성공
+				accountData.setStatus(1);
+				accountData.setPassword(null);		// 보안을 위해서 password는 보내지 않음
+			} else {		// 계정 생성 실패
+				accountData.setStatus(-1);
+			}
+		} else {
+			accountData = new Account();
+			accountData.setStatus(-1);
+		}
+		
+		return accountData;
 	}
 
 	/**
-	 * 해당 primary key의 계정 삭제
-	 * @param id - unique account id
-	 * @return 삭제한 계정 수 - 1 / 0
+	 * 해당 sessionId의 계정 정보 수정
+	 * @param id - unique session id
+	 * @return 1(수정 성공) / -1(수정 실패)
 	 */
-	@DELETE
-	@Path("{id}")
+	@PUT
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON })
 	// MediaType.APPLICATION_XML,
-	public int delete(@PathParam("id") int id) {
-		return accountDao.delete(id);
+	public int update(Account account, @FormParam("sessionId") String sessionId) {
+		Account accountData = null;
+		int status = -1;
+		
+		if (sessionId != null) { // parameter값(sessionId)이 없는 경우 (defensive programming, client에서 처리 함)
+			accountData = AccountResource.sessionCheck(sessionId);
+
+			if (account != null) { // 세션이 존재하는 경우
+				account.setId(accountData.getId());		// client에서 _id를 보내지 않았을 수도 있으므로
+				status = accountDao.update(account);
+			}		// else 세션이 존재하지 않는 경우
+		}
+		return status;
+	}
+
+	/**
+	 * 해당 sessionId의 계정 삭제
+	 * @param id - unique session id
+	 * @return 1(삭제 성공) / -1(삭제 실패)
+	 */
+	@DELETE
+	@Produces({ MediaType.APPLICATION_JSON })
+	// MediaType.APPLICATION_XML,
+	public int delete(@FormParam("sessionId") String sessionId) {
+		Account account = null;
+		int status = -1;
+		
+		if (sessionId != null) { // parameter값(sessionId)이 없는 경우 (defensive programming, client에서 처리 함)
+			account = AccountResource.sessionCheck(sessionId);
+
+			if (account != null) { // 세션이 존재하는 경우
+				status = accountDao.delete(account.getId());
+			}		// else 세션이 존재하지 않는 경우
+		}
+		return status;
 	}
 
 	/**
@@ -146,7 +191,7 @@ public class AccountResource implements Serializable {
 	@Produces({ MediaType.APPLICATION_JSON })
 	// MediaType.APPLICATION_XML,
 	public Account login(@FormParam("account") String id,
-			@FormParam("pw") String password,
+			@FormParam("password") String password,
 			@Context HttpServletRequest request) {
 
 		/**
@@ -161,8 +206,7 @@ public class AccountResource implements Serializable {
 
 		if (id != null) {
 			if (password != null) {
-				// 입력한 account가 Account에서는 name이다.(햇갈리기 때문에 나중에 바꿔야함)
-				accountBeanFromDB = accountDao.findByName(id);
+				accountBeanFromDB = accountDao.findByEmail(id);
 
 				if (accountBeanFromDB != null) { // 아이디 존재여부 확인
 					if (accountBeanFromDB.getPassword().equals(password)) {

@@ -12,19 +12,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	조사완료
  -->
 <mapper namespace="AccountMapper">
-	<insert id="create" parameterType="pb.rest.jaxrs.vo.Account"
-		useGeneratedKeys="true" keyProperty="_id">
-		INSERT INTO pb_account 
-		( nick, email, password, name, type)
-		VALUES 
-		( #{nick}, #{email}, #{password}, #{name}, #{type} )
-	</insert>
-	<update id="update" parameterType="pb.rest.jaxrs.vo.Account"
-		useGeneratedKeys="true" keyProperty="_id">
-		UPDATE pb_account
-		SET nick = #{ nick } , email = #{ email }, password = #{ password }, name = #{ name }, type = #{ type }
-		where _id= #{ _id }
-	</update>
 	<select id="findAll" resultType="pb.rest.jaxrs.vo.Account">
 		select *
 		from pb_account
@@ -32,6 +19,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findById" parameterType="int" resultType="pb.rest.jaxrs.vo.Account">
 		select *
 		from pb_account where _id= #{ _id }
+	</select>
+	<select id="findByEmail" parameterType="String" resultType="pb.rest.jaxrs.vo.Account">
+		select *
+		from pb_account where email= #{ email }
 	</select>
 	<select id="findByName" parameterType="String" resultType="pb.rest.jaxrs.vo.Account">
 		select *
@@ -43,6 +34,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from pb_account 
 		where nick= #{ nick }
 	</select>
+	<insert id="create" parameterType="pb.rest.jaxrs.vo.Account"
+		useGeneratedKeys="true" keyProperty="_id">
+		INSERT INTO pb_account 
+		( email, password, sex, nick, name, type)
+		VALUES 
+		( #{email}, #{password}, #{sex}, #{nick}, #{name}, #{type} )
+	</insert>
+	<update id="update" parameterType="pb.rest.jaxrs.vo.Account"
+		useGeneratedKeys="true" keyProperty="_id">
+		UPDATE pb_account
+		SET nick = #{ nick } , email = #{ email }, password = #{ password }, name = #{ name }, type = #{ type }
+		where _id= #{ _id }
+	</update>
 	<delete id="delete" parameterType="int">
 		delete
 		from pb_account
