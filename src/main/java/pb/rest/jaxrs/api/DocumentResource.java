@@ -127,7 +127,7 @@ public class DocumentResource implements Serializable, BaseResource<Document> {
 
 	/** 
 	 * 해당 세션정보의 Document 정보를 삭제함, docs에 fk 설정 때문에 Document도 함께 삭제됨
-	 * @param id(int) document primary key 
+	 * @param _id(int) document primary key 
 	 * @param sessionId(String) unique session identifier 
 	 * @return 1(삭제 성공) / 0(삭제 이력 없음)           
 	 * */

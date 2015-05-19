@@ -57,7 +57,7 @@ public class AccountResource implements Serializable {
 
 	/**
 	 * 해당 정보의 계정 생성
-	 * @param Account 계정 정보
+	 * @param account 계정 정보
 	 * @return Account - status = 1(성공) / status = -1(실패)
 	 */
 	@POST
@@ -86,7 +86,8 @@ public class AccountResource implements Serializable {
 
 	/**
 	 * 해당 sessionId의 계정 정보 수정
-	 * @param id - unique session id
+	 * @param account 수정할 계정 정보
+	 * @param sessionId unique session id
 	 * @return 1(수정 성공) / -1(수정 실패)
 	 */
 	@PUT
@@ -110,7 +111,7 @@ public class AccountResource implements Serializable {
 
 	/**
 	 * 해당 sessionId의 계정 삭제
-	 * @param id - unique session id
+	 * @param sessionId - unique session id
 	 * @return 1(삭제 성공) / -1(삭제 실패)
 	 */
 	@DELETE
@@ -132,7 +133,8 @@ public class AccountResource implements Serializable {
 
 	/**
 	 * 해당 session의 logout 수행
-	 * @param sessionId - unique session id
+	 * @param sessionId(String) unique session id
+	 * @param request HttpServletRequest
 	 * @return 1(로그아웃 성공) / -1(로그아웃 실패)
 	 */
 	@POST
@@ -180,7 +182,9 @@ public class AccountResource implements Serializable {
 
 	/**
 	 * 로그인 확인
-	 * 
+	 * @param id(String) 로그인시 입력 id
+	 * @param password 로그인시 입력 비밀번호
+	 * @param request HttpServletRequest
 	 * @return success - [object type of account data](status = 1) fail -
 	 *         null(status = 1)
 	 * */

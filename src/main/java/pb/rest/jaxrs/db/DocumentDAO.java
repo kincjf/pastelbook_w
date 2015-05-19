@@ -85,8 +85,8 @@ public class DocumentDAO extends PastelbookDAO<Document> {
 	
 	/**
 	 * TODO xml에 아직 추가 안됨
-	 * @param docId
-	 * @return
+	 * @param docId document Id
+	 * @return List<Document>
 	 */
 	public List<Document> findAllParentByDocID(@Param("docId") int docId) {
 		List<Document> result;
@@ -105,8 +105,8 @@ public class DocumentDAO extends PastelbookDAO<Document> {
 	
 	/**
 	 * TODO xml에 아직 추가 안됨, 추가하고 d_techtree.jsp에서 동작하게 + 부트스트랩,grid시스템
-	 * @param docId
-	 * @return
+	 * @param docId document id
+	 * @return List<Document>
 	 */
 	public List<Document> findAllChildByDocID(@Param("docId") int docId) {
 		List<Document> result;

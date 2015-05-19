@@ -9,6 +9,7 @@ import org.pojomatic.annotations.AutoProperty;
 public class Document extends VO {
 	@JsonProperty("_id")
 	int _id;
+	
 	int accountId;
 	int projectId;
 
@@ -19,6 +20,7 @@ public class Document extends VO {
 	Date postedDate;
 	String sceneList;
 	String previewImage;
+	
 	int category;
 	int viewCount;
 

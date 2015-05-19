@@ -21,8 +21,8 @@ public class HttpSessionCollector implements HttpSessionListener {
     }
     /** 
      * Find session by Unique id
-     * @param String
-     * return HttpSession (find) | null (not find)
+     * @param sessionId(String)
+     * @return HttpSession (find) | null (not find)
      */
     public static HttpSession find(String sessionId) {
 		System.out.println("HttpSessionCollector - find:" + sessionId);

@@ -103,7 +103,7 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 
 	/** 
 	 * - account 정보와 연계된 resource 정보를 갱신함
-	 * @param picture(T) resource 정보
+	 * @param data(T) resource 정보
 	 * @return 삭제 수 / 0
 	 * */
 	@Override
@@ -133,7 +133,7 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 
 	/** 
 	 * - account 정보와 연계된 resource 정보를 삭제함
-	 * @param id(int) resource의 primary key
+	 * @param _id(int) resource의 primary key
 	 * @param accountId account key
 	 * @return 삭제 수 / 0
 	 * */

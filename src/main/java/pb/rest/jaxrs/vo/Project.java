@@ -19,6 +19,7 @@ public class Project extends VO {
 	
 	private String sceneList;
 	private String previewImage;
+	
 	private int width;
 	private int height;
 	private int category;

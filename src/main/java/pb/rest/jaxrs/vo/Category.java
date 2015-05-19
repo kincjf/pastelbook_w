@@ -5,8 +5,11 @@ import org.pojomatic.annotations.AutoProperty;
 
 @AutoProperty
 public class Category extends VO {
+	/** IT - 1, 시사 - 2, 사진 - 3, 창작 - 4 */
 	@JsonProperty("_id")
 	int _id;
+	
+	/** 카테고리 명(Korean)*/
 	String ko_name;
 
 	public Category(){}

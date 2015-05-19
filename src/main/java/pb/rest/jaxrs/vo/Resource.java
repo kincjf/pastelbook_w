@@ -8,9 +8,11 @@ public class Resource extends VO {
 	@JsonProperty("_id")
 	private int _id;
 	private int accountId;
+	
 	private String path;
 	private String thumbPath;
 	private String name;
+	
 	private long size;
 
 	Resource() {

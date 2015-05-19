@@ -154,7 +154,7 @@ public class ResImageResource implements Serializable, BaseResource<ResImage> {
 
 	/** 
 	 * 해당 세션정보의 이미지 정보를 삭제함
-	 * @param id(int) image primary key 
+	 * @param _id(int) image primary key 
 	 * @param sessionId(String) unique session identifier 
 	 * @return 1(삭제 성공) / 0(삭제 이력 없음)           
 	 * */
