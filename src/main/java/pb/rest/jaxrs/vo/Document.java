@@ -2,17 +2,20 @@ package pb.rest.jaxrs.vo;
 
 import java.util.Date;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.pojomatic.annotations.AutoProperty;
 
 @AutoProperty
 public class Document extends VO {
+	@JsonProperty("_id")
 	int _id;
 	int accountId;
+	int projectId;
 
 	String title;
 	String description;
 
-	int projectId;
+//    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="YYYY-MM-DD HH:mm:ss")
 	Date postedDate;
 	String sceneList;
 	String previewImage;
@@ -34,13 +37,14 @@ public class Document extends VO {
 		this.category = category;
 		this.viewCount = viewCount;
 	}
-
+	@JsonProperty("_id")
 	public int getId() {
 		return _id;
 	}
 
-	public void setId(int id) {
-		this._id = id;
+	@JsonProperty("_id")
+	public void setId(int _id) {
+		this._id = _id;
 	}
 
 	public int getAccountId() {

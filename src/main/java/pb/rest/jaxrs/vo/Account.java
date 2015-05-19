@@ -1,5 +1,6 @@
 package pb.rest.jaxrs.vo;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.pojomatic.annotations.AutoProperty;
 
 @AutoProperty
@@ -8,6 +9,7 @@ public class Account extends VO {
 	int status;
 	
 	/** DB Index 순서 (Auto Increment) */
+	@JsonProperty("_id")
 	int _id;
 	
 	/** Servlet의 Session id */
@@ -51,23 +53,25 @@ public class Account extends VO {
 	}
 
 	public int getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(int status) {
 		this.status = status;
 	}
 	
+	@JsonProperty("_id")
 	public int getId() {
-		return _id;
+		return this._id;
 	}
 
+	@JsonProperty("_id")
 	public void setId(int id) {
 		this._id = id;
 	}
 
 	public String getSessionId() {
-		return sessionId;
+		return this.sessionId;
 	}
 
 	public void setSessionId(String sessionId) {
@@ -75,7 +79,7 @@ public class Account extends VO {
 	}
 
 	public String getNick() {
-		return nick;
+		return this.nick;
 	}
 
 	public void setNick(String nick) {
@@ -83,7 +87,7 @@ public class Account extends VO {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -91,7 +95,7 @@ public class Account extends VO {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -99,7 +103,7 @@ public class Account extends VO {
 	}
 
 	public int getSex() {
-		return sex;
+		return this.sex;
 	}
 
 	public void setSex(int sex) {
@@ -107,7 +111,7 @@ public class Account extends VO {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -115,7 +119,7 @@ public class Account extends VO {
 	}
 
 	public int getType() {
-		return type;
+		return this.type;
 	}
 
 	public void setType(int type) {

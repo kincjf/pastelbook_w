@@ -42,6 +42,11 @@
 			<artifactId>pojomatic</artifactId>
 			<version>2.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.5.3</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
@@ -101,16 +106,22 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
-		</dependency>
-		<dependency>
+		</dependency> -->
+		<!-- <dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
-		</dependency>
+		</dependency> -->
+		
+		<!-- <dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>cors-filter</artifactId>
+			<version>2.4</version>
+		</dependency> -->
 
 	</dependencies>
 
@@ -134,6 +145,18 @@
 					<warSourceDirectory>webapp</warSourceDirectory>
 					<failOnMissingWebXml>true</failOnMissingWebXml>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+        		<artifactId>tomcat7-maven-plugin</artifactId>
+        		<version>2.2</version>
+        		<configuration>
+          			<url>http://pastelbook.com/manager/text</url>
+          			<server>PastelBookTomcatServerRepo</server>
+          			<path>/</path>
+          			<username>admin</username>
+      				<password>hitit113112</password>
+        		</configuration>
 			</plugin>
 		</plugins>
 	</build>

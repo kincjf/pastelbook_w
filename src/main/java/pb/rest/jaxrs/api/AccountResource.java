@@ -3,7 +3,6 @@ package pb.rest.jaxrs.api;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;

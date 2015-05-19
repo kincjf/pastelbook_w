@@ -10,25 +10,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			D : remove 조사완료 
 -->
 <mapper namespace="ProjectMapper">
-	<insert id="create" parameterType="pb.rest.jaxrs.vo.Project"
-		useGeneratedKeys="true" keyProperty="_id">
-		INSERT INTO pb_project
-		( accountId, title, description, createDate, modifyDate, sceneList,
-		previewImage, width, height )
-		VALUES (
-		#{accountId}, #{title}, #{description}, #{createDate}, #{modifyDate}
-		, #{sceneList}, #{previewImage}, #{width}, #{height}
-		)
-	</insert>
-	<update id="update" parameterType="pb.rest.jaxrs.vo.Project"
-		useGeneratedKeys="true" keyProperty="_id">
-		UPDATE pb_project
-		SET
-		accountId =#{accountId} , title =#{title}, description =#{description},
-		createDate =#{createDate}, modifyDate =#{modifyDate}, sceneList =#{sceneList},
-		previewImage =#{previewImage}, width =#{width}, height =#{height}
-		where _id= #{ _id }
-	</update>
 	<select id="findAll" resultType="pb.rest.jaxrs.vo.Project">
 		select *
 		from pb_project
@@ -54,17 +35,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from pb_project
 		where accountId = #{ accountId } and description like CONCAT('%', #{ query } ,'%')
 	</select>
-	<delete id="delete" parameterType="int">
-		delete
-		from pb_project
-		where _id= #{ _id }
-	</delete>
-	<select id="findAllByAccountId" parameterType="int"
-		resultType="pb.rest.jaxrs.vo.Project">
-		select *
-		from pb_project
-		where accountId = #{ accountId }
-	</select>
 	<select id="findAllByAccountIdAndCategoryandQueryAndDateOrder" parameterType="map"
 		resultType="pb.rest.jaxrs.vo.Project">
 		select *
@@ -84,6 +54,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				order by modifyDate desc
 			</if>			
 		</if>
-	</select>	
+	</select>
 	
+	<select id="findAllByAccountId" parameterType="int"
+		resultType="pb.rest.jaxrs.vo.Project">
+		select *
+		from pb_project
+		where accountId = #{ accountId }
+	</select>
+	<insert id="create" parameterType="pb.rest.jaxrs.vo.Project"
+		useGeneratedKeys="true" keyProperty="_id">
+		INSERT INTO pb_project
+		( accountId, title, description, createDate, modifyDate, sceneList,
+		previewImage, width, height, category )
+		VALUES (
+		#{accountId}, #{title}, #{description}, #{createDate}, #{modifyDate},
+		#{sceneList}, #{previewImage}, #{width}, #{height}, #{category}
+		)
+	</insert>
+	<update id="update" parameterType="pb.rest.jaxrs.vo.Project"
+		useGeneratedKeys="true" keyProperty="_id">
+		UPDATE pb_project
+		SET
+		accountId =#{accountId}, title =#{title}, description =#{description},
+		createDate =#{createDate}, modifyDate =#{modifyDate}, sceneList =#{sceneList},
+		previewImage =#{previewImage}, width =#{width}, height =#{height}, category = #{category}
+		where _id= #{ _id }
+	</update>
+	<delete id="delete" parameterType="map">
+		delete
+		from pb_project
+		where _id= #{ _id } and accountId= #{ accountId }
+	</delete>	
 </mapper>

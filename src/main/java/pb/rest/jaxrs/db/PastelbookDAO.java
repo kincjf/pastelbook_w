@@ -107,12 +107,12 @@ public class PastelbookDAO<T> implements SimpleDAO<T> {
 	 * @return 삭제 수 / 0
 	 * */
 	@Override
-	public int update(T picture) {
+	public int update(T data) {
 		int status = 0;
 		
 		init();
 		session = sqlMapper.openSession(true);		// auto commit
-		status = session.update(objectName+"Mapper.update", picture);
+		status = session.update(objectName+"Mapper.update", data);
 		// picture._id에 0이 들어간다 왜 그런지는 모르겠지만, _id는 변동하지 않았기 때문에 변동된 값에 대해서만 값이 들어가는 것 같다.
 		session.close();
 		

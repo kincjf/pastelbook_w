@@ -19,7 +19,7 @@ public class testAccountDAO extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 
-		bean = new Account("파스텔북", "mail", "hitit113112", "pb", "pb");
+//		bean = new Account("파스텔북", "mail", "hitit113112", "pb", "pb");
 	}
 
 	public void test_1_login_check() {

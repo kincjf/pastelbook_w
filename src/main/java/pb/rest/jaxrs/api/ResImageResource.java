@@ -18,7 +18,7 @@ import pb.rest.jaxrs.vo.Account;
 import pb.rest.jaxrs.vo.ResImage;
 
 @Path("/resource/image")
-public class ResImageResource implements Serializable {
+public class ResImageResource implements Serializable, BaseResource<ResImage> {
 
 	private static final long serialVersionUID = 7873330816524267933L;
 
@@ -73,6 +73,7 @@ public class ResImageResource implements Serializable {
 	 *            (String) unique session identifier
 	 * @return find - List<ResImage> / null
 	 */
+	@Override
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
 	// MediaType.APPLICATION_XML,
@@ -98,6 +99,7 @@ public class ResImageResource implements Serializable {
 	 * @param sessionId(String) unique session identifier 
 	 * @return imageData / null           
 	 * */
+	@Override
 	@POST
 	@Path("{sessionId}")
 	@Consumes({ MediaType.APPLICATION_JSON })
@@ -125,8 +127,9 @@ public class ResImageResource implements Serializable {
 	 * 해당 세션정보의 이미지 정보를 수정함
 	 * @param picture(ResImage) 이미지 정보
 	 * @param sessionId(String) unique session identifier 
-	 * @return 갱신된 row 수 / 갱신 이력 없
+	 * @return 갱신된 row 수 / 0
 	 * */
+	@Override
 	@PUT
 	@Path("{sessionId}")
 	@Consumes({ MediaType.APPLICATION_JSON })
@@ -150,11 +153,12 @@ public class ResImageResource implements Serializable {
 	}
 
 	/** 
-	 * 해당 세션정보의 이미지 정보를 수정함
+	 * 해당 세션정보의 이미지 정보를 삭제함
 	 * @param id(int) image primary key 
 	 * @param sessionId(String) unique session identifier 
 	 * @return 1(삭제 성공) / 0(삭제 이력 없음)           
 	 * */
+	@Override
 	@DELETE
 	@Path("{_id}")
 	@Produces({ MediaType.APPLICATION_JSON })

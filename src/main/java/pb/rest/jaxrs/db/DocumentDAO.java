@@ -8,8 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.xml.bind.v2.TODO;
-
 import pb.rest.jaxrs.vo.Document;
 
 public class DocumentDAO extends PastelbookDAO<Document> {
@@ -21,7 +19,7 @@ public class DocumentDAO extends PastelbookDAO<Document> {
 	}
 
 
-	public List<Document> findByTitleContainsAndAccountId(@Param("query") String query,@Param("accountId") int accountId) {
+	public List<Document> findByTitleContainsAndAccountId(@Param("query") String query, @Param("accountId") int accountId) {
 		List<Document> result;
 		
 		init();
@@ -120,6 +118,23 @@ public class DocumentDAO extends PastelbookDAO<Document> {
         map.put("docId", docId);
         
 		result = session.selectList(objectName+"Mapper.findAllChildByDocID", map);
+		session.close();
+		
+		return result;
+	}
+
+
+	/** 
+	 * 계정 id에 대한 Document Resource를 조회함
+	 * @param accountId(int)
+	 * @return List<Document> by session.selectList
+	 * */
+	public List<Document> findAllByAccountId(@Param("accountId") int accountId){
+		List<Document> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		result = session.selectList(objectName+"Mapper.findAllByAccountId", accountId);
 		session.close();
 		
 		return result;

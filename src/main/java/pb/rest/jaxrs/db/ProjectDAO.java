@@ -68,5 +68,21 @@ public class ProjectDAO extends PastelbookDAO<Project> {
 		
 		return result;
 	}
+
+	/** 
+	 * 계정 id에 대한 Project Resource를 조회함
+	 * @param accountId(int)
+	 * @return List<Project> by session.selectList
+	 * */
+	public List<Project> findAllByAccountId(int accountId){
+		List<Project> result;
+		
+		init();
+		session = sqlMapper.openSession();
+		result = session.selectList(objectName+"Mapper.findAllByAccountId", accountId);
+		session.close();
+		
+		return result;
+	}
 	
 }

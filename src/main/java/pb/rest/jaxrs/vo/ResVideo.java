@@ -8,6 +8,8 @@ import org.pojomatic.annotations.AutoProperty;
 public class ResVideo extends Resource {
 	int width;
 	int height;
+	
+//    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="YYYY-MM-DD HH:mm:ss")
 	Date playTime;
 	
 	public ResVideo(){}

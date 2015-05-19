@@ -12,10 +12,10 @@
 		<servlet-name>JAX-RS Servlet</servlet-name>
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
 		<!-- tomcat cors filter로 해도 되고, jersey custom filter에서 cors처리를 해줘도 됨 -->
-		<!-- <init-param>
-		    		<param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
-		    		<param-value>pb.rest.filters.ResponseCorsFilter</param-value>
-		</init-param> -->
+		<init-param>
+			<param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+		    <param-value>pb.rest.filters.ResponseCorsFilter</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -28,9 +28,10 @@
 		<location>error.jsp</location>
 	</error-page>
 	-->
-	<filter>
+
+	<!-- tomcat 기본 필터 (7.0.41버전 이상 설정 가능)-->
+	<!-- <filter>
 		<filter-name>CorsFilter</filter-name>
-		<!-- tomcat 기본 필터 (7.0.41버전 이상 설정 가능)-->
 		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
 		<init-param>
 			<param-name>cors.allowed.origins</param-name>
@@ -56,11 +57,15 @@
 			<param-name>cors.preflight.maxage</param-name>
 			<param-value>10</param-value>
 		</init-param>
+	</filter> -->
+	<!-- <filter>
+		<filter-name>CORSFilter</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>CorsFilter</filter-name>
+		<filter-name>CORSFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 	
 	<listener>
     	<listener-class>pb.listener.HttpSessionCollector</listener-class>

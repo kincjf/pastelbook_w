@@ -1,23 +1,20 @@
 package pb.rest.jaxrs.vo;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import org.pojomatic.annotations.AutoProperty;
 
 @AutoProperty
-@XmlRootElement
 public class ResImage extends Resource {
-	public int width;
-	public int height;
+	private int width;
+	private int height;
 	
 	/** 일반 : 100 */
-	public int type;
+	private int type;
 	
 	public ResImage(){}
 
 	
 	public int getWidth() {
-		return width;
+		return this.width;
 	}
 
 	public void setWidth(int width) {
@@ -25,7 +22,7 @@ public class ResImage extends Resource {
 	}
 
 	public int getHeight() {
-		return height;
+		return this.height;
 	}
 
 	public void setHeight(int height) {
@@ -33,7 +30,7 @@ public class ResImage extends Resource {
 	}
 
 	public int getType() {
-		return type;
+		return this.type;
 	}
 
 	public void setType(int type) {

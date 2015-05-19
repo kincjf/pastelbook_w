@@ -1,9 +1,11 @@
 package pb.rest.jaxrs.vo;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.pojomatic.annotations.AutoProperty;
 
 @AutoProperty
 public class Resource extends VO {
+	@JsonProperty("_id")
 	private int _id;
 	private int accountId;
 	private String path;
@@ -23,16 +25,18 @@ public class Resource extends VO {
 		this.size = size;
 	}
 
-	public int get_id() {
-		return _id;
+	@JsonProperty("_id")
+	public int getId() {
+		return this._id;
 	}
 
-	public void set_id(int _id) {
+	@JsonProperty("_id")
+	public void setId(int _id) {
 		this._id = _id;
 	}
 
 	public int getAccountId() {
-		return accountId;
+		return this.accountId;
 	}
 
 	public void setAccountId(int accountId) {
@@ -40,7 +44,7 @@ public class Resource extends VO {
 	}
 
 	public String getPath() {
-		return path;
+		return this.path;
 	}
 
 	public void setPath(String path) {
@@ -48,7 +52,7 @@ public class Resource extends VO {
 	}
 
 	public String getThumbPath() {
-		return thumbPath;
+		return this.thumbPath;
 	}
 
 	public void setThumbPath(String thumbPath) {
@@ -56,7 +60,7 @@ public class Resource extends VO {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -64,7 +68,7 @@ public class Resource extends VO {
 	}
 
 	public long getSize() {
-		return size;
+		return this.size;
 	}
 
 	public void setSize(long size) {

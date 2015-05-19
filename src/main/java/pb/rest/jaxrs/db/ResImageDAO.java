@@ -11,6 +11,11 @@ public class ResImageDAO extends PastelbookDAO<ResImage> {
 		objectName = "ResImage";
 	}
 	
+	/** 
+	 * 계정 id에 대한 Image Resource를 조회함
+	 * @param accountId(int)
+	 * @return List<ResImage> by session.selectList
+	 * */
 	public List<ResImage> findAllByAccountId(int accountId){
 		List<ResImage> result;
 		

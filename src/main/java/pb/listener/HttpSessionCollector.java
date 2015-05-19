@@ -25,6 +25,7 @@ public class HttpSessionCollector implements HttpSessionListener {
      * return HttpSession (find) | null (not find)
      */
     public static HttpSession find(String sessionId) {
+		System.out.println("HttpSessionCollector - find:" + sessionId);
         return sessions.get(sessionId);
     }
 }
